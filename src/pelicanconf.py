@@ -5,7 +5,7 @@ from __future__ import unicode_literals
 AUTHOR = u'Rocky Lai'
 SITENAME = u"Rocky Lai's Blog"
 SITEURL = 'http://wudixiaop.github.io'
-THEME = "Theme/bootstrap"
+THEME = "Theme/pelican-bootstrap3"
 
 PATH = 'content'
 

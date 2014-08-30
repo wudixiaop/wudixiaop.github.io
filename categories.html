@@ -1,61 +1,118 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-cn"
+>
 <head>
-	<meta charset="utf-8">
-	<title>Rocky Lai's Blog</title>
-	<meta name="description" content="">
-	<meta name="author" content="Rocky Lai">
+    <title>Categories - Rocky Lai's Blog</title>
+    <!-- Using the latest rendering mode for IE -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-	<!-- HTML5 shim, for IE6-8 support of HTML elements -->
-	<!--[if lt IE 9]>
-		<script src="http://wudixiaop.github.io/theme/html5.js"></script>
-	<![endif]-->
 
-	<!-- Styles -->
-	<link href="http://wudixiaop.github.io/theme/bootstrap.min.css" rel="stylesheet">
-	<link href="http://wudixiaop.github.io/theme/local.css" rel="stylesheet">
-	<link href="http://wudixiaop.github.io/theme/pygments.css" rel="stylesheet">
 
-    <!-- Feeds -->
+
+        <meta name="author" content="Rocky Lai" />
+
+    <!-- Open Graph tags -->
+        <meta property="og:site_name" content="Rocky Lai's Blog" />
+        <meta property="og:type" content="website"/>
+        <meta property="og:title" content="Rocky Lai's Blog"/>
+        <meta property="og:url" content="http://wudixiaop.github.io"/>
+        <meta property="og:description" content="Rocky Lai's Blog"/>
+
+
+    <!-- Bootstrap -->
+        <link rel="stylesheet" href="http://wudixiaop.github.io/theme/css/bootstrap.min.css" type="text/css"/>
+    <link href="http://wudixiaop.github.io/theme/css/font-awesome.min.css" rel="stylesheet">
+
+    <link href="http://wudixiaop.github.io/theme/css/pygments/native.css" rel="stylesheet">
+    <link rel="stylesheet" href="http://wudixiaop.github.io/theme/css/style.css" type="text/css"/>
+
 
 </head>
 <body>
-	<div class="topbar">
-	  <div class="topbar-inner">
-		<div class="container-fluid">
-		  <a class="brand" href="http://wudixiaop.github.io/">Rocky Lai's Blog</a>
-			<ul class="nav">
-					<li ><a href="http://wudixiaop.github.io/category/python.html">Python</a></li>
-			</ul>
-			<p class="pull-right"><a href="http://wudixiaop.github.io/archives.html">[archives]</a> <a href="http://wudixiaop.github.io/tags.html">[tags]</a></p>
-		</div>
-	  </div>
-	</div>
 
-	<div class="container-fluid">
-	  <div class="sidebar">
-		<div class="well">
-			<h3>Blogroll</h3>
-			<ul>
-				<li><a href="https://github.com/wudixiaop">Rocky's Github</a></li>
-			</ul>
-			<div class="social">
-			<h3>Social</h3>
-			<ul>
-			</ul>
-			</div>
-		</div>
-	  </div>
-	  <div class="content">
-<div class="page-header"><h1>Rocky Lai's Blog <small>[categories]</small></h1></div><ul>
-	<li><a href="http://wudixiaop.github.io/category/python.html">Python</a></li>
-</ul>
-		<footer>
-		  <p>Powered by <a href="http://getpelican.com/">Pelican</a>. Theme based on <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap</a>.</p>
-		  <p>&copy; Rocky Lai</p>
-		</footer>
-	  </div>
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="http://wudixiaop.github.io/" class="navbar-brand">
+Rocky Lai's Blog            </a>
+        </div>
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav">
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="http://wudixiaop.github.io/archives.html"><i class="fa fa-th-list"></i><span class="icon-label">Archives</span></a></li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+</div> <!-- /.navbar -->
 
-	</div>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-9">
+
+    <section id="categories">
+        <h1>All Categories for Rocky Lai's Blog</h1>
+        <div class="panel-group" id="accordion">
+        </div>
+
+    </section>
+        </div>
+        <div class="col-sm-3 well well-sm" id="sidebar">
+
+<aside>
+    <section>
+        <ul class="list-group list-group-flush">
+
+
+
+                <li class="list-group-item"><a href="http://wudixiaop.github.io/"><h4><i class="fa fa-tags fa-lg"></i><span class="icon-label">Tags</span></h4></a>
+                    <ul class="list-group " id="tags">
+                    </ul>
+                </li>    
+    <li class="list-group-item"><h4><i class="fa fa-external-link-square fa-lg"></i><span class="icon-label">Links</span></h4>
+      <ul class="list-group" id="links">
+        <li class="list-group-item">
+            <a href="https://github.com/wudixiaop" target="_blank">
+                Rocky's Github
+            </a>
+        </li>
+      </ul>
+    </li>
+
+        </ul>
+    </section>
+
+</aside>        </div>
+    </div>
+</div>
+<footer>
+   <div class="container">
+      <hr>
+      <div class="row">
+         <div class="col-xs-10">&copy;  Rocky Lai
+            &middot; Powered by <a href="https://github.com/DandyDev/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
+            <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
+            <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>         </div>
+         <div class="col-xs-2"><p class="pull-right"><i class="fa fa-arrow-up"></i> <a href="#">Back to top</a></p></div>
+      </div>
+   </div>
+</footer>
+<script src="http://wudixiaop.github.io/theme/js/jquery.min.js"></script>
+
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="http://wudixiaop.github.io/theme/js/bootstrap.min.js"></script>
+
+<!-- Enable responsive features in IE8 with Respond.js (https://github.com/scottjehl/Respond) -->
+<script src="http://wudixiaop.github.io/theme/js/respond.min.js"></script>
+
 </body>
 </html>
