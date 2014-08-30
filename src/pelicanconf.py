@@ -2,8 +2,8 @@
 # -*- coding: utf-8 -*- #
 from __future__ import unicode_literals
 
-AUTHOR = u'Rocky Lai'
-SITENAME = u"Rocky Lai's Blog"
+AUTHOR = u'Rocky Lai @ Github'
+SITENAME = u"Rocky Lai @ Github"
 SITEURL = 'http://wudixiaop.github.io'
 THEME = "Theme/pelican-bootstrap3"
 
