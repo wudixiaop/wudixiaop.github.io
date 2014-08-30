@@ -1,4 +1,4 @@
-Title:Why I start write ShaderlabVS
+Title:Why I start ShaderlabVS
 Date: 2014-08-31 20:35
 Category: ShaderlabVS
 

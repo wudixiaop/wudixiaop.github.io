@@ -1,4 +1,2 @@
-src/cache/ArticlesGenerator-Readers
-src/cache/ArticlesGenerator-Readers
+src/cache/*.*
 src/*.pyc
-src/cache/ArticlesGenerator-Readers
