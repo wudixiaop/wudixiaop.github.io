@@ -4,11 +4,12 @@ from __future__ import unicode_literals
 
 AUTHOR = u'Rocky Lai'
 SITENAME = u"Rocky Lai's Blog"
-SITEURL = ''
+SITEURL = '/'
+THEME = "Theme/bootstrap"
 
 PATH = 'content'
 
-TIMEZONE = 'China/Beijing'
+TIMEZONE = 'Asia/Shanghai'
 
 DEFAULT_LANG = u'zh-cn'
 
@@ -18,7 +19,7 @@ CATEGORY_FEED_ATOM = None
 TRANSLATION_FEED_ATOM = None
 
 # Blogroll
-LINKS = ()
+LINKS = (("Rocky's Github", "https://github.com/wudixiaop"),)
 
 # Social widget
 SOCIAL = ()

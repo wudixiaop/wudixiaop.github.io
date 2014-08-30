@@ -1,2 +1,2 @@
 @echo off
-pelican -s pelicanconf.py -o ..\
+pelican content -s pelicanconf.py -o ..\
