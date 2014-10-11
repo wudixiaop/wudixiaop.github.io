@@ -1,2 +1,5 @@
 src/cache/*.*
 src/*.pyc
+src/cache/ArticlesGenerator-Readers
+src/cache/PagesGenerator-Readers
+*.pyc
