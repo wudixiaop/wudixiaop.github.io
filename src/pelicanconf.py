@@ -36,5 +36,4 @@ DEFAULT_PAGINATION = 8
 # 自我介绍
 ABOUT_ME = """
 I'm a coder in China.<br/>
-<span class="glyphicon glyphicon-envelope"> <B>rockylai@qq.com</B></span>
 """
