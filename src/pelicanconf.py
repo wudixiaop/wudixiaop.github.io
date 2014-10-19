@@ -9,9 +9,13 @@ THEME = "Theme/pelican-bootstrap3"
 
 PATH = 'content'
 
-TIMEZONE = 'Asia/Shanghai'
+TIMEZONE = 'Asia/Chongqing'
 
 DEFAULT_LANG = u'zh-cn'
+# 根据上面的DEFALUT_LANG来匹配日期格式
+DATE_FORMATS = {
+    'zh-cn': '%Y-%m-%d %H:%M',
+}    
 
 # Feed generation is usually not desired when developing
 FEED_ALL_ATOM = None
