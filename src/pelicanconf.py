@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*- #
 from __future__ import unicode_literals
 
-AUTHOR = u'Rocky Lai @ Github'
+AUTHOR = u'Rocky Lai'
 SITENAME = u"Rocky Lai @ Github"
 SITEURL = 'http://wudixiaop.github.io'
 THEME = "Theme/pelican-bootstrap3"
@@ -32,3 +32,9 @@ DEFAULT_PAGINATION = 8
 
 # Uncomment following line if you want document-relative URLs when developing
 #RELATIVE_URLS = True
+
+# 自我介绍
+ABOUT_ME = """
+I'm a coder in china.<br/>
+<span class="glyphicon glyphicon-hand-right"/> : rockylai@qq.com
+"""
