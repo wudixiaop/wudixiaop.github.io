@@ -25,7 +25,7 @@ Tags: ShaderlabVS
 ------------------------------
 ##_History:_
 
-**V0.3 realse note:**
+**V0.3 release note:**
 
 * Support Signature help feature
 
