@@ -1,6 +1,8 @@
 Title:Why I start ShaderlabVS
 Date: 2014-08-31 20:35
 Category: ShaderlabVS
+Tags: ShaderlabVS
+Modified: 2010-10-19 18:09
 
 Last month, [SyntaxTree](http://unityvs.com/), the creator of UnityVS plugin for Visual Studio was acquired by Microsoft. Microsoft have published the UnityVS to Visual Studio users for free at the end of July.   
 
