@@ -20,7 +20,7 @@ Tags: ShaderlabVS
 > * [BaiduPan](http://pan.baidu.com/s/1o6sPOUI)
 
 
-**If you have feedbacks or quesitons, send email to me. My email is rockylai@qq.com.**
+**If you have feedbacks or questions, send email to me. My email is rockylai@qq.com.**
 
 
 ------------------------------

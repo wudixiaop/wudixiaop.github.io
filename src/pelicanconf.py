@@ -11,10 +11,10 @@ PATH = 'content'
 
 TIMEZONE = 'Asia/Chongqing'
 
-DEFAULT_LANG = u'zh-cn'
+DEFAULT_LANG = u'en-us'
 # 根据上面的DEFALUT_LANG来匹配日期格式
 DATE_FORMATS = {
-    'zh-cn': '%Y-%m-%d %H:%M',
+    'en-us': '%Y-%m-%d %H:%M',
 }    
 
 # Feed generation is usually not desired when developing
@@ -23,7 +23,10 @@ CATEGORY_FEED_ATOM = None
 TRANSLATION_FEED_ATOM = None
 
 # Blogroll
-LINKS = (("Rocky's Github", "https://github.com/wudixiaop"),)
+LINKS = (
+    ("Rocky's Github", "https://github.com/wudixiaop"),
+    ("ShaderlabVS Downloads", "http://wudixiaop.github.io/shaderlabvs-release-page.html"),
+    )
 
 # Social widget
 SOCIAL = ()
@@ -37,3 +40,6 @@ DEFAULT_PAGINATION = 8
 ABOUT_ME = """
 I'm a coder in China.<br/>
 """
+
+SHOW_ARTICLE_AUTHOR = True
+DISQUS_SITENAME = "wudixiaopgithubio"
