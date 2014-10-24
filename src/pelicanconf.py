@@ -42,4 +42,5 @@ I'm a coder in China.<br/>
 """
 
 SHOW_ARTICLE_AUTHOR = True
+DISPLAY_ARTICLE_INFO_ON_INDEX = True
 DISQUS_SITENAME = "wudixiaopgithubio"
