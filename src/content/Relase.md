@@ -3,7 +3,7 @@ Date: 2014-10-19 17:20
 Category: ShaderlabVS
 Tags: ShaderlabVS
 
-**A introduction of ShaderlabVS can be found at <https://github.com/wudixiaop/ShaderlabVS>**
+**A introduction of ShaderlabVS can be found at <https://github.com/wudixiaop/ShaderlabVS/blob/master/README.md>**
 
 
 ##_Latest Version - V0.4_
