@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Rocky Lai @ Github</title><link>http://wudixiaop.github.io/</link><description></description><atom:link href="http://wudixiaop.github.io/feeds%5Crocky-lai.rss.xml" rel="self"></atom:link><lastBuildDate>Tue, 28 Oct 2014 21:20:00 +0800</lastBuildDate><item><title>ShaderlabVS Release Page</title><link>http://wudixiaop.github.io/shaderlabvs-release-page.html</link><description>&lt;p&gt;&lt;strong&gt;A introduction of ShaderlabVS can be found at &lt;a href="https://github.com/wudixiaop/ShaderlabVS/blob/master/README.md"&gt;https://github.com/wudixiaop/ShaderlabVS/blob/master/README.md&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
-&lt;h2&gt;&lt;em&gt;Latest Version - V0.5&lt;/em&gt;&lt;/h2&gt;
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Rocky Lai @ Github</title><link>http://wudixiaop.github.io/</link><description></description><atom:link href="http://wudixiaop.github.io/feeds%5Crocky-lai.rss.xml" rel="self"></atom:link><lastBuildDate>Tue, 28 Oct 2014 21:20:00 +0800</lastBuildDate><item><title>ShaderlabVS Release Page</title><link>http://wudixiaop.github.io/shaderlabvs-release-page.html</link><description>&lt;h2&gt;&lt;em&gt;Latest Version - V0.5&lt;/em&gt;&lt;/h2&gt;
 &lt;p&gt;&lt;strong&gt;[2014-10-28] V0.5 release note:&lt;/strong&gt; &lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Add braces matching&lt;/li&gt;
@@ -13,7 +12,9 @@
 &lt;li&gt;&lt;a href="http://pan.baidu.com/s/1qW9aR5E"&gt;BaiduPan&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;&lt;strong&gt;If you have feedbacks or questions, send email to me. My email is rockylai@qq.com.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;A introduction of ShaderlabVS can be found at &lt;a href="https://github.com/wudixiaop/ShaderlabVS/blob/master/README.md"&gt;https://github.com/wudixiaop/ShaderlabVS/blob/master/README.md&lt;/a&gt;. If you have feedbacks or questions, send email to me. My email is rockylai@qq.com.&lt;/strong&gt;  &lt;/p&gt;
+&lt;h3&gt;&lt;em&gt;Screenshot&lt;/em&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;img alt="Preview" src="https://github.com/wudixiaop/ShaderlabVS/raw/master/img/Highlighting.PNG" /&gt;&lt;/p&gt;
 &lt;hr /&gt;
 &lt;h2&gt;&lt;em&gt;History:&lt;/em&gt;&lt;/h2&gt;
 &lt;p&gt;&lt;strong&gt;[2014-10-19] V0.4 release note:&lt;/strong&gt; &lt;/p&gt;

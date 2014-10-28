@@ -3,8 +3,6 @@ Date: 2014-10-28 21:20
 Category: ShaderlabVS
 Tags: ShaderlabVS
 
-**A introduction of ShaderlabVS can be found at <https://github.com/wudixiaop/ShaderlabVS/blob/master/README.md>**
-
 
 ##_Latest Version - V0.5_
 
@@ -18,9 +16,11 @@ Tags: ShaderlabVS
 > * [Github](https://github.com/wudixiaop/ShaderlabVS/releases/download/0.5/ShaderlabVS-0.5.zip)
 > * [BaiduPan](http://pan.baidu.com/s/1qW9aR5E)
 
+**A introduction of ShaderlabVS can be found at <https://github.com/wudixiaop/ShaderlabVS/blob/master/README.md>. If you have feedbacks or questions, send email to me. My email is rockylai@qq.com.**  
 
-**If you have feedbacks or questions, send email to me. My email is rockylai@qq.com.**
 
+###_Screenshot_  
+![Preview](https://github.com/wudixiaop/ShaderlabVS/raw/master/img/Highlighting.PNG)
 
 ------------------------------
 ##_History:_
