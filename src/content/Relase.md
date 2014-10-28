@@ -1,12 +1,29 @@
 Title: ShaderlabVS Release Page
-Date: 2014-10-19 17:20
+Date: 2014-10-28 21:20
 Category: ShaderlabVS
 Tags: ShaderlabVS
 
 **A introduction of ShaderlabVS can be found at <https://github.com/wudixiaop/ShaderlabVS/blob/master/README.md>**
 
 
-##_Latest Version - V0.4_
+##_Latest Version - V0.5_
+
+**[2014-10-28] V0.5 release note:** 
+ 
+* Add braces matching
+* Add outlining
+
+> **Download:**
+>
+> * [Github](https://github.com/wudixiaop/ShaderlabVS/releases/download/0.5/ShaderlabVS-0.5.zip)
+> * [BaiduPan](http://pan.baidu.com/s/1qW9aR5E)
+
+
+**If you have feedbacks or questions, send email to me. My email is rockylai@qq.com.**
+
+
+------------------------------
+##_History:_
 
 **[2014-10-19] V0.4 release note:** 
  
@@ -20,11 +37,6 @@ Tags: ShaderlabVS
 > * [BaiduPan](http://pan.baidu.com/s/1o6sPOUI)
 
 
-**If you have feedbacks or questions, send email to me. My email is rockylai@qq.com.**
-
-
-------------------------------
-##_History:_
 
 **V0.3 release note:**
 
