@@ -1,5 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Rocky Lai @ Github</title><link>http://wudixiaop.github.io/</link><description></description><atom:link href="http://wudixiaop.github.io/feeds%5Crocky-lai.rss.xml" rel="self"></atom:link><lastBuildDate>Tue, 28 Oct 2014 21:20:00 +0800</lastBuildDate><item><title>ShaderlabVS Release Page</title><link>http://wudixiaop.github.io/shaderlabvs-release-page.html</link><description>&lt;h2&gt;&lt;em&gt;Latest Version - V0.5&lt;/em&gt;&lt;/h2&gt;
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Rocky Lai @ Github</title><link>http://wudixiaop.github.io/</link><description></description><atom:link href="http://wudixiaop.github.io/feeds%5Crocky-lai.rss.xml" rel="self"></atom:link><lastBuildDate>Wed, 05 Nov 2014 22:30:00 +0800</lastBuildDate><item><title>关于Unity3D编辑器一些事儿</title><link>http://wudixiaop.github.io/guan-yu-unity3dbian-ji-qi-yi-xie-shi-er.html</link><description>&lt;p&gt;这里描述下Unity3D编辑器使用过程中遇到的坑，极其解决方法。 &lt;/p&gt;
+&lt;h3&gt;&lt;strong&gt;事件一：Unity3d编辑器启动时默认打开最近一次打开的项目&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;默认设置中，Unity3D启动时会自动打开默认最近一次打开的项目。每当只想打开小项目，而偏偏上次打开过一个大项目时，这点让人很抓狂。&lt;br /&gt;
+&lt;strong&gt;解决方法:&lt;/strong&gt;  &lt;/p&gt;
+&lt;blockquote&gt;
+&lt;ol&gt;
+&lt;li&gt;在编辑器中打开Unity Preferences窗口,通过 &lt;strong&gt;Edit-&amp;gt;Preferences...&lt;/strong&gt;打开&lt;/li&gt;
+&lt;li&gt;在&lt;strong&gt;General&lt;/strong&gt;选项卡中把&lt;strong&gt;Always Show Project Wizard&lt;/strong&gt;勾选上&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/blockquote&gt;
+&lt;h3&gt;&lt;strong&gt;事件二：Project Wizard中最近打开项目记录删除不了&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;一直不明白为啥不让删除呢？&lt;br /&gt;
+&lt;strong&gt;解决方法：&lt;/strong&gt;  &lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;方法一：让项目地址失效&lt;/strong&gt;&lt;br /&gt;
+   * 重名名项目文件夹&lt;br /&gt;
+   * 把项目移动到别的文件夹   &lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;方法二：修改注册表&lt;/strong&gt;&lt;br /&gt;
+删除&lt;strong&gt;HKEY_CURRENT_USER\Software\Unity Technologies\Unity Editor 4.x&lt;/strong&gt;下面以&lt;strong&gt;RecentlyUsedProjectPaths&lt;/strong&gt;开头的项&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;以后继续补充...&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Rocky Lai</dc:creator><pubDate>Wed, 05 Nov 2014 22:30:00 +0800</pubDate><guid>tag:wudixiaop.github.io,2014-11-05:guan-yu-unity3dbian-ji-qi-yi-xie-shi-er.html</guid><category>Unity3D</category></item><item><title>ShaderlabVS Release Page</title><link>http://wudixiaop.github.io/shaderlabvs-release-page.html</link><description>&lt;h2&gt;&lt;em&gt;Latest Version - V0.5&lt;/em&gt;&lt;/h2&gt;
 &lt;p&gt;&lt;strong&gt;[2014-10-28] V0.5 release note:&lt;/strong&gt; &lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Add braces matching&lt;/li&gt;
