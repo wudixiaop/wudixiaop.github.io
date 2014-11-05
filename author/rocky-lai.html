@@ -78,25 +78,35 @@ Rocky Lai @ Github            </a>
 	<a href="http://wudixiaop.github.io/tag/unity3d.html">Unity3D</a>
     
 </footer><!-- /.post-info -->                    </div>
-                <div class="summary"><p>这里描述下Unity3D编辑器使用过程中遇到的坑，极其解决方法。 </p>
+                <div class="summary"><p>这里描述下Unity3D编辑器使用过程中遇到的坑及其解决方法。 </p>
+<hr />
 <h3><strong>事件一：Unity3d编辑器启动时默认打开最近一次打开的项目</strong></h3>
 <p>默认设置中，Unity3D启动时会自动打开默认最近一次打开的项目。每当只想打开小项目，而偏偏上次打开过一个大项目时，这点让人很抓狂。<br />
 <strong>解决方法:</strong>  </p>
 <blockquote>
 <ol>
-<li>在编辑器中打开Unity Preferences窗口,通过 <strong>Edit-&gt;Preferences...</strong>打开</li>
+<li>在编辑器中打开<strong>Unity Preferences</strong>窗口,通过 <strong>Edit-&gt;Preferences...</strong>打开</li>
 <li>在<strong>General</strong>选项卡中把<strong>Always Show Project Wizard</strong>勾选上</li>
 </ol>
 </blockquote>
+<p><br/></p>
 <h3><strong>事件二：Project Wizard中最近打开项目记录删除不了</strong></h3>
 <p>一直不明白为啥不让删除呢？<br />
 <strong>解决方法：</strong>  </p>
 <blockquote>
-<p><strong>方法一：让项目地址失效</strong><br />
-   * 重名名项目文件夹<br />
-   * 把项目移动到别的文件夹   </p>
-<p><strong>方法二：修改注册表</strong><br />
-删除<strong>HKEY_CURRENT_USER\Software\Unity Technologies\Unity Editor 4.x</strong>下面以<strong>RecentlyUsedProjectPaths</strong>开头的项</p>
+<ul>
+<li><strong>方法一：让项目地址失效</strong>  <blockquote>
+<ul>
+<li>重名名项目文件夹</li>
+<li>把项目移动到别的文件夹 </li>
+</ul>
+</blockquote>
+</li>
+<li><strong>方法二：修改注册表</strong>  <blockquote>
+<p>删除<strong>HKEY_CURRENT_USER\Software\Unity Technologies\Unity Editor 4.x</strong>下面以<strong>RecentlyUsedProjectPaths</strong>开头的项</p>
+</blockquote>
+</li>
+</ul>
 </blockquote>
 <p>以后继续补充...</p>
                     <a class="btn btn-default btn-xs" href="http://wudixiaop.github.io/guan-yu-unity3dbian-ji-qi-yi-xie-shi-er.html">more ...</a>
