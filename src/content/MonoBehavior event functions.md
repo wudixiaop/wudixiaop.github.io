@@ -235,7 +235,7 @@ MonoBehavior提供的事件从编辑器到游戏结束都有涉及。下面列�
 </table>
 
 ###**用图来表示MonoBehavior事件执行顺序**   
-![MonoBehavior事件执行顺序](Images/monobehaviour_flowchart.svg)
+![MonoBehavior事件执行顺序](http://wudixiaop.github.io/images/monobehaviour_flowchart.svg)
 
 ###**总结:**
 * 首次加载场景时执行**Awake()**
