@@ -222,7 +222,7 @@
     &lt;/tbody&gt;
 &lt;/table&gt;&lt;/p&gt;
 &lt;h3&gt;&lt;strong&gt;用图来表示MonoBehavior事件执行顺序&lt;/strong&gt;&lt;/h3&gt;
-&lt;p&gt;&lt;img alt="MonoBehavior事件执行顺序" src="./Images/monobehaviour_flowchart.svg" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="MonoBehavior事件执行顺序" src="Images/monobehaviour_flowchart.svg" /&gt;&lt;/p&gt;
 &lt;h3&gt;&lt;strong&gt;总结:&lt;/strong&gt;&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;首次加载场景时执行&lt;strong&gt;Awake()&lt;/strong&gt;&lt;/li&gt;
