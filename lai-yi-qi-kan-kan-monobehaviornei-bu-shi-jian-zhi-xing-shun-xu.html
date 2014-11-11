@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en-us"
+>
+<head>
+    <title>来，一起看看MonoBehavior内部事件执行顺序 - Rocky Lai @ Github</title>
+    <!-- Using the latest rendering mode for IE -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+
+<link rel="canonical" href="http://wudixiaop.github.io/lai-yi-qi-kan-kan-monobehaviornei-bu-shi-jian-zhi-xing-shun-xu.html">
+
+        <meta name="author" content="Rocky Lai" />
+        <meta name="keywords" content="Unity3D" />
+        <meta name="description" content="写在最前面 或许对于大部分Unity3D程序员来说，第一次接触脚本编写的时候都是从MonoBehavior开始的。MonoBehavior是Uniy3d脚本编写核心的类之一， 它预先定义好了很多事件，并且这些事件按照预先定义好顺序执行。了解MonoBehavior提供的这些事件的执行顺序，是我们进一步提高脚步编程和了解Unity3D内部逻辑的必要一步。我们先从MonoBehavior提供的事件说起。 MonoBehavior都提供了什么事件 MonoBehavior提供的事件从编辑器到游戏结束都有涉及。下面列举一些常用的，更详列表可以参照这个页面。 与编辑相关 名称 注释 Reset Reset to default values. Update相关 名称 注释 FixedUpdate This function is called every fixed framerate frame, if the MonoBehaviour is enabled. Update Update is called every frame, if the MonoBehaviour is enabled ..." />
+
+
+
+    <!-- Bootstrap -->
+        <link rel="stylesheet" href="http://wudixiaop.github.io/theme/css/bootstrap.min.css" type="text/css"/>
+    <link href="http://wudixiaop.github.io/theme/css/font-awesome.min.css" rel="stylesheet">
+
+    <link href="http://wudixiaop.github.io/theme/css/pygments/native.css" rel="stylesheet">
+    <link rel="stylesheet" href="http://wudixiaop.github.io/theme/css/style.css" type="text/css"/>
+
+
+</head>
+<body>
+
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="http://wudixiaop.github.io/" class="navbar-brand">
+Rocky Lai @ Github            </a>
+        </div>
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav">
+                        <li >
+                            <a href="http://wudixiaop.github.io/category/shaderlabvs.html">Shaderlabvs</a>
+                        </li>
+                        <li class="active">
+                            <a href="http://wudixiaop.github.io/category/yi-dian-yi-di.html">一点一滴</a>
+                        </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="http://wudixiaop.github.io/archives.html"><i class="fa fa-th-list"></i><span class="icon-label">Archives</span></a></li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+</div> <!-- /.navbar -->
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-9">
+
+    <section id="content">
+        <article>
+            <header class="page-header">
+                <h1>
+                    <a href="http://wudixiaop.github.io/lai-yi-qi-kan-kan-monobehaviornei-bu-shi-jian-zhi-xing-shun-xu.html"
+                       rel="bookmark"
+                       title="Permalink to 来，一起看看MonoBehavior内部事件执行顺序">
+                        来，一起看看MonoBehavior内部事件执行顺序
+                    </a>
+                </h1>
+            </header>
+            <div class="entry-content">
+                <div class="panel">
+                    <div class="panel-body">
+<footer class="post-info">
+            <span class="label label-default">By</span>
+            <a href="http://wudixiaop.github.io/author/rocky-lai.html"> Rocky Lai  </a> &nbsp; <span> 2014-11-10 21:38  </span>
+	&nbsp;&nbsp;
+
+
+<span class="label label-default">Tags</span>
+	<a href="http://wudixiaop.github.io/tag/unity3d.html">Unity3D</a>
+    
+</footer><!-- /.post-info -->                    </div>
+                </div>
+                <h3><strong>写在最前面</strong></h3>
+<p>或许对于大部分Unity3D程序员来说，第一次接触脚本编写的时候都是从MonoBehavior开始的。MonoBehavior是Uniy3d脚本编写核心的类之一， 它预先定义好了很多事件，并且这些事件按照预先定义好顺序执行。了解MonoBehavior提供的这些事件的执行顺序，是我们进一步提高脚步编程和了解Unity3D内部逻辑的必要一步。我们先从MonoBehavior提供的事件说起。</p>
+<h3><strong>MonoBehavior都提供了什么事件</strong></h3>
+<p>MonoBehavior提供的事件从编辑器到游戏结束都有涉及。下面列举一些常用的，更详列表可以参照<a href="http://docs.unity3d.com/ScriptReference/MonoBehaviour.html">这个页面</a>。</p>
+<p><strong>与编辑相关</strong><br />
+<table class="table table-striped table-hover">
+    <theader>
+        <th>名称</th>
+        <th>注释</th>
+    </theader>
+    <tbody>
+        <tr>
+            <td>Reset</td>
+            <td>Reset to default values.</td>
+        </tr>
+    </tbody>
+</table></p>
+<p><strong>Update相关</strong>
+<table class="table table-striped table-hover">
+    <theader>
+        <th>名称</th>
+        <th>注释</th>
+    </theader>
+    <tbody>
+        <tr>
+            <td>FixedUpdate</td>
+            <td>This function is called every fixed framerate frame, if the MonoBehaviour is enabled.</td>
+        </tr>
+        <tr>
+            <td>Update</td>
+            <td>Update is called every frame, if the MonoBehaviour is enabled.</td>
+        </tr>
+        <tr>
+            <td>LateUpdate</td>
+            <td>LateUpdate is called every frame, if the Behaviour is enabled.</td>
+        </tr>
+    </tbody>
+</table></p>
+<p><strong>生命周期相关</strong><br />
+<table class="table table-striped  table-hover">
+    <theader>
+        <th>名称</th>
+        <th>注释</th>
+    </theader>
+    <tbody>
+        <tr>
+            <td>Awake</td>
+            <td>Awake is called when the script instance is being loaded.</td>
+        </tr>
+        <tr>
+            <td>OnEnable</td>
+            <td>This function is called when the object becomes enabled and active.</td>
+        </tr>
+        <tr>
+            <td>OnDisable</td>
+            <td>This function is called when the behaviour becomes disabled () or inactive.</td>
+        </tr>
+        <tr>
+            <td>OnDestroy</td>
+            <td>This function is called when the MonoBehaviour will be destroyed.</td>
+        </tr>
+        <tr>
+            <td>OnApplicationFocus</td>
+            <td>Sent to all game objects when the player gets or loses focus.</td>
+        </tr>
+        <tr>
+            <td>OnApplicationPause</td>
+            <td>Sent to all game objects when the player pauses.</td>
+        </tr>
+        <tr>
+            <td>OnApplicationQuit</td>
+            <td>Sent to all game objects before the application is quit.</td>
+        </tr>
+        <tr>
+            <td>Start</td>
+            <td>Start is called on the frame when a script is enabled just before any of the Update methods is called the first time.</td>
+        </tr>
+    </tbody>
+</table></p>
+<p><strong>物理系统相关</strong>
+<table class="table table-striped  table-hover">
+    <theader>
+        <th>名称</th>
+        <th>注释</th>
+    </theader>
+    <tbody>
+        <tr>
+            <td>OnCollisionEnter</td>
+            <td>OnCollisionEnter is called when this collider/rigidbody has begun touching another rigidbody/collider.</td>
+        </tr>
+        <tr>
+            <td>OnCollisionStay</td>
+            <td>OnCollisionStay is called once per frame for every collider/rigidbody that is touching rigidbody/collider.</td>
+        </tr>
+        <tr>
+            <td>OnCollisionExit</td>
+            <td>OnCollisionExit is called when this collider/rigidbody has stopped touching another rigidbody/collider.</td>
+        </tr>
+        <tr>
+            <td>OnCollisionEnter2D</td>
+            <td>Sent when an incoming collider makes contact with this object's collider (2D physics only).</td>
+        </tr>
+        <tr>
+            <td>OnCollisionStay2D</td>
+            <td>Sent each frame where a collider on another object is touching this object's collider (2D physics only).</td>
+        </tr>
+        <tr>
+            <td>OnCollisionExit2D</td>
+            <td>Sent when a collider on another object stops touching this object's collider (2D physics only).</td>
+        </tr>
+        <tr>
+            <td>OnTriggerEnter</td>
+            <td>OnTriggerEnter is called when the Collider other enters the trigger.</td>
+        </tr>
+        <tr>
+            <td>OnTriggerStay</td>
+            <td>OnTriggerStay is called once per frame for every Collider other that is touching the trigger.</td>
+        </tr>
+        <tr>
+            <td>OnTriggerExit</td>
+            <td>OnTriggerExit is called when the Collider other has stopped touching the trigger.</td>
+        </tr>
+        <tr>
+            <td>OnTriggerEnter2D</td>
+            <td>Sent when another object enters a trigger collider attached to this object (2D physics only).</td>
+        </tr>
+        <tr>
+            <td>OnTriggerStay2D</td>
+            <td>Sent each frame where another object is within a trigger collider attached to this object (2D physics only).</td>
+        </tr>
+        <tr>
+            <td>OnTriggerExit2D</td>
+            <td>Sent when another object leaves a trigger collider attached to this object (2D physics only).</td>
+        </tr>
+    </tbody>
+</table></p>
+<p><strong>输入系统相关</strong>
+<table class="table table-striped  table-hover">
+    <theader>
+        <th>名称</th>
+        <th>注释</th>
+    </theader>
+    <tbody>
+        <tr>
+            <td>OnMouseDown</td>
+            <td>OnMouseDown is called when the user has pressed the mouse button while over the GUIElement or Collider.</td>
+        </tr>
+        <tr>
+            <td>OnMouseOver</td>
+            <td>OnMouseOver is called every frame while the mouse is over the GUIElement or Collider.</td>
+        </tr>
+        <tr>
+            <td>OnMouseUp</td>
+            <td>OnMouseUp is called when the user has released the mouse button.</td>
+        </tr>
+        <tr>
+            <td>OnMouseDrag</td>
+            <td>OnMouseDrag is called when the user has clicked on a GUIElement or Collider and is still holding down the mouse.</td>
+        </tr>
+        <tr>
+            <td>OnMouseEnter</td>
+            <td>OnMouseEnter is called when the mouse entered the GUIElement or Collider.</td>
+        </tr>
+        <tr>
+            <td>OnMouseExit</td>
+            <td>OnMouseExit is called when the mouse is not any longer over the GUIElement or Collider.</td>
+        </tr>
+        <tr>
+            <td>OnMouseUpAsButton</td>
+            <td>OnMouseUpAsButton is only called when the mouse is released over the same GUIElement or Collider as it was pressed.</td>
+        </tr>
+    </tbody>
+</table></p>
+<p><strong>渲染相关</strong>
+<table class="table table-striped table-hover">
+    <theader>
+        <th>名称</th>
+        <th>注释</th>
+    </theader>
+    <tbody>
+        <tr>
+            <td>OnPreCull</td>
+            <td>OnPreCull is called before a camera culls the scene.</td>
+        </tr>
+        <tr>
+            <td>OnBecameVisible</td>
+            <td>OnBecameVisible is called when the renderer became visible by any camera.</td>
+        </tr>
+        <tr>
+            <td>OnBecameInvisible</td>
+            <td>OnBecameInvisible is called when the renderer is no longer visible by any camera.</td>
+        </tr>
+        <tr>
+            <td>OnWillRenderObject</td>
+            <td>OnWillRenderObject is called once for each camera if the object is visible.</td>
+        </tr>
+        <tr>
+            <td>OnPreRender</td>
+            <td>OnPreRender is called before a camera starts rendering the scene.</td>
+        </tr>
+        <tr>
+            <td>OnRenderObject</td>
+            <td>OnRenderObject is called after camera has rendered the scene.</td>
+        </tr>
+        <tr>
+            <td>OnPostRender</td>
+            <td>OnPostRender is called after a camera finished rendering the scene.</td>
+        </tr>
+        <tr>
+            <td>OnRenderImage</td>
+            <td>OnRenderImage is called after all rendering is complete to render image.</td>
+        </tr>
+        <tr>
+            <td>OnGUI</td>
+            <td>OnGUI is called for rendering and handling GUI events.</td>
+        </tr>
+        <tr>
+            <td>OnDrawGizmos</td>
+            <td>Implement OnDrawGizmos if you want to draw gizmos that are also pickable and always drawn.</td>
+        </tr>
+    </tbody>
+</table></p>
+<h3><strong>用图来表示MonoBehavior事件执行顺序</strong></h3>
+<p><img alt="MonoBehavior事件执行顺序" src="./Images/monobehaviour_flowchart.svg" /></p>
+<h3><strong>总结:</strong></h3>
+<ul>
+<li>首次加载场景时执行<strong>Awake()</strong></li>
+<li><strong>Start()</strong>只在第一帧才执行, <strong>Start()</strong>在<strong>Awake()</strong>之后执行</li>
+<li>Update的执行顺序是: <strong>FixedUpdate()</strong> -&gt; <strong>Update()</strong> -&gt; <strong>LateUpdate()</strong></li>
+<li>以每一帧的<strong>Update()</strong>事件作分界线：  <ul>
+<li><strong>Update()之前</strong>：<strong>物理系统</strong>和<strong>输入系统</strong>相关事件先执行，如<strong>OnTriggerXXX</strong>和<strong>OnMouseXXX</strong>事件。此处<strong>XXX</strong>是占位符，如<strong>OnTriggerXXX</strong>可以代表<strong>OnTriggerEnter</strong>或者<strong>OnTriggerExit</strong></li>
+<li><strong>Update()之后</strong>：<strong>场景渲染</strong>和<strong>协程</strong>，如<strong>OnRenderImage()</strong>和<strong>yield WWW</strong>语句</li>
+</ul>
+</li>
+<li>协程中，除了<strong>WaitForFixedUpdate</strong>是在<strong>FixedUpdate</strong>之后，<strong>Update</strong>之前执行，其他的都是在<strong>Update</strong>之后，<strong>场景渲染</strong>前执行</li>
+<li>GUI事件<strong>OnGUI</strong>在场景渲染完之后执行</li>
+<li>当对象被销毁时执行<strong>OnDestory()</strong>事件</li>
+<li>当游戏退出时执行<strong>OnApplicationQuit()</strong></li>
+<li><strong>OnEnable()</strong>和<strong>OnDisable()</strong>  <ul>
+<li><strong>OnEnable()</strong>只有在Object是Active的状态下才能用，一般是Object被初始化或者Object从disable到active过程中被调用</li>
+<li><strong>OnDisable()</strong>只有到Object从active到disable状态才被调用</li>
+</ul>
+</li>
+</ul>
+            </div>
+            <!-- /.entry-content -->
+    <hr/>
+    <section class="comments" id="comments">
+        <h2>Comments</h2>
+
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+            var disqus_shortname = 'wudixiaopgithubio'; // required: replace example with your forum shortname
+
+                    var disqus_identifier = 'lai-yi-qi-kan-kan-monobehaviornei-bu-shi-jian-zhi-xing-shun-xu';
+                var disqus_url = 'http://wudixiaop.github.io/lai-yi-qi-kan-kan-monobehaviornei-bu-shi-jian-zhi-xing-shun-xu.html';
+
+            var disqus_config = function () {
+                this.language = "en-us";
+            };
+
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function () {
+                var dsq = document.createElement('script');
+                dsq.type = 'text/javascript';
+                dsq.async = true;
+                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by
+            Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+    </section>
+        </article>
+    </section>
+
+        </div>
+        <div class="col-sm-3" id="aboutme">
+<p>
+	<div class="panel">
+		<div class"panel-heading">
+			<Strong>ABOUT ME</Strong>
+		</div>
+		<div class="panel-body">
+			
+I'm a coder in China.<br/>
+
+		</div>
+	</div>
+</p>        </div>
+        <div class="col-sm-3 well well-sm" id="sidebar">
+
+<aside>
+    <section>
+        <ul class="list-group list-group-flush">
+
+
+
+                <li class="list-group-item"><a href="http://wudixiaop.github.io/"><h4><i class="fa fa-tags fa-lg"></i><span class="icon-label">Tags</span></h4></a>
+                    <ul class="list-group " id="tags">
+                        <li class="list-group-item tag-1">
+                            <a href="http://wudixiaop.github.io/tag/shaderlabvs.html">
+                                ShaderlabVS
+                            </a>
+                        </li>
+                        <li class="list-group-item tag-1">
+                            <a href="http://wudixiaop.github.io/tag/unity3d.html">
+                                Unity3D
+                            </a>
+                        </li>
+                    </ul>
+                </li>    
+    <li class="list-group-item"><h4><i class="fa fa-external-link-square fa-lg"></i><span class="icon-label">Links</span></h4>
+      <ul class="list-group" id="links">
+        <li class="list-group-item">
+            <a href="https://github.com/wudixiaop" target="_blank">
+                Rocky's Github
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="http://wudixiaop.github.io/shaderlabvs-release-page.html" target="_blank">
+                ShaderlabVS Downloads
+            </a>
+        </li>
+      </ul>
+    </li>
+
+        </ul>
+    </section>
+
+</aside>        </div>
+    </div>
+</div>
+<footer>
+   <div class="container">
+      <hr>
+      <div class="row">
+         <div class="col-xs-10">&copy; 2014 Rocky Lai
+            &middot; Powered by <a href="https://github.com/DandyDev/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
+            <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
+            <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>         </div>
+         <div class="col-xs-2"><p class="pull-right"><i class="fa fa-arrow-up"></i> <a href="#">Back to top</a></p></div>
+      </div>
+	  <div style="opacity: 0">
+		  <script type="text/javascript">
+			var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+			document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fbe571cbfce038053e44e02d5eee04481' type='text/javascript'%3E%3C/script%3E"));
+		  </script>
+	  </div>
+   </div>
+</footer>
+	  
+
+
+<script src="http://wudixiaop.github.io/theme/js/jquery.min.js"></script>
+
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="http://wudixiaop.github.io/theme/js/bootstrap.min.js"></script>
+
+<!-- Enable responsive features in IE8 with Respond.js (https://github.com/scottjehl/Respond) -->
+<script src="http://wudixiaop.github.io/theme/js/respond.min.js"></script>
+
+    <!-- Disqus -->
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'wudixiaopgithubio'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function () {
+            var s = document.createElement('script');
+            s.async = true;
+            s.type = 'text/javascript';
+            s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+            (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+        }());
+    </script>
+    <!-- End Disqus Code -->
+</body>
+</html>
