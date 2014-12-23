@@ -3,7 +3,7 @@
 from __future__ import unicode_literals
 
 AUTHOR = u'Rocky Lai'
-ABOUT_PAGE_NAME = AUTHOR.replace(" ", "-")
+ABOUT_PAGE_NAME = AUTHOR.replace(" ", "-").lower()
 SITENAME = u"Rocky Lai @ Github"
 SITEURL = 'http://wudixiaop.github.io'
 THEME = "Theme/CleanBlog"
