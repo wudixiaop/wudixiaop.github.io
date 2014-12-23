@@ -4,8 +4,8 @@ from __future__ import unicode_literals
 
 AUTHOR = u'Rocky Lai'
 SITENAME = u"Rocky Lai @ Github"
-SITEURL = 'http://wudixiaop.github.io'
-THEME = "Theme/pelican-bootstrap3"
+SITEURL = '.'
+THEME = "Theme/CleanBlog"
 
 PATH = 'content'
 
@@ -41,6 +41,11 @@ ABOUT_ME = """
 I'm a coder in China.<br/>
 """
 
-SHOW_ARTICLE_AUTHOR = True
-DISPLAY_ARTICLE_INFO_ON_INDEX = True
+#SHOW_ARTICLE_AUTHOR = True
+#DISPLAY_ARTICLE_INFO_ON_INDEX = True
 DISQUS_SITENAME = "wudixiaopgithubio"
+
+#CLEAN-BLOG THEME
+COLOR_SCHEME_CSS = "github.css"
+#HEADER_COVER = 'static/my_image.png'
+SITESUBTITLE = "心亡则忙，亡心则忘"
