@@ -243,7 +243,6 @@
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Rocky Lai</dc:creator><pubDate>Tue, 23 Dec 2014 18:20:00 +0800</pubDate><guid>tag:wudixiaop.github.io,2014-11-10:yi-qi-kan-kan-monobehaviornei-bu-shi-jian-zhi-xing-shun-xu.html</guid><category>Unity3D</category></item><item><title>关于Unity3D编辑器一些事儿</title><link>http://wudixiaop.github.io/guan-yu-unity3dbian-ji-qi-yi-xie-shi-er.html</link><description>&lt;p&gt;这里描述下Unity3D编辑器使用过程中遇到的坑及其解决方法。 &lt;/p&gt;
-&lt;hr /&gt;
 &lt;h3&gt;&lt;strong&gt;事件一：Unity3d编辑器启动时默认打开最近一次打开的项目&lt;/strong&gt;&lt;/h3&gt;
 &lt;p&gt;默认设置中，Unity3D启动时会自动打开默认最近一次打开的项目。每当只想打开小项目，而偏偏上次打开过一个大项目时，这点让人很抓狂。&lt;br /&gt;
 &lt;strong&gt;解决方法:&lt;/strong&gt;  &lt;/p&gt;

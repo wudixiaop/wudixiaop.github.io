@@ -58,3 +58,4 @@ SITESUBTITLE = "心亡则忙，亡心则忘"
 GITHUB_URL = 'https://github.com/wudixiaop'
 DISPLAY_CATEGORIES_ON_MENU = True
 DISPLAY_PAGES_ON_MENU = False
+SUMMARY_MAX_LENGTH = 4
