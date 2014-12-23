@@ -92,12 +92,12 @@
                     {% endfor %}
                     {% if DISPLAY_PAGES_ON_MENU %}
                         {% for p in PAGES %}
-                            <li{% if p == page %} {% endif %}><a href="{{ SITEURL }}/{{ p.url }}">{{ p.title }}</a></li>
+                            <li><a href="{{ SITEURL }}/{{ p.url }}">{{ p.title }}</a></li>
                         {% endfor %}
                     {% else %}
                         {% if DISPLAY_CATEGORIES_ON_MENU %}
                             {% for cat, null in categories %}
-                                <li{% if cat == category %} {% endif %}><a href="{{ SITEURL }}/{{ cat.url }}">{{ cat }}</a></li>
+                                <li><a href="{{ SITEURL }}/{{ cat.url }}">{{ cat }}</a></li>
                             {% endfor %}
                         {% endif %}
                     {% endif %}
