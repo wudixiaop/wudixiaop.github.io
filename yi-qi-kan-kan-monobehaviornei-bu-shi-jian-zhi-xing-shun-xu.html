@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+            <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="">
+
+        <title>Rocky Lai @ Github</title>
+
+
+        <!-- Bootstrap Core CSS -->
+        <link href="./theme/css/bootstrap.min.css" rel="stylesheet">
+
+        <!-- Custom CSS -->
+        <link href="./theme/css/clean-blog.min.css" rel="stylesheet">
+
+        <!-- Code highlight color scheme -->
+            <link href="./theme/css/code_blocks/github.css" rel="stylesheet">
+
+        <!-- Custom Fonts -->
+        <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+        <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+
+
+
+        <meta name="tags" contents="Unity3D" />
+
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="./">Rocky Lai @ Github</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <!-- Page Header -->
+        <header class="intro-header" style="background-image: url('./theme/images/post-bg.jpg')">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <div class="post-heading">
+                        <h1>一起看看MonoBehavior内部事件执行顺序</h1>
+                        <span class="meta">Posted by
+                                <a href="./author/rocky-lai.html">Rocky Lai</a>
+                             on 2014-11-10 21:38
+                        </span>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+    <!-- Post Content -->
+    <article>
+        <h3><strong>写在最前面</strong></h3>
+<p>或许对于大部分Unity3D程序员来说，第一次接触脚本编写的时候都是从MonoBehavior开始的。MonoBehavior是Uniy3d脚本编写核心的类之一， 它预先定义好了很多事件，并且这些事件按照预先定义好顺序执行。了解MonoBehavior提供的这些事件的执行顺序，是我们进一步提高脚步编程和了解Unity3D内部逻辑的必要一步。我们先从MonoBehavior提供的事件说起。</p>
+<h3><strong>MonoBehavior都提供了什么事件</strong></h3>
+<p>MonoBehavior提供的事件从编辑器到游戏结束都有涉及。下面列举一些常用的，更详列表可以参照<a href="http://docs.unity3d.com/ScriptReference/MonoBehaviour.html">这个页面</a>。</p>
+<p><strong>与编辑相关</strong><br />
+<table class="table table-striped table-hover">
+    <theader>
+        <th>名称</th>
+        <th>注释</th>
+    </theader>
+    <tbody>
+        <tr>
+            <td>Reset</td>
+            <td>Reset to default values.</td>
+        </tr>
+    </tbody>
+</table></p>
+<p><strong>Update相关</strong>
+<table class="table table-striped table-hover">
+    <theader>
+        <th>名称</th>
+        <th>注释</th>
+    </theader>
+    <tbody>
+        <tr>
+            <td>FixedUpdate</td>
+            <td>This function is called every fixed framerate frame, if the MonoBehaviour is enabled.</td>
+        </tr>
+        <tr>
+            <td>Update</td>
+            <td>Update is called every frame, if the MonoBehaviour is enabled.</td>
+        </tr>
+        <tr>
+            <td>LateUpdate</td>
+            <td>LateUpdate is called every frame, if the Behaviour is enabled.</td>
+        </tr>
+    </tbody>
+</table></p>
+<p><strong>生命周期相关</strong><br />
+<table class="table table-striped  table-hover">
+    <theader>
+        <th>名称</th>
+        <th>注释</th>
+    </theader>
+    <tbody>
+        <tr>
+            <td>Awake</td>
+            <td>Awake is called when the script instance is being loaded.</td>
+        </tr>
+        <tr>
+            <td>OnEnable</td>
+            <td>This function is called when the object becomes enabled and active.</td>
+        </tr>
+        <tr>
+            <td>OnDisable</td>
+            <td>This function is called when the behaviour becomes disabled () or inactive.</td>
+        </tr>
+        <tr>
+            <td>OnDestroy</td>
+            <td>This function is called when the MonoBehaviour will be destroyed.</td>
+        </tr>
+        <tr>
+            <td>OnApplicationFocus</td>
+            <td>Sent to all game objects when the player gets or loses focus.</td>
+        </tr>
+        <tr>
+            <td>OnApplicationPause</td>
+            <td>Sent to all game objects when the player pauses.</td>
+        </tr>
+        <tr>
+            <td>OnApplicationQuit</td>
+            <td>Sent to all game objects before the application is quit.</td>
+        </tr>
+        <tr>
+            <td>Start</td>
+            <td>Start is called on the frame when a script is enabled just before any of the Update methods is called the first time.</td>
+        </tr>
+    </tbody>
+</table></p>
+<p><strong>物理系统相关</strong>
+<table class="table table-striped  table-hover">
+    <theader>
+        <th>名称</th>
+        <th>注释</th>
+    </theader>
+    <tbody>
+        <tr>
+            <td>OnCollisionEnter</td>
+            <td>OnCollisionEnter is called when this collider/rigidbody has begun touching another rigidbody/collider.</td>
+        </tr>
+        <tr>
+            <td>OnCollisionStay</td>
+            <td>OnCollisionStay is called once per frame for every collider/rigidbody that is touching rigidbody/collider.</td>
+        </tr>
+        <tr>
+            <td>OnCollisionExit</td>
+            <td>OnCollisionExit is called when this collider/rigidbody has stopped touching another rigidbody/collider.</td>
+        </tr>
+        <tr>
+            <td>OnCollisionEnter2D</td>
+            <td>Sent when an incoming collider makes contact with this object's collider (2D physics only).</td>
+        </tr>
+        <tr>
+            <td>OnCollisionStay2D</td>
+            <td>Sent each frame where a collider on another object is touching this object's collider (2D physics only).</td>
+        </tr>
+        <tr>
+            <td>OnCollisionExit2D</td>
+            <td>Sent when a collider on another object stops touching this object's collider (2D physics only).</td>
+        </tr>
+        <tr>
+            <td>OnTriggerEnter</td>
+            <td>OnTriggerEnter is called when the Collider other enters the trigger.</td>
+        </tr>
+        <tr>
+            <td>OnTriggerStay</td>
+            <td>OnTriggerStay is called once per frame for every Collider other that is touching the trigger.</td>
+        </tr>
+        <tr>
+            <td>OnTriggerExit</td>
+            <td>OnTriggerExit is called when the Collider other has stopped touching the trigger.</td>
+        </tr>
+        <tr>
+            <td>OnTriggerEnter2D</td>
+            <td>Sent when another object enters a trigger collider attached to this object (2D physics only).</td>
+        </tr>
+        <tr>
+            <td>OnTriggerStay2D</td>
+            <td>Sent each frame where another object is within a trigger collider attached to this object (2D physics only).</td>
+        </tr>
+        <tr>
+            <td>OnTriggerExit2D</td>
+            <td>Sent when another object leaves a trigger collider attached to this object (2D physics only).</td>
+        </tr>
+    </tbody>
+</table></p>
+<p><strong>输入系统相关</strong>
+<table class="table table-striped  table-hover">
+    <theader>
+        <th>名称</th>
+        <th>注释</th>
+    </theader>
+    <tbody>
+        <tr>
+            <td>OnMouseDown</td>
+            <td>OnMouseDown is called when the user has pressed the mouse button while over the GUIElement or Collider.</td>
+        </tr>
+        <tr>
+            <td>OnMouseOver</td>
+            <td>OnMouseOver is called every frame while the mouse is over the GUIElement or Collider.</td>
+        </tr>
+        <tr>
+            <td>OnMouseUp</td>
+            <td>OnMouseUp is called when the user has released the mouse button.</td>
+        </tr>
+        <tr>
+            <td>OnMouseDrag</td>
+            <td>OnMouseDrag is called when the user has clicked on a GUIElement or Collider and is still holding down the mouse.</td>
+        </tr>
+        <tr>
+            <td>OnMouseEnter</td>
+            <td>OnMouseEnter is called when the mouse entered the GUIElement or Collider.</td>
+        </tr>
+        <tr>
+            <td>OnMouseExit</td>
+            <td>OnMouseExit is called when the mouse is not any longer over the GUIElement or Collider.</td>
+        </tr>
+        <tr>
+            <td>OnMouseUpAsButton</td>
+            <td>OnMouseUpAsButton is only called when the mouse is released over the same GUIElement or Collider as it was pressed.</td>
+        </tr>
+    </tbody>
+</table></p>
+<p><strong>渲染相关</strong>
+<table class="table table-striped table-hover">
+    <theader>
+        <th>名称</th>
+        <th>注释</th>
+    </theader>
+    <tbody>
+        <tr>
+            <td>OnPreCull</td>
+            <td>OnPreCull is called before a camera culls the scene.</td>
+        </tr>
+        <tr>
+            <td>OnBecameVisible</td>
+            <td>OnBecameVisible is called when the renderer became visible by any camera.</td>
+        </tr>
+        <tr>
+            <td>OnBecameInvisible</td>
+            <td>OnBecameInvisible is called when the renderer is no longer visible by any camera.</td>
+        </tr>
+        <tr>
+            <td>OnWillRenderObject</td>
+            <td>OnWillRenderObject is called once for each camera if the object is visible.</td>
+        </tr>
+        <tr>
+            <td>OnPreRender</td>
+            <td>OnPreRender is called before a camera starts rendering the scene.</td>
+        </tr>
+        <tr>
+            <td>OnRenderObject</td>
+            <td>OnRenderObject is called after camera has rendered the scene.</td>
+        </tr>
+        <tr>
+            <td>OnPostRender</td>
+            <td>OnPostRender is called after a camera finished rendering the scene.</td>
+        </tr>
+        <tr>
+            <td>OnRenderImage</td>
+            <td>OnRenderImage is called after all rendering is complete to render image.</td>
+        </tr>
+        <tr>
+            <td>OnGUI</td>
+            <td>OnGUI is called for rendering and handling GUI events.</td>
+        </tr>
+        <tr>
+            <td>OnDrawGizmos</td>
+            <td>Implement OnDrawGizmos if you want to draw gizmos that are also pickable and always drawn.</td>
+        </tr>
+    </tbody>
+</table></p>
+<h3><strong>用图来表示MonoBehavior事件执行顺序</strong></h3>
+<p><img alt="MonoBehavior事件执行顺序" src="http://wudixiaop.github.io/images/monobehaviour_flowchart.svg" /></p>
+<h3><strong>总结:</strong></h3>
+<ul>
+<li>首次加载场景时执行<strong>Awake()</strong></li>
+<li><strong>Start()</strong>只在第一帧才执行, <strong>Start()</strong>在<strong>Awake()</strong>之后执行</li>
+<li>Update的执行顺序是: <strong>FixedUpdate()</strong> -&gt; <strong>Update()</strong> -&gt; <strong>LateUpdate()</strong></li>
+<li>以每一帧的<strong>Update()</strong>事件作分界线：  <ul>
+<li><strong>Update()之前</strong>：<strong>物理系统</strong>和<strong>输入系统</strong>相关事件先执行，如<strong>OnTriggerXXX</strong>和<strong>OnMouseXXX</strong>事件。此处<strong>XXX</strong>是占位符，如<strong>OnTriggerXXX</strong>可以代表<strong>OnTriggerEnter</strong>或者<strong>OnTriggerExit</strong></li>
+<li><strong>Update()之后</strong>：<strong>场景渲染</strong>和<strong>协程</strong>，如<strong>OnRenderImage()</strong>和<strong>yield WWW</strong>语句</li>
+</ul>
+</li>
+<li>协程中，除了<strong>WaitForFixedUpdate</strong>是在<strong>FixedUpdate</strong>之后，<strong>Update</strong>之前执行，其他的都是在<strong>Update</strong>之后，<strong>场景渲染</strong>前执行</li>
+<li>GUI事件<strong>OnGUI</strong>在场景渲染完之后执行</li>
+<li>当对象被销毁时执行<strong>OnDestory()</strong>事件</li>
+<li>当游戏退出时执行<strong>OnApplicationQuit()</strong></li>
+<li><strong>OnEnable()</strong>和<strong>OnDisable()</strong>  <ul>
+<li><strong>OnEnable()</strong>只有在Object是Active的状态下才能用，一般是Object被初始化或者Object从disable到active过程中被调用</li>
+<li><strong>OnDisable()</strong>只有到Object从active到disable状态才被调用</li>
+</ul>
+</li>
+</ul>
+    </article>
+
+    <hr>
+
+        <div class="comments">
+            <h2>Comments !</h2>
+            <div id="disqus_thread"></div>
+            <script type="text/javascript">
+                var disqus_shortname = 'wudixiaopgithubio';
+                var disqus_identifier = 'yi-qi-kan-kan-monobehaviornei-bu-shi-jian-zhi-xing-shun-xu.html';
+                var disqus_url = './yi-qi-kan-kan-monobehaviornei-bu-shi-jian-zhi-xing-shun-xu.html';
+                (function() {
+                    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                    dsq.src = '//wudixiaopgithubio.disqus.com/embed.js';
+                    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+                })();
+            </script>
+            <noscript>Please enable JavaScript to view the comments.</noscript>
+        </div>
+            </div>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <ul class="list-inline text-center">
+                        <li>
+                            <a href="">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    </ul>
+                    <p class="copyright text-muted">Blog powered by <a href="http://getpelican.com">Pelican</a>,
+                which takes great advantage of <a href="http://python.org">Python</a>.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- jQuery -->
+    <script src="./theme/js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="./theme/js/bootstrap.min.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="./theme/js/clean-blog.min.js"></script>
+
+<div style="opacity: 0">
+		  <script type="text/javascript">
+			var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+			document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fbe571cbfce038053e44e02d5eee04481' type='text/javascript'%3E%3C/script%3E"));
+		  </script>
+</div>
+<script type="text/javascript">
+    var disqus_shortname = 'wudixiaopgithubio';
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+</body>
+
+</html>
