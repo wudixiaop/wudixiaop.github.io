@@ -4,7 +4,7 @@ from __future__ import unicode_literals
 
 AUTHOR = u'Rocky Lai'
 SITENAME = u"Rocky Lai @ Github"
-SITEURL = '.'
+SITEURL = 'http://wudixiaop.github.io'
 THEME = "Theme/CleanBlog"
 
 WEB_SITE_DOMAIN = "http://wudixiaop.github.io" 
