@@ -82,7 +82,9 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
-					<li><a href="{{ SITEURL}}">首页</a></li>
+					<li><a href="{{ SITEURL }}">首页</a></li>
+					<li><a href="{{ SITEURL }}/about.html">关于我<li>
+					
                     {% for title, link in MENUITEMS %}
                         <li><a href="{{ link }}">{{ title }}</a></li>
                     {% endfor %}
@@ -124,22 +126,6 @@
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                     <ul class="list-inline text-center">
-                        <!--<li>
-                            <a href="{{ TWITTER_URL }}">
-                                <span class="fa-stack fa-lg">
-                                    <i class="fa fa-circle fa-stack-2x"></i>
-                                    <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
-                                </span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{ FACEBOOK_URL }}">
-                                <span class="fa-stack fa-lg">
-                                    <i class="fa fa-circle fa-stack-2x"></i>
-                                    <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
-                                </span>
-                            </a>
-                        </li>-->
                         <li>
                             <a href="{{ GITHUB_URL }}">
                                 <span class="fa-stack fa-lg">
@@ -166,7 +152,6 @@
     <script src="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/js/clean-blog.min.js"></script>
 
     {% include 'analytics.html' %}
-    {% include 'disqus_script.html' %}
 </body>
 
 </html>

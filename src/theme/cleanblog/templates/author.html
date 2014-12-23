@@ -17,6 +17,9 @@
                     </div>
                 </div>
             </div>
+			{% for article in articles %}
+				<p>{{ article.locale_date}} - {{ article.title}} <p>
+			{% endfor%}
         </div>
     </header>
 {% endblock header %}

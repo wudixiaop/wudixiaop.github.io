@@ -43,9 +43,9 @@ DEFAULT_PAGINATION = 8
 #RELATIVE_URLS = True
 
 # 自我介绍
-#ABOUT_ME = """
-#I'm a coder in China.<br/>
-#"""
+ABOUT_ME = """
+I'm a coder in China.<br/>
+"""
 
 #SHOW_ARTICLE_AUTHOR = True
 #DISPLAY_ARTICLE_INFO_ON_INDEX = True
@@ -57,7 +57,3 @@ SITESUBTITLE = "心亡则忙，亡心则忘"
 GITHUB_URL = 'https://github.com/wudixiaop'
 DISPLAY_CATEGORIES_ON_MENU = True
 DISPLAY_PAGES_ON_MENU = False
-
-MENUITEMS = (
-	(u"首页", WEB_SITE_DOMAIN),
-)

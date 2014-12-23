@@ -22,11 +22,12 @@
 {% endblock header %}
 
 {% block content %}
-    <dl>
+	<div id="archives">
         {% for article in dates %}
-            <dt>{{ article.locale_date }}</dt>
-            <dd><a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}</a></dd>
-        {% endfor %}
-        <hr>
-    </dl>
+			<p>
+				<span class="categories-timestamp"><time datetime="{{ article.date.isoformat() }}">{{ article.locale_date }}</time></span>
+				<a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}{% if article.subtitle %} - {{ article.subtitle }}{% endif %}</a>
+			</p>
+		{% endfor %}
+    </div>
 {% endblock content %}
