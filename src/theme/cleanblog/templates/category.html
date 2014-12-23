@@ -2,6 +2,11 @@
 
 {% block title %}{{ SITENAME }} - Articles in the {{ category }} category{% endblock %}
 
+{% block meta %}
+    <meta name="author" content="{{ AUTHOR }}" />
+    <meta name="keywords" content="{{ category }}" />
+{% endblock %}
+
 {% block header %}
     <!-- Page Header -->
     {% if HEADER_COVER %}
@@ -22,5 +27,27 @@
 {% endblock header %}
 
 {% block content %}
-	
+	{% for article in articles_page.object_list %}
+        <div class="post-preview">
+            <a href="{{ SITEURL }}/{{ article.url }}" rel="bookmark" title="Permalink to {{ article.title|striptags }}">
+                <h2 class="post-title">
+                    {{ article.title }}
+                </h2>
+            </a>
+            {% if article.summary %}
+                {{ article.summary|truncate(140) }}
+            {% endif %}
+            <p class="post-meta">Posted by
+                {% for author in article.authors %}
+                    <a href="{{ SITEURL }}/{{ author.url }}">{{ author }}</a>
+                {% endfor %}
+                 on {{ article.locale_date }}
+             <!--    {% include 'comments.html' %}-->
+            </p>
+        </div>
+        <hr>
+    {% endfor %}
+
+    {% include "pagination.html" %}
+    <hr>
 {% endblock content%}
