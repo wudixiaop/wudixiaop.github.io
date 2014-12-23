@@ -7,7 +7,7 @@
     {% if HEADER_COVER %}
         <header class="intro-header" style="background-image: url('{{ HEADER_COVER }}')">
     {% else %}
-        <header class="intro-header" style="background-image: url('{{ SITEURL }}/{{ THEME_STATIC_DIR }}/images/home-bg.jpg')">
+        <header class="intro-header" style="background-image: url('{{ SITEURL }}/{{ THEME_STATIC_DIR }}/images/post-bg.jpg')">
     {% endif %}
         <div class="container">
             <div class="row">
@@ -22,12 +22,17 @@
 {% endblock header %}
 
 {% block content %}
-	<div id="archives">
-        {% for article in dates %}
-			<p>
-				<span class="categories-timestamp"><time datetime="{{ article.date.isoformat() }}">{{ article.locale_date }}</time></span>
-				<a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}{% if article.subtitle %} - {{ article.subtitle }}{% endif %}</a>
-			</p>
-		{% endfor %}
-    </div>
+	<section id="content">
+        <div id="archives">
+			<ul>
+            {% for article in dates %}
+                <li>
+					<span class="categories-timestamp"><time datetime="{{ article.date.isoformat() }}">{{ article.locale_date }}</time></span>&nbsp;&nbsp;&nbsp;
+					
+                    <a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}{% if article.subtitle %} - {{ article.subtitle }}{% endif %}</a>
+                </li>
+            {% endfor %}
+			</ul>
+        </div>
+    </section>
 {% endblock content %}
