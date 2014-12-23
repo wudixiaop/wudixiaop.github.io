@@ -49,3 +49,5 @@ DISQUS_SITENAME = "wudixiaopgithubio"
 COLOR_SCHEME_CSS = "github.css"
 #HEADER_COVER = 'static/my_image.png'
 SITESUBTITLE = "心亡则忙，亡心则忘"
+GITHUB_URL = 'https://github.com/wudixiaop'
+DISPLAY_CATEGORIES_ON_MENU = True
