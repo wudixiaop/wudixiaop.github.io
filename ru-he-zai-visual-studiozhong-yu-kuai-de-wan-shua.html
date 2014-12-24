@@ -36,7 +36,7 @@
 
 
 
-        <meta name="tags" contents="ShaderlabVS" />
+        <meta name="tags" contents="Visual Studio" />
 
         <meta name="author" content="Rocky Lai" />
 </head>
@@ -78,10 +78,10 @@
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                     <div class="post-heading">
-                        <h1>Why I start ShaderlabVS</h1>
+                        <h1>如何在Visual Studio中愉快的玩耍</h1>
                         <span class="meta">Posted by
                                 <a href="http://wudixiaop.github.io/author/rocky-lai.html">Rocky Lai</a>
-                             on 2014-08-31 20:35
+                             on 2014-12-24 14:50
                         </span>
                         
                     </div>
@@ -96,8 +96,60 @@
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
     <!-- Post Content -->
     <article>
-        <p>Last month, <a href="http://unityvs.com/">SyntaxTree</a>, the creator of UnityVS plugin for Visual Studio was acquired by Microsoft. Microsoft have published the UnityVS to Visual Studio users for free at the end of July.   </p>
-<p>UnityVS is cool tool that make it's possible to debug Unity3D scripts in VS. But the tool is not support the Unity3D shaderlab syntax. it's pain for me to to read/write shader in VS, So I created the ShaderlabVS to help myself and may would help someone who need it.</p>
+        <p>好吧，其实我想要说一些我觉得可以在Visual Studio中提高效率的经验。下面直接进入正题：</p>
+<h2>熟记并使用各种快捷键</h2>
+<p>快捷键之所以叫快捷键就是因为它会让事情变得更快捷。好吧，其实我知道前面一句废话。下面就列举一些碰上常用的(基于Visual C# 2005)</p>
+<blockquote>
+<ul>
+<li>注释: <strong>Ctrl + E, C</strong> (也就是，先<strong>Ctrl</strong>和<strong>E</strong>一起摁，然后摁<strong>C</strong>. 下面碰到有带组合键的情况类似)</li>
+<li>取消注释: <strong>Ctrl + E, U</strong></li>
+<li>整行剪切: <strong>Ctrl + X</strong></li>
+<li>收起/展开光标所在行的概述(Outlining): <strong>Ctrl + M, M</strong></li>
+<li>收起概述(Outlining)到定义: <strong>Ctrl + M, O</strong></li>
+<li>收起/展开所有概述(Outlining): <strong>Ctrl + M, L</strong></li>
+<li>呼出自动补全窗口: <strong>Ctrl + J</strong></li>
+<li>回跳到光标上一次所在位置: <strong>Ctrl + -</strong> (这是减号)</li>
+<li>MSDN帮助: <strong>F1</strong> (光标移到类名或者方法名上，然后摁<strong>F1</strong>)</li>
+<li>运行: <strong>F5</strong></li>
+<li>编译: <strong>F6</strong></li>
+<li>调试时Step Over/In: <strong>F10</strong>/<strong>F11</strong></li>
+<li>跳转到定义: <strong>F12</strong></li>
+<li>搜索和替换窗口: <strong>Ctrl + Shift + F</strong> 或者 <strong>Ctrl + Shift + H</strong></li>
+<li>当然还有超级好用的自能感应: <strong>Ctrl + .</strong> (或者<strong>Ctrl + Shift + F10</strong>) </li>
+</ul>
+</blockquote>
+<p>当然还有很多其他快捷，但是平时自己用的少，就不列举了。</p>
+<h2>偷懒技巧一：使用代码片段管理器(Code Snippets Manager)</h2>
+<p>如果还不知道有这个东西的童鞋可以在Vistual Studio的工具菜单中找到。具体怎么用大家可以参照别的童鞋们的文章 </p>
+<ul>
+<li><a href="http://www.cnblogs.com/cyq1162/archive/2013/06/14/3135373.html">Visual Studio 小技巧：自定义代码片断</a></li>
+<li><a href="http://kb.cnblogs.com/page/42164/">使用Visual Studio Snippet(片断)提交开发效率</a></li>
+</ul>
+<p>简单一句话描述Code Snippets使用就是：如果用C#举例，编写代码的时候，输入代码片段的快捷键(比如for), 然后摁两下Tab键，接下来就知道怎么做了。</p>
+<p>按惯例，列举一些C#常用的:</p>
+<blockquote>
+<ul>
+<li>循环: <strong>for</strong>, <strong>foreach</strong></li>
+<li>生成类: <strong>class</strong></li>
+<li>生成构造函数: <strong>ctor</strong></li>
+<li>生成属性: <strong>prop</strong>, <strong>propfull</strong>, <strong>propdp</strong>(Wpf系列中的依赖属性) </li>
+</ul>
+</blockquote>
+<h2>偷懒技巧二: Toolbox</h2>
+<p>文字看多了，咱们来看视频吧</p>
+<iframe src="//channel9.msdn.com/Series/vstips/lazycodesnippets/player?format=html5" width="960" height="540" allowFullScreen frameBorder="0"></iframe>
+
+<p>视频源地址：<a href="http://channel9.msdn.com/Series/vstips/lazycodesnippets">http://channel9.msdn.com/Series/vstips/lazycodesnippets</a> </p>
+<h2>成为高手~~</h2>
+<p>不想成为标题党的程序员不是一个好写手。好吧，其实我是来推荐<strong>VsVim</strong>这个插件的。。。</p>
+<p>首先，我需要安装<strong>VsVim</strong>。童鞋们可以在VS工具菜单下的扩展及更新(Extension and Updates)里查找然后安装。具体可以参照这篇文章: <a href="http://www.tuicool.com/articles/YF7RNv">http://www.tuicool.com/articles/YF7RNv</a></p>
+<p>然后开始练技能打怪练级: </p>
+<ul>
+<li><a href="http://coolshell.cn/articles/5426.html">http://coolshell.cn/articles/5426.html</a> </li>
+<li><a href="https://github.com/jaredpar/VsVim/wiki/faq">https://github.com/jaredpar/VsVim/wiki/faq</a></li>
+</ul>
+<p>再然后会慢慢发现平时编码时摸鼠标的次数越来少。。。</p>
+<p>再然后。。。没有再然后了。。</p>
     </article>
 
     <hr>
@@ -110,8 +162,8 @@
             /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
             var disqus_shortname = 'wudixiaopgithubio'; // required: replace example with your forum shortname
 
-                    var disqus_identifier = 'why-i-start-shaderlabvs';
-                var disqus_url = 'http://wudixiaop.github.io/why-i-start-shaderlabvs.html';
+                    var disqus_identifier = 'ru-he-zai-visual-studiozhong-yu-kuai-de-wan-shua';
+                var disqus_url = 'http://wudixiaop.github.io/ru-he-zai-visual-studiozhong-yu-kuai-de-wan-shua.html';
 
             var disqus_config = function () {
                 this.language = "zhcn";

@@ -14,10 +14,11 @@ PATH = 'content'
 
 TIMEZONE = 'Asia/Chongqing'
 
-DEFAULT_LANG = u'en-us'
+DEFAULT_LANG = u'zhcn'
 # 根据上面的DEFALUT_LANG来匹配日期格式
 DATE_FORMATS = {
     'en-us': '%Y-%m-%d %H:%M',
+    'zhcn': '%Y-%m-%d %H:%M',
 }
 
 #通用    
