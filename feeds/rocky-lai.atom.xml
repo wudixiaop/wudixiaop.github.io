@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom"><title>Rocky Lai @ Github</title><link href="http://wudixiaop.github.io/" rel="alternate"></link><link href="http://wudixiaop.github.io/feeds%5Crocky-lai.atom.xml" rel="self"></link><id>http://wudixiaop.github.io/</id><updated>2014-12-24T14:50:00+08:00</updated><entry><title>如何在Visual Studio中愉快的玩耍</title><link href="http://wudixiaop.github.io/ru-he-zai-visual-studiozhong-yu-kuai-de-wan-shua.html" rel="alternate"></link><updated>2014-12-24T14:50:00+08:00</updated><author><name>Rocky Lai</name></author><id>tag:wudixiaop.github.io,2014-12-24:ru-he-zai-visual-studiozhong-yu-kuai-de-wan-shua.html</id><summary type="html">&lt;p&gt;好吧，其实我想要说一些我觉得可以在Visual Studio中提高效率的经验。下面直接进入正题：&lt;/p&gt;
 &lt;h2&gt;熟记并使用各种快捷键&lt;/h2&gt;
-&lt;p&gt;快捷键之所以叫快捷键就是因为它会让事情变得更快捷。好吧，其实我知道前面一句废话。下面就列举一些碰上常用的(基于Visual C# 2005)&lt;/p&gt;
+&lt;p&gt;快捷键之所以叫快捷键就是因为它会让事情变得更快捷。好吧，其实我知道前面一句废话。下面就列举一些碰上常用的(基于Visual C# 2005快捷键映射)&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;ul&gt;
 &lt;li&gt;注释: &lt;strong&gt;Ctrl + E, C&lt;/strong&gt; (也就是，先&lt;strong&gt;Ctrl&lt;/strong&gt;和&lt;strong&gt;E&lt;/strong&gt;一起摁，然后摁&lt;strong&gt;C&lt;/strong&gt;. 下面碰到有带组合键的情况类似)&lt;/li&gt;
