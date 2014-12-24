@@ -68,7 +68,7 @@ Tags: Visual Studio
 不想成为标题党的程序员不是一个好写手。好吧，其实我是来推荐**VsVim**这个插件的。。。
 
 
-首先，我需要安装**VsVim**。童鞋们可以在VS工具菜单下的扩展及更新(Extension and Updates)里查找然后安装。具体可以参照这篇文章: <http://www.tuicool.com/articles/YF7RNv>
+首先，我们需要安装**VsVim**。童鞋们可以在VS工具菜单下的扩展及更新(Extension and Updates)里查找并安装。具体可以参照这篇文章: <http://www.tuicool.com/articles/YF7RNv>
 
 
 然后开始练技能打怪练级: 
