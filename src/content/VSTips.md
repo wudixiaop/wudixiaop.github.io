@@ -30,10 +30,6 @@ Tags: Visual Studio
 当然还有很多其他快捷，但是平时自己用的少，就不列举了。
 
 
-
-
-
-
 ##偷懒技巧一：使用代码片段管理器(Code Snippets Manager)
 
 
@@ -54,10 +50,6 @@ Tags: Visual Studio
 > * 生成属性: **prop**, **propfull**, **propdp**(Wpf系列中的依赖属性) 
 
 
-
-
-
-
 ##偷懒技巧二: Toolbox
 
 
@@ -68,10 +60,6 @@ Tags: Visual Studio
 
 
 视频源地址：<http://channel9.msdn.com/Series/vstips/lazycodesnippets> 
-
-
-
-
 
 
 ##成为高手~~
