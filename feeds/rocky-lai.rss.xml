@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Rocky Lai @ Github</title><link>http://wudixiaop.github.io/</link><description>心亡则忙，亡心则忘</description><atom:link href="http://wudixiaop.github.io/feeds%5Crocky-lai.rss.xml" rel="self"></atom:link><lastBuildDate>Sat, 17 Jan 2015 20:13:00 +0800</lastBuildDate><item><title>从C#到Python</title><link>http://wudixiaop.github.io/cong-cdao-python.html</link><description>&lt;p&gt;项目组最近可能要用Python写一插件，虽然自己只是会用，但是还是被要求给大家做个简单的Python入门培训。只能冲个胖子，硬着头皮上了。
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Rocky Lai @ Github</title><link>http://wudixiaop.github.io/</link><description>心亡则忙，亡心则忘</description><atom:link href="http://wudixiaop.github.io/feeds%5Crocky-lai.rss.xml" rel="self"></atom:link><lastBuildDate>Wed, 07 Jan 2015 20:13:00 +0800</lastBuildDate><item><title>从C#到Python</title><link>http://wudixiaop.github.io/cong-cdao-python.html</link><description>&lt;p&gt;项目组最近可能要用Python写一插件，虽然自己只是会用，但是还是被要求给大家做个简单的Python入门培训。只能冲个胖子，硬着头皮上了。
 由于项目组里大部分童鞋们都会C#，可能如果从C#做类比的角度来阐述Python语法会更好点，然后下面奇怪的Python教程出来了。大家可以在这里得到PPT和代码:  &lt;a href="https://github.com/wudixiaop/Nana/tree/master/Python/Tutorial/Python%20Quick%20Start"&gt;https://github.com/wudixiaop/Nana/tree/master/Python/Tutorial/Python%20Quick%20Start&lt;/a&gt;。&lt;/p&gt;
 &lt;p&gt;下面是讲语法的代码，语法部分在注释中有描述。&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# -*- encoding:utf-8 -*-&lt;/span&gt;
@@ -565,7 +565,7 @@
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;上面代码地址: &lt;a href="https://github.com/wudixiaop/Nana/blob/master/Python/Tutorial/Python%20Quick%20Start/PythonQuickStart/Python_Introduction.py"&gt;Github&lt;/a&gt;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Rocky Lai</dc:creator><pubDate>Sat, 17 Jan 2015 20:13:00 +0800</pubDate><guid>tag:wudixiaop.github.io,2015-01-17:cong-cdao-python.html</guid><category>Python</category></item><item><title>如何在Visual Studio中愉快的玩耍</title><link>http://wudixiaop.github.io/ru-he-zai-visual-studiozhong-yu-kuai-de-wan-shua.html</link><description>&lt;p&gt;好吧，其实我想要说一些我觉得可以在Visual Studio中提高效率的经验。下面直接进入正题：&lt;/p&gt;
+&lt;p&gt;上面代码地址: &lt;a href="https://github.com/wudixiaop/Nana/blob/master/Python/Tutorial/Python%20Quick%20Start/PythonQuickStart/Python_Introduction.py"&gt;Github&lt;/a&gt;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Rocky Lai</dc:creator><pubDate>Wed, 07 Jan 2015 20:13:00 +0800</pubDate><guid>tag:wudixiaop.github.io,2015-01-07:cong-cdao-python.html</guid><category>Python</category></item><item><title>如何在Visual Studio中愉快的玩耍</title><link>http://wudixiaop.github.io/ru-he-zai-visual-studiozhong-yu-kuai-de-wan-shua.html</link><description>&lt;p&gt;好吧，其实我想要说一些我觉得可以在Visual Studio中提高效率的经验。下面直接进入正题：&lt;/p&gt;
 &lt;h2&gt;熟记并使用各种快捷键&lt;/h2&gt;
 &lt;p&gt;快捷键之所以叫快捷键就是因为它会让事情变得更快捷。好吧，其实我知道前面一句废话。下面就列举一些碰上常用的(基于Visual C# 2005快捷键映射)&lt;/p&gt;
 &lt;blockquote&gt;
