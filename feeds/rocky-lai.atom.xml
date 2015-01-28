@@ -1,5 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Rocky Lai @ Github</title><link href="http://wudixiaop.github.io/" rel="alternate"></link><link href="http://wudixiaop.github.io/feeds%5Crocky-lai.atom.xml" rel="self"></link><id>http://wudixiaop.github.io/</id><updated>2015-01-07T20:13:00+08:00</updated><entry><title>从C#到Python</title><link href="http://wudixiaop.github.io/cong-cdao-python.html" rel="alternate"></link><updated>2015-01-07T20:13:00+08:00</updated><author><name>Rocky Lai</name></author><id>tag:wudixiaop.github.io,2015-01-07:cong-cdao-python.html</id><summary type="html">&lt;p&gt;项目组最近可能要用Python写一插件，虽然自己只是会用，但是还是被要求给大家做个简单的Python入门培训。只能冲个胖子，硬着头皮上了。
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Rocky Lai @ Github</title><link href="http://wudixiaop.github.io/" rel="alternate"></link><link href="http://wudixiaop.github.io/feeds%5Crocky-lai.atom.xml" rel="self"></link><id>http://wudixiaop.github.io/</id><updated>2015-01-28T16:54:00+08:00</updated><entry><title>如何在Github for Mac/Windows上使用非Github的仓库</title><link href="http://wudixiaop.github.io/ru-he-zai-github-for-macwindowsshang-shi-yong-fei-githubde-cang-ku.html" rel="alternate"></link><updated>2015-01-28T16:54:00+08:00</updated><author><name>Rocky Lai</name></author><id>tag:wudixiaop.github.io,2015-01-28:ru-he-zai-github-for-macwindowsshang-shi-yong-fei-githubde-cang-ku.html</id><summary type="html">&lt;p&gt;你或许跟我一样，不想花太多时间去"精通"git的各种命令，想用简单明了的方法来玩git。而Github的客户端恰是这种良药。使用过的童鞋可能有过跟我一样困惑：Github客户端在界面上只能管理Github的代码仓库，怎么才能管理非Github的仓库呢？&lt;/p&gt;
+&lt;p&gt;这个问题也就是本文要解决的内容。先讲Github for Mac, 然后是Github for Windows&lt;/p&gt;
+&lt;h3&gt;Github for Mac&lt;/h3&gt;
+&lt;p&gt;首先创建一个本地的仓库, 假设取名为&lt;strong&gt;Freekick&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="mac_1" src="images\GitClient\mac_1.png" width="800px"/&gt;&lt;/p&gt;
+&lt;p&gt;然后把git仓库的https地址设置为&lt;strong&gt;Freekick&lt;/strong&gt;仓库的&lt;strong&gt;Primary remote repository&lt;/strong&gt;。在&lt;strong&gt;Settings&lt;/strong&gt;选项卡中设置。&lt;/p&gt;
+&lt;p&gt;&lt;img alt="mac_2" src="images\GitClient\mac_2.png" width="800px"/&gt;&lt;/p&gt;
+&lt;p&gt;上一步完成之后点击&lt;strong&gt;Updae Remote&lt;/strong&gt;按钮，之后会弹出输入账号密码的对话框。输入正确的账号密码即可。&lt;/p&gt;
+&lt;p&gt;&lt;img alt="mac_3" src="images\GitClient\mac_3.png" width="800px"/&gt;&lt;/p&gt;
+&lt;p&gt;然后切换到&lt;strong&gt;Changes&lt;/strong&gt;选项卡，点击右上角的&lt;strong&gt;publish&lt;/strong&gt;按钮。&lt;/p&gt;
+&lt;p&gt;&lt;img alt="mac_4" src="images\GitClient\mac_4.png" width="800px"/&gt;&lt;/p&gt;
+&lt;p&gt;最后Github for Mac会自动同步仓库。&lt;/p&gt;
+&lt;p&gt;&lt;img alt="mac_5" src="images\GitClient\mac_5.png" width="800px"/&gt;&lt;/p&gt;
+&lt;h3&gt;Github for Windows&lt;/h3&gt;
+&lt;p&gt;在Windows上只需要把git仓库的https地址拖拽到Github for Windows客户端上，然后会弹出对话框。输入正确的账号密码后，Github for Windows会自动同步代码。拖拽的时候最好把浏览器窗户缩小，如下图所示&lt;/p&gt;
+&lt;p&gt;&lt;img alt="windows_1" src=".\images\GitClient\windows_1.png" /&gt;&lt;/p&gt;
+&lt;h3&gt;写在最后&lt;/h3&gt;
+&lt;p&gt;Github客户端不能本地创建新的仓库，然后发布到除Github之外的代码托管服务器上。如果需要新建一个仓库，我们可以先创建好一个空的新仓库，然后再用本文提到的方法来同步仓库来达到目的。&lt;/p&gt;
+&lt;p&gt;另外，由于Github客户端是为Github量身定做的，当管理非Github仓库时，会有少量跟github相关的功能不能用。但是个人觉得这个不影响体验。我们可以通过下面的地址在官方下载Github客户端：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Github for Windows:&lt;/strong&gt; &lt;a href="https://windows.github.com/"&gt;https://windows.github.com/&lt;/a&gt;  &lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Github for Mac:&lt;/strong&gt; &lt;a href="https://mac.github.com/"&gt;https://mac.github.com/&lt;/a&gt; &lt;/li&gt;
+&lt;/ul&gt;</summary><category term="Git"></category></entry><entry><title>从C#到Python</title><link href="http://wudixiaop.github.io/cong-cdao-python.html" rel="alternate"></link><updated>2015-01-07T20:13:00+08:00</updated><author><name>Rocky Lai</name></author><id>tag:wudixiaop.github.io,2015-01-07:cong-cdao-python.html</id><summary type="html">&lt;p&gt;项目组最近可能要用Python写一插件，虽然自己只是会用，但是还是被要求给大家做个简单的Python入门培训。只能冲个胖子，硬着头皮上了。
 由于项目组里大部分童鞋们都会C#，可能如果从C#做类比的角度来阐述Python语法会更好点，然后下面奇怪的Python教程出来了。大家可以在这里得到PPT和代码:  &lt;a href="https://github.com/wudixiaop/Nana/tree/master/Python/Tutorial/Python%20Quick%20Start"&gt;https://github.com/wudixiaop/Nana/tree/master/Python/Tutorial/Python%20Quick%20Start&lt;/a&gt;。&lt;/p&gt;
 &lt;p&gt;下面是讲语法的代码，语法部分在注释中有描述。&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# -*- encoding:utf-8 -*-&lt;/span&gt;
