@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="zhcn">
+
+<head>
+            <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="">
+
+		
+        <title>Rocky Lai @ Github</title>
+
+
+        <!-- Bootstrap Core CSS -->
+        <link href="http://wudixiaop.github.io/theme/css/bootstrap.min.css" rel="stylesheet">
+
+        <!-- Custom CSS -->
+        <link href="http://wudixiaop.github.io/theme/css/clean-blog.min.css" rel="stylesheet">
+
+        <!-- Code highlight color scheme -->
+            <link href="http://wudixiaop.github.io/theme/css/code_blocks/github.css" rel="stylesheet">
+
+        <!-- Custom Fonts -->
+        <!--<link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+        <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>-->
+
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+
+
+
+        <meta name="tags" contents="Swift" />
+
+        <meta name="author" content="Rocky Lai" />
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="https://github.com/wudixiaop/">Rocky Lai @ Github</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+					<li><a href="http://wudixiaop.github.io">首页</a></li>
+                                <li><a href="http://wudixiaop.github.io/category/shaderlabvs.html">ShaderlabVS</a></li>
+                                <li><a href="http://wudixiaop.github.io/category/yi-dian-yi-di.html">一点一滴</a></li>
+					<li><a href="http://wudixiaop.github.io/author/rocky-lai.html">关于我</a></li>
+					<li><a href="http://wudixiaop.github.io/archives.html">归档</a></li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <!-- Page Header -->
+        <header class="intro-header" style="background-image: url('http://wudixiaop.github.io/theme/images/post-bg.jpg')">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <div class="post-heading">
+                        <h1>一个例子学习Swift中的闭包用法</h1>
+                        <span class="meta">Posted by
+                                <a href="http://wudixiaop.github.io/author/rocky-lai.html">Rocky Lai</a>
+                             on 2015-03-26 15:37
+                        </span>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+    <!-- Post Content -->
+    <article>
+        <p>初学习Swift, 觉得Swift中的闭包用法比较灵活, 所以在学习的时候编了个小例子来把用法罗列了出来, 分享出来给大家。</p>
+<p>在讲例子之前我们来看下什么是闭包(Closure).《The Swift Programming Language》是这样定义的:</p>
+<blockquote>
+<p>Closures are self-contained blocks of functionality that can be passed around and used in your code</p>
+</blockquote>
+<p>中文版中这样翻译：</p>
+<blockquote>
+<p>闭包是自包含的函数代码块，可以在代码中被传递和使用。</p>
+</blockquote>
+<p>看解释我们知道，闭包是代码段，它能实现一些逻辑（函数），它可以被传递和使用（就像类型一样）。</p>
+<p>然后我们来看看闭包长的什么样子。下面是闭包的定义:</p>
+<blockquote>
+<p>{ (parameters) -&gt; returnType in
+   statements
+}</p>
+</blockquote>
+<p>上面定义中 <strong>parameters</strong> 是指参数， <strong>returnType</strong> 是返回类型，而 <strong>statements</strong> 指的是我们要实现的逻辑的代码, 闭包的代码都被 <strong>{}</strong> 包含着。
+观察力强的同学们估计发现了，它怎么跟Swift的函数长的差不多，难道它们是亲戚? Swift中函数是一种特殊的闭包，记住函数是闭包，不是闭包是函数哦。</p>
+<p>接下来我们说说文章开头提到的那个栗子。</p>
+<p>假设我们要找出某一些人中最小年龄是多少，我们要通过排序的方法来得到这个年龄。有这么一组年龄数字:</p>
+<div class="highlight"><pre><span class="n">let</span> <span class="n">ages</span> <span class="o">=</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">23</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">19</span><span class="p">]</span>
+</pre></div>
+
+
+<p>首先我们使用最原始的办法，自己定义排序方法:</p>
+<div class="highlight"><pre><span class="n">func</span> <span class="n">sortAge</span><span class="p">(</span><span class="n">age1</span><span class="p">:</span> <span class="n">Int</span><span class="p">,</span> <span class="n">age2</span><span class="p">:</span> <span class="n">Int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Bool</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="n">age1</span> <span class="o">&gt;</span> <span class="n">age2</span>
+<span class="p">}</span>
+
+<span class="nb">sorted</span><span class="p">(</span><span class="n">ages</span><span class="p">,</span> <span class="n">sortAge</span><span class="p">)</span>
+</pre></div>
+
+
+<p>上面代码中我们定义了一个叫做 sortAge 的函数, 它传递给了第二个参数的类型是 <code>(Int, Int) -&gt; Bool</code> 的 sorted 函数。 如果用闭包来代替自定义的函数, 写法就变成了这样:</p>
+<div class="highlight"><pre><span class="nb">sorted</span><span class="p">(</span><span class="n">ages</span><span class="p">,</span> <span class="p">{</span> <span class="p">(</span><span class="n">age1</span><span class="p">:</span><span class="n">Int</span><span class="p">,</span> <span class="n">age2</span><span class="p">:</span><span class="n">Int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Bool</span> <span class="ow">in</span> <span class="k">return</span> <span class="n">age1</span> <span class="o">&gt;</span> <span class="n">age2</span> <span class="p">})</span>
+</pre></div>
+
+
+<p>一个闭包用法就写好了。上面闭包中，定义了参数的个数，名字还有其类型，定义了返回值，还有代码体(in 关键词之后的代码)。
+看起来就像重新写了一个 sortAage 函数。你可能会想，这样也没省多少事，只不过是把自定义的函数写到了 sorted 函数的参数里而已。
+别急, 学会聪明的偷懒是一个好程序员属性，我们来看看怎么简化上面的代码。</p>
+<p>首先<strong>闭包中如果能从上下文推断出其参数类型，我们可以省略其类型的定义</strong>。sorted 函数的, 所以我们可以简化代码为:</p>
+<div class="highlight"><pre><span class="nb">sorted</span><span class="p">(</span><span class="n">ages</span><span class="p">,</span> <span class="p">{</span> <span class="p">(</span><span class="n">age1</span><span class="p">,</span> <span class="n">age2</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Bool</span> <span class="ow">in</span> <span class="k">return</span> <span class="n">age1</span> <span class="o">&gt;</span> <span class="n">age2</span> <span class="p">})</span>
+</pre></div>
+
+
+<p>然后，用来包含参数的括号我们可以省略掉, 变成了下面这个样子：</p>
+<div class="highlight"><pre><span class="nb">sorted</span><span class="p">(</span><span class="n">ages</span><span class="p">,</span> <span class="p">{</span> <span class="n">age1</span><span class="p">,</span> <span class="n">age2</span> <span class="o">-&gt;</span> <span class="n">Bool</span> <span class="ow">in</span> <span class="k">return</span> <span class="n">age1</span> <span class="o">&gt;</span> <span class="n">age2</span> <span class="p">})</span>
+</pre></div>
+
+
+<p>如果<strong>闭包代码体中只包含单行代码, 我们可以省略 return 关键词</strong>, 然后变成了这个样子:</p>
+<div class="highlight"><pre><span class="nb">sorted</span><span class="p">(</span><span class="n">ages</span><span class="p">,</span> <span class="p">{</span> <span class="n">age1</span><span class="p">,</span> <span class="n">age2</span> <span class="o">-&gt;</span> <span class="n">Bool</span> <span class="ow">in</span> <span class="n">age1</span> <span class="o">&gt;</span> <span class="n">age2</span> <span class="p">})</span>
+</pre></div>
+
+
+<p>如果<strong>闭包中返回类型能从上下文推断出，我们可以省略返回值定义</strong>。参照上面 sorted 函数第二个参数的定义，是可以推断出闭包返回值是 Bool。省略之后就变成了这个样子：</p>
+<div class="highlight"><pre><span class="nb">sorted</span><span class="p">(</span><span class="n">ages</span><span class="p">,</span> <span class="p">{</span> <span class="n">age1</span><span class="p">,</span> <span class="n">age2</span> <span class="ow">in</span> <span class="n">age1</span> <span class="o">&gt;</span> <span class="n">age2</span> <span class="p">})</span>
+</pre></div>
+
+
+<p>到了这里，代码已经比较清爽了。但是偷懒的步伐还可以继续（懒惰是人类文明进化的动力）。Swift 闭包中允许用 $0, $1 $2 这样用 $n 这种符号后面接数字的形式来表示其第 n 个参数. 然后就可以变成这个样子:</p>
+<div class="highlight"><pre><span class="nb">sorted</span><span class="p">(</span><span class="n">ages</span><span class="p">,</span> <span class="p">{</span> <span class="err">$</span><span class="mi">0</span> <span class="o">&gt;</span> <span class="err">$</span><span class="mi">1</span> <span class="p">})</span>
+</pre></div>
+
+
+<p>好了，已经很短了。人类的偷懒的方法是无止境的。Swift中定义了运算符函数 <code>&gt;</code>, 我们可以把它传递给 sorted 函数。于是乎变成了这个样子：</p>
+<div class="highlight"><pre><span class="nb">sorted</span><span class="p">(</span><span class="n">ages</span><span class="p">,</span> <span class="o">&gt;</span><span class="p">)</span>
+</pre></div>
+
+
+<p>如果你还想问有没有更偷懒的方法？我只想说，兄台你醒醒吧，都只要输入一个字符而已了，你还要怎么样。。。</p>
+<p>除了上面的一些用法外，还有一种叫做尾随闭包（就是跟在调用它的函数的屁股后面的闭包），当调用它的函数的最后一个参数是闭包时，可以使用。我们可以把</p>
+<div class="highlight"><pre><span class="nb">sorted</span><span class="p">(</span><span class="n">ages</span><span class="p">,</span> <span class="p">{</span> <span class="err">$</span><span class="mi">0</span> <span class="o">&gt;</span> <span class="err">$</span><span class="mi">1</span> <span class="p">})</span>
+</pre></div>
+
+
+<p>写成尾随闭包形式：</p>
+<div class="highlight"><pre><span class="nb">sorted</span><span class="p">(</span><span class="n">ages</span><span class="p">)</span> <span class="p">{</span> <span class="err">$</span><span class="mi">0</span> <span class="o">&gt;</span> <span class="err">$</span><span class="mi">1</span> <span class="p">}</span>
+</pre></div>
+
+
+<p>大概就这些。。。</p>
+    </article>
+
+﻿<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="yi-ge-li-zi-xue-xi-swiftzhong-de-bi-bao-yong-fa.html" data-title="一个例子学习Swift中的闭包用法" data-url="http://wudixiaop.github.io/yi-ge-li-zi-xue-xi-swiftzhong-de-bi-bao-yong-fa.html"></div>
+<!-- 多说评论框 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"rockylaigithubio"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+<!-- 多说公共JS代码 end -->            </div>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <ul class="list-inline text-center">
+                        <li>
+                            <a href="https://github.com/wudixiaop">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    </ul>
+                    <p class="copyright text-muted">Blog powered by <a href="http://getpelican.com">Pelican</a>,
+                which takes great advantage of <a href="http://python.org">Python</a>.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- jQuery -->
+    <script src="http://wudixiaop.github.io/theme/js/jquery.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="http://wudixiaop.github.io/theme/js/bootstrap.min.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="http://wudixiaop.github.io/theme/js/clean-blog.min.js"></script>
+
+<div style="opacity: 0">
+		  <script type="text/javascript">
+			var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+			document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fbe571cbfce038053e44e02d5eee04481' type='text/javascript'%3E%3C/script%3E"));
+		  </script>
+</div>
+</body>
+
+</html>

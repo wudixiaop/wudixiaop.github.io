@@ -1,5 +1,87 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Rocky Lai @ Github</title><link>http://wudixiaop.github.io/</link><description>心亡则忙，亡心则忘</description><atom:link href="http://wudixiaop.github.io/feeds%5Crocky-lai.rss.xml" rel="self"></atom:link><lastBuildDate>Wed, 28 Jan 2015 16:54:00 +0800</lastBuildDate><item><title>如何在Github for Mac/Windows上使用非Github的仓库</title><link>http://wudixiaop.github.io/ru-he-zai-github-for-macwindowsshang-shi-yong-fei-githubde-cang-ku.html</link><description>&lt;p&gt;你或许跟我一样，不想花太多时间去"精通"git的各种命令，想用简单明了的方法来玩git。而Github的客户端恰是这种良药。使用过的童鞋可能有过跟我一样困惑：Github客户端在界面上只能管理Github的代码仓库，怎么才能管理非Github的仓库呢？&lt;/p&gt;
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Rocky Lai @ Github</title><link>http://wudixiaop.github.io/</link><description>心亡则忙，亡心则忘</description><atom:link href="http://wudixiaop.github.io/feeds%5Crocky-lai.rss.xml" rel="self"></atom:link><lastBuildDate>Thu, 26 Mar 2015 15:37:00 +0800</lastBuildDate><item><title>一个例子学习Swift中的闭包用法</title><link>http://wudixiaop.github.io/yi-ge-li-zi-xue-xi-swiftzhong-de-bi-bao-yong-fa.html</link><description>&lt;p&gt;初学习Swift, 觉得Swift中的闭包用法比较灵活, 所以在学习的时候编了个小例子来把用法罗列了出来, 分享出来给大家。&lt;/p&gt;
+&lt;p&gt;在讲例子之前我们来看下什么是闭包(Closure).《The Swift Programming Language》是这样定义的:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Closures are self-contained blocks of functionality that can be passed around and used in your code&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;中文版中这样翻译：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;闭包是自包含的函数代码块，可以在代码中被传递和使用。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;看解释我们知道，闭包是代码段，它能实现一些逻辑（函数），它可以被传递和使用（就像类型一样）。&lt;/p&gt;
+&lt;p&gt;然后我们来看看闭包长的什么样子。下面是闭包的定义:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;{ (parameters) -&amp;gt; returnType in
+   statements
+}&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;上面定义中 &lt;strong&gt;parameters&lt;/strong&gt; 是指参数， &lt;strong&gt;returnType&lt;/strong&gt; 是返回类型，而 &lt;strong&gt;statements&lt;/strong&gt; 指的是我们要实现的逻辑的代码, 闭包的代码都被 &lt;strong&gt;{}&lt;/strong&gt; 包含着。
+观察力强的同学们估计发现了，它怎么跟Swift的函数长的差不多，难道它们是亲戚? Swift中函数是一种特殊的闭包，记住函数是闭包，不是闭包是函数哦。&lt;/p&gt;
+&lt;p&gt;接下来我们说说文章开头提到的那个栗子。&lt;/p&gt;
+&lt;p&gt;假设我们要找出某一些人中最小年龄是多少，我们要通过排序的方法来得到这个年龄。有这么一组年龄数字:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;let&lt;/span&gt; &lt;span class="n"&gt;ages&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;23&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;15&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;13&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;19&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;首先我们使用最原始的办法，自己定义排序方法:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;func&lt;/span&gt; &lt;span class="n"&gt;sortAge&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;age1&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Int&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;age2&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Int&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;Bool&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;age1&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;age2&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="nb"&gt;sorted&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;ages&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;sortAge&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;上面代码中我们定义了一个叫做 sortAge 的函数, 它传递给了第二个参数的类型是 &lt;code&gt;(Int, Int) -&amp;gt; Bool&lt;/code&gt; 的 sorted 函数。 如果用闭包来代替自定义的函数, 写法就变成了这样:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nb"&gt;sorted&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;ages&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;age1&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="n"&gt;Int&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;age2&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="n"&gt;Int&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;Bool&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;age1&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;age2&lt;/span&gt; &lt;span class="p"&gt;})&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;一个闭包用法就写好了。上面闭包中，定义了参数的个数，名字还有其类型，定义了返回值，还有代码体(in 关键词之后的代码)。
+看起来就像重新写了一个 sortAage 函数。你可能会想，这样也没省多少事，只不过是把自定义的函数写到了 sorted 函数的参数里而已。
+别急, 学会聪明的偷懒是一个好程序员属性，我们来看看怎么简化上面的代码。&lt;/p&gt;
+&lt;p&gt;首先&lt;strong&gt;闭包中如果能从上下文推断出其参数类型，我们可以省略其类型的定义&lt;/strong&gt;。sorted 函数的, 所以我们可以简化代码为:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nb"&gt;sorted&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;ages&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;age1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;age2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;Bool&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;age1&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;age2&lt;/span&gt; &lt;span class="p"&gt;})&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;然后，用来包含参数的括号我们可以省略掉, 变成了下面这个样子：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nb"&gt;sorted&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;ages&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="n"&gt;age1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;age2&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;Bool&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;age1&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;age2&lt;/span&gt; &lt;span class="p"&gt;})&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;如果&lt;strong&gt;闭包代码体中只包含单行代码, 我们可以省略 return 关键词&lt;/strong&gt;, 然后变成了这个样子:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nb"&gt;sorted&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;ages&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="n"&gt;age1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;age2&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;Bool&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;age1&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;age2&lt;/span&gt; &lt;span class="p"&gt;})&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;如果&lt;strong&gt;闭包中返回类型能从上下文推断出，我们可以省略返回值定义&lt;/strong&gt;。参照上面 sorted 函数第二个参数的定义，是可以推断出闭包返回值是 Bool。省略之后就变成了这个样子：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nb"&gt;sorted&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;ages&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="n"&gt;age1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;age2&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;age1&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;age2&lt;/span&gt; &lt;span class="p"&gt;})&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;到了这里，代码已经比较清爽了。但是偷懒的步伐还可以继续（懒惰是人类文明进化的动力）。Swift 闭包中允许用 $0, $1 $2 这样用 $n 这种符号后面接数字的形式来表示其第 n 个参数. 然后就可以变成这个样子:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nb"&gt;sorted&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;ages&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="p"&gt;})&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;好了，已经很短了。人类的偷懒的方法是无止境的。Swift中定义了运算符函数 &lt;code&gt;&amp;gt;&lt;/code&gt;, 我们可以把它传递给 sorted 函数。于是乎变成了这个样子：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nb"&gt;sorted&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;ages&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;如果你还想问有没有更偷懒的方法？我只想说，兄台你醒醒吧，都只要输入一个字符而已了，你还要怎么样。。。&lt;/p&gt;
+&lt;p&gt;除了上面的一些用法外，还有一种叫做尾随闭包（就是跟在调用它的函数的屁股后面的闭包），当调用它的函数的最后一个参数是闭包时，可以使用。我们可以把&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nb"&gt;sorted&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;ages&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="p"&gt;})&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;写成尾随闭包形式：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nb"&gt;sorted&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;ages&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;大概就这些。。。&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Rocky Lai</dc:creator><pubDate>Thu, 26 Mar 2015 15:37:00 +0800</pubDate><guid>tag:wudixiaop.github.io,2015-03-26:yi-ge-li-zi-xue-xi-swiftzhong-de-bi-bao-yong-fa.html</guid><category>Swift</category></item><item><title>如何在Github for Mac/Windows上使用非Github的仓库</title><link>http://wudixiaop.github.io/ru-he-zai-github-for-macwindowsshang-shi-yong-fei-githubde-cang-ku.html</link><description>&lt;p&gt;你或许跟我一样，不想花太多时间去"精通"git的各种命令，想用简单明了的方法来玩git。而Github的客户端恰是这种良药。使用过的童鞋可能有过跟我一样困惑：Github客户端在界面上只能管理Github的代码仓库，怎么才能管理非Github的仓库呢？&lt;/p&gt;
 &lt;p&gt;这个问题也就是本文要解决的内容。先讲Github for Mac, 然后是Github for Windows&lt;/p&gt;
 &lt;h3&gt;Github for Mac&lt;/h3&gt;
 &lt;p&gt;首先创建一个本地的仓库, 假设取名为&lt;strong&gt;Freekick&lt;/strong&gt;&lt;/p&gt;
