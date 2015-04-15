@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="zhcn">
+
+<head>
+            <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="">
+
+		
+        <title>Rocky Lai @ Github</title>
+
+
+        <!-- Bootstrap Core CSS -->
+        <link href="http://wudixiaop.github.io/theme/css/bootstrap.min.css" rel="stylesheet">
+
+        <!-- Custom CSS -->
+        <link href="http://wudixiaop.github.io/theme/css/clean-blog.css" rel="stylesheet">
+
+        <!-- Code highlight color scheme -->
+            <link href="http://wudixiaop.github.io/theme/css/code_blocks/github.css" rel="stylesheet">
+		
+
+
+
+
+        <meta name="tags" contents="Unity3D" />
+
+        <meta name="author" content="Rocky Lai" />
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="https://github.com/wudixiaop/">Rocky Lai @ Github</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+					<li><a href="http://wudixiaop.github.io">首页</a></li>
+                                <li><a href="http://wudixiaop.github.io/category/shaderlabvs.html">ShaderlabVS</a></li>
+                                <li><a href="http://wudixiaop.github.io/category/yi-dian-yi-di.html">一点一滴</a></li>
+					<li><a href="http://wudixiaop.github.io/author/rocky-lai.html">关于我</a></li>
+					<li><a href="http://wudixiaop.github.io/archives.html">归档</a></li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <!-- Page Header -->
+        <header class="intro-header" style="background-image: url('http://wudixiaop.github.io/theme/images/post-bg.jpg')">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <div class="post-heading">
+                        <h1>在Unity3d uGUI中绘制圆形图片</h1>
+                        <span class="meta">Posted by
+                                <a href="http://wudixiaop.github.io/author/rocky-lai.html">Rocky Lai</a>
+                             on 2015-04-15 23:30
+                        </span>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+    <!-- Post Content -->
+    <article>
+        <p>最近项目需要在Unity3D的新UI系统中实现圆形头像的功能，之前想通过Mask控件的方式来实现，但是一番努力后毫无头绪，只能祭上shader了。</p>
+<p>大体的思路就是在一个空的Object上面挂上RawImage。选取图片正中心(0.5, 0.5)为圆的中心点，绘制图片在圆内的像素点为图片的像素，然后图片在圆外的像素点设置为 alpha 为 0 的点，
+我选的是 <code>(0, 0, 0, 0)</code>。逻辑在fragment shader里面实现(shader代码中的<code>frag</code>)。</p>
+<p>下面直接方式shader:</p>
+<div class="highlight"><pre><span class="n">Shader</span> <span class="s">&quot;Sprites/Circle&quot;</span>
+<span class="p">{</span>
+  <span class="n">Properties</span>
+  <span class="p">{</span>
+    <span class="p">[</span><span class="n">PerRendererData</span><span class="p">]</span> <span class="n">_MainTex</span> <span class="p">(</span><span class="s">&quot;Sprite Texture&quot;</span><span class="p">,</span> <span class="mi">2</span><span class="n">D</span><span class="p">)</span> <span class="o">=</span> <span class="s">&quot;white&quot;</span> <span class="p">{}</span>
+    <span class="n">_Color</span> <span class="p">(</span><span class="s">&quot;Tint&quot;</span><span class="p">,</span> <span class="n">Color</span><span class="p">)</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">_Center</span><span class="p">(</span><span class="s">&quot;Center&quot;</span><span class="p">,</span> <span class="n">vector</span><span class="p">)</span> <span class="o">=</span> <span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
+    <span class="n">_RadiusScale</span><span class="p">(</span><span class="s">&quot;Radius Scale&quot;</span><span class="p">,</span> <span class="n">Range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span> <span class="o">=</span> <span class="mf">0.5</span>
+    <span class="n">_HorizontalScale</span><span class="p">(</span><span class="s">&quot;Horizontal Scale&quot;</span><span class="p">,</span> <span class="n">Range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">))</span> <span class="o">=</span> <span class="mf">1.0</span>
+    <span class="n">_VerticalScale</span><span class="p">(</span><span class="s">&quot;Vertical Scale&quot;</span><span class="p">,</span> <span class="n">Range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">))</span> <span class="o">=</span> <span class="mf">1.0</span>
+  <span class="p">}</span>
+
+  <span class="n">SubShader</span>
+  <span class="p">{</span>
+    <span class="n">Tags</span>
+    <span class="p">{</span>
+      <span class="s">&quot;Queue&quot;</span><span class="o">=</span><span class="s">&quot;Overlay&quot;</span>
+      <span class="s">&quot;IgnoreProjector&quot;</span><span class="o">=</span><span class="s">&quot;True&quot;</span>
+      <span class="s">&quot;RenderType&quot;</span><span class="o">=</span><span class="s">&quot;Transparent&quot;</span>
+      <span class="s">&quot;PreviewType&quot;</span><span class="o">=</span><span class="s">&quot;Plane&quot;</span>
+      <span class="s">&quot;CanUseSpriteAtlas&quot;</span><span class="o">=</span><span class="s">&quot;True&quot;</span>
+    <span class="p">}</span>
+
+    <span class="n">Cull</span> <span class="n">Off</span>
+    <span class="n">Lighting</span> <span class="n">Off</span>
+    <span class="n">ZWrite</span> <span class="n">Off</span>
+    <span class="n">Blend</span> <span class="n">One</span> <span class="n">OneMinusSrcAlpha</span>
+
+    <span class="n">Pass</span>
+    <span class="p">{</span>
+    <span class="n">CGPROGRAM</span>
+      <span class="cp">#pragma vertex vert</span>
+      <span class="cp">#pragma fragment frag</span>
+      <span class="cp">#pragma multi_compile _ PIXELSNAP_ON</span>
+      <span class="cp">#include &quot;UnityCG.cginc&quot;</span>
+
+      <span class="k">struct</span> <span class="kt">appdata_t</span>
+      <span class="p">{</span>
+        <span class="n">float4</span> <span class="nl">vertex</span>   <span class="p">:</span> <span class="n">POSITION</span><span class="p">;</span>
+        <span class="n">float4</span> <span class="nl">color</span>    <span class="p">:</span> <span class="n">COLOR</span><span class="p">;</span>
+        <span class="n">float2</span> <span class="nl">texcoord</span> <span class="p">:</span> <span class="n">TEXCOORD0</span><span class="p">;</span>
+      <span class="p">};</span>
+
+      <span class="k">struct</span> <span class="n">v2f</span>
+      <span class="p">{</span>
+        <span class="n">float4</span> <span class="nl">vertex</span>   <span class="p">:</span> <span class="n">SV_POSITION</span><span class="p">;</span>
+        <span class="n">fixed4</span> <span class="nl">color</span>    <span class="p">:</span> <span class="n">COLOR</span><span class="p">;</span>
+        <span class="n">half2</span> <span class="nl">texcoord</span>  <span class="p">:</span> <span class="n">TEXCOORD0</span><span class="p">;</span>
+      <span class="p">};</span>
+
+      <span class="n">fixed4</span> <span class="n">_Color</span><span class="p">;</span>
+      <span class="kt">float</span> <span class="n">_RadiusScale</span><span class="p">;</span>
+      <span class="n">float4</span> <span class="n">_Center</span><span class="p">;</span>
+      <span class="kt">float</span> <span class="n">_HorizontalScale</span><span class="p">;</span>
+      <span class="kt">float</span> <span class="n">_VerticalScale</span><span class="p">;</span>
+
+      <span class="n">v2f</span> <span class="nf">vert</span><span class="p">(</span><span class="kt">appdata_t</span> <span class="n">IN</span><span class="p">)</span>
+      <span class="p">{</span>
+        <span class="n">v2f</span> <span class="n">OUT</span><span class="p">;</span>
+        <span class="n">OUT</span><span class="p">.</span><span class="n">vertex</span> <span class="o">=</span> <span class="n">mul</span><span class="p">(</span><span class="n">UNITY_MATRIX_MVP</span><span class="p">,</span> <span class="n">IN</span><span class="p">.</span><span class="n">vertex</span><span class="p">);</span>
+        <span class="n">OUT</span><span class="p">.</span><span class="n">texcoord</span> <span class="o">=</span> <span class="n">IN</span><span class="p">.</span><span class="n">texcoord</span><span class="p">;</span>
+        <span class="n">OUT</span><span class="p">.</span><span class="n">color</span> <span class="o">=</span> <span class="n">IN</span><span class="p">.</span><span class="n">color</span> <span class="o">*</span> <span class="n">_Color</span><span class="p">;</span>
+        <span class="cp">#ifdef PIXELSNAP_ON</span>
+        <span class="n">OUT</span><span class="p">.</span><span class="n">vertex</span> <span class="o">=</span> <span class="n">UnityPixelSnap</span> <span class="p">(</span><span class="n">OUT</span><span class="p">.</span><span class="n">vertex</span><span class="p">);</span>
+        <span class="cp">#endif</span>
+
+        <span class="k">return</span> <span class="n">OUT</span><span class="p">;</span>
+      <span class="p">}</span>
+
+      <span class="n">sampler2D</span> <span class="n">_MainTex</span><span class="p">;</span>
+
+      <span class="n">fixed4</span> <span class="n">frag</span><span class="p">(</span><span class="n">v2f</span> <span class="n">IN</span><span class="p">)</span> <span class="o">:</span> <span class="n">SV_Target</span>
+      <span class="p">{</span>
+        <span class="n">fixed4</span> <span class="n">c</span><span class="p">;</span>
+        <span class="n">c</span> <span class="o">=</span> <span class="n">tex2D</span><span class="p">(</span><span class="n">_MainTex</span><span class="p">,</span> <span class="n">IN</span><span class="p">.</span><span class="n">texcoord</span><span class="p">)</span> <span class="o">*</span> <span class="n">IN</span><span class="p">.</span><span class="n">color</span><span class="p">;</span>
+
+        <span class="c1">// adjust center and horizontal/verital scale</span>
+        <span class="c1">//</span>
+        <span class="n">float2</span> <span class="n">scale</span> <span class="o">=</span> <span class="p">(</span><span class="n">_HorizontalScale</span><span class="p">,</span> <span class="n">_VerticalScale</span><span class="p">);</span>
+        <span class="kt">float</span> <span class="n">rs</span> <span class="o">=</span> <span class="n">length</span><span class="p">((</span><span class="n">_Center</span><span class="p">.</span><span class="n">xy</span> <span class="o">-</span> <span class="n">IN</span><span class="p">.</span><span class="n">texcoord</span><span class="p">.</span><span class="n">xy</span><span class="p">)</span> <span class="o">/</span> <span class="n">scale</span><span class="p">.</span><span class="n">xy</span><span class="p">);</span>
+
+        <span class="k">if</span><span class="p">(</span><span class="n">rs</span> <span class="o">&lt;</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">_RadiusScale</span><span class="p">)</span>
+        <span class="p">{</span>
+
+          <span class="n">c</span><span class="p">.</span><span class="n">rgb</span> <span class="o">*=</span> <span class="n">c</span><span class="p">.</span><span class="n">a</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">else</span>
+        <span class="p">{</span>
+          <span class="n">c</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+        <span class="p">}</span>
+
+        <span class="k">return</span> <span class="n">c</span><span class="p">;</span>
+      <span class="p">}</span>
+    <span class="n">ENDCG</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>Github 地址： <a href="https://raw.githubusercontent.com/wudixiaop/Nana/master/Shader/Sprite-Circle.shader">https://raw.githubusercontent.com/wudixiaop/Nana/master/Shader/Sprite-Circle.shader</a></p>
+    </article>
+
+﻿<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="zai-unity3d-uguizhong-hui-zhi-yuan-xing-tu-pian.html" data-title="在Unity3d uGUI中绘制圆形图片" data-url="http://wudixiaop.github.io/zai-unity3d-uguizhong-hui-zhi-yuan-xing-tu-pian.html"></div>
+<!-- 多说评论框 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"rockylaigithubio"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+<!-- 多说公共JS代码 end -->            </div>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <ul class="list-inline text-center">
+                        <li>
+                            <a href="https://github.com/wudixiaop">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    </ul>
+                    <p class="copyright text-muted">Blog powered by <a href="http://getpelican.com">Pelican</a>,
+                which takes great advantage of <a href="http://python.org">Python</a>.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- jQuery -->
+    <script src="http://wudixiaop.github.io/theme/js/jquery.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="http://wudixiaop.github.io/theme/js/bootstrap.min.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="http://wudixiaop.github.io/theme/js/clean-blog.min.js"></script>
+
+<div style="opacity: 0">
+		  <script type="text/javascript">
+			var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+			document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fbe571cbfce038053e44e02d5eee04481' type='text/javascript'%3E%3C/script%3E"));
+		  </script>
+</div>
+</body>
+
+</html>
