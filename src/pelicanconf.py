@@ -5,24 +5,29 @@ from __future__ import unicode_literals
 AUTHOR = u'Rocky Lai'
 ABOUT_PAGE_NAME = AUTHOR.replace(" ", "-").lower()
 SITENAME = u"Rocky Lai @ Github"
-SITEURL = 'http://wudixiaop.github.io'
-THEME = "Theme/CleanBlog"
 
-WEB_SITE_DOMAIN = "http://wudixiaop.github.io" 
+IN_TEST_Environment = False
+
+#通用
+DISQUS_SITENAME = "wudixiaopgithubio"
+SITEURL = 'http://wudixiaop.github.io'
+THEME = "Theme/CLEANBLOG"
+WEB_SITE_DOMAIN = "http://wudixiaop.github.io"
+
+if IN_TEST_Environment:
+    SITEURL = "http://localhost:8000"
+    WEB_SITE_DOMAIN = "http://localhost:8000"
 
 PATH = 'content'
-
 TIMEZONE = 'Asia/Chongqing'
-
 DEFAULT_LANG = u'zhcn'
+
 # 根据上面的DEFALUT_LANG来匹配日期格式
 DATE_FORMATS = {
     'en-us': '%Y-%m-%d %H:%M',
     'zhcn': '%Y-%m-%d %H:%M',
 }
 
-#通用    
-DISQUS_SITENAME = "wudixiaopgithubio"
 
 # Feed generation is usually not desired when developing
 FEED_ALL_ATOM = None
