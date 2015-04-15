@@ -86,7 +86,7 @@
     <!-- Post Content -->
     <article>
         <p>最近项目需要在Unity3D的新UI系统中实现圆形头像的功能，之前想通过Mask控件的方式来实现，但是一番努力后毫无头绪，只能祭上shader了。</p>
-<p>大体的思路就是在一个空的Object上面挂上RawImage。选取图片正中心(0.5, 0.5)为圆的中心点，绘制图片在圆内的像素点为图片的像素，然后图片在圆外的像素点设置为 alpha 为 0 的点，
+<p>大体的思路就是在一个空的Object上面挂上rawImage组件，组件的Material挂上本文中的shader。选取图片正中心(0.5, 0.5)为圆的中心点，绘制图片在圆内的像素点为图片的像素，然后图片在圆外的像素点设置为 alpha 为 0 的点，
 我选的是 <code>(0, 0, 0, 0)</code>。逻辑在fragment shader里面实现(shader代码中的<code>frag</code>)。</p>
 <p>下面直接方式shader:</p>
 <div class="highlight"><pre><span class="n">Shader</span> <span class="s">&quot;Sprites/Circle&quot;</span>
