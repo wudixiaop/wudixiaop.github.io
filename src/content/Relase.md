@@ -6,8 +6,8 @@ Tags: ShaderlabVS
 
 ##_Latest Version - V0.5_
 
-**[2014-10-28] V0.5 release note:** 
- 
+**[2014-10-28] V0.5 release note:**
+
 * Add braces matching
 * Add outlining
 
@@ -20,13 +20,13 @@ Tags: ShaderlabVS
 
 
 ###_Screenshot_  
-![Preview](https://github.com/wudixiaop/ShaderlabVS/raw/master/img/Highlighting.PNG)
+<img alt="preview" src="https://github.com/wudixiaop/ShaderlabVS/raw/master/img/Highlighting.PNG" width="100%"/>
 
 ------------------------------
 ##_History:_
 
-**[2014-10-19] V0.4 release note:** 
- 
+**[2014-10-19] V0.4 release note:**
+
 * Add support for .cginc and .glslinc file
 * Add more keywords support
 * Syntax highlighting is case insensitive now

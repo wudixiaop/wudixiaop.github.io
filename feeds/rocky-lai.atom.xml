@@ -1099,7 +1099,7 @@
 &lt;/ul&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;以后继续补充...&lt;/p&gt;</summary><category term="Unity3D"></category></entry><entry><title>ShaderlabVS Release Page</title><link href="http://wudixiaop.github.io/shaderlabvs-release-page.html" rel="alternate"></link><updated>2014-10-28T21:20:00+08:00</updated><author><name>Rocky Lai</name></author><id>tag:wudixiaop.github.io,2014-10-28:shaderlabvs-release-page.html</id><summary type="html">&lt;h2&gt;&lt;em&gt;Latest Version - V0.5&lt;/em&gt;&lt;/h2&gt;
-&lt;p&gt;&lt;strong&gt;[2014-10-28] V0.5 release note:&lt;/strong&gt; &lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;[2014-10-28] V0.5 release note:&lt;/strong&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Add braces matching&lt;/li&gt;
 &lt;li&gt;Add outlining&lt;/li&gt;
@@ -1113,10 +1113,10 @@
 &lt;/blockquote&gt;
 &lt;p&gt;&lt;strong&gt;A introduction of ShaderlabVS can be found at &lt;a href="https://github.com/wudixiaop/ShaderlabVS/blob/master/README.md"&gt;https://github.com/wudixiaop/ShaderlabVS/blob/master/README.md&lt;/a&gt;. If you have feedbacks or questions, send email to me. My email is rockylai@qq.com.&lt;/strong&gt;  &lt;/p&gt;
 &lt;h3&gt;&lt;em&gt;Screenshot&lt;/em&gt;&lt;/h3&gt;
-&lt;p&gt;&lt;img alt="Preview" src="https://github.com/wudixiaop/ShaderlabVS/raw/master/img/Highlighting.PNG" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="preview" src="https://github.com/wudixiaop/ShaderlabVS/raw/master/img/Highlighting.PNG" width="100%"/&gt;&lt;/p&gt;
 &lt;hr /&gt;
 &lt;h2&gt;&lt;em&gt;History:&lt;/em&gt;&lt;/h2&gt;
-&lt;p&gt;&lt;strong&gt;[2014-10-19] V0.4 release note:&lt;/strong&gt; &lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;[2014-10-19] V0.4 release note:&lt;/strong&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Add support for .cginc and .glslinc file&lt;/li&gt;
 &lt;li&gt;Add more keywords support&lt;/li&gt;
