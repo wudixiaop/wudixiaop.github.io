@@ -6,14 +6,21 @@ AUTHOR = u'Rocky Lai'
 ABOUT_PAGE_NAME = AUTHOR.replace(" ", "-").lower()
 SITENAME = u"Rocky Lai @ Github"
 
+#
+# 开启测试环境
+#
+
 # IN_TEST_Environment = True
 IN_TEST_Environment = False
 
-#通用
+#
+# 通用
+#
 DISQUS_SITENAME = "wudixiaopgithubio"
 SITEURL = 'http://wudixiaop.github.io'
 THEME = "Theme/CLEANBLOG"
 WEB_SITE_DOMAIN = "http://wudixiaop.github.io"
+DEFAULT_PAGINATION = 8
 
 if IN_TEST_Environment:
     SITEURL = "http://localhost:8000"
@@ -29,44 +36,24 @@ DATE_FORMATS = {
     'zhcn': '%Y-%m-%d %H:%M',
 }
 
-
-# Feed generation is usually not desired when developing
-FEED_ALL_ATOM = None
-CATEGORY_FEED_ATOM = None
-TRANSLATION_FEED_ATOM = None
-
-# Bootstrap3
-# Blogroll
-#LINKS = (
-#    ("Rocky's Github", "https://github.com/wudixiaop"),
-#    ("ShaderlabVS Downloads", "http://wudixiaop.github.io/shaderlabvs-release-page.html"),
-#    )
-
-# Social widget
-SOCIAL = ()
-
-DEFAULT_PAGINATION = 8
-
-# Uncomment following line if you want document-relative URLs when developing
-#RELATIVE_URLS = True
-
-# 自我介绍
+#
+# 个人信息等等
+#
 ABOUT_ME = """
 <p>I'm a coder in China.</p>
 <p>上面一句的翻译是：中国码农</p>
 <p> - - !</p>
 """
 
+COPYRIGHTMARK = "Rocky Lai @ 2014 - 2015"
+
 #
 # CLEAN-BLOG THEME SETTINGS
 #
-
 COLOR_SCHEME_CSS = "github.css"
 SITESUBTITLE = "心亡则忙，亡心则忘"
 GITHUB_URL = 'https://github.com/wudixiaop'
 DISPLAY_CATEGORIES_ON_MENU = True
-DISPLAY_PAGES_ON_MENU = False
 SUMMARY_MAX_LENGTH = 4
-COPYRIGHTMARK = "Rocky Lai @ 2014 - 2015"
 # FEED_DOMAIN = WEB_SITE_DOMAIN
 # FEED_RSS = "feed/rocky-lai.rss.xml"
