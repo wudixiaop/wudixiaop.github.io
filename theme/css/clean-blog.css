@@ -398,3 +398,9 @@ img::-moz-selection {
 body {
   webkit-tap-highlight-color: #0085a1;
 }
+
+iframe {
+  width: 100%;
+  min-height: 360px;
+  max-height: 600px;
+}

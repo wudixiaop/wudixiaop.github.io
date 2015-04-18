@@ -1,14 +1,15 @@
 {% if DEFAULT_PAGINATION %}
     <!-- Pager -->
     <ul class="pager">
-        <!-- Page {{ articles_page.number }} / {{ articles_paginator.num_pages }} -->
-        <li class="next">
-            {% if articles_page.has_previous() %}
-                <a href="{{ SITEURL }}/{{ articles_previous_page.url }}">Newest Posts &rarr;</a>
-            {% endif %}
-            {% if articles_page.has_next() %}
-                <a href="{{ SITEURL }}/{{ articles_next_page.url }}">Older Posts &rarr;</a>
-            {% endif %}
-        </li>
+      {% if articles_page.has_previous() %}
+          <li class="previous">
+              <a href="{{ SITEURL }}/{{ articles_previous_page.url }}">&larr; 之前的文章</a>
+          </li>
+      {% endif %}
+      {% if articles_page.has_next() %}
+          <li class="next">
+              <a href="{{ SITEURL }}/{{ articles_next_page.url }}">之后的文章 &rarr;</a>
+          </li>
+      {% endif %}
     </ul>
 {% endif %}

@@ -24,7 +24,7 @@ Tags: Visual Studio
 > * 调试时Step Over/In: **F10**/**F11**
 > * 跳转到定义: **F12**
 > * 搜索和替换窗口: **Ctrl + Shift + F** 或者 **Ctrl + Shift + H**
-> * 当然还有超级好用的自能感应: **Ctrl + .** (或者**Ctrl + Shift + F10**) 
+> * 当然还有超级好用的自能感应: **Ctrl + .** (或者**Ctrl + Shift + F10**)
 
 
 当然还有很多其他快捷，但是平时自己用的少，就不列举了。
@@ -33,7 +33,7 @@ Tags: Visual Studio
 ##偷懒技巧一：使用代码片段管理器(Code Snippets Manager)
 
 
-如果还不知道有这个东西的童鞋可以在Vistual Studio的工具菜单中找到。具体怎么用大家可以参照别的童鞋们的文章 
+如果还不知道有这个东西的童鞋可以在Vistual Studio的工具菜单中找到。具体怎么用大家可以参照别的童鞋们的文章
 
 
 * [Visual Studio 小技巧：自定义代码片断](http://www.cnblogs.com/cyq1162/archive/2013/06/14/3135373.html)
@@ -47,7 +47,7 @@ Tags: Visual Studio
 > * 循环: **for**, **foreach**
 > * 生成类: **class**
 > * 生成构造函数: **ctor**
-> * 生成属性: **prop**, **propfull**, **propdp**(Wpf系列中的依赖属性) 
+> * 生成属性: **prop**, **propfull**, **propdp**(Wpf系列中的依赖属性)
 
 
 ##偷懒技巧二: Toolbox
@@ -55,11 +55,9 @@ Tags: Visual Studio
 
 文字看多了，咱们来看视频吧
 
+<iframe src="//channel9.msdn.com/Series/vstips/lazycodesnippets/player?format=html5" allowFullScreen frameBorder="0"></iframe>
 
-<iframe src="//channel9.msdn.com/Series/vstips/lazycodesnippets/player?format=html5" width="960" height="540" allowFullScreen frameBorder="0"></iframe>
-
-
-视频源地址：<http://channel9.msdn.com/Series/vstips/lazycodesnippets> 
+视频源地址：<http://channel9.msdn.com/Series/vstips/lazycodesnippets>
 
 
 ##成为高手~~
@@ -71,14 +69,13 @@ Tags: Visual Studio
 首先，我们需要安装**VsVim**。童鞋们可以在VS工具菜单下的扩展及更新(Extension and Updates)里查找并安装。具体可以参照这篇文章: <http://www.tuicool.com/articles/YF7RNv>
 
 
-然后开始练技能打怪练级: 
+然后开始练技能打怪练级:
 
 
-* <http://coolshell.cn/articles/5426.html> 
+* <http://coolshell.cn/articles/5426.html>
 * <https://github.com/jaredpar/VsVim/wiki/faq>
 
 
 再然后会慢慢发现平时编码时摸鼠标的次数越来少。。。
 
 再然后。。。没有再然后了。。
-

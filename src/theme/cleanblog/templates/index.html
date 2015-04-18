@@ -33,17 +33,17 @@
             {% if article.summary %}
                 {{ article.summary }}
             {% endif %}
-            <p class="post-meta">Posted by
+            <p class="post-meta">
+                {{ article.locale_date }}
+                 by
                 {% for author in article.authors %}
                     <a href="{{ SITEURL }}/{{ author.url }}">{{ author }}</a>
                 {% endfor %}
-                 on {{ article.locale_date }}
             </p>
         </div>
         <hr>
     {% endfor %}
 
     {% include "pagination.html" %}
-    <hr>
-{% endblock content %}
 
+{% endblock content %}

@@ -6,6 +6,7 @@ AUTHOR = u'Rocky Lai'
 ABOUT_PAGE_NAME = AUTHOR.replace(" ", "-").lower()
 SITENAME = u"Rocky Lai @ Github"
 
+# IN_TEST_Environment = True
 IN_TEST_Environment = False
 
 #通用
@@ -65,3 +66,4 @@ GITHUB_URL = 'https://github.com/wudixiaop'
 DISPLAY_CATEGORIES_ON_MENU = True
 DISPLAY_PAGES_ON_MENU = False
 SUMMARY_MAX_LENGTH = 4
+COPYRIGHTMARK = "Rocky Lai @ 2014 - 2015"

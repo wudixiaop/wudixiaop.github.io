@@ -235,8 +235,8 @@ MonoBehavior提供的事件从编辑器到游戏结束都有涉及。下面列�
     </tbody>
 </table>
 
-###**用图来表示MonoBehavior事件执行顺序**   
-![MonoBehavior事件执行顺序](http://wudixiaop.github.io/images/monobehaviour_flowchart.svg)
+###**用图来表示MonoBehavior事件执行顺序**
+<img alt="monobehavior" src="images/monobehaviour_flowchart.svg" width="100%"/>
 
 ###**总结:**
 * 首次加载场景时执行**Awake()**
@@ -252,4 +252,3 @@ MonoBehavior提供的事件从编辑器到游戏结束都有涉及。下面列�
 * **OnEnable()**和**OnDisable()**  
     * **OnEnable()**只有在Object是Active的状态下才能用，一般是Object被初始化或者Object从disable到active过程中被调用
     * **OnDisable()**只有到Object从active到disable状态才被调用
-
