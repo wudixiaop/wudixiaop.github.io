@@ -32,11 +32,12 @@
                         {% if article.headline %}
                             <h3 class="subheading">{{ article.headline }}</h3>
                         {% endif %}
-                        <span class="meta">Posted by
+                        <span class="meta">
+                            {{ article.locale_date }}
+                             by
                             {% for author in article.authors %}
                                 <a href="{{ SITEURL }}/{{ author.url }}">{{ author }}</a>
                             {% endfor %}
-                             on {{ article.locale_date }}
                         </span>
                         {% import 'translations.html' as translations with context %}
                         {{ translations.translations_for(article) }}

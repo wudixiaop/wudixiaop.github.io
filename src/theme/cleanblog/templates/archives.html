@@ -22,17 +22,15 @@
 {% endblock header %}
 
 {% block content %}
-	<section id="content">
-        <div id="archives">
-			<ul>
+    <h1>Archives ({{ dates | length }})</h1>
+    <table class="table table-hover">
+        <tbody>
             {% for article in dates %}
-                <li>
-					<span class="categories-timestamp"><time datetime="{{ article.date.isoformat() }}">{{ article.locale_date }}</time></span>&nbsp;&nbsp;&nbsp;
-					
-                    <a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}{% if article.subtitle %} - {{ article.subtitle }}{% endif %}</a>
-                </li>
+                <tr>
+                <td><strong>{{ article.date.strftime("%Y-%m-%d") }}</strong></td>
+                <td><a href='{{ article.url }}'>{{ article.title }}</a></td>
+                </tr>
             {% endfor %}
-			</ul>
-        </div>
-    </section>
+        </tbody>
+    </table>
 {% endblock content %}

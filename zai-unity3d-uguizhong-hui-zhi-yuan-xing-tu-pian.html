@@ -43,17 +43,40 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="https://github.com/wudixiaop/">Rocky Lai @ Github</a>
+                <a class="navbar-brand" href="https://github.com/wudixiaop/"><span class="menutext">Rocky Lai @ Github</span></a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
-					<li><a href="http://wudixiaop.github.io">首页</a></li>
-                                <li><a href="http://wudixiaop.github.io/category/shaderlabvs.html">ShaderlabVS</a></li>
-                                <li><a href="http://wudixiaop.github.io/category/yi-dian-yi-di.html">一点一滴</a></li>
-					<li><a href="http://wudixiaop.github.io/author/rocky-lai.html">关于我</a></li>
-					<li><a href="http://wudixiaop.github.io/archives.html">归档</a></li>
+          					<li>
+                      <a href="http://wudixiaop.github.io">
+                         <span class="menutext">首页</span>
+                      </a>
+                    </li>
+
+
+                        <li>
+                          <a href="http://wudixiaop.github.io/category/shaderlabvs.html">
+                            <span class="menutext">ShaderlabVS</span>
+                          </a>
+                        </li>
+                        <li>
+                          <a href="http://wudixiaop.github.io/category/yi-dian-yi-di.html">
+                            <span class="menutext">一点一滴</span>
+                          </a>
+                        </li>
+
+          					<li>
+                      <a href="http://wudixiaop.github.io/author/rocky-lai.html">
+                        <span class="menutext">关于我</span>
+                      </a>
+                    </li>
+          					<li>
+                      <a href="http://wudixiaop.github.io/archives.html">
+                        <span class="menutext">归档</span>
+                      </a>
+                    </li>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
@@ -68,9 +91,10 @@
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                     <div class="post-heading">
                         <h1>在Unity3d uGUI中绘制圆形图片</h1>
-                        <span class="meta">Posted by
+                        <span class="meta">
+                            2015-04-15 23:30
+                             by
                                 <a href="http://wudixiaop.github.io/author/rocky-lai.html">Rocky Lai</a>
-                             on 2015-04-15 23:30
                         </span>
                         
                     </div>
@@ -85,10 +109,10 @@
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
     <!-- Post Content -->
     <article>
-        <p>最近项目需要在Unity3D的新UI系统中实现圆形头像的功能，之前想通过Mask控件的方式来实现，但是一番努力后毫无头绪，只能祭上shader了。</p>
-<p>大体的思路就是在一个空的Object上面挂上rawImage组件，组件的Material挂上本文中的shader。截取的逻辑是选取图片正中心(0.5, 0.5)为圆的中心点，绘制图片在圆内的像素点为图片的像素，然后图片在圆外的像素点设置为 alpha 为 0 的点，
-如 <code>(0, 0, 0, 0)</code>。逻辑是在fragment shader里面实现(shader代码中的<code>frag</code>)。</p>
-<p>下面直接放出shader:</p>
+        <p>最近项目需要在 Unity3D 的新 UI 系统中实现圆形头像的功能，之前想通过 Mask 控件的方式来实现，但是一番努力后毫无头绪，只能祭上shader了。</p>
+<p>大体的思路就是在一个空的 Object 上面挂上 RawImage 组件，组件的 Material 挂上本文中的 shader。截取的逻辑是选取图片正中心 (0.5, 0.5) 为圆的中心点，绘制图片在圆内的像素点为图片的像素，然后图片在圆外的像素点设置为 alpha 为 0 的点，
+如 <code>(0, 0, 0, 0)</code>。逻辑是在 fragment shader 里面实现(shader 代码中的<code>frag</code>)。</p>
+<p>下面直接放出 shader:</p>
 <div class="highlight"><pre><span class="n">Shader</span> <span class="s">&quot;Sprites/Circle&quot;</span>
 <span class="p">{</span>
   <span class="n">Properties</span>
