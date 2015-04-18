@@ -52,7 +52,9 @@ DEFAULT_PAGINATION = 8
 
 # 自我介绍
 ABOUT_ME = """
-I'm a coder in China.<br/>
+<p>I'm a coder in China.</p>
+<p>上面一句的翻译是：中国码农</p>
+<p> - - !</p>
 """
 
 #
