@@ -23,20 +23,30 @@
 
 {% block content %}
     <section id="tags">
-        <h1>Tags for {{ SITENAME }}</h1>
+        <h1>标签({{ tags | length }})</h1>
         <div class="panel-group" id="accordion">
             {%- for tag, articles in tags|sort %}
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h4 class="panel-title">
-                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse-{{tag.slug}}">{{ tag }} <span class="badge pull-right">{{ articles|count }}</span></a>
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse-{{tag.slug}}">
+                          {{ tag }} <span class="badge pull-right">{{ articles|count }}</span>
+                        </a>
                     </h4>
                 </div>
                 <div id="collapse-{{tag.slug}}" class="panel-collapse collapse">
                     <div class="panel-body">
-                        {% for article in articles %}
-                        <p><span class="categories-timestamp"><time datetime="{{ article.date.isoformat() }}">{{ article.locale_date }}</time></span> <a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}</a></p>
-                        {% endfor %}
+                        <p><strong>标签 - ({{ articles | length }})</strong></p>
+                        <table class="table table-hover table-condensed">
+                            <tbody>
+                                {% for article in articles %}
+                                    <tr>
+                                    <td width="120"><strong>{{ article.date.strftime("%Y-%m-%d") }}</strong></td>
+                                    <td><a href='{{ article.url }}'><span class="text-left">{{ article.title }}</span></a></td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
