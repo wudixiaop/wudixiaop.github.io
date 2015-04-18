@@ -22,15 +22,18 @@
 {% endblock header %}
 
 {% block content %}
-    <h1>Archives ({{ dates | length }})</h1>
-    <table class="table table-hover">
-        <tbody>
-            {% for article in dates %}
-                <tr>
-                <td><strong>{{ article.date.strftime("%Y-%m-%d") }}</strong></td>
-                <td><a href='{{ article.url }}'>{{ article.title }}</a></td>
-                </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+    {% for category, articles in categories %}
+      <h1><a href="{{ category.url }}">{{ category }} ({{ articles | length }})</a></h1>
+      <table class="table table-hover table-condensed">
+          <tbody>
+              {% for article in articles %}
+                  <tr>
+                  <td width="120"><strong>{{ article.date.strftime("%Y-%m-%d") }}</strong></td>
+                  <td><a href='{{ article.url }}'><span class="text-left">{{ article.title }}</span></a></td>
+                  </tr>
+              {% endfor %}
+          </tbody>
+      </table>
+      <hr>
+    {% endfor %}
 {% endblock content %}
