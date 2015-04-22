@@ -17,9 +17,9 @@ IN_TEST_Environment = False
 # 通用
 #
 DISQUS_SITENAME = "wudixiaopgithubio"
-SITEURL = 'http://wudixiaop.github.io'
+SITEURL = 'http://blog.shuiguzi.com'
 THEME = "Theme/CLEANBLOG"
-WEB_SITE_DOMAIN = "http://wudixiaop.github.io"
+WEB_SITE_DOMAIN = "http://blog.shuigui.com"
 DEFAULT_PAGINATION = 8
 
 if IN_TEST_Environment:

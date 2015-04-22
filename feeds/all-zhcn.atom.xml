@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Rocky Lai @ Github</title><link href="http://wudixiaop.github.io/" rel="alternate"></link><link href="http://wudixiaop.github.io/feeds%5Call-zhcn.atom.xml" rel="self"></link><id>http://wudixiaop.github.io/</id><updated>2015-04-15T23:30:00+08:00</updated><entry><title>在Unity3d uGUI中绘制圆形图片</title><link href="http://wudixiaop.github.io/zai-unity3d-uguizhong-hui-zhi-yuan-xing-tu-pian.html" rel="alternate"></link><updated>2015-04-15T23:30:00+08:00</updated><author><name>Rocky Lai</name></author><id>tag:wudixiaop.github.io,2015-04-15:zai-unity3d-uguizhong-hui-zhi-yuan-xing-tu-pian.html</id><summary type="html">&lt;p&gt;最近项目需要在 Unity3D 的新 UI 系统中实现圆形头像的功能，之前想通过 Mask 控件的方式来实现，但是一番努力后毫无头绪，只能祭上shader了。&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Rocky Lai @ Github</title><link href="http://blog.shuiguzi.com/" rel="alternate"></link><link href="http://blog.shuiguzi.com/feeds/all-zhcn.atom.xml" rel="self"></link><id>http://blog.shuiguzi.com/</id><updated>2015-04-15T23:30:00+08:00</updated><entry><title>在Unity3d uGUI中绘制圆形图片</title><link href="http://blog.shuiguzi.com/zai-unity3d-uguizhong-hui-zhi-yuan-xing-tu-pian.html" rel="alternate"></link><updated>2015-04-15T23:30:00+08:00</updated><author><name>Rocky Lai</name></author><id>tag:blog.shuiguzi.com,2015-04-15:zai-unity3d-uguizhong-hui-zhi-yuan-xing-tu-pian.html</id><summary type="html">&lt;p&gt;最近项目需要在 Unity3D 的新 UI 系统中实现圆形头像的功能，之前想通过 Mask 控件的方式来实现，但是一番努力后毫无头绪，只能祭上shader了。&lt;/p&gt;
 &lt;p&gt;大体的思路就是在一个空的 Object 上面挂上 RawImage 组件，组件的 Material 挂上本文中的 shader。截取的逻辑是选取图片正中心 (0.5, 0.5) 为圆的中心点，绘制图片在圆内的像素点为图片的像素，然后图片在圆外的像素点设置为 alpha 为 0 的点，
 如 &lt;code&gt;(0, 0, 0, 0)&lt;/code&gt;。逻辑是在 fragment shader 里面实现(shader 代码中的&lt;code&gt;frag&lt;/code&gt;)。&lt;/p&gt;
 &lt;p&gt;下面直接放出 shader:&lt;/p&gt;
@@ -103,7 +103,7 @@
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;Github 地址： &lt;a href="https://raw.githubusercontent.com/wudixiaop/Nana/master/Shader/Sprite-Circle.shader"&gt;https://raw.githubusercontent.com/wudixiaop/Nana/master/Shader/Sprite-Circle.shader&lt;/a&gt;&lt;/p&gt;</summary><category term="Unity3D"></category></entry><entry><title>一个例子学习Swift中的闭包用法</title><link href="http://wudixiaop.github.io/yi-ge-li-zi-xue-xi-swiftzhong-de-bi-bao-yong-fa.html" rel="alternate"></link><updated>2015-03-26T15:37:00+08:00</updated><author><name>Rocky Lai</name></author><id>tag:wudixiaop.github.io,2015-03-26:yi-ge-li-zi-xue-xi-swiftzhong-de-bi-bao-yong-fa.html</id><summary type="html">&lt;p&gt;初学习Swift, 觉得Swift中的闭包用法比较灵活, 所以在学习的时候编了个小例子来把用法罗列了出来, 分享出来给大家。&lt;/p&gt;
+&lt;p&gt;Github 地址： &lt;a href="https://raw.githubusercontent.com/wudixiaop/Nana/master/Shader/Sprite-Circle.shader"&gt;https://raw.githubusercontent.com/wudixiaop/Nana/master/Shader/Sprite-Circle.shader&lt;/a&gt;&lt;/p&gt;</summary><category term="Unity3D"></category></entry><entry><title>一个例子学习Swift中的闭包用法</title><link href="http://blog.shuiguzi.com/yi-ge-li-zi-xue-xi-swiftzhong-de-bi-bao-yong-fa.html" rel="alternate"></link><updated>2015-03-26T15:37:00+08:00</updated><author><name>Rocky Lai</name></author><id>tag:blog.shuiguzi.com,2015-03-26:yi-ge-li-zi-xue-xi-swiftzhong-de-bi-bao-yong-fa.html</id><summary type="html">&lt;p&gt;初学习Swift, 觉得Swift中的闭包用法比较灵活, 所以在学习的时候编了个小例子来把用法罗列了出来, 分享出来给大家。&lt;/p&gt;
 &lt;p&gt;在讲例子之前我们来看下什么是闭包(Closure).《The Swift Programming Language》是这样定义的:&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;Closures are self-contained blocks of functionality that can be passed around and used in your code&lt;/p&gt;
@@ -185,7 +185,7 @@
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;大概就这些。。。&lt;/p&gt;</summary><category term="Swift"></category></entry><entry><title>如何在Github for Mac/Windows上使用非Github的仓库</title><link href="http://wudixiaop.github.io/ru-he-zai-github-for-macwindowsshang-shi-yong-fei-githubde-cang-ku.html" rel="alternate"></link><updated>2015-01-28T16:54:00+08:00</updated><author><name>Rocky Lai</name></author><id>tag:wudixiaop.github.io,2015-01-28:ru-he-zai-github-for-macwindowsshang-shi-yong-fei-githubde-cang-ku.html</id><summary type="html">&lt;p&gt;你或许跟我一样，不想花太多时间去"精通"git的各种命令，想用简单明了的方法来玩git。而Github的客户端恰是这种良药。使用过的童鞋可能有过跟我一样困惑：Github客户端在界面上只能管理Github的代码仓库，怎么才能管理非Github的仓库呢？&lt;/p&gt;
+&lt;p&gt;大概就这些。。。&lt;/p&gt;</summary><category term="Swift"></category></entry><entry><title>如何在Github for Mac/Windows上使用非Github的仓库</title><link href="http://blog.shuiguzi.com/ru-he-zai-github-for-macwindowsshang-shi-yong-fei-githubde-cang-ku.html" rel="alternate"></link><updated>2015-01-28T16:54:00+08:00</updated><author><name>Rocky Lai</name></author><id>tag:blog.shuiguzi.com,2015-01-28:ru-he-zai-github-for-macwindowsshang-shi-yong-fei-githubde-cang-ku.html</id><summary type="html">&lt;p&gt;你或许跟我一样，不想花太多时间去"精通"git的各种命令，想用简单明了的方法来玩git。而Github的客户端恰是这种良药。使用过的童鞋可能有过跟我一样困惑：Github客户端在界面上只能管理Github的代码仓库，怎么才能管理非Github的仓库呢？&lt;/p&gt;
 &lt;p&gt;这个问题也就是本文要解决的内容。先讲Github for Mac, 然后是Github for Windows&lt;/p&gt;
 &lt;h3&gt;Github for Mac&lt;/h3&gt;
 &lt;p&gt;首先创建一个本地的仓库, 假设取名为&lt;strong&gt;Freekick&lt;/strong&gt;&lt;/p&gt;
@@ -207,7 +207,7 @@
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;Github for Windows:&lt;/strong&gt; &lt;a href="https://windows.github.com/"&gt;https://windows.github.com/&lt;/a&gt;  &lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;Github for Mac:&lt;/strong&gt; &lt;a href="https://mac.github.com/"&gt;https://mac.github.com/&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</summary><category term="Git"></category></entry><entry><title>从C#到Python</title><link href="http://wudixiaop.github.io/cong-cdao-python.html" rel="alternate"></link><updated>2015-01-07T20:13:00+08:00</updated><author><name>Rocky Lai</name></author><id>tag:wudixiaop.github.io,2015-01-07:cong-cdao-python.html</id><summary type="html">&lt;p&gt;项目组最近可能要用Python写一插件，虽然自己只是会用，但是还是被要求给大家做个简单的Python入门培训。只能冲个胖子，硬着头皮上了。
+&lt;/ul&gt;</summary><category term="Git"></category></entry><entry><title>从C#到Python</title><link href="http://blog.shuiguzi.com/cong-cdao-python.html" rel="alternate"></link><updated>2015-01-07T20:13:00+08:00</updated><author><name>Rocky Lai</name></author><id>tag:blog.shuiguzi.com,2015-01-07:cong-cdao-python.html</id><summary type="html">&lt;p&gt;项目组最近可能要用Python写一插件，虽然自己只是会用，但是还是被要求给大家做个简单的Python入门培训。只能冲个胖子，硬着头皮上了。
 由于项目组里大部分童鞋们都会C#，可能如果从C#做类比的角度来阐述Python语法会更好点，然后下面奇怪的Python教程出来了。大家可以在这里得到PPT和代码:  &lt;a href="https://github.com/wudixiaop/Nana/tree/master/Python/Tutorial/Python%20Quick%20Start"&gt;https://github.com/wudixiaop/Nana/tree/master/Python/Tutorial/Python%20Quick%20Start&lt;/a&gt;。&lt;/p&gt;
 &lt;p&gt;下面是讲语法的代码，语法部分在注释中有描述。&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# -*- encoding:utf-8 -*-&lt;/span&gt;
@@ -306,7 +306,7 @@
 &lt;span class="sd"&gt;    double var_float = 1.0; // 或者 float var_float = 1.0;&lt;/span&gt;
 &lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
 &lt;span class="n"&gt;var_int&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;
-&lt;span class="n"&gt;var_binary&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="n"&gt;b0010&lt;/span&gt; &lt;span class="c"&gt;# 变量值为2&lt;/span&gt;
+&lt;span class="n"&gt;var_binary&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mb"&gt;0b0010&lt;/span&gt; &lt;span class="c"&gt;# 变量值为2&lt;/span&gt;
 &lt;span class="n"&gt;var_octal&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="n"&gt;O0010&lt;/span&gt; &lt;span class="c"&gt;# 变量值为8, 0O第二个是字母O&lt;/span&gt;
 &lt;span class="n"&gt;var_hex&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mh"&gt;0x0010&lt;/span&gt; &lt;span class="c"&gt;# 变量值为16&lt;/span&gt;
 &lt;span class="n"&gt;var_float&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mf"&gt;1.0&lt;/span&gt;
@@ -773,7 +773,7 @@
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;上面代码地址: &lt;a href="https://github.com/wudixiaop/Nana/blob/master/Python/Tutorial/Python%20Quick%20Start/PythonQuickStart/Python_Introduction.py"&gt;Github&lt;/a&gt;&lt;/p&gt;</summary><category term="Python"></category></entry><entry><title>如何在Visual Studio中愉快的玩耍</title><link href="http://wudixiaop.github.io/ru-he-zai-visual-studiozhong-yu-kuai-de-wan-shua.html" rel="alternate"></link><updated>2014-12-24T14:50:00+08:00</updated><author><name>Rocky Lai</name></author><id>tag:wudixiaop.github.io,2014-12-24:ru-he-zai-visual-studiozhong-yu-kuai-de-wan-shua.html</id><summary type="html">&lt;p&gt;好吧，其实我想要说一些我觉得可以在Visual Studio中提高效率的经验。下面直接进入正题：&lt;/p&gt;
+&lt;p&gt;上面代码地址: &lt;a href="https://github.com/wudixiaop/Nana/blob/master/Python/Tutorial/Python%20Quick%20Start/PythonQuickStart/Python_Introduction.py"&gt;Github&lt;/a&gt;&lt;/p&gt;</summary><category term="Python"></category></entry><entry><title>如何在Visual Studio中愉快的玩耍</title><link href="http://blog.shuiguzi.com/ru-he-zai-visual-studiozhong-yu-kuai-de-wan-shua.html" rel="alternate"></link><updated>2014-12-24T14:50:00+08:00</updated><author><name>Rocky Lai</name></author><id>tag:blog.shuiguzi.com,2014-12-24:ru-he-zai-visual-studiozhong-yu-kuai-de-wan-shua.html</id><summary type="html">&lt;p&gt;好吧，其实我想要说一些我觉得可以在Visual Studio中提高效率的经验。下面直接进入正题：&lt;/p&gt;
 &lt;h2&gt;熟记并使用各种快捷键&lt;/h2&gt;
 &lt;p&gt;快捷键之所以叫快捷键就是因为它会让事情变得更快捷。好吧，其实我知道前面一句废话。下面就列举一些碰上常用的(基于Visual C# 2005快捷键映射)&lt;/p&gt;
 &lt;blockquote&gt;
@@ -826,7 +826,7 @@
 &lt;li&gt;&lt;a href="https://github.com/jaredpar/VsVim/wiki/faq"&gt;https://github.com/jaredpar/VsVim/wiki/faq&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;再然后会慢慢发现平时编码时摸鼠标的次数越来少。。。&lt;/p&gt;
-&lt;p&gt;再然后。。。没有再然后了。。&lt;/p&gt;</summary><category term="Visual Studio"></category></entry><entry><title>一起看看MonoBehavior内部事件执行顺序</title><link href="http://wudixiaop.github.io/yi-qi-kan-kan-monobehaviornei-bu-shi-jian-zhi-xing-shun-xu.html" rel="alternate"></link><updated>2014-12-23T18:20:00+08:00</updated><author><name>Rocky Lai</name></author><id>tag:wudixiaop.github.io,2014-11-10:yi-qi-kan-kan-monobehaviornei-bu-shi-jian-zhi-xing-shun-xu.html</id><summary type="html">&lt;h3&gt;&lt;strong&gt;写在最前面&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;再然后。。。没有再然后了。。&lt;/p&gt;</summary><category term="Visual Studio"></category></entry><entry><title>一起看看MonoBehavior内部事件执行顺序</title><link href="http://blog.shuiguzi.com/yi-qi-kan-kan-monobehaviornei-bu-shi-jian-zhi-xing-shun-xu.html" rel="alternate"></link><updated>2014-12-23T18:20:00+08:00</updated><author><name>Rocky Lai</name></author><id>tag:blog.shuiguzi.com,2014-11-10:yi-qi-kan-kan-monobehaviornei-bu-shi-jian-zhi-xing-shun-xu.html</id><summary type="html">&lt;h3&gt;&lt;strong&gt;写在最前面&lt;/strong&gt;&lt;/h3&gt;
 &lt;p&gt;或许对于大部分Unity3D程序员来说，第一次接触脚本编写的时候都是从MonoBehavior开始的。MonoBehavior是Uniy3d脚本编写核心的类之一， 它预先定义好了很多事件，并且这些事件按照预先定义好顺序执行。了解MonoBehavior提供的这些事件的执行顺序，是我们进一步提高脚步编程和了解Unity3D内部逻辑的必要一步。我们先从MonoBehavior提供的事件说起。&lt;/p&gt;
 &lt;h3&gt;&lt;strong&gt;MonoBehavior都提供了什么事件&lt;/strong&gt;&lt;/h3&gt;
 &lt;p&gt;MonoBehavior提供的事件从编辑器到游戏结束都有涉及。下面列举一些常用的，更详列表可以参照&lt;a href="http://docs.unity3d.com/ScriptReference/MonoBehaviour.html"&gt;这个页面&lt;/a&gt;。&lt;/p&gt;
@@ -1069,7 +1069,7 @@
 &lt;li&gt;&lt;strong&gt;OnDisable()&lt;/strong&gt;只有到Object从active到disable状态才被调用&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;/ul&gt;</summary><category term="Unity3D"></category></entry><entry><title>关于Unity3D编辑器一些事儿</title><link href="http://wudixiaop.github.io/guan-yu-unity3dbian-ji-qi-yi-xie-shi-er.html" rel="alternate"></link><updated>2014-11-05T22:30:00+08:00</updated><author><name>Rocky Lai</name></author><id>tag:wudixiaop.github.io,2014-11-05:guan-yu-unity3dbian-ji-qi-yi-xie-shi-er.html</id><summary type="html">&lt;p&gt;这里描述下Unity3D编辑器使用过程中遇到的坑及其解决方法&lt;/p&gt;
+&lt;/ul&gt;</summary><category term="Unity3D"></category></entry><entry><title>关于Unity3D编辑器一些事儿</title><link href="http://blog.shuiguzi.com/guan-yu-unity3dbian-ji-qi-yi-xie-shi-er.html" rel="alternate"></link><updated>2014-11-05T22:30:00+08:00</updated><author><name>Rocky Lai</name></author><id>tag:blog.shuiguzi.com,2014-11-05:guan-yu-unity3dbian-ji-qi-yi-xie-shi-er.html</id><summary type="html">&lt;p&gt;这里描述下Unity3D编辑器使用过程中遇到的坑及其解决方法&lt;/p&gt;
 &lt;h4&gt;&lt;strong&gt;事件一：Unity3d编辑器启动时默认打开最近一次打开的项目&lt;/strong&gt;&lt;/h4&gt;
 &lt;p&gt;默认设置中，Unity3D启动时会自动打开默认最近一次打开的项目。每当只想打开小项目，而偏偏上次打开过一个大项目时，这点让人很抓狂。&lt;br /&gt;
 &lt;strong&gt;解决方法:&lt;/strong&gt;  &lt;/p&gt;
@@ -1098,7 +1098,7 @@
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;以后继续补充...&lt;/p&gt;</summary><category term="Unity3D"></category></entry><entry><title>ShaderlabVS Release Page</title><link href="http://wudixiaop.github.io/shaderlabvs-release-page.html" rel="alternate"></link><updated>2014-10-28T21:20:00+08:00</updated><author><name>Rocky Lai</name></author><id>tag:wudixiaop.github.io,2014-10-28:shaderlabvs-release-page.html</id><summary type="html">&lt;h2&gt;&lt;em&gt;Latest Version - V0.5&lt;/em&gt;&lt;/h2&gt;
+&lt;p&gt;以后继续补充...&lt;/p&gt;</summary><category term="Unity3D"></category></entry><entry><title>ShaderlabVS Release Page</title><link href="http://blog.shuiguzi.com/shaderlabvs-release-page.html" rel="alternate"></link><updated>2014-10-28T21:20:00+08:00</updated><author><name>Rocky Lai</name></author><id>tag:blog.shuiguzi.com,2014-10-28:shaderlabvs-release-page.html</id><summary type="html">&lt;h2&gt;&lt;em&gt;Latest Version - V0.5&lt;/em&gt;&lt;/h2&gt;
 &lt;p&gt;&lt;strong&gt;[2014-10-28] V0.5 release note:&lt;/strong&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Add braces matching&lt;/li&gt;
@@ -1139,5 +1139,5 @@
 &lt;li&gt;&lt;a href="https://github.com/wudixiaop/ShaderlabVS/releases/download/0.3/ShaderlabVS-0.3.zip"&gt;Github Release page&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://pan.baidu.com/s/1eQEJQHO"&gt;BaiduPan&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;/blockquote&gt;</summary><category term="ShaderlabVS"></category></entry><entry><title>Why I start ShaderlabVS</title><link href="http://wudixiaop.github.io/why-i-start-shaderlabvs.html" rel="alternate"></link><updated>2010-10-19T18:09:00+08:00</updated><author><name>Rocky Lai</name></author><id>tag:wudixiaop.github.io,2014-08-31:why-i-start-shaderlabvs.html</id><summary type="html">&lt;p&gt;Last month, &lt;a href="http://unityvs.com/"&gt;SyntaxTree&lt;/a&gt;, the creator of UnityVS plugin for Visual Studio was acquired by Microsoft. Microsoft have published the UnityVS to Visual Studio users for free at the end of July.   &lt;/p&gt;
+&lt;/blockquote&gt;</summary><category term="ShaderlabVS"></category></entry><entry><title>Why I start ShaderlabVS</title><link href="http://blog.shuiguzi.com/why-i-start-shaderlabvs.html" rel="alternate"></link><updated>2010-10-19T18:09:00+08:00</updated><author><name>Rocky Lai</name></author><id>tag:blog.shuiguzi.com,2014-08-31:why-i-start-shaderlabvs.html</id><summary type="html">&lt;p&gt;Last month, &lt;a href="http://unityvs.com/"&gt;SyntaxTree&lt;/a&gt;, the creator of UnityVS plugin for Visual Studio was acquired by Microsoft. Microsoft have published the UnityVS to Visual Studio users for free at the end of July.   &lt;/p&gt;
 &lt;p&gt;UnityVS is cool tool that make it's possible to debug Unity3D scripts in VS. But the tool is not support the Unity3D shaderlab syntax. it's pain for me to to read/write shader in VS, So I created the ShaderlabVS to help myself and may would help someone who need it.&lt;/p&gt;</summary><category term="ShaderlabVS"></category></entry></feed>
