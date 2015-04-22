@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Rocky Lai @ Github</title><link href="http://wudixiaop.github.io/" rel="alternate"></link><link href="http://wudixiaop.github.io/feeds/rocky-lai.atom.xml" rel="self"></link><id>http://wudixiaop.github.io/</id><updated>2015-04-15T23:30:00+08:00</updated><entry><title>在Unity3d uGUI中绘制圆形图片</title><link href="http://wudixiaop.github.io/zai-unity3d-uguizhong-hui-zhi-yuan-xing-tu-pian.html" rel="alternate"></link><updated>2015-04-15T23:30:00+08:00</updated><author><name>Rocky Lai</name></author><id>tag:wudixiaop.github.io,2015-04-15:zai-unity3d-uguizhong-hui-zhi-yuan-xing-tu-pian.html</id><summary type="html">&lt;p&gt;最近项目需要在 Unity3D 的新 UI 系统中实现圆形头像的功能，之前想通过 Mask 控件的方式来实现，但是一番努力后毫无头绪，只能祭上shader了。&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Rocky Lai @ Github</title><link href="http://wudixiaop.github.io/" rel="alternate"></link><link href="http://wudixiaop.github.io/feeds%5Crocky-lai.atom.xml" rel="self"></link><id>http://wudixiaop.github.io/</id><updated>2015-04-15T23:30:00+08:00</updated><entry><title>在Unity3d uGUI中绘制圆形图片</title><link href="http://wudixiaop.github.io/zai-unity3d-uguizhong-hui-zhi-yuan-xing-tu-pian.html" rel="alternate"></link><updated>2015-04-15T23:30:00+08:00</updated><author><name>Rocky Lai</name></author><id>tag:wudixiaop.github.io,2015-04-15:zai-unity3d-uguizhong-hui-zhi-yuan-xing-tu-pian.html</id><summary type="html">&lt;p&gt;最近项目需要在 Unity3D 的新 UI 系统中实现圆形头像的功能，之前想通过 Mask 控件的方式来实现，但是一番努力后毫无头绪，只能祭上shader了。&lt;/p&gt;
 &lt;p&gt;大体的思路就是在一个空的 Object 上面挂上 RawImage 组件，组件的 Material 挂上本文中的 shader。截取的逻辑是选取图片正中心 (0.5, 0.5) 为圆的中心点，绘制图片在圆内的像素点为图片的像素，然后图片在圆外的像素点设置为 alpha 为 0 的点，
 如 &lt;code&gt;(0, 0, 0, 0)&lt;/code&gt;。逻辑是在 fragment shader 里面实现(shader 代码中的&lt;code&gt;frag&lt;/code&gt;)。&lt;/p&gt;
 &lt;p&gt;下面直接放出 shader:&lt;/p&gt;
@@ -306,7 +306,7 @@
 &lt;span class="sd"&gt;    double var_float = 1.0; // 或者 float var_float = 1.0;&lt;/span&gt;
 &lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
 &lt;span class="n"&gt;var_int&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;
-&lt;span class="n"&gt;var_binary&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mb"&gt;0b0010&lt;/span&gt; &lt;span class="c"&gt;# 变量值为2&lt;/span&gt;
+&lt;span class="n"&gt;var_binary&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="n"&gt;b0010&lt;/span&gt; &lt;span class="c"&gt;# 变量值为2&lt;/span&gt;
 &lt;span class="n"&gt;var_octal&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="n"&gt;O0010&lt;/span&gt; &lt;span class="c"&gt;# 变量值为8, 0O第二个是字母O&lt;/span&gt;
 &lt;span class="n"&gt;var_hex&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mh"&gt;0x0010&lt;/span&gt; &lt;span class="c"&gt;# 变量值为16&lt;/span&gt;
 &lt;span class="n"&gt;var_float&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mf"&gt;1.0&lt;/span&gt;
