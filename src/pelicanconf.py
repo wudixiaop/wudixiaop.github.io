@@ -1,10 +1,12 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*- #
 from __future__ import unicode_literals
+import os
+import markdown
 
 AUTHOR = u'Rocky Lai'
 ABOUT_PAGE_NAME = AUTHOR.replace(" ", "-").lower()
-SITENAME = u"Rocky Lai @ Github"
+SITENAME = u"心忘则忙，忘心则忘"
 
 #
 # 开启测试环境
@@ -39,11 +41,9 @@ DATE_FORMATS = {
 #
 # 个人信息等等
 #
-ABOUT_ME = """
-<p>I'm a coder in China.</p>
-<p>上面一句的翻译是：中国码农</p>
-<p> - - !</p>
-"""
+about_me_markdown = open('aboutme.md', 'r').read().decode('utf-8')
+
+ABOUT_ME = markdown.markdown(about_me_markdown)
 
 COPYRIGHTMARK = "Rocky Lai @ 2014 - 2015"
 
@@ -51,9 +51,10 @@ COPYRIGHTMARK = "Rocky Lai @ 2014 - 2015"
 # CLEAN-BLOG THEME SETTINGS
 #
 COLOR_SCHEME_CSS = "github.css"
-SITESUBTITLE = "心亡则忙，亡心则忘"
+GITHUB_LINK_DISPLAY_NAME = "Rocky Lai @ Github"
 GITHUB_URL = 'https://github.com/wudixiaop'
 DISPLAY_CATEGORIES_ON_MENU = True
 SUMMARY_MAX_LENGTH = 4
+
 # FEED_DOMAIN = WEB_SITE_DOMAIN
 # FEED_RSS = "feed/rocky-lai.rss.xml"
