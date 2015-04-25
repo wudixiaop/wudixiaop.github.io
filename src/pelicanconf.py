@@ -6,7 +6,7 @@ import markdown
 
 AUTHOR = u'Rocky Lai'
 ABOUT_PAGE_NAME = AUTHOR.replace(" ", "-").lower()
-SITENAME = u"心忘则忙，忘心则忘"
+SITENAME = u"心亡则忙，亡心则忘"
 
 #
 # 开启测试环境
