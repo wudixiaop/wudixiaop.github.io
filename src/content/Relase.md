@@ -1,7 +1,7 @@
 Title: ShaderlabVS Release Page
 Date: 2014-10-28 21:20
-Category: ShaderlabVS
-Tags: ShaderlabVS
+Category: Shader
+Tags: Shader
 
 
 ##_Latest Version - V0.5_

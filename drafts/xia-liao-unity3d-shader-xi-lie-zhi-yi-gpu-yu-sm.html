@@ -2,13 +2,13 @@
 <html lang="zhcn">
 
 <head>
-        <meta charset="utf-8">
+            <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>心亡则忙，亡心则忘 - Archives</title>
+        <title>心亡则忙，亡心则忘</title>
 
         <!-- Bootstrap Core CSS -->
         <link href="http://blog.shuiguzi.com/theme/css/bootstrap.min.css" rel="stylesheet">
@@ -18,6 +18,12 @@
 
         <!-- Code highlight color scheme -->
             <link href="http://blog.shuiguzi.com/theme/css/code_blocks/github.css" rel="stylesheet">
+
+
+
+
+
+        <meta name="tags" contents="Shader" />
 
         <meta name="author" content="Rocky Lai" />
 </head>
@@ -77,7 +83,13 @@
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                     <div class="post-heading">
-                        <h1>文章归档</h1>
+                        <h1>瞎聊 Unity3D Shader 系列之一：GPU 与 SM</h1>
+                        <span class="meta">
+                            2015-04-26 13:24
+                             by
+                                <a href="http://blog.shuiguzi.com/author/rocky-lai.html">Rocky Lai</a>
+                        </span>
+                        
                     </div>
                 </div>
             </div>
@@ -88,55 +100,48 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-      <h1><a href="category/shader.html">Shader (2)</a></h1>
-      <table class="table table-hover table-condensed">
-          <tbody>
-                  <tr>
-                  <td width="120"><strong>2014-10-28</strong></td>
-                  <td><a href='shaderlabvs-release-page.html'><span class="text-left">ShaderlabVS Release Page</span></a></td>
-                  </tr>
-                  <tr>
-                  <td width="120"><strong>2014-08-31</strong></td>
-                  <td><a href='why-i-start-shaderlabvs.html'><span class="text-left">Why I start ShaderlabVS</span></a></td>
-                  </tr>
-          </tbody>
-      </table>
-      <hr>
-      <h1><a href="category/yi-dian-yi-di.html">一点一滴 (7)</a></h1>
-      <table class="table table-hover table-condensed">
-          <tbody>
-                  <tr>
-                  <td width="120"><strong>2015-04-15</strong></td>
-                  <td><a href='zai-unity3d-uguizhong-hui-zhi-yuan-xing-tu-pian.html'><span class="text-left">在Unity3d uGUI中绘制圆形图片</span></a></td>
-                  </tr>
-                  <tr>
-                  <td width="120"><strong>2015-03-26</strong></td>
-                  <td><a href='yi-ge-li-zi-xue-xi-swiftzhong-de-bi-bao-yong-fa.html'><span class="text-left">一个例子学习Swift中的闭包用法</span></a></td>
-                  </tr>
-                  <tr>
-                  <td width="120"><strong>2015-01-28</strong></td>
-                  <td><a href='ru-he-zai-github-for-macwindowsshang-shi-yong-fei-githubde-cang-ku.html'><span class="text-left">如何在Github for Mac/Windows上使用非Github的仓库</span></a></td>
-                  </tr>
-                  <tr>
-                  <td width="120"><strong>2015-01-07</strong></td>
-                  <td><a href='cong-cdao-python.html'><span class="text-left">从C#到Python</span></a></td>
-                  </tr>
-                  <tr>
-                  <td width="120"><strong>2014-12-24</strong></td>
-                  <td><a href='ru-he-zai-visual-studiozhong-yu-kuai-de-wan-shua.html'><span class="text-left">如何在Visual Studio中愉快的玩耍</span></a></td>
-                  </tr>
-                  <tr>
-                  <td width="120"><strong>2014-11-10</strong></td>
-                  <td><a href='yi-qi-kan-kan-monobehaviornei-bu-shi-jian-zhi-xing-shun-xu.html'><span class="text-left">一起看看MonoBehavior内部事件执行顺序</span></a></td>
-                  </tr>
-                  <tr>
-                  <td width="120"><strong>2014-11-05</strong></td>
-                  <td><a href='guan-yu-unity3dbian-ji-qi-yi-xie-shi-er.html'><span class="text-left">关于Unity3D编辑器一些事儿</span></a></td>
-                  </tr>
-          </tbody>
-      </table>
-      <hr>
-            </div>
+    <!-- Post Content -->
+    <article>
+        <p>我想首先唠叨下我为什么打算写这一系列的文章及文章的定位。</p>
+<p>我写的动力主要来源于如下原因：</p>
+<ul>
+<li>对之前学习的一些总结复习和提炼</li>
+<li>网络上有不少关于 Unity3D shader 编程的各种的文章一上来就讲语法，讲各种光照模型等。文章是好文章，
+但是对于新手来说真是不太好理解，这一系列文章会以写一些周边的基础概念为主，对其作补充。</li>
+<li>之前信誓旦旦的跟朋友说以后学了shader会写点文章出来，算是允诺。。。</li>
+</ul>
+<p>文章定位：</p>
+<ul>
+<li>这是学习笔记，不是教程。如果内容会有出入，希望您能指正。</li>
+<li>主要基础概念为主，可能很零散。</li>
+</ul>
+<p>之前有前辈说过，学习一门知识前，了解其历史对入门很有好处。我比较赞同这个观点，所以开篇我们来说说历史。</p>
+<h3>CPU之外的另外一个PU - GPU</h3>
+<h3>GPU的渲染管线</h3>
+<h3>SM = Shader Model</h3>
+<h3>参考</h3>
+<h3>系列文章目录</h3>
+<ul>
+<li><a href="http://blog.shuiguzi.com/xia-liao-unity3d-shader-xi-lie-zhi-yi-gpu-yu-sm.html">瞎聊 Unity3D Shader 系列之一：GPU 与 SM</a></li>
+</ul>
+    </article>
+
+﻿<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="drafts/xia-liao-unity3d-shader-xi-lie-zhi-yi-gpu-yu-sm.html" data-title="瞎聊 Unity3D Shader 系列之一：GPU 与 SM" data-url="http://blog.shuiguzi.com/drafts/xia-liao-unity3d-shader-xi-lie-zhi-yi-gpu-yu-sm.html"></div>
+<!-- 多说评论框 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"rockylaigithubio"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+<!-- 多说公共JS代码 end -->            </div>
         </div>
     </div>
 
