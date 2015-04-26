@@ -1,5 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>心亡则忙，亡心则忘</title><link href="http://blog.shuiguzi.com/" rel="alternate"></link><link href="http://blog.shuiguzi.com/feeds/rocky-lai.atom.xml" rel="self"></link><id>http://blog.shuiguzi.com/</id><updated>2015-04-15T23:30:00+08:00</updated><entry><title>在Unity3d uGUI中绘制圆形图片</title><link href="http://blog.shuiguzi.com/zai-unity3d-uguizhong-hui-zhi-yuan-xing-tu-pian.html" rel="alternate"></link><updated>2015-04-15T23:30:00+08:00</updated><author><name>Rocky Lai</name></author><id>tag:blog.shuiguzi.com,2015-04-15:zai-unity3d-uguizhong-hui-zhi-yuan-xing-tu-pian.html</id><summary type="html">&lt;p&gt;最近项目需要在 Unity3D 的新 UI 系统中实现圆形头像的功能，之前想通过 Mask 控件的方式来实现，但是一番努力后毫无头绪，只能祭上shader了。&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>心亡则忙，亡心则忘</title><link href="http://blog.shuiguzi.com/" rel="alternate"></link><link href="http://blog.shuiguzi.com/feeds/rocky-lai.atom.xml" rel="self"></link><id>http://blog.shuiguzi.com/</id><updated>2015-04-26T16:50:00+08:00</updated><entry><title>瞎聊 Unity3D Shader 系列之一：GPU 与 Shader Model</title><link href="http://blog.shuiguzi.com/xia-liao-unity3d-shader-xi-lie-zhi-yi-gpu-yu-shader-model.html" rel="alternate"></link><updated>2015-04-26T16:50:00+08:00</updated><author><name>Rocky Lai</name></author><id>tag:blog.shuiguzi.com,2015-04-26:xia-liao-unity3d-shader-xi-lie-zhi-yi-gpu-yu-shader-model.html</id><summary type="html">&lt;p&gt;我想首先唠叨下我为什么打算写这一系列的文章及文章的定位。&lt;/p&gt;
+&lt;p&gt;我写的动力主要来源于如下原因：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;对之前学习的一些总结、复习和提炼&lt;/li&gt;
+&lt;li&gt;尽可能的填充一些概念上的空白。 有不少关于 Unity3D shader 的文章只讲 Shaderlab 语法，讲各种光照模型等, 这对于缺乏概念的新手来说是不太好理解的。&lt;/li&gt;
+&lt;li&gt;之前信誓旦旦的跟朋友说以后学了 shader 会写点文章出来，算是允诺。。。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;文章定位：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;这是学习笔记，不是教程。如果内容会有出入，非常感谢和希望您能指正。&lt;/li&gt;
+&lt;li&gt;主要基础概念为主，可能很零散。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;之前有前辈说过，学习一门知识前，了解其由来对入门很有好处。我比较赞同这个观点，所以开篇我们来说写历史。&lt;/p&gt;
+&lt;h3&gt;CPU 之外的另外一个 PU - GPU&lt;/h3&gt;
+&lt;p&gt;随着计算机处理图形的计算量越来越来大，CPU难以满足计算速度上的需求, 为了将图形的计算单独拿出来执行，上世纪70年代开始出现了为加速图形绘制的硬件。
+这些硬件跟大部分刚出来的新事物一样，功能有限，而且不太完善，当然那个时候也不叫 GPU。&lt;/p&gt;
+&lt;p&gt;1999 年，NVIDIA 公司发布了 GeForce256, 并且提出一个 Graphics Process Unit (GPU) 概念。很多文章都提到这款显卡有划时代的意义，因为它使第一款
+带有可编程顶点处理能力的显卡，这意味着显卡从&lt;strong&gt;之前的只可配置&lt;/strong&gt;上升到了&lt;strong&gt;可编程&lt;/strong&gt;的高度，开发者从此可以实现自己顶点处理算法。NVIDIA 也是提出 GPU 这个词
+来对 GeForece256 与之前显卡做区分。&lt;/p&gt;
+&lt;p&gt;2000 年以后， GPU 技术一直在不断的发展，处理和运算能力不断打变强变大。为了利用 GPU 强大的并行计算能力，出现了 CUDA 并行计算平台。当兴趣的同学关注
+&lt;a href="https://developer.nvidia.com/cuda-zone"&gt;CUDA官网&lt;/a&gt;.&lt;/p&gt;
+&lt;h3&gt;Shader Model&lt;/h3&gt;
+&lt;p&gt;首先我们要提下当今跟 GPU 打交道的两大图形API：&lt;a href="http://en.wikipedia.org/wiki/DirectX"&gt;Microsoft DirectX&lt;/a&gt; 和 &lt;a href="https://www.opengl.org"&gt;OPENGL&lt;/a&gt;。
+Directx 是微软提供的图形 API, OPENGL 现在是由 &lt;a href="http://baike.baidu.com/link?url=vW0PfmVKQC00WWRibyVSrnjRYVdVj1lk9HG6B4w9uc9lnlnWnYoDJd1puZu1CNf2_vacBBTFFbdMzZWCNkliSK"&gt;Khronos Group&lt;/a&gt; 团队维护开发的图形API。&lt;/p&gt;
+&lt;p&gt;DirectX 和 OPENGL 都提供对 GPU 编程的能力，这就是我们说的 Shader。图形 API 的更新会提供不同的 shader 的能力 (当然是越来越强大)。
+微软提出了一个词叫 Shader Model, 并用不同的版本号来区分 Shader 的能力。通常我们也会称 Shader Model 为 SM。&lt;/p&gt;
+&lt;p&gt;下面列出到现在为止 Shader Model 的各个版本与 DirectX 版本的对应关系：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Shader Model 1.0（DirectX8.0）&lt;/li&gt;
+&lt;li&gt;Shader Model 2.0（DirectX9.0b）&lt;/li&gt;
+&lt;li&gt;Shader Model 3.0（DirectX9.0c）&lt;/li&gt;
+&lt;li&gt;Shader Model 4.0（DirectX10）&lt;/li&gt;
+&lt;li&gt;Shader Model 4.1（DirectX10.1）&lt;/li&gt;
+&lt;li&gt;Shader Model 5.0（DirectX11）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;我们先不关注各个版本区别，只要知道版本号越高，提供的功能越来越强大。&lt;/p&gt;
+&lt;h3&gt;总结&lt;/h3&gt;
+&lt;p&gt;GPU 为大量图形计算而生，而 Shader 是对 GPU 编程的技术。微软用 Shader Model 的不同版本号来区分不同 Shader 的能力。&lt;/p&gt;
+&lt;h3&gt;参考&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://en.wikipedia.org/wiki/Graphics_processing_unit"&gt;Wikipidia: Graphics processing unit &lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://www.amazon.com/gp/product/1568814240?tag=realtimerenderin&amp;amp;pldnSite=1"&gt;&lt;em&gt;Real-Time Rendering, Third Edition&lt;/em&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://baike.baidu.com/link?url=DDy0sTi56RE9TiVdj5MOCqwmV7ATJEkBHQp7V8eRzA_lyq1HPOLgmBULeSo-Khw2-mb7Wst75LJF3_I3SjZAZa"&gt;Shader Model&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;系列文章目录&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://blog.shuiguzi.com/xia-liao-unity3d-shader-xi-lie-zhi-yi-gpu-yu-shader-model.html"&gt;瞎聊 Unity3D Shader 系列之一：GPU 与 Shader Model&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</summary><category term="Shader"></category></entry><entry><title>在Unity3d uGUI中绘制圆形图片</title><link href="http://blog.shuiguzi.com/zai-unity3d-uguizhong-hui-zhi-yuan-xing-tu-pian.html" rel="alternate"></link><updated>2015-04-15T23:30:00+08:00</updated><author><name>Rocky Lai</name></author><id>tag:blog.shuiguzi.com,2015-04-15:zai-unity3d-uguizhong-hui-zhi-yuan-xing-tu-pian.html</id><summary type="html">&lt;p&gt;最近项目需要在 Unity3D 的新 UI 系统中实现圆形头像的功能，之前想通过 Mask 控件的方式来实现，但是一番努力后毫无头绪，只能祭上shader了。&lt;/p&gt;
 &lt;p&gt;大体的思路就是在一个空的 Object 上面挂上 RawImage 组件，组件的 Material 挂上本文中的 shader。截取的逻辑是选取图片正中心 (0.5, 0.5) 为圆的中心点，绘制图片在圆内的像素点为图片的像素，然后图片在圆外的像素点设置为 alpha 为 0 的点，
 如 &lt;code&gt;(0, 0, 0, 0)&lt;/code&gt;。逻辑是在 fragment shader 里面实现(shader 代码中的&lt;code&gt;frag&lt;/code&gt;)。&lt;/p&gt;
 &lt;p&gt;下面直接放出 shader:&lt;/p&gt;
