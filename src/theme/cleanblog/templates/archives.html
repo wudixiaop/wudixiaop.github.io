@@ -23,13 +23,13 @@
 
 {% block content %}
     {% for category, articles in categories %}
-      <h1><a href="{{ category.url }}">{{ category }} ({{ articles | length }})</a></h1>
+      <h1><a class="linktext" href="{{ category.url }}">{{ category }} ({{ articles | length }})</a></h1>
       <table class="table table-hover table-condensed">
           <tbody>
               {% for article in articles %}
                   <tr>
                   <td width="120"><strong>{{ article.date.strftime("%Y-%m-%d") }}</strong></td>
-                  <td><a href='{{ article.url }}'><span class="text-left">{{ article.title }}</span></a></td>
+                  <td><a class="linktext" href='{{ article.url }}'><span class="text-left">{{ article.title }}</span></a></td>
                   </tr>
               {% endfor %}
           </tbody>

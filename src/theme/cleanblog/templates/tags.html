@@ -42,7 +42,7 @@
                                 {% for article in articles %}
                                     <tr>
                                     <td width="120"><strong>{{ article.date.strftime("%Y-%m-%d") }}</strong></td>
-                                    <td><a href='{{ article.url }}'><span class="text-left">{{ article.title }}</span></a></td>
+                                    <td><a class="linktext" href='{{ article.url }}'><span class="text-left">{{ article.title }}</span></a></td>
                                     </tr>
                                 {% endfor %}
                             </tbody>
