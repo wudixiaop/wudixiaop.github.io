@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>心亡则忙，亡心则忘</title><link>http://blog.shuiguzi.com/</link><description></description><atom:link href="http://blog.shuiguzi.com/feeds%5Crocky-lai.rss.xml" rel="self"></atom:link><lastBuildDate>Sun, 26 Apr 2015 16:50:00 +0800</lastBuildDate><item><title>瞎聊 Unity3D Shader 系列之一：GPU 与 Shader Model</title><link>http://blog.shuiguzi.com/xia-liao-unity3d-shader-xi-lie-zhi-yi-gpu-yu-shader-model.html</link><description>&lt;p&gt;我想首先唠叨下我为什么打算写这一系列的文章及文章的定位。&lt;/p&gt;
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>心亡则忙，亡心则忘</title><link>http://blog.shuiguzi.com/</link><description></description><atom:link href="http://blog.shuiguzi.com/feeds%5Crocky-lai.rss.xml" rel="self"></atom:link><lastBuildDate>Mon, 27 Apr 2015 15:54:00 +0800</lastBuildDate><item><title>瞎聊 Unity3D Shader 系列之一：GPU 与 Shader Model</title><link>http://blog.shuiguzi.com/xia-liao-unity3d-shader-xi-lie-zhi-yi-gpu-yu-shader-model.html</link><description>&lt;p&gt;我想首先唠叨下我为什么打算写这一系列的文章及文章的定位。&lt;/p&gt;
 &lt;p&gt;我写的动力主要来源于如下原因：&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;对之前学习的一些总结、复习和提炼&lt;/li&gt;
@@ -21,9 +21,9 @@
 &lt;p&gt;2000 年以后， GPU 技术一直在不断的发展，处理和运算能力不断打变强变大。为了利用 GPU 强大的并行计算能力，出现了 CUDA 并行计算平台。有兴趣的同学可以关注下
 &lt;a href="https://developer.nvidia.com/cuda-zone"&gt;CUDA官网&lt;/a&gt;.&lt;/p&gt;
 &lt;h3&gt;Shader Model&lt;/h3&gt;
-&lt;p&gt;首先我们要提下当今跟 GPU 打交道的两大图形API：&lt;a href="http://en.wikipedia.org/wiki/DirectX"&gt;Microsoft DirectX&lt;/a&gt; 和 &lt;a href="https://www.opengl.org"&gt;OPENGL&lt;/a&gt;。
-Directx 是微软提供的图形 API, OPENGL 现在是由 &lt;a href="http://baike.baidu.com/link?url=vW0PfmVKQC00WWRibyVSrnjRYVdVj1lk9HG6B4w9uc9lnlnWnYoDJd1puZu1CNf2_vacBBTFFbdMzZWCNkliSK"&gt;Khronos Group&lt;/a&gt; 团队维护开发的图形API。&lt;/p&gt;
-&lt;p&gt;DirectX 和 OPENGL 都提供对 GPU 编程的能力，这就是我们说的 Shader。图形 API 的更新会提供不同的 shader 的能力 (当然是越来越强大)。
+&lt;p&gt;首先我们要提下当今跟 GPU 打交道的形API：&lt;a href="http://en.wikipedia.org/wiki/DirectX"&gt;Microsoft DirectX&lt;/a&gt;、 &lt;a href="https://www.opengl.org"&gt;OPENGL&lt;/a&gt; 和
+ 转为嵌入式设备设计的&lt;a href="https://www.khronos.org/opengles/"&gt;OPENGL GS&lt;/a&gt;。Directx 是微软提供的图形 API, OPENGL 和 OPENGL ES 现在是由 &lt;a href="http://baike.baidu.com/link?url=vW0PfmVKQC00WWRibyVSrnjRYVdVj1lk9HG6B4w9uc9lnlnWnYoDJd1puZu1CNf2_vacBBTFFbdMzZWCNkliSK"&gt;Khronos Group&lt;/a&gt; 团队维护开发的图形API。&lt;/p&gt;
+&lt;p&gt;这些图形 API 都提供对 GPU 编程的能力，这能力就是我们说的 Shader。图形 API 的更新会提供不同的 shader 的能力 (当然是越来越强大)。
 微软提出了一个词叫 Shader Model, 并用不同的版本号来区分 Shader 的能力。通常我们也会称 Shader Model 为 SM。&lt;/p&gt;
 &lt;p&gt;下面列出到现在为止 Shader Model 的各个版本与 DirectX 版本的对应关系：&lt;/p&gt;
 &lt;ul&gt;
@@ -46,7 +46,7 @@ Directx 是微软提供的图形 API, OPENGL 现在是由 &lt;a href="http://bai
 &lt;h3&gt;系列文章目录&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="http://blog.shuiguzi.com/xia-liao-unity3d-shader-xi-lie-zhi-yi-gpu-yu-shader-model.html"&gt;瞎聊 Unity3D Shader 系列之一：GPU 与 Shader Model&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Rocky Lai</dc:creator><pubDate>Sun, 26 Apr 2015 16:50:00 +0800</pubDate><guid>tag:blog.shuiguzi.com,2015-04-26:xia-liao-unity3d-shader-xi-lie-zhi-yi-gpu-yu-shader-model.html</guid><category>Shader</category></item><item><title>在Unity3d uGUI中绘制圆形图片</title><link>http://blog.shuiguzi.com/zai-unity3d-uguizhong-hui-zhi-yuan-xing-tu-pian.html</link><description>&lt;p&gt;最近项目需要在 Unity3D 的新 UI 系统中实现圆形头像的功能，之前想通过 Mask 控件的方式来实现，但是一番努力后毫无头绪，只能祭上shader了。&lt;/p&gt;
+&lt;/ul&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Rocky Lai</dc:creator><pubDate>Mon, 27 Apr 2015 15:54:00 +0800</pubDate><guid>tag:blog.shuiguzi.com,2015-04-26:xia-liao-unity3d-shader-xi-lie-zhi-yi-gpu-yu-shader-model.html</guid><category>Shader</category></item><item><title>在Unity3d uGUI中绘制圆形图片</title><link>http://blog.shuiguzi.com/zai-unity3d-uguizhong-hui-zhi-yuan-xing-tu-pian.html</link><description>&lt;p&gt;最近项目需要在 Unity3D 的新 UI 系统中实现圆形头像的功能，之前想通过 Mask 控件的方式来实现，但是一番努力后毫无头绪，只能祭上shader了。&lt;/p&gt;
 &lt;p&gt;大体的思路就是在一个空的 Object 上面挂上 RawImage 组件，组件的 Material 挂上本文中的 shader。截取的逻辑是选取图片正中心 (0.5, 0.5) 为圆的中心点，绘制图片在圆内的像素点为图片的像素，然后图片在圆外的像素点设置为 alpha 为 0 的点，
 如 &lt;code&gt;(0, 0, 0, 0)&lt;/code&gt;。逻辑是在 fragment shader 里面实现(shader 代码中的&lt;code&gt;frag&lt;/code&gt;)。&lt;/p&gt;
 &lt;p&gt;下面直接放出 shader:&lt;/p&gt;

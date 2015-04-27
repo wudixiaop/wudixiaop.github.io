@@ -1,6 +1,6 @@
 ﻿Title: 瞎聊 Unity3D Shader 系列之一：GPU 与 Shader Model
 Date: 2015-04-26 16:50
-Modified: 2015-04-26 16:50
+Modified: 2015-04-27 15:54
 Category: Shader
 Tags: Shader
 Status: published
@@ -35,10 +35,10 @@ Status: published
 
 ###Shader Model
 
-首先我们要提下当今跟 GPU 打交道的两大图形API：[Microsoft DirectX](http://en.wikipedia.org/wiki/DirectX) 和 [OPENGL](https://www.opengl.org)。
-Directx 是微软提供的图形 API, OPENGL 现在是由 [Khronos Group](http://baike.baidu.com/link?url=vW0PfmVKQC00WWRibyVSrnjRYVdVj1lk9HG6B4w9uc9lnlnWnYoDJd1puZu1CNf2_vacBBTFFbdMzZWCNkliSK) 团队维护开发的图形API。
+首先我们要提下当今跟 GPU 打交道的形API：[Microsoft DirectX](http://en.wikipedia.org/wiki/DirectX)、 [OPENGL](https://www.opengl.org) 和
+ 转为嵌入式设备设计的[OPENGL GS](https://www.khronos.org/opengles/)。Directx 是微软提供的图形 API, OPENGL 和 OPENGL ES 现在是由 [Khronos Group](http://baike.baidu.com/link?url=vW0PfmVKQC00WWRibyVSrnjRYVdVj1lk9HG6B4w9uc9lnlnWnYoDJd1puZu1CNf2_vacBBTFFbdMzZWCNkliSK) 团队维护开发的图形API。
 
-DirectX 和 OPENGL 都提供对 GPU 编程的能力，这就是我们说的 Shader。图形 API 的更新会提供不同的 shader 的能力 (当然是越来越强大)。
+这些图形 API 都提供对 GPU 编程的能力，这能力就是我们说的 Shader。图形 API 的更新会提供不同的 shader 的能力 (当然是越来越强大)。
 微软提出了一个词叫 Shader Model, 并用不同的版本号来区分 Shader 的能力。通常我们也会称 Shader Model 为 SM。
 
 下面列出到现在为止 Shader Model 的各个版本与 DirectX 版本的对应关系：
