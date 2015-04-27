@@ -7,5 +7,6 @@ src/pelicanconf.pyc
 *.pyc
 *.pyc
 src/pelicanconf.pyc
+drafts/
 
 author/rocky-lai*.html
