@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>心亡则忙，亡心则忘</title><link href="http://blog.shuiguzi.com/" rel="alternate"></link><link href="http://blog.shuiguzi.com/feeds%5Call-zhcn.atom.xml" rel="self"></link><id>http://blog.shuiguzi.com/</id><updated>2015-04-28T11:07:00+08:00</updated><entry><title>瞎聊 Unity3D Shader 系列之二：渲染管线</title><link href="http://blog.shuiguzi.com/xia-liao-unity3d-shader-xi-lie-zhi-er-xuan-ran-guan-xian.html" rel="alternate"></link><updated>2015-04-28T11:07:00+08:00</updated><author><name>Rocky Lai</name></author><id>tag:blog.shuiguzi.com,2015-04-28:xia-liao-unity3d-shader-xi-lie-zhi-er-xuan-ran-guan-xian.html</id><summary type="html">&lt;p&gt;这节描述的是图形渲染的大致过程。&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>心亡则忙，亡心则忘</title><link href="http://blog.shuiguzi.com/" rel="alternate"></link><link href="http://blog.shuiguzi.com/feeds%5Call-zhcn.atom.xml" rel="self"></link><id>http://blog.shuiguzi.com/</id><updated>2015-04-28T14:07:00+08:00</updated><entry><title>瞎聊 Unity3D Shader 系列之二：渲染管线</title><link href="http://blog.shuiguzi.com/xia-liao-unity3d-shader-xi-lie-zhi-er-xuan-ran-guan-xian.html" rel="alternate"></link><updated>2015-04-28T14:07:00+08:00</updated><author><name>Rocky Lai</name></author><id>tag:blog.shuiguzi.com,2015-04-28:xia-liao-unity3d-shader-xi-lie-zhi-er-xuan-ran-guan-xian.html</id><summary type="html">&lt;p&gt;这节描述的是图形渲染的大致过程。&lt;/p&gt;
 &lt;p&gt;为了更好理解和记忆这节内容，先来学下面几个词。&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;渲染管线(Rendering Pipeline)：&lt;/strong&gt; 一提到管线，感觉很高大上的样子。说的俗一点就是可以理解为流水线。渲染管线我们可暂时理解为 &lt;strong&gt;从得到模型数据到绘制出图像&lt;/strong&gt; 这一过程的称呼。&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;Vertex Shader：&lt;/strong&gt; 对顶点数据编程的一段程序。 人类有懒惰的天性，习惯用简化的词汇来表达同一个东西。对 Vertex Shader 也不例外，一般称其为 VS ，但是在本系列文章中会保持全称。&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;Fragment Shader：&lt;/strong&gt; 对像素数据编程的一段程序。这里 fragment 可以理解为带有信息（颜色，坐标等）的像素 (Pixel), 一般也简称其为 FS 或者 PS 。 在本系列文章中会保持其全称。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;FrameBuffer：&lt;/strong&gt; 缓存帧数据的存储区，它一般包含的是要显示到显示设备上的位图数据（也就是图片数据）。&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;Fixed Function：&lt;/strong&gt; 由于一些硬件支持等历史原因，早期的图形 API  &lt;strong&gt;只支持对 GPU 做配置&lt;/strong&gt;，这部分只可配置的功能就是 fixed fucntion。
 这里注意下，fixed function 的功能只能配置，不像 Vertex Shader　和 fragment Shader 可以编程（写自己的算法）。&lt;/li&gt;
 &lt;/ul&gt;
