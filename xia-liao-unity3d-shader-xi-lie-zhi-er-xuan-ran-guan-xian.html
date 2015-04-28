@@ -83,9 +83,9 @@
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                     <div class="post-heading">
-                        <h1>瞎聊 Unity3D Shader 系列之一：GPU 与 Shader Model</h1>
+                        <h1>瞎聊 Unity3D Shader 系列之二：渲染管线</h1>
                         <span class="meta">
-                            2015-04-26 16:50
+                            2015-04-28 11:07
                              by
                                 <a href="http://blog.shuiguzi.com/author/rocky-lai.html">Rocky Lai</a>
                         </span>
@@ -102,49 +102,29 @@
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
     <!-- Post Content -->
     <article>
-        <p>我想首先唠叨下我为什么打算写这一系列的文章及文章的定位。</p>
-<p>我写的动力主要来源于如下原因：</p>
+        <p>为了更好理解和记忆这节内容，先来学下面几个词。</p>
 <ul>
-<li>对之前学习的一些总结、复习和提炼</li>
-<li>尽可能的填充一些概念上的空白。 有不少关于 Unity3D shader 的文章只讲 Shaderlab 语法，讲各种光照模型等, 这对于缺乏概念的新手来说是不太好理解的。</li>
-<li>之前信誓旦旦的跟朋友说以后学了 shader 会写点文章出来，算是允诺。。。</li>
+<li><strong>渲染管线(Rendering Pipeline)：</strong> 一提到管线，感觉很高大上的样子。说的俗一点就是可以理解为流水线。渲染管线我们可暂时理解为 <strong>从得到模型数据到绘制出图像</strong> 这一过程的称呼。</li>
+<li><strong>Vertex Shader：</strong> 对顶点数据编程的一段程序。 人类有懒惰的天性，习惯用简化的词汇来表达同一个东西。对 Vertex Shader 也不例外，一般称其为 VS ，但是在本系列文章中会保持全称。</li>
+<li><strong>Fragment Shader：</strong> 对像素数据编程的一段程序。这里 fragment 可以理解为带有信息（颜色，坐标等）的像素 (Pixel), 一般也简称其为 FS 或者 PS 。 在本系列文章中会保持其全称。</li>
+<li><strong>Fixed Function：</strong> 由于一些硬件支持等历史原因，早期的图形 API  <strong>只支持对 GPU 做配置</strong>，这部分只可配置的功能就是 fixed fucntion。
+这里注意下，fixed function 的功能只能配置，不像 Vertex Shader　和 fragment Shader 可以编程（写自己的算法）。</li>
 </ul>
-<p>文章定位：</p>
+<h3>渲染管线 (Rendering Pipeline)</h3>
+<p>看图说话</p>
+<p><img src="./images/shader/2/rendering-pipeline.jpg" alt="2.renderingpipeline.jpg" width="100%"/></p>
+<p>上面是可编程的渲染管线模型的示意。下面多说几点：</p>
 <ul>
-<li>这是学习笔记，不是教程。如果内容会有出入，非常感谢和希望您能指正。</li>
-<li>主要基础概念为主，可能很零散。</li>
+<li>输入阶段。Unity3D 使用 Mesh Renderer 等组件读取模型顶点数据，然后调用图形 API，将数据传递给 GPU。</li>
+<li>现实中同时会进行多条渲染管线，他们是<strong>并行的</strong>。 这点概念比较重要，以后还会提到它。我们记住 GPU 并行能力很强。</li>
+<li>最后输出的 FrameBuffer (可以理解为渲染出来的图片) 有几率被抛弃掉，也就是说不显示在显示设备上。这个以后单独说明原因。好比残酷的现实世界，努力了（整个渲染过程）也不一定会成功（被显示出来）。</li>
 </ul>
-<p>之前有前辈说过，学习一门知识前，了解其由来对入门很有好处。我比较赞同这个观点，所以开篇我们来说写历史。</p>
-<h3>CPU 之外的另外一个 PU - GPU</h3>
-<p>随着计算机处理图形的计算量越来越来大，CPU难以满足计算速度上的需求, 为了将图形的计算单独拿出来执行，上世纪70年代开始出现了为加速图形绘制的硬件。
-这些硬件跟大部分刚出来的新事物一样，功能有限，而且不太完善，当然那个时候也不叫 GPU。</p>
-<p>1999 年，NVIDIA 公司发布了 GeForce256, 并且提出一个 Graphics Process Unit (GPU) 概念。很多文章都提到这款显卡有划时代的意义，因为它使第一款
-带有可编程顶点处理能力的显卡，这意味着显卡从<strong>之前的只可配置</strong>上升到了<strong>可编程</strong>的高度，开发者从此可以实现自己顶点处理算法。NVIDIA 也是提出 GPU 这个词
-来对 GeForece256 与之前显卡做区分。</p>
-<p>2000 年以后， GPU 技术一直在不断的发展，处理和运算能力不断打变强变大。为了利用 GPU 强大的并行计算能力，出现了 CUDA 并行计算平台。有兴趣的同学可以关注下
-<a href="https://developer.nvidia.com/cuda-zone">CUDA官网</a>.</p>
-<h3>Shader Model</h3>
-<p>首先我们要提下当今跟 GPU 打交道的形API：<a href="http://en.wikipedia.org/wiki/DirectX">Microsoft DirectX</a>、 <a href="https://www.opengl.org">OPENGL</a> 和
- 转为嵌入式设备设计的<a href="https://www.khronos.org/opengles/">OPENGL GS</a>。Directx 是微软提供的图形 API, OPENGL 和 OPENGL ES 现在是由 <a href="http://baike.baidu.com/link?url=vW0PfmVKQC00WWRibyVSrnjRYVdVj1lk9HG6B4w9uc9lnlnWnYoDJd1puZu1CNf2_vacBBTFFbdMzZWCNkliSK">Khronos Group</a> 团队维护开发的图形API。</p>
-<p>这些图形 API 都提供对 GPU 编程的能力，这能力就是我们说的 Shader。图形 API 的更新会提供不同的 shader 的能力 (当然是越来越强大)。
-微软提出了一个词叫 Shader Model, 并用不同的版本号来区分 Shader 的能力。通常我们也会称 Shader Model 为 SM。</p>
-<p>下面列出到现在为止 Shader Model 的各个版本与 DirectX 版本的对应关系：</p>
-<ul>
-<li>Shader Model 1.0（DirectX8.0）</li>
-<li>Shader Model 2.0（DirectX9.0b）</li>
-<li>Shader Model 3.0（DirectX9.0c）</li>
-<li>Shader Model 4.0（DirectX10）</li>
-<li>Shader Model 4.1（DirectX10.1）</li>
-<li>Shader Model 5.0（DirectX11）</li>
-</ul>
-<p>我们先不关注各个版本区别，只要知道版本号越高，提供的功能越来越强大。</p>
 <h3>总结</h3>
-<p>GPU 为大量图形计算而生，而 Shader 是对 GPU 编程的技术。微软用 Shader Model 的不同版本号来区分不同 Shader 的能力。</p>
-<h3>参考</h3>
+<p>渲染管道是从得模型数据到图像生成过程的一种描述。Vertex Shader 能对顶点数据写处理算法，而 Fragment Shader 能对像素数据写处理算法。</p>
+<h3>参考：</h3>
 <ul>
-<li><a href="http://en.wikipedia.org/wiki/Graphics_processing_unit">Wikipidia: Graphics processing unit </a></li>
-<li><a href="http://www.amazon.com/gp/product/1568814240?tag=realtimerenderin&amp;pldnSite=1"><em>Real-Time Rendering, Third Edition</em></a></li>
-<li><a href="http://baike.baidu.com/link?url=DDy0sTi56RE9TiVdj5MOCqwmV7ATJEkBHQp7V8eRzA_lyq1HPOLgmBULeSo-Khw2-mb7Wst75LJF3_I3SjZAZa">Shader Model</a></li>
+<li><a href="http://en.wikibooks.org/wiki/Cg_Programming/Programmable_Graphics_Pipeline">Cg Programming in Unity</a></li>
+<li><a href="http://en.wikipedia.org/wiki/Fixed-function">Fixed-function</a></li>
 </ul>
 <h3>系列文章目录</h3>
 <ul>
@@ -154,7 +134,7 @@
     </article>
 
 ﻿<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="xia-liao-unity3d-shader-xi-lie-zhi-yi-gpu-yu-shader-model.html" data-title="瞎聊 Unity3D Shader 系列之一：GPU 与 Shader Model" data-url="http://blog.shuiguzi.com/xia-liao-unity3d-shader-xi-lie-zhi-yi-gpu-yu-shader-model.html"></div>
+	<div class="ds-thread" data-thread-key="xia-liao-unity3d-shader-xi-lie-zhi-er-xuan-ran-guan-xian.html" data-title="瞎聊 Unity3D Shader 系列之二：渲染管线" data-url="http://blog.shuiguzi.com/xia-liao-unity3d-shader-xi-lie-zhi-er-xuan-ran-guan-xian.html"></div>
 <!-- 多说评论框 end -->
 <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 <script type="text/javascript">
