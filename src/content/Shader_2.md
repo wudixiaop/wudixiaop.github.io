@@ -1,9 +1,9 @@
 Title: 瞎聊 Unity3D Shader 系列之二：渲染管线
-Date: 2015-04-27 16:50
-Modified: 2015-04-27 15:54
+Date: 2015-04-28 11:07
+Modified: 2015-04-28 11:07
 Category: Shader
 Tags: Shader
-Status: draft
+Status: published
 
 为了更好理解和记忆这节内容，先来学下面几个词。
 
@@ -16,20 +16,24 @@ Status: draft
 
 ###渲染管线 (Rendering Pipeline)
 
-这小节主要讲渲染管线的各个阶段。如下图，我事先抽象出来几个小框，不同的框代表不同的阶段。
+看图说话
 
-![]()
+<img src="./images/shader/2/rendering-pipeline.jpg" alt="2.renderingpipeline.jpg" width="100%"/>
 
+上面是可编程的渲染管线模型的示意。下面多说几点：
 
-
+ - 输入阶段。Unity3D 使用 Mesh Renderer 等组件读取模型顶点数据，然后调用图形 API，将数据传递给 GPU。
+ - 现实中同时会进行多条渲染管线，他们是**并行的**。 这点概念比较重要，以后还会提到它。我们记住 GPU 并行能力很强。
+ - 最后输出的 FrameBuffer (可以理解为渲染出来的图片) 有几率被抛弃掉，也就是说不显示在显示设备上。这个以后单独说明原因。好比残酷的现实世界，努力了（整个渲染过程）也不一定会成功（被显示出来）。
 
 
 ###总结
-渲染管道是从得模型数据到图像生成过程的一种描述x。Vertex Shader 能对顶点数据写处理算法，而 Fragment Shader 能对像素数据写处理算法。
+渲染管道是从得模型数据到图像生成过程的一种描述。Vertex Shader 能对顶点数据写处理算法，而 Fragment Shader 能对像素数据写处理算法。
 
 
 ###参考：
 - [Cg Programming in Unity](http://en.wikibooks.org/wiki/Cg_Programming/Programmable_Graphics_Pipeline)
+- [Fixed-function](http://en.wikipedia.org/wiki/Fixed-function)
 
 
 ###系列文章目录
