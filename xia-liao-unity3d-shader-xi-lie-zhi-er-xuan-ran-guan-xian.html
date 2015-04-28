@@ -102,7 +102,8 @@
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
     <!-- Post Content -->
     <article>
-        <p>为了更好理解和记忆这节内容，先来学下面几个词。</p>
+        <p>这节描述的是图形渲染的大致过程。</p>
+<p>为了更好理解和记忆这节内容，先来学下面几个词。</p>
 <ul>
 <li><strong>渲染管线(Rendering Pipeline)：</strong> 一提到管线，感觉很高大上的样子。说的俗一点就是可以理解为流水线。渲染管线我们可暂时理解为 <strong>从得到模型数据到绘制出图像</strong> 这一过程的称呼。</li>
 <li><strong>Vertex Shader：</strong> 对顶点数据编程的一段程序。 人类有懒惰的天性，习惯用简化的词汇来表达同一个东西。对 Vertex Shader 也不例外，一般称其为 VS ，但是在本系列文章中会保持全称。</li>
@@ -112,7 +113,7 @@
 </ul>
 <h3>渲染管线 (Rendering Pipeline)</h3>
 <p>看图说话</p>
-<p><img src="./images/shader/2/rendering-pipeline.jpg" alt="2.renderingpipeline.jpg" width="100%"/></p>
+<p><img src="images/shader/2/rendering-pipeline.jpg" alt="2.renderingpipeline.jpg" width="100%"/></p>
 <p>上面是可编程的渲染管线模型的示意。下面多说几点：</p>
 <ul>
 <li>输入阶段。Unity3D 使用 Mesh Renderer 等组件读取模型顶点数据，然后调用图形 API，将数据传递给 GPU。</li>

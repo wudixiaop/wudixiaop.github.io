@@ -5,6 +5,8 @@ Category: Shader
 Tags: Shader
 Status: published
 
+这节描述的是图形渲染的大致过程。
+
 为了更好理解和记忆这节内容，先来学下面几个词。
 
 - **渲染管线(Rendering Pipeline)：** 一提到管线，感觉很高大上的样子。说的俗一点就是可以理解为流水线。渲染管线我们可暂时理解为 **从得到模型数据到绘制出图像** 这一过程的称呼。
@@ -18,7 +20,7 @@ Status: published
 
 看图说话
 
-<img src="./images/shader/2/rendering-pipeline.jpg" alt="2.renderingpipeline.jpg" width="100%"/>
+<img src="images/shader/2/rendering-pipeline.jpg" alt="2.renderingpipeline.jpg" width="100%"/>
 
 上面是可编程的渲染管线模型的示意。下面多说几点：
 

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>心亡则忙，亡心则忘</title><link href="http://blog.shuiguzi.com/" rel="alternate"></link><link href="http://blog.shuiguzi.com/feeds%5Call.atom.xml" rel="self"></link><id>http://blog.shuiguzi.com/</id><updated>2015-04-28T11:07:00+08:00</updated><entry><title>瞎聊 Unity3D Shader 系列之二：渲染管线</title><link href="http://blog.shuiguzi.com/xia-liao-unity3d-shader-xi-lie-zhi-er-xuan-ran-guan-xian.html" rel="alternate"></link><updated>2015-04-28T11:07:00+08:00</updated><author><name>Rocky Lai</name></author><id>tag:blog.shuiguzi.com,2015-04-28:xia-liao-unity3d-shader-xi-lie-zhi-er-xuan-ran-guan-xian.html</id><summary type="html">&lt;p&gt;为了更好理解和记忆这节内容，先来学下面几个词。&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>心亡则忙，亡心则忘</title><link href="http://blog.shuiguzi.com/" rel="alternate"></link><link href="http://blog.shuiguzi.com/feeds%5Call.atom.xml" rel="self"></link><id>http://blog.shuiguzi.com/</id><updated>2015-04-28T11:07:00+08:00</updated><entry><title>瞎聊 Unity3D Shader 系列之二：渲染管线</title><link href="http://blog.shuiguzi.com/xia-liao-unity3d-shader-xi-lie-zhi-er-xuan-ran-guan-xian.html" rel="alternate"></link><updated>2015-04-28T11:07:00+08:00</updated><author><name>Rocky Lai</name></author><id>tag:blog.shuiguzi.com,2015-04-28:xia-liao-unity3d-shader-xi-lie-zhi-er-xuan-ran-guan-xian.html</id><summary type="html">&lt;p&gt;这节描述的是图形渲染的大致过程。&lt;/p&gt;
+&lt;p&gt;为了更好理解和记忆这节内容，先来学下面几个词。&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;渲染管线(Rendering Pipeline)：&lt;/strong&gt; 一提到管线，感觉很高大上的样子。说的俗一点就是可以理解为流水线。渲染管线我们可暂时理解为 &lt;strong&gt;从得到模型数据到绘制出图像&lt;/strong&gt; 这一过程的称呼。&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;Vertex Shader：&lt;/strong&gt; 对顶点数据编程的一段程序。 人类有懒惰的天性，习惯用简化的词汇来表达同一个东西。对 Vertex Shader 也不例外，一般称其为 VS ，但是在本系列文章中会保持全称。&lt;/li&gt;
@@ -9,7 +10,7 @@
 &lt;/ul&gt;
 &lt;h3&gt;渲染管线 (Rendering Pipeline)&lt;/h3&gt;
 &lt;p&gt;看图说话&lt;/p&gt;
-&lt;p&gt;&lt;img src="./images/shader/2/rendering-pipeline.jpg" alt="2.renderingpipeline.jpg" width="100%"/&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="images/shader/2/rendering-pipeline.jpg" alt="2.renderingpipeline.jpg" width="100%"/&gt;&lt;/p&gt;
 &lt;p&gt;上面是可编程的渲染管线模型的示意。下面多说几点：&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;输入阶段。Unity3D 使用 Mesh Renderer 等组件读取模型顶点数据，然后调用图形 API，将数据传递给 GPU。&lt;/li&gt;
