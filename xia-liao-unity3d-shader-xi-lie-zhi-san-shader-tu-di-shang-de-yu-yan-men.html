@@ -83,9 +83,9 @@
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                     <div class="post-heading">
-                        <h1>瞎聊 Unity3D Shader 系列之二：渲染管线</h1>
+                        <h1>瞎聊 Unity3D Shader 系列之三：Shader 土地上的语言们</h1>
                         <span class="meta">
-                            2015-04-28 11:07
+                            2015-04-29 14:33
                              by
                                 <a href="http://blog.shuiguzi.com/author/rocky-lai.html">Rocky Lai</a>
                         </span>
@@ -102,31 +102,35 @@
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
     <!-- Post Content -->
     <article>
-        <p>这节描述的是图形渲染的大致过程。</p>
-<p>为了更好理解和记忆这节内容，先来学下面几个词。</p>
+        <p>这节是关于 Unity3D 平台上 shader 语言的选择。</p>
+<p>计算机行业的各公司（或者组织）似乎都遵循着某种规则。当他们在某个领域划出了一亩三分地，当上了地主后, 就要用方法圈住干活的农民。让他们觉得在我这里不会饿死，有饭吃，你要到别家
+干活的话，需要重头再来，这是一个很亏本的买卖。这个方法就是制定自己体系（软硬件中的各种协议，接口，语言，框架），脱离这套体系，在别的地方玩不起来。开个玩笑来取名这个规矩叫做<strong>圈地规则</strong>吧。</p>
+<h3>Shader 语言们</h3>
+<p>根据上面提到的圈地规则，下面来隆重的介绍下 shader 这块地上地主们建立起来的体系：CG, HLSL 和 GLSL 语言</p>
 <ul>
-<li><strong>渲染管线(Rendering Pipeline)：</strong> 一提到管线，感觉很高大上的样子。说的俗一点就是可以理解为流水线。渲染管线我们可暂时理解为 <strong>从得到模型数据到绘制出图像</strong> 这一过程的称呼。</li>
-<li><strong>Vertex Shader：</strong> 对顶点数据编程的一段程序。 人类有懒惰的天性，习惯用简化的词汇来表达同一个东西。对 Vertex Shader 也不例外，一般称其为 VS ，但是在本系列文章中会保持全称。</li>
-<li><strong>Fragment Shader：</strong> 对像素数据编程的一段程序。这里 fragment 可以理解为带有信息（颜色，坐标等）的像素 (Pixel), 一般也简称其为 FS 或者 PS 。 在本系列文章中会保持其全称。</li>
-<li><strong>FrameBuffer：</strong> 缓存帧数据的存储区，它一般包含的是要显示到显示设备上的位图数据（也就是图片数据）。</li>
-<li><strong>Fixed Function：</strong> 由于一些硬件支持等历史原因，早期的图形 API  <strong>只支持对 GPU 做配置</strong>，这部分只可配置的功能就是 fixed fucntion。
-这里注意下，fixed function 的功能只能配置，不像 Vertex Shader　和 fragment Shader 可以编程（写自己的算法）。</li>
+<li><strong>CG：</strong> C for Graphics 的简称，是 NVIDIA 公司开发的语言。从名字上来看的出它是 C 语言的亲戚，现实是它保留了 C 语言的大部分语义。</li>
+<li><strong>HLSL：</strong> High Level Shader Language 的简称，由微软开发的语言。语法跟 CG 非常的相似。</li>
+<li><strong>GLSL：</strong> OpenGL Shading Language 的简称，OPENGL 组件开发的，语法也是基于 C 语言的。</li>
 </ul>
-<h3>渲染管线 (Rendering Pipeline)</h3>
-<p>看图说话</p>
-<p><img src="images/Shader/2/rendering-pipeline.jpg" alt="2.renderingpipeline.jpg" width="100%"/></p>
-<p>上面是可编程的渲染管线模型的示意。下面多说几点：</p>
+<p>那么问题来了，Shader 语言到底哪家强？这个也发生过强烈的讨论。</p>
+<p>其实这个问题好回答，既然跟着 Unity3D 地主干，听 Unity3D 地主的话就好了。那么另外一个问题又来了，Unity3D 地主的观点又是什么？</p>
+<h3>Unity3D 体系规则 Shaderlab</h3>
+<p>根据圈地规则，Unity3D 地主也有自己的体系，那就是 Shaderlab。那 shaderlab 又是什么呢？ 这是一个能包容 CG, HLSL 和 GLSL，并且有自己语法体系的东西。</p>
 <ul>
-<li>输入阶段。Unity3D 使用 Mesh Renderer 等组件读取模型顶点数据，然后调用图形 API，将数据传递给 GPU。</li>
-<li>现实中同时会进行多条渲染管线，他们是<strong>并行的</strong>。 这点概念比较重要，以后还会提到它。我们记住 GPU 并行能力很强。</li>
-<li>最后输出的 FrameBuffer (可以理解为渲染出来的图片) 有几率被抛弃掉，也就是说不显示在显示设备上。这个以后单独说明原因。好比残酷的现实世界，努力了（整个渲染过程）也不一定会成功（被显示出来）。</li>
+<li>能包容 CG, HLSL, 和 GLSL 意思是说在它里面能使用这三种语言。Shaderlab 中用特定的语法块来指定他们：<ul>
+<li>GG 和 HLSL 包括在 <code>CGPROGRAM ... ENDCG</code> 语法块内</li>
+<li>GLSL 包括在 <code>GLSLPROGRAM ... ENDGLSL</code> 语法块内</li>
 </ul>
+</li>
+<li>有自己的语法系统是指它有自己独特的语法，并且独立于上面三种语言（这句似乎是废话。。。）</li>
+</ul>
+<p>Unity3D 官方比较提倡 CG 或 HLSL 语言。所以我们首选这两个中的其中一个了。之前提到，其实这两语法非常相似，所以其实学好了其中一门就差不多等于学了两门语言。（好像很划算的样子！）</p>
 <h3>总结</h3>
-<p>渲染管道是从得模型数据到图像生成过程的一种描述。Vertex Shader 能对顶点数据写处理算法，而 Fragment Shader 能对像素数据写处理算法。</p>
-<h3>参考：</h3>
+<p>Unity3D Shaderlab 是基于shader语言上建立了自己的一套语法规则，我们不仅要学习 shaderlab 语法，也要学习 shader 语言。Unity3D 官方提倡使用 CG 或 HLSL 语言。</p>
+<h3>参考</h3>
 <ul>
-<li><a href="http://en.wikibooks.org/wiki/Cg_Programming/Programmable_Graphics_Pipeline">Cg Programming in Unity</a></li>
-<li><a href="http://en.wikipedia.org/wiki/Fixed-function">Fixed-function</a></li>
+<li><a href="http://docs.unity3d.com/Manual/ShadersOverview.html">Unity3d Manual</a></li>
+<li><a href="http://pan.baidu.com/s/1rsaho">GPU 编程与CG 语言之阳春白雪下里巴人</a>（点击链接即可下载），推荐此书。</li>
 </ul>
 <h3>系列文章目录</h3>
 <ul>
@@ -137,7 +141,7 @@
     </article>
 
 ﻿<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="xia-liao-unity3d-shader-xi-lie-zhi-er-xuan-ran-guan-xian.html" data-title="瞎聊 Unity3D Shader 系列之二：渲染管线" data-url="http://blog.shuiguzi.com/xia-liao-unity3d-shader-xi-lie-zhi-er-xuan-ran-guan-xian.html"></div>
+	<div class="ds-thread" data-thread-key="xia-liao-unity3d-shader-xi-lie-zhi-san-shader-tu-di-shang-de-yu-yan-men.html" data-title="瞎聊 Unity3D Shader 系列之三：Shader 土地上的语言们" data-url="http://blog.shuiguzi.com/xia-liao-unity3d-shader-xi-lie-zhi-san-shader-tu-di-shang-de-yu-yan-men.html"></div>
 <!-- 多说评论框 end -->
 <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 <script type="text/javascript">
