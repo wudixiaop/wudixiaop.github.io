@@ -1,5 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>心亡则忙，亡心则忘</title><link href="http://blog.shuiguzi.com/" rel="alternate"></link><link href="http://blog.shuiguzi.com/feeds%5Crocky-lai.atom.xml" rel="self"></link><id>http://blog.shuiguzi.com/</id><updated>2015-04-29T14:33:00+08:00</updated><entry><title>瞎聊 Unity3D Shader 系列之三：Shader 土地上的语言们</title><link href="http://blog.shuiguzi.com/xia-liao-unity3d-shader-xi-lie-zhi-san-shader-tu-di-shang-de-yu-yan-men.html" rel="alternate"></link><updated>2015-04-29T14:33:00+08:00</updated><author><name>Rocky Lai</name></author><id>tag:blog.shuiguzi.com,2015-04-29:xia-liao-unity3d-shader-xi-lie-zhi-san-shader-tu-di-shang-de-yu-yan-men.html</id><summary type="html">&lt;p&gt;这节是关于 Unity3D 平台上 shader 语言的选择。&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>心亡则忙，亡心则忘</title><link href="http://blog.shuiguzi.com/" rel="alternate"></link><link href="http://blog.shuiguzi.com/feeds%5Crocky-lai.atom.xml" rel="self"></link><id>http://blog.shuiguzi.com/</id><updated>2015-04-30T13:55:00+08:00</updated><entry><title>瞎聊 Unity3D Shader 系列之四：坐标系</title><link href="http://blog.shuiguzi.com/xia-liao-unity3d-shader-xi-lie-zhi-si-zuo-biao-xi.html" rel="alternate"></link><updated>2015-04-30T13:55:00+08:00</updated><author><name>Rocky Lai</name></author><id>tag:blog.shuiguzi.com,2015-04-30:xia-liao-unity3d-shader-xi-lie-zhi-si-zuo-biao-xi.html</id><summary type="html">&lt;p&gt;这节从很平常一段对话开始：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;甲跟乙说：&lt;/strong&gt; 喂，你看到那个人没有？&lt;br /&gt;
+&lt;strong&gt;乙：&lt;/strong&gt; 你说的是哪个？&lt;br /&gt;
+&lt;strong&gt;甲：&lt;/strong&gt; 就是那棵树旁边那个。  &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;从对话里面我们知道：&lt;strong&gt;要描述一个物体的位置，我们需要借助参照物。&lt;/strong&gt; 其实甲也可以这么说：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;甲：&lt;/strong&gt; 在那个个子很高的人左手边那位。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;所以说 &lt;strong&gt;参照物是可以选择的，可变的&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;我们把上面对话推广到坐标系上，来给坐标系下个山寨的定义：&lt;strong&gt;坐标系是为了描述物体位置而存在，我们借助的参照物是它的原点
+。由于可以选择不同的参照物，所以我们可以选择不同的原点。&lt;/strong&gt; 原点很重要，我们利用坐标系的时候首先要知道原点在哪里。&lt;/p&gt;
+&lt;p&gt;既然原点可以任意选，那不是说会出现很多坐标系？ 是的，但是我们使用几种约定的坐标系就好了。&lt;/p&gt;
+&lt;h3&gt;那些坐标系们&lt;/h3&gt;
+&lt;p&gt;下面是我们平时会碰到的一些坐标系。按规定，原点的各个轴是数值都是 0 来表示。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;物体坐标系 (Object Space)：&lt;/strong&gt; 有时也叫做 Local Space。是 3D 模型内部的坐标系，原点 &lt;code&gt;(0, 0, 0)&lt;/code&gt; 一般是模型中心。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;世界坐标系 (World Space)：&lt;/strong&gt; Unity3D 系统中的绝对坐标系，原点是在场景的 &lt;code&gt;(0，0，0)&lt;/code&gt; 位置处。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;视口坐标系 (Viewport Space)：&lt;/strong&gt; 以摄像机为原点，朝向为 Z 轴的坐标系。原点 &lt;code&gt;(0, 0, 0)&lt;/code&gt; 是摄像机的位置。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;屏幕坐标系 (Screen Space)：&lt;/strong&gt; 原点 &lt;code&gt;(0, 0)&lt;/code&gt; 在屏幕的左下角，右上角为 &lt;code&gt;(Screen.width，Screen.height)&lt;/code&gt;。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;那问题来了。这些坐标系们有什么关系？&lt;/p&gt;
+&lt;p&gt;我们以立方体为例。我们从&lt;a href="http://blog.shuiguzi.com/xia-liao-unity3d-shader-xi-lie-zhi-er-xuan-ran-guan-xian.html"&gt;渲染管线&lt;/a&gt;小节中知道，Mesh Renderer 组件得到模型数据之后它会执行 vertex shader（Unity3d 默认的 Shader 给我提供了）。
+vertex shader 里面做了下面这些事：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;先把立方体从模型的物体坐标系转换成世界坐标系，&lt;strong&gt;从 物体 到 世界&lt;/strong&gt;。这样子，它和摄像机（世界坐标）的位置就用同一个坐标系描述了。&lt;/li&gt;
+&lt;li&gt;再把立方体从世界坐标转换成视口坐标系，也就是摄像机因为原点的坐标系，&lt;strong&gt;从 世界 到 视口&lt;/strong&gt;。这样它是在摄像机的正面，还是在反面了。&lt;/li&gt;
+&lt;li&gt;最后在投射到屏幕坐标系上， &lt;strong&gt;从 视口 到 屏幕&lt;/strong&gt;。这样知道哪些区域需要绘制在屏幕上，哪些不需要。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;总结上面一系列变换关系就是： &lt;strong&gt;物体 到 世界 再到 视口 再到 屏幕&lt;/strong&gt;。中间经过了三次变换 (transform)。这些变换在数学上通过 &lt;strong&gt;矩阵&lt;/strong&gt; 来描述的。这里有个知识点：
+矩阵可以表示变换。在这里推荐关于 3D 数据的一本经典好书 &lt;a href="http://pan.baidu.com/s/1eQ8eSYQ"&gt;《3D数学基础图形与游戏开发》&lt;/a&gt;。&lt;/p&gt;
+&lt;p&gt;到现在是不是有种跃跃欲试，但是想想又头大的感觉，在 Unity3D 里面这些矩阵具体的数值是什么？要是自己去运算那多复杂啊。别急，Unity3D 给我们已经提供了这些矩阵当作 Shader
+的内置变量（&lt;a href="http://docs.unity3d.com/Manual/SL-UnityShaderVariables.html"&gt;详情参考这个链接&lt;/a&gt;），可以在编程的时候直接使用。在这里只是说一下，我们利用 &lt;code&gt;UNITY_MATRIX_MVP&lt;/code&gt;
+ 这个矩阵就可以达到变换到屏幕坐标系的目的。至于怎么做，会在以后的文章中会提到。&lt;/p&gt;
+&lt;h3&gt;系列文章目录&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://blog.shuiguzi.com/xia-liao-unity3d-shader-xi-lie-zhi-yi-gpu-yu-shader-model.html"&gt;瞎聊 Unity3D Shader 系列之一：GPU 与 Shader Model&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://blog.shuiguzi.com/xia-liao-unity3d-shader-xi-lie-zhi-er-xuan-ran-guan-xian.html"&gt;瞎聊 Unity3D Shader 系列之二：渲染管线&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://blog.shuiguzi.com/xia-liao-unity3d-shader-xi-lie-zhi-san-shader-tu-di-shang-de-yu-yan-men.html"&gt;瞎聊 Unity3D Shader 系列之三：Shader 土地上的语言们&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://blog.shuiguzi.com/xia-liao-unity3d-shader-xi-lie-zhi-si-zuo-biao-xi.html"&gt;瞎聊 Unity3D Shader 系列之四：坐标系&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</summary><category term="Shader"></category></entry><entry><title>瞎聊 Unity3D Shader 系列之三：Shader 土地上的语言们</title><link href="http://blog.shuiguzi.com/xia-liao-unity3d-shader-xi-lie-zhi-san-shader-tu-di-shang-de-yu-yan-men.html" rel="alternate"></link><updated>2015-04-29T14:33:00+08:00</updated><author><name>Rocky Lai</name></author><id>tag:blog.shuiguzi.com,2015-04-29:xia-liao-unity3d-shader-xi-lie-zhi-san-shader-tu-di-shang-de-yu-yan-men.html</id><summary type="html">&lt;p&gt;这节是关于 Unity3D 平台上 shader 语言的选择。&lt;/p&gt;
 &lt;p&gt;计算机行业的各公司（或者组织）似乎都遵循着某种规则。当他们在某个领域划出了一亩三分地，当上了地主后, 就要用方法圈住干活的农民。让他们觉得在我这里不会饿死，有饭吃，你要到别家
 干活的话，需要重头再来，这是一个很亏本的买卖。这个方法就是制定自己体系（软硬件中的各种协议，接口，语言，框架），脱离这套体系，在别的地方玩不起来。开个玩笑来取名这个规矩叫做&lt;strong&gt;圈地规则&lt;/strong&gt;吧。&lt;/p&gt;
 &lt;h3&gt;Shader 语言们&lt;/h3&gt;
@@ -34,6 +75,7 @@
 &lt;li&gt;&lt;a href="http://blog.shuiguzi.com/xia-liao-unity3d-shader-xi-lie-zhi-yi-gpu-yu-shader-model.html"&gt;瞎聊 Unity3D Shader 系列之一：GPU 与 Shader Model&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://blog.shuiguzi.com/xia-liao-unity3d-shader-xi-lie-zhi-er-xuan-ran-guan-xian.html"&gt;瞎聊 Unity3D Shader 系列之二：渲染管线&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://blog.shuiguzi.com/xia-liao-unity3d-shader-xi-lie-zhi-san-shader-tu-di-shang-de-yu-yan-men.html"&gt;瞎聊 Unity3D Shader 系列之三：Shader 土地上的语言们&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://blog.shuiguzi.com/xia-liao-unity3d-shader-xi-lie-zhi-si-zuo-biao-xi.html"&gt;瞎聊 Unity3D Shader 系列之四：坐标系&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;</summary><category term="Shader"></category></entry><entry><title>瞎聊 Unity3D Shader 系列之二：渲染管线</title><link href="http://blog.shuiguzi.com/xia-liao-unity3d-shader-xi-lie-zhi-er-xuan-ran-guan-xian.html" rel="alternate"></link><updated>2015-04-28T14:07:00+08:00</updated><author><name>Rocky Lai</name></author><id>tag:blog.shuiguzi.com,2015-04-28:xia-liao-unity3d-shader-xi-lie-zhi-er-xuan-ran-guan-xian.html</id><summary type="html">&lt;p&gt;这节描述的是图形渲染的大致过程。&lt;/p&gt;
 &lt;p&gt;为了更好理解和记忆这节内容，先来学下面几个词。&lt;/p&gt;
 &lt;ul&gt;
@@ -65,6 +107,7 @@
 &lt;li&gt;&lt;a href="http://blog.shuiguzi.com/xia-liao-unity3d-shader-xi-lie-zhi-yi-gpu-yu-shader-model.html"&gt;瞎聊 Unity3D Shader 系列之一：GPU 与 Shader Model&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://blog.shuiguzi.com/xia-liao-unity3d-shader-xi-lie-zhi-er-xuan-ran-guan-xian.html"&gt;瞎聊 Unity3D Shader 系列之二：渲染管线&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://blog.shuiguzi.com/xia-liao-unity3d-shader-xi-lie-zhi-san-shader-tu-di-shang-de-yu-yan-men.html"&gt;瞎聊 Unity3D Shader 系列之三：Shader 土地上的语言们&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://blog.shuiguzi.com/xia-liao-unity3d-shader-xi-lie-zhi-si-zuo-biao-xi.html"&gt;瞎聊 Unity3D Shader 系列之四：坐标系&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;</summary><category term="Shader"></category></entry><entry><title>瞎聊 Unity3D Shader 系列之一：GPU 与 Shader Model</title><link href="http://blog.shuiguzi.com/xia-liao-unity3d-shader-xi-lie-zhi-yi-gpu-yu-shader-model.html" rel="alternate"></link><updated>2015-04-27T15:54:00+08:00</updated><author><name>Rocky Lai</name></author><id>tag:blog.shuiguzi.com,2015-04-26:xia-liao-unity3d-shader-xi-lie-zhi-yi-gpu-yu-shader-model.html</id><summary type="html">&lt;p&gt;我想首先唠叨下我为什么打算写这一系列的文章及文章的定位。&lt;/p&gt;
 &lt;p&gt;我写的动力主要来源于如下原因：&lt;/p&gt;
 &lt;ul&gt;
@@ -114,6 +157,7 @@
 &lt;li&gt;&lt;a href="http://blog.shuiguzi.com/xia-liao-unity3d-shader-xi-lie-zhi-yi-gpu-yu-shader-model.html"&gt;瞎聊 Unity3D Shader 系列之一：GPU 与 Shader Model&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://blog.shuiguzi.com/xia-liao-unity3d-shader-xi-lie-zhi-er-xuan-ran-guan-xian.html"&gt;瞎聊 Unity3D Shader 系列之二：渲染管线&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://blog.shuiguzi.com/xia-liao-unity3d-shader-xi-lie-zhi-san-shader-tu-di-shang-de-yu-yan-men.html"&gt;瞎聊 Unity3D Shader 系列之三：Shader 土地上的语言们&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://blog.shuiguzi.com/xia-liao-unity3d-shader-xi-lie-zhi-si-zuo-biao-xi.html"&gt;瞎聊 Unity3D Shader 系列之四：坐标系&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;</summary><category term="Shader"></category></entry><entry><title>在Unity3d uGUI中绘制圆形图片</title><link href="http://blog.shuiguzi.com/zai-unity3d-uguizhong-hui-zhi-yuan-xing-tu-pian.html" rel="alternate"></link><updated>2015-04-15T23:30:00+08:00</updated><author><name>Rocky Lai</name></author><id>tag:blog.shuiguzi.com,2015-04-15:zai-unity3d-uguizhong-hui-zhi-yuan-xing-tu-pian.html</id><summary type="html">&lt;p&gt;最近项目需要在 Unity3D 的新 UI 系统中实现圆形头像的功能，之前想通过 Mask 控件的方式来实现，但是一番努力后毫无头绪，只能祭上shader了。&lt;/p&gt;
 &lt;p&gt;大体的思路就是在一个空的 Object 上面挂上 RawImage 组件，组件的 Material 挂上本文中的 shader。截取的逻辑是选取图片正中心 (0.5, 0.5) 为圆的中心点，绘制图片在圆内的像素点为图片的像素，然后图片在圆外的像素点设置为 alpha 为 0 的点，
 如 &lt;code&gt;(0, 0, 0, 0)&lt;/code&gt;。逻辑是在 fragment shader 里面实现(shader 代码中的&lt;code&gt;frag&lt;/code&gt;)。&lt;/p&gt;
