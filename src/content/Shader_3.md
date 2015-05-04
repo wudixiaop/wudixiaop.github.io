@@ -1,6 +1,6 @@
 Title: 瞎聊 Unity3D Shader 系列之三：Shader 土地上的语言们
 Date: 2015-04-29 14:33
-Modified: 2015-04-29 14:33
+Modified: 2015-05-04 14:33
 Category: Shader
 Tags: Shader
 Status: published
@@ -33,6 +33,36 @@ Status: published
 
 Unity3D 官方比较提倡 CG 或 HLSL 语言。所以我们首选这两个中的其中一个了。之前提到，其实这两语法非常相似，所以其实学好了其中一门就差不多等于学了两门语言。（好像很划算的样子！）
 
+###在 Shaderlab 中写 Shader 的三种方式
+
+Unity3D 手册 Shader 参考章节[开篇](http://docs.unity3d.com/Manual/SL-Reference.html)就写道 :
+
+> Shaders in Unity can be written in one of three different ways:
+>
+> as [**surface shaders**](http://docs.unity3d.com/Manual/SL-SurfaceShaders.html),  
+> as [**vertex and fragment shaders**](http://docs.unity3d.com/Manual/SL-ShaderPrograms.html) or  
+> as fixed function shaders.
+>
+
+也就是说有三种 shader 的变体。
+
+####Fixed function shaders
+
+这种 shader 一般用于不支持可编程 shader 模型的老设备上面， 比如 iPhone3。Unity3d 用 shaderlab 的语法来配置。
+
+####vertex and fragment shaders
+
+参考名字，这个主要是玩转 vertex 和 fragment shader 的。参考[渲染管线]({filename}/Shader_2.md)章节可以知道这两个 shader 处于什么位置。
+
+####surface shaders
+
+Unity3d 提倡如果想写跟光线交互的 shader 使用这种方式写。那 surface shader 又是什么。 [Unity 手册里面有段话道出了真相：](http://docs.unity3d.com/Manual/SL-SurfaceShaders.html)
+
+> Surface Shader compiler then figures out what inputs are needed, what outputs are filled and so on, ** and generates actual vertex&pixel shaders,**
+> as well as rendering passes to handle forward and deferred rendering.
+
+原来 surface shader 最终会被编译成 vertex&fragment shader，这只是换了个汤。当然汤里家里点佐料就是 Unity 帮你处理光线而不用自己写算法。
+
 ###总结
 Unity3D Shaderlab 是基于shader语言上建立了自己的一套语法规则，我们不仅要学习 shaderlab 语法，也要学习 shader 语言。Unity3D 官方提倡使用 CG 或 HLSL 语言。
 
@@ -45,3 +75,4 @@ Unity3D Shaderlab 是基于shader语言上建立了自己的一套语法规则�
 - [瞎聊 Unity3D Shader 系列之二：渲染管线]({filename}/Shader_2.md)
 - [瞎聊 Unity3D Shader 系列之三：Shader 土地上的语言们]({filename}/Shader_3.md)
 - [瞎聊 Unity3D Shader 系列之四：坐标系]({filename}/Shader_4.md)
+- [瞎聊 Unity3D Shader 系列之五：RGBA 101]({filename}/Shader_5.md)
