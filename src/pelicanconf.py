@@ -3,7 +3,6 @@
 from __future__ import unicode_literals
 import os
 import markdown
-
 AUTHOR = u'Rocky Lai'
 ABOUT_PAGE_NAME = AUTHOR.replace(" ", "-").lower()
 SITENAME = u"心亡则忙，亡心则忘"
@@ -43,7 +42,7 @@ DATE_FORMATS = {
 #
 about_me_markdown = open('aboutme.md', 'r').read().decode('utf-8')
 
-ABOUT_ME = markdown.markdown(about_me_markdown)
+ABOUT_ME = markdown.markdown(about_me_markdown, extension=["markdown.extensions.extra"])
 
 COPYRIGHTMARK = "Rocky Lai @ 2014 - 2015"
 
