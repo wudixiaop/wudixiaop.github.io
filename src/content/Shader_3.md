@@ -76,3 +76,4 @@ Unity3D Shaderlab 是基于shader语言上建立了自己的一套语法规则�
 - [瞎聊 Unity3D Shader 系列之三：Shader 土地上的语言们]({filename}/Shader_3.md)
 - [瞎聊 Unity3D Shader 系列之四：坐标系]({filename}/Shader_4.md)
 - [瞎聊 Unity3D Shader 系列之五：RGBA 101]({filename}/Shader_5.md)
+- [瞎聊 Unity3D Shader 系列之六：初识 Shaderlab]({filename}/Shader_6.md)
