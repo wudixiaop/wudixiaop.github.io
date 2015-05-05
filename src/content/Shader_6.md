@@ -1,6 +1,6 @@
 Title: 瞎聊 Unity3D Shader 系列之六：初识 Shaderlab
-Date: 2015-05-04 13:55
-Modified: 2015-05-04 13:55
+Date: 2015-05-05 17:55
+Modified: 2015-05-05 17:55
 Category: Shader
 Tags: Shader
 Status: published
