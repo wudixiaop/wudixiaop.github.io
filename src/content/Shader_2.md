@@ -21,7 +21,7 @@ Status: published
 
 看图说话
 
-<img src="images/Shader/2/rendering-pipeline.jpg" alt="2.renderingpipeline.jpg" width="100%"/>
+![2.renderingpipeline.jpg](images/Shader/2/rendering-pipeline.jpg){: width="100%"}
 
 上面是可编程的渲染管线模型的示意。下面多说几点：
 
