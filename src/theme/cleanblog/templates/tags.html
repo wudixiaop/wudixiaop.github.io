@@ -25,7 +25,7 @@
     <section id="tags">
         <h1>标签({{ tags | length }})</h1>
         <div class="panel-group" id="accordion">
-            {%- for tag, articles in tags|sort %}
+            {%- for tag, articles in tags | sort %}
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h4 class="panel-title">
@@ -39,7 +39,7 @@
                         <p><strong>标签 - ({{ articles | length }})</strong></p>
                         <table class="table table-hover table-condensed">
                             <tbody>
-                                {% for article in articles %}
+                                {% for article in articles | sort( attribute="date", reverse = True) %}
                                     <tr>
                                     <td width="120"><strong>{{ article.date.strftime("%Y-%m-%d") }}</strong></td>
                                     <td><a class="linktext" href='{{ article.url }}'><span class="text-left">{{ article.title }}</span></a></td>

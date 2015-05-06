@@ -1,5 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>心亡则忙，亡心则忘</title><link href="http://blog.shuiguzi.com/" rel="alternate"></link><link href="http://blog.shuiguzi.com/feeds%5Cshader.atom.xml" rel="self"></link><id>http://blog.shuiguzi.com/</id><updated>2015-05-05T17:55:00+08:00</updated><entry><title>瞎聊 Unity3D Shader 系列之六：初识 Shaderlab</title><link href="http://blog.shuiguzi.com/xia-liao-unity3d-shader-xi-lie-zhi-liu-chu-shi-shaderlab.html" rel="alternate"></link><updated>2015-05-05T17:55:00+08:00</updated><author><name>Rocky Lai</name></author><id>tag:blog.shuiguzi.com,2015-05-05:xia-liao-unity3d-shader-xi-lie-zhi-liu-chu-shi-shaderlab.html</id><summary type="html">&lt;p&gt;好吧，其实这不算初识 Shaderlab 了，因为在 &lt;a href="http://blog.shuiguzi.com/xia-liao-unity3d-shader-xi-lie-zhi-san-shader-tu-di-shang-de-yu-yan-men.html"&gt;shaderlab 土地上的语言们&lt;/a&gt; 这节中已经说到在 shaderlab 中有三种方式来写 shader。
+<feed xmlns="http://www.w3.org/2005/Atom"><title>心亡则忙，亡心则忘</title><link href="http://blog.shuiguzi.com/" rel="alternate"></link><link href="http://blog.shuiguzi.com/feeds%5Cshader.atom.xml" rel="self"></link><id>http://blog.shuiguzi.com/</id><updated>2015-05-06T16:05:00+08:00</updated><entry><title>瞎聊 Unity3D Shader 系列之七：究竟谁先被渲染？</title><link href="http://blog.shuiguzi.com/xia-liao-unity3d-shader-xi-lie-zhi-qi-jiu-jing-shui-xian-bei-xuan-ran.html" rel="alternate"></link><updated>2015-05-06T16:05:00+08:00</updated><author><name>Rocky Lai</name></author><id>tag:blog.shuiguzi.com,2015-05-06:xia-liao-unity3d-shader-xi-lie-zhi-qi-jiu-jing-shui-xian-bei-xuan-ran.html</id><summary type="html">&lt;p&gt;这节的问题: 假设有很多对象需要渲染，而你想自己指定这些对象被渲染的顺序的话应该怎么做？&lt;/p&gt;
+&lt;p&gt;先上答案：使用 Subshader 的 Queue 标签指定。&lt;/p&gt;
+&lt;p&gt;那 Queue 标签又是是那么？？ 我们继续往下看，先介绍 Subshader 的标签&lt;/p&gt;
+&lt;h3&gt;Subshader 的标签&lt;/h3&gt;
+&lt;p&gt;在上一节 &lt;a href="http://blog.shuiguzi.com/xia-liao-unity3d-shader-xi-lie-zhi-liu-chu-shi-shaderlab.html"&gt;初识 Shaderlab&lt;/a&gt; 中我们知道 Subshader 语句块内有个 &lt;code&gt;[Tags]&lt;/code&gt; 可选项，它的作用是是配置渲染引擎应该 &lt;strong&gt;什么时候 和 怎么样&lt;/strong&gt; 去渲染。这就是 Subshader 的标签。&lt;/p&gt;
+&lt;p&gt;它的语法是：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Tags { "TagName1" = "Value1" "TagName2" = "Value2" ... }&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;就是 Tags 语法块内带有若干键值对项（理论上可有很多很多个这种键值对）。可以填写的些键值对可以参考 &lt;a href="http://docs.unity3d.com/Manual/SL-SubshaderTags.html"&gt;这个页面&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;需要注意一点 &lt;strong&gt;它只能写在 Subshader 语句块里面，不能写在 Pass 语句块里面&lt;/strong&gt;。&lt;/p&gt;
+&lt;h3&gt;Queue 标签&lt;/h3&gt;
+&lt;p&gt;Queue 标签是上面提到的可选键值对项中的一个，也就是决定对象被渲染顺序的标签。根据上面的语法，我们可以这么写：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Tags { "Queue" = "XXXX" }&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;上面的 &lt;code&gt;XXXX&lt;/code&gt; 是 Queue 标签的值，这个值在内部是整数型的索引。&lt;strong&gt;数值越小，越先被渲染&lt;/strong&gt;。但是不要以为直接填整数就可以，Shaderlab 不支持直接填数值，而是先定义好了 5 个具有描述性的词来代替单调的数值。他们是：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Background：&lt;/strong&gt; 对应数值为 1000，用于需要被最先渲染的对象，如背景什么的。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Geometry：&lt;/strong&gt; 对应数值为 2000, 用于不透明的物体。这个是默认的选项（如果不指明 Queue 标签的值，自动给你指定为 Geometry）。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;AlphaTest：&lt;/strong&gt; 对应的数值为 2450, 用于需要使用 AlphaTest 的对象来提高性能。AlphaTest 类似于裁剪(clip) 功能。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Transparent：&lt;/strong&gt; 对应的数值为 3000， 用于需要使用 alpha blending 的对象，比如粒子，玻璃等。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Overlay：&lt;/strong&gt; 对应的数值为 4000，用于最后被渲染的对象，比如　UI。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;渲染顺序的示意图如下：&lt;/p&gt;
+&lt;p&gt;&lt;img alt="queue" src="images/Shader/7/queue.png" width="73%" /&gt;&lt;/p&gt;
+&lt;p&gt;前面提到虽然 Queue 内部是整型数值，但是写 shader 的时候不能给它指定整型数值，那要是前置给它指定为整型数值会怎么样？？&lt;/p&gt;
+&lt;p&gt;答案是：会被忽略，使用默认的值，也就是 Geometry。同样的，随便填写的如 dfadfadf 等值也是会被忽略使用默认值。&lt;/p&gt;
+&lt;p&gt;还有 Shaderlab 还对上面五类做了延伸，让他们 &lt;strong&gt;支持加减法&lt;/strong&gt;。比如想让对象在 Background 之后 Geometry 之前渲染，我们可以这么写:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Tags { "Queue" = "Geometry-1"}&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;这里有几点比较重要：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;Geometry-1&lt;/code&gt; 中间不能有空格&lt;/li&gt;
+&lt;li&gt;这个语法是整型数值的加减法。 &lt;code&gt;Geometry-1&lt;/code&gt; 和 &lt;code&gt;Background+999&lt;/code&gt; 得到的结果是一样的，因为 2000 - 1 = 1000 + 999。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;我们在 Unity3D 编辑器里面选中 shader 文件，然后从 Inspector 里查看 Shader 的 Render queue 属性值，如下图：&lt;/p&gt;
+&lt;p&gt;&lt;img alt="render queue" src="images/Shader/7/geometry_1.png" width="60%" /&gt;&lt;/p&gt;
+&lt;p&gt;最后基于上一节 &lt;a href="http://blog.shuiguzi.com/xia-liao-unity3d-shader-xi-lie-zhi-liu-chu-shi-shaderlab.html"&gt;初识 Shaderlab&lt;/a&gt; 中的精简骨架，我们来写一个伪代码，看看插入 Queue 标签后的样子。  &lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;Shader&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;shader 的名字&amp;quot;&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+
+  &lt;span class="n"&gt;SubShader&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="n"&gt;Tags&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;Queue&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;Transparent&amp;quot;&lt;/span&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+
+    &lt;span class="n"&gt;Pass&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+
+    &lt;span class="p"&gt;}&lt;/span&gt;
+  &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;系列文章目录&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://blog.shuiguzi.com/xia-liao-unity3d-shader-xi-lie-zhi-yi-gpu-yu-shader-model.html"&gt;瞎聊 Unity3D Shader 系列之一：GPU 与 Shader Model&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://blog.shuiguzi.com/xia-liao-unity3d-shader-xi-lie-zhi-er-xuan-ran-guan-xian.html"&gt;瞎聊 Unity3D Shader 系列之二：渲染管线&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://blog.shuiguzi.com/xia-liao-unity3d-shader-xi-lie-zhi-san-shader-tu-di-shang-de-yu-yan-men.html"&gt;瞎聊 Unity3D Shader 系列之三：Shader 土地上的语言们&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://blog.shuiguzi.com/xia-liao-unity3d-shader-xi-lie-zhi-si-zuo-biao-xi.html"&gt;瞎聊 Unity3D Shader 系列之四：坐标系&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://blog.shuiguzi.com/xia-liao-unity3d-shader-xi-lie-zhi-wu-rgba-101.html"&gt;瞎聊 Unity3D Shader 系列之五：RGBA 101&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://blog.shuiguzi.com/xia-liao-unity3d-shader-xi-lie-zhi-liu-chu-shi-shaderlab.html"&gt;瞎聊 Unity3D Shader 系列之六：初识 Shaderlab&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://blog.shuiguzi.com/xia-liao-unity3d-shader-xi-lie-zhi-qi-jiu-jing-shui-xian-bei-xuan-ran.html"&gt;瞎聊 Unity3D Shader 系列之七：究竟谁先被渲染？&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</summary><category term="Shader"></category></entry><entry><title>瞎聊 Unity3D Shader 系列之六：初识 Shaderlab</title><link href="http://blog.shuiguzi.com/xia-liao-unity3d-shader-xi-lie-zhi-liu-chu-shi-shaderlab.html" rel="alternate"></link><updated>2015-05-05T17:55:00+08:00</updated><author><name>Rocky Lai</name></author><id>tag:blog.shuiguzi.com,2015-05-05:xia-liao-unity3d-shader-xi-lie-zhi-liu-chu-shi-shaderlab.html</id><summary type="html">&lt;p&gt;好吧，其实这不算初识 Shaderlab 了，因为在 &lt;a href="http://blog.shuiguzi.com/xia-liao-unity3d-shader-xi-lie-zhi-san-shader-tu-di-shang-de-yu-yan-men.html"&gt;shaderlab 土地上的语言们&lt;/a&gt; 这节中已经说到在 shaderlab 中有三种方式来写 shader。
 这节的内容主要是来认识下 shaderlab 语法写出来的 shader 长得什么样子。&lt;/p&gt;
 &lt;p&gt;下面有段基于 shaderlab 的 shader 的大概框架的伪代码，在之前要解释下代码中带中括号的部分，如 &lt;code&gt;[Properties]&lt;/code&gt;, 表示是可以选择的，也就是说可以不写。&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c1"&gt;//shader 的名字会显示在 Unity3D 的 Inspector 中选择 shader 的菜单里面&lt;/span&gt;
@@ -64,6 +126,7 @@
 &lt;li&gt;&lt;a href="http://blog.shuiguzi.com/xia-liao-unity3d-shader-xi-lie-zhi-si-zuo-biao-xi.html"&gt;瞎聊 Unity3D Shader 系列之四：坐标系&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://blog.shuiguzi.com/xia-liao-unity3d-shader-xi-lie-zhi-wu-rgba-101.html"&gt;瞎聊 Unity3D Shader 系列之五：RGBA 101&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://blog.shuiguzi.com/xia-liao-unity3d-shader-xi-lie-zhi-liu-chu-shi-shaderlab.html"&gt;瞎聊 Unity3D Shader 系列之六：初识 Shaderlab&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://blog.shuiguzi.com/xia-liao-unity3d-shader-xi-lie-zhi-qi-jiu-jing-shui-xian-bei-xuan-ran.html"&gt;瞎聊 Unity3D Shader 系列之七：究竟谁先被渲染？&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;</summary><category term="Shader"></category></entry><entry><title>瞎聊 Unity3D Shader 系列之五：RGBA 101</title><link href="http://blog.shuiguzi.com/xia-liao-unity3d-shader-xi-lie-zhi-wu-rgba-101.html" rel="alternate"></link><updated>2015-05-04T13:55:00+08:00</updated><author><name>Rocky Lai</name></author><id>tag:blog.shuiguzi.com,2015-05-04:xia-liao-unity3d-shader-xi-lie-zhi-wu-rgba-101.html</id><summary type="html">&lt;p&gt;这节说说 fragment shader 最后输出的像素的颜色表示方法 RGBA。&lt;/p&gt;
 &lt;p&gt;玩过 Photoshop 的同学可能知道，存在好几种颜色模式来表示颜色，&lt;a href="http://baike.baidu.com/view/1139658.htm"&gt;比如 RGB 和 CMYK&lt;/a&gt;. 由于显示器的发光物体，所以使用的 RGB 模式。
 Unity3D 中也采用这种表示方法。&lt;/p&gt;
@@ -94,6 +157,7 @@ Unity3D 中也采用这种表示方法。&lt;/p&gt;
 &lt;li&gt;&lt;a href="http://blog.shuiguzi.com/xia-liao-unity3d-shader-xi-lie-zhi-si-zuo-biao-xi.html"&gt;瞎聊 Unity3D Shader 系列之四：坐标系&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://blog.shuiguzi.com/xia-liao-unity3d-shader-xi-lie-zhi-wu-rgba-101.html"&gt;瞎聊 Unity3D Shader 系列之五：RGBA 101&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://blog.shuiguzi.com/xia-liao-unity3d-shader-xi-lie-zhi-liu-chu-shi-shaderlab.html"&gt;瞎聊 Unity3D Shader 系列之六：初识 Shaderlab&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://blog.shuiguzi.com/xia-liao-unity3d-shader-xi-lie-zhi-qi-jiu-jing-shui-xian-bei-xuan-ran.html"&gt;瞎聊 Unity3D Shader 系列之七：究竟谁先被渲染？&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;</summary><category term="Shader"></category></entry><entry><title>瞎聊 Unity3D Shader 系列之四：坐标系</title><link href="http://blog.shuiguzi.com/xia-liao-unity3d-shader-xi-lie-zhi-si-zuo-biao-xi.html" rel="alternate"></link><updated>2015-04-30T13:55:00+08:00</updated><author><name>Rocky Lai</name></author><id>tag:blog.shuiguzi.com,2015-04-30:xia-liao-unity3d-shader-xi-lie-zhi-si-zuo-biao-xi.html</id><summary type="html">&lt;p&gt;这节从很平常一段对话开始：&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;&lt;strong&gt;甲跟乙说：&lt;/strong&gt; 喂，你看到那个人没有？&lt;br /&gt;
@@ -142,6 +206,7 @@ vertex shader 里面做了下面这些事：&lt;/p&gt;
 &lt;li&gt;&lt;a href="http://blog.shuiguzi.com/xia-liao-unity3d-shader-xi-lie-zhi-si-zuo-biao-xi.html"&gt;瞎聊 Unity3D Shader 系列之四：坐标系&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://blog.shuiguzi.com/xia-liao-unity3d-shader-xi-lie-zhi-wu-rgba-101.html"&gt;瞎聊 Unity3D Shader 系列之五：RGBA 101&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://blog.shuiguzi.com/xia-liao-unity3d-shader-xi-lie-zhi-liu-chu-shi-shaderlab.html"&gt;瞎聊 Unity3D Shader 系列之六：初识 Shaderlab&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://blog.shuiguzi.com/xia-liao-unity3d-shader-xi-lie-zhi-qi-jiu-jing-shui-xian-bei-xuan-ran.html"&gt;瞎聊 Unity3D Shader 系列之七：究竟谁先被渲染？&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;</summary><category term="Shader"></category></entry><entry><title>瞎聊 Unity3D Shader 系列之三：Shader 土地上的语言们</title><link href="http://blog.shuiguzi.com/xia-liao-unity3d-shader-xi-lie-zhi-san-shader-tu-di-shang-de-yu-yan-men.html" rel="alternate"></link><updated>2015-05-04T14:33:00+08:00</updated><author><name>Rocky Lai</name></author><id>tag:blog.shuiguzi.com,2015-04-29:xia-liao-unity3d-shader-xi-lie-zhi-san-shader-tu-di-shang-de-yu-yan-men.html</id><summary type="html">&lt;p&gt;这节是关于 Unity3D 平台上 shader 语言的选择。&lt;/p&gt;
 &lt;p&gt;计算机行业的各公司（或者组织）似乎都遵循着某种规则。当他们在某个领域划出了一亩三分地，当上了地主后, 就要用方法圈住干活的农民。让他们觉得在我这里不会饿死，有饭吃，你要到别家
 干活的话，需要重头再来，这是一个很亏本的买卖。这个方法就是制定自己体系（软硬件中的各种协议，接口，语言，框架），脱离这套体系，在别的地方玩不起来。开个玩笑来取名这个规矩叫做&lt;strong&gt;圈地规则&lt;/strong&gt;吧。&lt;/p&gt;
@@ -200,6 +265,7 @@ as well as rendering passes to handle forward and deferred rendering.&lt;/p&gt;
 &lt;li&gt;&lt;a href="http://blog.shuiguzi.com/xia-liao-unity3d-shader-xi-lie-zhi-si-zuo-biao-xi.html"&gt;瞎聊 Unity3D Shader 系列之四：坐标系&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://blog.shuiguzi.com/xia-liao-unity3d-shader-xi-lie-zhi-wu-rgba-101.html"&gt;瞎聊 Unity3D Shader 系列之五：RGBA 101&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://blog.shuiguzi.com/xia-liao-unity3d-shader-xi-lie-zhi-liu-chu-shi-shaderlab.html"&gt;瞎聊 Unity3D Shader 系列之六：初识 Shaderlab&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://blog.shuiguzi.com/xia-liao-unity3d-shader-xi-lie-zhi-qi-jiu-jing-shui-xian-bei-xuan-ran.html"&gt;瞎聊 Unity3D Shader 系列之七：究竟谁先被渲染？&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;</summary><category term="Shader"></category></entry><entry><title>瞎聊 Unity3D Shader 系列之二：渲染管线</title><link href="http://blog.shuiguzi.com/xia-liao-unity3d-shader-xi-lie-zhi-er-xuan-ran-guan-xian.html" rel="alternate"></link><updated>2015-04-28T14:07:00+08:00</updated><author><name>Rocky Lai</name></author><id>tag:blog.shuiguzi.com,2015-04-28:xia-liao-unity3d-shader-xi-lie-zhi-er-xuan-ran-guan-xian.html</id><summary type="html">&lt;p&gt;这节描述的是图形渲染的大致过程。&lt;/p&gt;
 &lt;p&gt;为了更好理解和记忆这节内容，先来学下面几个词。&lt;/p&gt;
 &lt;ul&gt;
@@ -234,6 +300,7 @@ as well as rendering passes to handle forward and deferred rendering.&lt;/p&gt;
 &lt;li&gt;&lt;a href="http://blog.shuiguzi.com/xia-liao-unity3d-shader-xi-lie-zhi-si-zuo-biao-xi.html"&gt;瞎聊 Unity3D Shader 系列之四：坐标系&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://blog.shuiguzi.com/xia-liao-unity3d-shader-xi-lie-zhi-wu-rgba-101.html"&gt;瞎聊 Unity3D Shader 系列之五：RGBA 101&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://blog.shuiguzi.com/xia-liao-unity3d-shader-xi-lie-zhi-liu-chu-shi-shaderlab.html"&gt;瞎聊 Unity3D Shader 系列之六：初识 Shaderlab&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://blog.shuiguzi.com/xia-liao-unity3d-shader-xi-lie-zhi-qi-jiu-jing-shui-xian-bei-xuan-ran.html"&gt;瞎聊 Unity3D Shader 系列之七：究竟谁先被渲染？&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;</summary><category term="Shader"></category></entry><entry><title>瞎聊 Unity3D Shader 系列之一：GPU 与 Shader Model</title><link href="http://blog.shuiguzi.com/xia-liao-unity3d-shader-xi-lie-zhi-yi-gpu-yu-shader-model.html" rel="alternate"></link><updated>2015-04-27T15:54:00+08:00</updated><author><name>Rocky Lai</name></author><id>tag:blog.shuiguzi.com,2015-04-26:xia-liao-unity3d-shader-xi-lie-zhi-yi-gpu-yu-shader-model.html</id><summary type="html">&lt;p&gt;我想首先唠叨下我为什么打算写这一系列的文章及文章的定位。&lt;/p&gt;
 &lt;p&gt;我写的动力主要来源于如下原因：&lt;/p&gt;
 &lt;ul&gt;
@@ -286,6 +353,7 @@ as well as rendering passes to handle forward and deferred rendering.&lt;/p&gt;
 &lt;li&gt;&lt;a href="http://blog.shuiguzi.com/xia-liao-unity3d-shader-xi-lie-zhi-si-zuo-biao-xi.html"&gt;瞎聊 Unity3D Shader 系列之四：坐标系&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://blog.shuiguzi.com/xia-liao-unity3d-shader-xi-lie-zhi-wu-rgba-101.html"&gt;瞎聊 Unity3D Shader 系列之五：RGBA 101&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://blog.shuiguzi.com/xia-liao-unity3d-shader-xi-lie-zhi-liu-chu-shi-shaderlab.html"&gt;瞎聊 Unity3D Shader 系列之六：初识 Shaderlab&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://blog.shuiguzi.com/xia-liao-unity3d-shader-xi-lie-zhi-qi-jiu-jing-shui-xian-bei-xuan-ran.html"&gt;瞎聊 Unity3D Shader 系列之七：究竟谁先被渲染？&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;</summary><category term="Shader"></category></entry><entry><title>ShaderlabVS Release Page</title><link href="http://blog.shuiguzi.com/shaderlabvs-release-page.html" rel="alternate"></link><updated>2014-10-28T21:20:00+08:00</updated><author><name>Rocky Lai</name></author><id>tag:blog.shuiguzi.com,2014-10-28:shaderlabvs-release-page.html</id><summary type="html">&lt;h2&gt;&lt;em&gt;Latest Version - V0.5&lt;/em&gt;&lt;/h2&gt;
 &lt;p&gt;&lt;strong&gt;[2014-10-28] V0.5 release note:&lt;/strong&gt;&lt;/p&gt;
 &lt;ul&gt;

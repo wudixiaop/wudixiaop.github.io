@@ -71,3 +71,4 @@ GPU 为大量图形计算而生，而 Shader 是对 GPU 编程的技术。微软
 - [瞎聊 Unity3D Shader 系列之四：坐标系]({filename}/Shader_4.md)
 - [瞎聊 Unity3D Shader 系列之五：RGBA 101]({filename}/Shader_5.md)
 - [瞎聊 Unity3D Shader 系列之六：初识 Shaderlab]({filename}/Shader_6.md)
+- [瞎聊 Unity3D Shader 系列之七：究竟谁先被渲染？]({filename}/Shader_7.md)
