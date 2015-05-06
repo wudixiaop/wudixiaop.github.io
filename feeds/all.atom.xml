@@ -125,10 +125,15 @@ vertex shader 里面做了下面这些事：&lt;/p&gt;
 &lt;li&gt;最后在投射到屏幕坐标系上， &lt;strong&gt;从 视口 到 屏幕&lt;/strong&gt;。这样知道哪些区域需要绘制在屏幕上，哪些不需要。&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;总结上面一系列变换关系就是： &lt;strong&gt;物体 到 世界 再到 视口 再到 屏幕&lt;/strong&gt;。中间经过了三次变换 (transform)。这些变换在数学上通过 &lt;strong&gt;矩阵&lt;/strong&gt; 来描述的。这里有个知识点：
-矩阵可以表示变换。在这里推荐关于 3D 数据的一本经典好书 &lt;a href="http://pan.baidu.com/s/1eQ8eSYQ"&gt;《3D数学基础图形与游戏开发》&lt;/a&gt;。&lt;/p&gt;
+矩阵可以表示变换。在这里推荐关于 3D 数学的一本经典好书 &lt;a href="http://pan.baidu.com/s/1eQ8eSYQ"&gt;《3D数学基础图形与游戏开发》&lt;/a&gt;。&lt;/p&gt;
 &lt;p&gt;到现在是不是有种跃跃欲试，但是想想又头大的感觉，在 Unity3D 里面这些矩阵具体的数值是什么？要是自己去运算那多复杂啊。别急，Unity3D 给我们已经提供了这些矩阵当作 Shader
 的内置变量（&lt;a href="http://docs.unity3d.com/Manual/SL-UnityShaderVariables.html"&gt;详情参考这个链接&lt;/a&gt;），可以在编程的时候直接使用。在这里只是说一下，我们利用 &lt;code&gt;UNITY_MATRIX_MVP&lt;/code&gt;
  这个矩阵就可以达到变换到屏幕坐标系的目的。至于怎么做，会在以后的文章中会提到。&lt;/p&gt;
+&lt;h3&gt;左手和右手坐标系&lt;/h3&gt;
+&lt;p&gt;这两不是新坐标系，是建立三维坐标系的两种选择。换句话说对于处于同一个物体，可以用基于左手坐标系规则来建立三维坐标系，也可以用基于右手坐标系规则来建立三维空间，他们的区别是坐标轴的数值会有差异。&lt;/p&gt;
+&lt;p&gt;为什么叫做左手和右手，看看下面的图就知道了。&lt;/p&gt;
+&lt;p&gt;&lt;img alt="leftAndright" src="images/Shader/4/leftandRightHandCoordinate.png" width="80%" /&gt;&lt;/p&gt;
+&lt;p&gt;一般情况下左手和右手坐标系的数值做转换的话只需把 Z 值乘以 -1 即可。比如左手坐标系的 &lt;code&gt;(1, 1, 1)&lt;/code&gt; 转成为右手坐标系是  &lt;code&gt;(1, 1, -1)&lt;/code&gt;。&lt;/p&gt;
 &lt;h3&gt;系列文章目录&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="http://blog.shuiguzi.com/xia-liao-unity3d-shader-xi-lie-zhi-yi-gpu-yu-shader-model.html"&gt;瞎聊 Unity3D Shader 系列之一：GPU 与 Shader Model&lt;/a&gt;&lt;/li&gt;
