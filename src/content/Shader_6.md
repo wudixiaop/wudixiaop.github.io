@@ -10,7 +10,7 @@ Status: published
 
 下面有段基于 shaderlab 的 shader 的大概框架的伪代码，在之前要解释下代码中带中括号的部分，如 `[Properties]`, 表示是可以选择的，也就是说可以不写。
 
-	:::shader
+	:::cuda
 	//shader 的名字会显示在 Unity3D 的 Inspector 中选择 shader 的菜单里面
 	Shader "shader 的名字" {
 		// 属性
@@ -52,7 +52,7 @@ Status: published
 
 上面伪代码中的注释解释了各个部分的作用，如果去除可选部分，最后就留下**精简的骨架**:
 
-	:::python
+	:::cuda
 	Shader "shader 的名字" {
 
 		Subshader {
@@ -73,3 +73,4 @@ Status: published
 - [瞎聊 Unity3D Shader 系列之五：RGBA 101]({filename}/Shader_5.md)
 - [瞎聊 Unity3D Shader 系列之六：初识 Shaderlab]({filename}/Shader_6.md)
 - [瞎聊 Unity3D Shader 系列之七：究竟谁先被渲染？]({filename}/Shader_7.md)
+- [瞎聊 Unity3D Shader 系列之八：#pragma 指令]({filename}/Shader_8.md)

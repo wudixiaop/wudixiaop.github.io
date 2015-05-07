@@ -83,9 +83,9 @@
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                     <div class="post-heading">
-                        <h1>瞎聊 Unity3D Shader 系列之七：究竟谁先被渲染？</h1>
+                        <h1>瞎聊 Unity3D Shader 系列之八：#pragma 指令</h1>
                         <span class="meta">
-                            2015-05-06 16:05
+                            2015-05-07 16:13
                              by
                                 <a href="http://blog.shuiguzi.com/author/rocky-lai.html">Rocky Lai</a>
                         </span>
@@ -102,59 +102,91 @@
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
     <!-- Post Content -->
     <article>
-        <p>这节的问题: 假设有很多对象需要渲染，而你想自己指定这些对象被渲染的顺序的话应该怎么做？</p>
-<p>先上答案：使用 Subshader 的 Queue 标签指定。</p>
-<p>那 Queue 标签又是是那么？？ 我们继续往下看，先介绍 Subshader 的标签</p>
-<h3>Subshader 的标签</h3>
-<p>在上一节 <a href="http://blog.shuiguzi.com/xia-liao-unity3d-shader-xi-lie-zhi-liu-chu-shi-shaderlab.html">初识 Shaderlab</a> 中我们知道 Subshader 语句块内有个 <code>[Tags]</code> 可选项，它的作用是是配置渲染引擎应该 <strong>什么时候 和 怎么样</strong> 去渲染。这就是 Subshader 的标签。</p>
-<p>它的语法是：</p>
-<blockquote>
-<p>Tags { "TagName1" = "Value1" "TagName2" = "Value2" ... }</p>
-</blockquote>
-<p>就是 Tags 语法块内带有若干键值对项（理论上可有很多很多个这种键值对）。可以填写的些键值对可以参考 <a href="http://docs.unity3d.com/Manual/SL-SubshaderTags.html">这个页面</a></p>
-<p>需要注意一点 <strong>它只能写在 Subshader 语句块里面，不能写在 Pass 语句块里面</strong>。</p>
-<h3>Queue 标签</h3>
-<p>Queue 标签是上面提到的可选键值对项中的一个，也就是决定对象被渲染顺序的标签。根据上面的语法，我们可以这么写：</p>
-<blockquote>
-<p>Tags { "Queue" = "XXXX" }</p>
-</blockquote>
-<p>上面的 <code>XXXX</code> 是 Queue 标签的值，这个值在内部是整数型的索引。<strong>数值越小，越先被渲染</strong>。但是不要以为直接填整数就可以，Shaderlab 不支持直接填数值，而是先定义好了 5 个具有描述性的词来代替单调的数值。他们是：</p>
+        <p>第三节 <a href="http://blog.shuiguzi.com/xia-liao-unity3d-shader-xi-lie-zhi-san-shader-tu-di-shang-de-yu-yan-men.html">Shader 土地上的语言们</a> 里面说到过 CG 和 HLSL 等语言被 <code>GGPROGRAM ... ENDCG</code> 语句块里面。这节的主角 #pragma 出现的位置就是在这个语句块里面，用来做编译指示的。就好比告诉
+ Shaderlab 的编译器，你应该这么干应该那么干。这里把 #pragma 叫做编译指令吧。</p>
+<p><code>CGPROGRAM ... ENDCG</code> 语句块根据 Shaderlab 写作方式不同，它的位置也不同。</p>
 <ul>
-<li><strong>Background：</strong> 对应数值为 1000，用于需要被最先渲染的对象，如背景什么的。</li>
-<li><strong>Geometry：</strong> 对应数值为 2000, 用于不透明的物体。这个是默认的选项（如果不指明 Queue 标签的值，自动给你指定为 Geometry）。</li>
-<li><strong>AlphaTest：</strong> 对应的数值为 2450, 用于需要使用 AlphaTest 的对象来提高性能。AlphaTest 类似于裁剪 (clip) 功能。</li>
-<li><strong>Transparent：</strong> 对应的数值为 3000， 用于需要使用 alpha blending 的对象，比如粒子，玻璃等。</li>
-<li><strong>Overlay：</strong> 对应的数值为 4000，用于最后被渲染的对象，比如 UI。</li>
+<li>如果是 <strong>surface shader</strong>, 它在 Subshader 语句块里面，不是在 Pass 语句块里面</li>
+<li>如果是 <strong>vertex&amp;&amp;framgment shader</strong>，它是 Pass 语句块里面</li>
 </ul>
-<p>渲染顺序的示意图如下：</p>
-<p><img alt="queue" src="images/Shader/7/queue.png" width="73%" /></p>
-<p>前面提到虽然 Queue 内部是整型数值，但是写 shader 的时候不能给它指定整型数值，那要是前置给它指定为整型数值会怎么样？</p>
-<p>答案是：会被忽略，使用默认的值，也就是 Geometry。同样的，随便填写的值也是会被忽略并使用默认值代替。 比如 <code>asd1123</code>。</p>
-<p>还有 Shaderlab 还对上面五类做了延伸，让他们 <strong>支持加减法</strong>。比如想让对象在 Background 之后 Geometry 之前渲染，我们可以这么写:</p>
-<blockquote>
-<p>Tags { "Queue" = "Geometry-1"}</p>
-</blockquote>
-<p>这里有几点比较重要：</p>
+<p>其实 surface shader 最终会编译成 vertex&amp;&amp;framgment shader, 最终结果是一样的的。surface shader 会被编译成含多个 Pass 的 vertex&amp;&amp;fragment shader, 而这些都用相同的编译指令。我们可以从 Inspector 的 shader
+属性信息里面去打开被编译为 vertex&amp;&amp;fragment shader 后的代码。</p>
+<p><img alt="surface shader" src="images/Shader/8/surfaceshader.png" width="61%" /></p>
+<p>如果本身不是 surface shader 的话，上面那个 show generated code 按钮是不会出现的。上面提到 #pragma 是在 <code>CGPROGRAM ... ENDCG</code> 语句块里面的，所以它出现的位置也符合上面提到的特征。</p>
+<h3>Surface Shader 的编译指令</h3>
+<p>这类 shader 必须指明</p>
 <ul>
-<li><code>Geometry-1</code> 中间不能有空格</li>
-<li>这个语法是整型数值的加减法。 <code>Geometry-1</code> 和 <code>Background+999</code> 得到的结果是一样的，因为 2000 - 1 = 1000 + 999。</li>
+<li>surfaceFuction 是什么</li>
+<li>关照模型是什么</li>
 </ul>
-<p>我们在 Unity3D 编辑器里面选中 shader 文件，然后从 Inspector 里查看 Shader 的 Render queue 属性值，如下图：</p>
-<p><img alt="render queue" src="images/Shader/7/geometry_1.png" width="60%" /></p>
-<p>最后基于上一节 <a href="http://blog.shuiguzi.com/xia-liao-unity3d-shader-xi-lie-zhi-liu-chu-shi-shaderlab.html">初识 Shaderlab</a> 中的精简骨架，我们来写一个伪代码，看看插入 Queue 标签后的样子。  </p>
+<p>语法是</p>
+<blockquote>
+<p>#pragma surface surfaceFunction lightModel [optionalparams]</p>
+</blockquote>
+<p>从上面语法能知道，它有一些可以选的参数。具体参考 <a href="http://docs.unity3d.com/Manual/SL-SurfaceShaders.html">这个页面</a></p>
+<p>伪代码大概是这样：</p>
 <div class="highlight"><pre><span class="n">Shader</span> <span class="s">&quot;shader 的名字&quot;</span> <span class="p">{</span>
 
-  <span class="n">SubShader</span> <span class="p">{</span>
-    <span class="n">Tags</span> <span class="p">{</span> <span class="s">&quot;Queue&quot;</span> <span class="o">=</span> <span class="s">&quot;Transparent&quot;</span> <span class="p">}</span>
+    <span class="n">Subshader</span> <span class="p">{</span>
+       <span class="c1">// CGPROGRAM ... ENDCG 在 Subshader 里面</span>
+       <span class="n">CGPROGRAM</span>
 
-    <span class="n">Pass</span> <span class="p">{</span>
+       <span class="c1">// surfaceFunction 是 surf,</span>
+       <span class="c1">// 光照模型是 Standard</span>
+       <span class="c1">// [...] 表示可选参数</span>
+       <span class="cp">#pragma surface surf Standard [...]</span>
 
+
+      <span class="c1">// surfaceFunction</span>
+      <span class="kt">void</span> <span class="n">surf</span> <span class="p">()</span> <span class="p">{</span>
+
+       <span class="p">}</span>
+
+       <span class="n">ENCG</span>
     <span class="p">}</span>
-  <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
 
 
+<h3>Vertex&amp;&amp;Fragment Shader 的编译指令</h3>
+<p>这里的指令集分三类:</p>
+<ul>
+<li>CG/HLSL 程序相关</li>
+<li>面向的 <a href="http://blog.shuiguzi.com/xia-liao-unity3d-shader-xi-lie-zhi-yi-gpu-yu-shader-model.html">Shader Model</a></li>
+<li>渲染的平台</li>
+</ul>
+<p>具体参考 <a href="http://docs.unity3d.com/Manual/SL-ShaderPrograms.html">这个页面</a></p>
+<p>伪代码大概是这样：</p>
+<div class="highlight"><pre><span class="n">Shader</span> <span class="s">&quot;shader 的名字&quot;</span> <span class="p">{</span>
+
+    <span class="n">Subshader</span> <span class="p">{</span>
+
+        <span class="n">pass</span> <span class="p">{</span>
+            <span class="c1">// CGPROGRAM ... ENDCG 在 Pass 里面</span>
+            <span class="n">CGPROGRAM</span>
+
+            <span class="c1">// vertex shader 的函数是 vert</span>
+            <span class="cp">#pragma vertex vert</span>
+
+            <span class="c1">// fragment shader 的函数是 fragment</span>
+            <span class="cp">#pragma fragment frag</span>
+
+            <span class="n">vert</span><span class="p">()</span> <span class="p">{</span>
+
+            <span class="p">}</span>
+
+            <span class="n">frag</span> <span class="p">()</span> <span class="p">{</span>
+
+            <span class="p">}</span>
+
+            <span class="n">ENDCG</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>代码中的 vertex shader 和 fragment shader 在渲染管道中的位置请参考这系列文章第二节 <a href="http://blog.shuiguzi.com/xia-liao-unity3d-shader-xi-lie-zhi-er-xuan-ran-guan-xian.html">渲染管道</a>。</p>
 <h3>系列文章目录</h3>
 <ul>
 <li><a href="http://blog.shuiguzi.com/xia-liao-unity3d-shader-xi-lie-zhi-yi-gpu-yu-shader-model.html">瞎聊 Unity3D Shader 系列之一：GPU 与 Shader Model</a></li>
@@ -169,7 +201,7 @@
     </article>
 
 ﻿<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="xia-liao-unity3d-shader-xi-lie-zhi-qi-jiu-jing-shui-xian-bei-xuan-ran.html" data-title="瞎聊 Unity3D Shader 系列之七：究竟谁先被渲染？" data-url="http://blog.shuiguzi.com/xia-liao-unity3d-shader-xi-lie-zhi-qi-jiu-jing-shui-xian-bei-xuan-ran.html"></div>
+	<div class="ds-thread" data-thread-key="xia-liao-unity3d-shader-xi-lie-zhi-ba-pragma-zhi-ling.html" data-title="瞎聊 Unity3D Shader 系列之八：#pragma 指令" data-url="http://blog.shuiguzi.com/xia-liao-unity3d-shader-xi-lie-zhi-ba-pragma-zhi-ling.html"></div>
 <!-- 多说评论框 end -->
 <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 <script type="text/javascript">

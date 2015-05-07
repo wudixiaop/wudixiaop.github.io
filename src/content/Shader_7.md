@@ -1,6 +1,6 @@
 Title: 瞎聊 Unity3D Shader 系列之七：究竟谁先被渲染？
 Date: 2015-05-06 16:05
-Modified: 2015-05-06 16:05
+Modified: 2015-05-07 16:13
 Category: Shader
 Tags: Shader
 Status: published
@@ -33,17 +33,17 @@ Queue 标签是上面提到的可选键值对项中的一个，也就是决定�
 
 - **Background：** 对应数值为 1000，用于需要被最先渲染的对象，如背景什么的。
 - **Geometry：** 对应数值为 2000, 用于不透明的物体。这个是默认的选项（如果不指明 Queue 标签的值，自动给你指定为 Geometry）。
-- **AlphaTest：** 对应的数值为 2450, 用于需要使用 AlphaTest 的对象来提高性能。AlphaTest 类似于裁剪(clip) 功能。
+- **AlphaTest：** 对应的数值为 2450, 用于需要使用 AlphaTest 的对象来提高性能。AlphaTest 类似于裁剪 (clip) 功能。
 - **Transparent：** 对应的数值为 3000， 用于需要使用 alpha blending 的对象，比如粒子，玻璃等。
-- **Overlay：** 对应的数值为 4000，用于最后被渲染的对象，比如　UI。
+- **Overlay：** 对应的数值为 4000，用于最后被渲染的对象，比如 UI。
 
 渲染顺序的示意图如下：
 
 ![queue](images/Shader/7/queue.png){: width="73%"}
 
-前面提到虽然 Queue 内部是整型数值，但是写 shader 的时候不能给它指定整型数值，那要是前置给它指定为整型数值会怎么样？？
+前面提到虽然 Queue 内部是整型数值，但是写 shader 的时候不能给它指定整型数值，那要是前置给它指定为整型数值会怎么样？
 
-答案是：会被忽略，使用默认的值，也就是 Geometry。同样的，随便填写的如 dfadfadf 等值也是会被忽略使用默认值。
+答案是：会被忽略，使用默认的值，也就是 Geometry。同样的，随便填写的值也是会被忽略并使用默认值代替。 比如 `asd1123`。
 
 还有 Shaderlab 还对上面五类做了延伸，让他们 **支持加减法**。比如想让对象在 Background 之后 Geometry 之前渲染，我们可以这么写:
 
@@ -60,7 +60,7 @@ Queue 标签是上面提到的可选键值对项中的一个，也就是决定�
 
 最后基于上一节 [初识 Shaderlab]({filename}/Shader_6.md) 中的精简骨架，我们来写一个伪代码，看看插入 Queue 标签后的样子。  
 
-    :::python
+    :::cuda
     Shader "shader 的名字" {
 
       SubShader {
@@ -82,3 +82,4 @@ Queue 标签是上面提到的可选键值对项中的一个，也就是决定�
 - [瞎聊 Unity3D Shader 系列之五：RGBA 101]({filename}/Shader_5.md)
 - [瞎聊 Unity3D Shader 系列之六：初识 Shaderlab]({filename}/Shader_6.md)
 - [瞎聊 Unity3D Shader 系列之七：究竟谁先被渲染？]({filename}/Shader_7.md)
+- [瞎聊 Unity3D Shader 系列之八：#pragma 指令]({filename}/Shader_8.md)

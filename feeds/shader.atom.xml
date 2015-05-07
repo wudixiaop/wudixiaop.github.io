@@ -1,5 +1,100 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>心亡则忙，亡心则忘</title><link href="http://blog.shuiguzi.com/" rel="alternate"></link><link href="http://blog.shuiguzi.com/feeds%5Cshader.atom.xml" rel="self"></link><id>http://blog.shuiguzi.com/</id><updated>2015-05-06T16:05:00+08:00</updated><entry><title>瞎聊 Unity3D Shader 系列之七：究竟谁先被渲染？</title><link href="http://blog.shuiguzi.com/xia-liao-unity3d-shader-xi-lie-zhi-qi-jiu-jing-shui-xian-bei-xuan-ran.html" rel="alternate"></link><updated>2015-05-06T16:05:00+08:00</updated><author><name>Rocky Lai</name></author><id>tag:blog.shuiguzi.com,2015-05-06:xia-liao-unity3d-shader-xi-lie-zhi-qi-jiu-jing-shui-xian-bei-xuan-ran.html</id><summary type="html">&lt;p&gt;这节的问题: 假设有很多对象需要渲染，而你想自己指定这些对象被渲染的顺序的话应该怎么做？&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>心亡则忙，亡心则忘</title><link href="http://blog.shuiguzi.com/" rel="alternate"></link><link href="http://blog.shuiguzi.com/feeds%5Cshader.atom.xml" rel="self"></link><id>http://blog.shuiguzi.com/</id><updated>2015-05-07T16:13:00+08:00</updated><entry><title>瞎聊 Unity3D Shader 系列之八：#pragma 指令</title><link href="http://blog.shuiguzi.com/xia-liao-unity3d-shader-xi-lie-zhi-ba-pragma-zhi-ling.html" rel="alternate"></link><updated>2015-05-07T16:13:00+08:00</updated><author><name>Rocky Lai</name></author><id>tag:blog.shuiguzi.com,2015-05-07:xia-liao-unity3d-shader-xi-lie-zhi-ba-pragma-zhi-ling.html</id><summary type="html">&lt;p&gt;第三节 &lt;a href="http://blog.shuiguzi.com/xia-liao-unity3d-shader-xi-lie-zhi-san-shader-tu-di-shang-de-yu-yan-men.html"&gt;Shader 土地上的语言们&lt;/a&gt; 里面说到过 CG 和 HLSL 等语言被 &lt;code&gt;GGPROGRAM ... ENDCG&lt;/code&gt; 语句块里面。这节的主角 #pragma 出现的位置就是在这个语句块里面，用来做编译指示的。就好比告诉
+ Shaderlab 的编译器，你应该这么干应该那么干。这里把 #pragma 叫做编译指令吧。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;CGPROGRAM ... ENDCG&lt;/code&gt; 语句块根据 Shaderlab 写作方式不同，它的位置也不同。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;如果是 &lt;strong&gt;surface shader&lt;/strong&gt;, 它在 Subshader 语句块里面，不是在 Pass 语句块里面&lt;/li&gt;
+&lt;li&gt;如果是 &lt;strong&gt;vertex&amp;amp;&amp;amp;framgment shader&lt;/strong&gt;，它是 Pass 语句块里面&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;其实 surface shader 最终会编译成 vertex&amp;amp;&amp;amp;framgment shader, 最终结果是一样的的。surface shader 会被编译成含多个 Pass 的 vertex&amp;amp;&amp;amp;fragment shader, 而这些都用相同的编译指令。我们可以从 Inspector 的 shader
+属性信息里面去打开被编译为 vertex&amp;amp;&amp;amp;fragment shader 后的代码。&lt;/p&gt;
+&lt;p&gt;&lt;img alt="surface shader" src="images/Shader/8/surfaceshader.png" width="61%" /&gt;&lt;/p&gt;
+&lt;p&gt;如果本身不是 surface shader 的话，上面那个 show generated code 按钮是不会出现的。上面提到 #pragma 是在 &lt;code&gt;CGPROGRAM ... ENDCG&lt;/code&gt; 语句块里面的，所以它出现的位置也符合上面提到的特征。&lt;/p&gt;
+&lt;h3&gt;Surface Shader 的编译指令&lt;/h3&gt;
+&lt;p&gt;这类 shader 必须指明&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;surfaceFuction 是什么&lt;/li&gt;
+&lt;li&gt;关照模型是什么&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;语法是&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;#pragma surface surfaceFunction lightModel [optionalparams]&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;从上面语法能知道，它有一些可以选的参数。具体参考 &lt;a href="http://docs.unity3d.com/Manual/SL-SurfaceShaders.html"&gt;这个页面&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;伪代码大概是这样：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;Shader&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;shader 的名字&amp;quot;&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+
+    &lt;span class="n"&gt;Subshader&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+       &lt;span class="c1"&gt;// CGPROGRAM ... ENDCG 在 Subshader 里面&lt;/span&gt;
+       &lt;span class="n"&gt;CGPROGRAM&lt;/span&gt;
+
+       &lt;span class="c1"&gt;// surfaceFunction 是 surf,&lt;/span&gt;
+       &lt;span class="c1"&gt;// 光照模型是 Standard&lt;/span&gt;
+       &lt;span class="c1"&gt;// [...] 表示可选参数&lt;/span&gt;
+       &lt;span class="cp"&gt;#pragma surface surf Standard [...]&lt;/span&gt;
+
+
+      &lt;span class="c1"&gt;// surfaceFunction&lt;/span&gt;
+      &lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="n"&gt;surf&lt;/span&gt; &lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+
+       &lt;span class="p"&gt;}&lt;/span&gt;
+
+       &lt;span class="n"&gt;ENCG&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;Vertex&amp;amp;&amp;amp;Fragment Shader 的编译指令&lt;/h3&gt;
+&lt;p&gt;这里的指令集分三类:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;CG/HLSL 程序相关&lt;/li&gt;
+&lt;li&gt;面向的 &lt;a href="http://blog.shuiguzi.com/xia-liao-unity3d-shader-xi-lie-zhi-yi-gpu-yu-shader-model.html"&gt;Shader Model&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;渲染的平台&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;具体参考 &lt;a href="http://docs.unity3d.com/Manual/SL-ShaderPrograms.html"&gt;这个页面&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;伪代码大概是这样：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;Shader&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;shader 的名字&amp;quot;&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+
+    &lt;span class="n"&gt;Subshader&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+
+        &lt;span class="n"&gt;pass&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+            &lt;span class="c1"&gt;// CGPROGRAM ... ENDCG 在 Pass 里面&lt;/span&gt;
+            &lt;span class="n"&gt;CGPROGRAM&lt;/span&gt;
+
+            &lt;span class="c1"&gt;// vertex shader 的函数是 vert&lt;/span&gt;
+            &lt;span class="cp"&gt;#pragma vertex vert&lt;/span&gt;
+
+            &lt;span class="c1"&gt;// fragment shader 的函数是 fragment&lt;/span&gt;
+            &lt;span class="cp"&gt;#pragma fragment frag&lt;/span&gt;
+
+            &lt;span class="n"&gt;vert&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+
+            &lt;span class="p"&gt;}&lt;/span&gt;
+
+            &lt;span class="n"&gt;frag&lt;/span&gt; &lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+
+            &lt;span class="p"&gt;}&lt;/span&gt;
+
+            &lt;span class="n"&gt;ENDCG&lt;/span&gt;
+        &lt;span class="p"&gt;}&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;代码中的 vertex shader 和 fragment shader 在渲染管道中的位置请参考这系列文章第二节 &lt;a href="http://blog.shuiguzi.com/xia-liao-unity3d-shader-xi-lie-zhi-er-xuan-ran-guan-xian.html"&gt;渲染管道&lt;/a&gt;。&lt;/p&gt;
+&lt;h3&gt;系列文章目录&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://blog.shuiguzi.com/xia-liao-unity3d-shader-xi-lie-zhi-yi-gpu-yu-shader-model.html"&gt;瞎聊 Unity3D Shader 系列之一：GPU 与 Shader Model&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://blog.shuiguzi.com/xia-liao-unity3d-shader-xi-lie-zhi-er-xuan-ran-guan-xian.html"&gt;瞎聊 Unity3D Shader 系列之二：渲染管线&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://blog.shuiguzi.com/xia-liao-unity3d-shader-xi-lie-zhi-san-shader-tu-di-shang-de-yu-yan-men.html"&gt;瞎聊 Unity3D Shader 系列之三：Shader 土地上的语言们&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://blog.shuiguzi.com/xia-liao-unity3d-shader-xi-lie-zhi-si-zuo-biao-xi.html"&gt;瞎聊 Unity3D Shader 系列之四：坐标系&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://blog.shuiguzi.com/xia-liao-unity3d-shader-xi-lie-zhi-wu-rgba-101.html"&gt;瞎聊 Unity3D Shader 系列之五：RGBA 101&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://blog.shuiguzi.com/xia-liao-unity3d-shader-xi-lie-zhi-liu-chu-shi-shaderlab.html"&gt;瞎聊 Unity3D Shader 系列之六：初识 Shaderlab&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://blog.shuiguzi.com/xia-liao-unity3d-shader-xi-lie-zhi-qi-jiu-jing-shui-xian-bei-xuan-ran.html"&gt;瞎聊 Unity3D Shader 系列之七：究竟谁先被渲染？&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://blog.shuiguzi.com/xia-liao-unity3d-shader-xi-lie-zhi-ba-pragma-zhi-ling.html"&gt;瞎聊 Unity3D Shader 系列之八：#pragma 指令&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</summary><category term="Shader"></category></entry><entry><title>瞎聊 Unity3D Shader 系列之七：究竟谁先被渲染？</title><link href="http://blog.shuiguzi.com/xia-liao-unity3d-shader-xi-lie-zhi-qi-jiu-jing-shui-xian-bei-xuan-ran.html" rel="alternate"></link><updated>2015-05-07T16:13:00+08:00</updated><author><name>Rocky Lai</name></author><id>tag:blog.shuiguzi.com,2015-05-06:xia-liao-unity3d-shader-xi-lie-zhi-qi-jiu-jing-shui-xian-bei-xuan-ran.html</id><summary type="html">&lt;p&gt;这节的问题: 假设有很多对象需要渲染，而你想自己指定这些对象被渲染的顺序的话应该怎么做？&lt;/p&gt;
 &lt;p&gt;先上答案：使用 Subshader 的 Queue 标签指定。&lt;/p&gt;
 &lt;p&gt;那 Queue 标签又是是那么？？ 我们继续往下看，先介绍 Subshader 的标签&lt;/p&gt;
 &lt;h3&gt;Subshader 的标签&lt;/h3&gt;
@@ -19,14 +114,14 @@
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;Background：&lt;/strong&gt; 对应数值为 1000，用于需要被最先渲染的对象，如背景什么的。&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;Geometry：&lt;/strong&gt; 对应数值为 2000, 用于不透明的物体。这个是默认的选项（如果不指明 Queue 标签的值，自动给你指定为 Geometry）。&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;AlphaTest：&lt;/strong&gt; 对应的数值为 2450, 用于需要使用 AlphaTest 的对象来提高性能。AlphaTest 类似于裁剪(clip) 功能。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;AlphaTest：&lt;/strong&gt; 对应的数值为 2450, 用于需要使用 AlphaTest 的对象来提高性能。AlphaTest 类似于裁剪 (clip) 功能。&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;Transparent：&lt;/strong&gt; 对应的数值为 3000， 用于需要使用 alpha blending 的对象，比如粒子，玻璃等。&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Overlay：&lt;/strong&gt; 对应的数值为 4000，用于最后被渲染的对象，比如　UI。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Overlay：&lt;/strong&gt; 对应的数值为 4000，用于最后被渲染的对象，比如 UI。&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;渲染顺序的示意图如下：&lt;/p&gt;
 &lt;p&gt;&lt;img alt="queue" src="images/Shader/7/queue.png" width="73%" /&gt;&lt;/p&gt;
-&lt;p&gt;前面提到虽然 Queue 内部是整型数值，但是写 shader 的时候不能给它指定整型数值，那要是前置给它指定为整型数值会怎么样？？&lt;/p&gt;
-&lt;p&gt;答案是：会被忽略，使用默认的值，也就是 Geometry。同样的，随便填写的如 dfadfadf 等值也是会被忽略使用默认值。&lt;/p&gt;
+&lt;p&gt;前面提到虽然 Queue 内部是整型数值，但是写 shader 的时候不能给它指定整型数值，那要是前置给它指定为整型数值会怎么样？&lt;/p&gt;
+&lt;p&gt;答案是：会被忽略，使用默认的值，也就是 Geometry。同样的，随便填写的值也是会被忽略并使用默认值代替。 比如 &lt;code&gt;asd1123&lt;/code&gt;。&lt;/p&gt;
 &lt;p&gt;还有 Shaderlab 还对上面五类做了延伸，让他们 &lt;strong&gt;支持加减法&lt;/strong&gt;。比如想让对象在 Background 之后 Geometry 之前渲染，我们可以这么写:&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;Tags { "Queue" = "Geometry-1"}&lt;/p&gt;
@@ -61,6 +156,7 @@
 &lt;li&gt;&lt;a href="http://blog.shuiguzi.com/xia-liao-unity3d-shader-xi-lie-zhi-wu-rgba-101.html"&gt;瞎聊 Unity3D Shader 系列之五：RGBA 101&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://blog.shuiguzi.com/xia-liao-unity3d-shader-xi-lie-zhi-liu-chu-shi-shaderlab.html"&gt;瞎聊 Unity3D Shader 系列之六：初识 Shaderlab&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://blog.shuiguzi.com/xia-liao-unity3d-shader-xi-lie-zhi-qi-jiu-jing-shui-xian-bei-xuan-ran.html"&gt;瞎聊 Unity3D Shader 系列之七：究竟谁先被渲染？&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://blog.shuiguzi.com/xia-liao-unity3d-shader-xi-lie-zhi-ba-pragma-zhi-ling.html"&gt;瞎聊 Unity3D Shader 系列之八：#pragma 指令&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;</summary><category term="Shader"></category></entry><entry><title>瞎聊 Unity3D Shader 系列之六：初识 Shaderlab</title><link href="http://blog.shuiguzi.com/xia-liao-unity3d-shader-xi-lie-zhi-liu-chu-shi-shaderlab.html" rel="alternate"></link><updated>2015-05-05T17:55:00+08:00</updated><author><name>Rocky Lai</name></author><id>tag:blog.shuiguzi.com,2015-05-05:xia-liao-unity3d-shader-xi-lie-zhi-liu-chu-shi-shaderlab.html</id><summary type="html">&lt;p&gt;好吧，其实这不算初识 Shaderlab 了，因为在 &lt;a href="http://blog.shuiguzi.com/xia-liao-unity3d-shader-xi-lie-zhi-san-shader-tu-di-shang-de-yu-yan-men.html"&gt;shaderlab 土地上的语言们&lt;/a&gt; 这节中已经说到在 shaderlab 中有三种方式来写 shader。
 这节的内容主要是来认识下 shaderlab 语法写出来的 shader 长得什么样子。&lt;/p&gt;
 &lt;p&gt;下面有段基于 shaderlab 的 shader 的大概框架的伪代码，在之前要解释下代码中带中括号的部分，如 &lt;code&gt;[Properties]&lt;/code&gt;, 表示是可以选择的，也就是说可以不写。&lt;/p&gt;
@@ -127,6 +223,7 @@
 &lt;li&gt;&lt;a href="http://blog.shuiguzi.com/xia-liao-unity3d-shader-xi-lie-zhi-wu-rgba-101.html"&gt;瞎聊 Unity3D Shader 系列之五：RGBA 101&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://blog.shuiguzi.com/xia-liao-unity3d-shader-xi-lie-zhi-liu-chu-shi-shaderlab.html"&gt;瞎聊 Unity3D Shader 系列之六：初识 Shaderlab&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://blog.shuiguzi.com/xia-liao-unity3d-shader-xi-lie-zhi-qi-jiu-jing-shui-xian-bei-xuan-ran.html"&gt;瞎聊 Unity3D Shader 系列之七：究竟谁先被渲染？&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://blog.shuiguzi.com/xia-liao-unity3d-shader-xi-lie-zhi-ba-pragma-zhi-ling.html"&gt;瞎聊 Unity3D Shader 系列之八：#pragma 指令&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;</summary><category term="Shader"></category></entry><entry><title>瞎聊 Unity3D Shader 系列之五：RGBA 101</title><link href="http://blog.shuiguzi.com/xia-liao-unity3d-shader-xi-lie-zhi-wu-rgba-101.html" rel="alternate"></link><updated>2015-05-04T13:55:00+08:00</updated><author><name>Rocky Lai</name></author><id>tag:blog.shuiguzi.com,2015-05-04:xia-liao-unity3d-shader-xi-lie-zhi-wu-rgba-101.html</id><summary type="html">&lt;p&gt;这节说说 fragment shader 最后输出的像素的颜色表示方法 RGBA。&lt;/p&gt;
 &lt;p&gt;玩过 Photoshop 的同学可能知道，存在好几种颜色模式来表示颜色，&lt;a href="http://baike.baidu.com/view/1139658.htm"&gt;比如 RGB 和 CMYK&lt;/a&gt;. 由于显示器的发光物体，所以使用的 RGB 模式。
 Unity3D 中也采用这种表示方法。&lt;/p&gt;
@@ -158,6 +255,7 @@ Unity3D 中也采用这种表示方法。&lt;/p&gt;
 &lt;li&gt;&lt;a href="http://blog.shuiguzi.com/xia-liao-unity3d-shader-xi-lie-zhi-wu-rgba-101.html"&gt;瞎聊 Unity3D Shader 系列之五：RGBA 101&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://blog.shuiguzi.com/xia-liao-unity3d-shader-xi-lie-zhi-liu-chu-shi-shaderlab.html"&gt;瞎聊 Unity3D Shader 系列之六：初识 Shaderlab&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://blog.shuiguzi.com/xia-liao-unity3d-shader-xi-lie-zhi-qi-jiu-jing-shui-xian-bei-xuan-ran.html"&gt;瞎聊 Unity3D Shader 系列之七：究竟谁先被渲染？&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://blog.shuiguzi.com/xia-liao-unity3d-shader-xi-lie-zhi-ba-pragma-zhi-ling.html"&gt;瞎聊 Unity3D Shader 系列之八：#pragma 指令&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;</summary><category term="Shader"></category></entry><entry><title>瞎聊 Unity3D Shader 系列之四：坐标系</title><link href="http://blog.shuiguzi.com/xia-liao-unity3d-shader-xi-lie-zhi-si-zuo-biao-xi.html" rel="alternate"></link><updated>2015-04-30T13:55:00+08:00</updated><author><name>Rocky Lai</name></author><id>tag:blog.shuiguzi.com,2015-04-30:xia-liao-unity3d-shader-xi-lie-zhi-si-zuo-biao-xi.html</id><summary type="html">&lt;p&gt;这节从很平常一段对话开始：&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;&lt;strong&gt;甲跟乙说：&lt;/strong&gt; 喂，你看到那个人没有？&lt;br /&gt;
@@ -207,6 +305,7 @@ vertex shader 里面做了下面这些事：&lt;/p&gt;
 &lt;li&gt;&lt;a href="http://blog.shuiguzi.com/xia-liao-unity3d-shader-xi-lie-zhi-wu-rgba-101.html"&gt;瞎聊 Unity3D Shader 系列之五：RGBA 101&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://blog.shuiguzi.com/xia-liao-unity3d-shader-xi-lie-zhi-liu-chu-shi-shaderlab.html"&gt;瞎聊 Unity3D Shader 系列之六：初识 Shaderlab&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://blog.shuiguzi.com/xia-liao-unity3d-shader-xi-lie-zhi-qi-jiu-jing-shui-xian-bei-xuan-ran.html"&gt;瞎聊 Unity3D Shader 系列之七：究竟谁先被渲染？&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://blog.shuiguzi.com/xia-liao-unity3d-shader-xi-lie-zhi-ba-pragma-zhi-ling.html"&gt;瞎聊 Unity3D Shader 系列之八：#pragma 指令&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;</summary><category term="Shader"></category></entry><entry><title>瞎聊 Unity3D Shader 系列之三：Shader 土地上的语言们</title><link href="http://blog.shuiguzi.com/xia-liao-unity3d-shader-xi-lie-zhi-san-shader-tu-di-shang-de-yu-yan-men.html" rel="alternate"></link><updated>2015-05-04T14:33:00+08:00</updated><author><name>Rocky Lai</name></author><id>tag:blog.shuiguzi.com,2015-04-29:xia-liao-unity3d-shader-xi-lie-zhi-san-shader-tu-di-shang-de-yu-yan-men.html</id><summary type="html">&lt;p&gt;这节是关于 Unity3D 平台上 shader 语言的选择。&lt;/p&gt;
 &lt;p&gt;计算机行业的各公司（或者组织）似乎都遵循着某种规则。当他们在某个领域划出了一亩三分地，当上了地主后, 就要用方法圈住干活的农民。让他们觉得在我这里不会饿死，有饭吃，你要到别家
 干活的话，需要重头再来，这是一个很亏本的买卖。这个方法就是制定自己体系（软硬件中的各种协议，接口，语言，框架），脱离这套体系，在别的地方玩不起来。开个玩笑来取名这个规矩叫做&lt;strong&gt;圈地规则&lt;/strong&gt;吧。&lt;/p&gt;
@@ -266,6 +365,7 @@ as well as rendering passes to handle forward and deferred rendering.&lt;/p&gt;
 &lt;li&gt;&lt;a href="http://blog.shuiguzi.com/xia-liao-unity3d-shader-xi-lie-zhi-wu-rgba-101.html"&gt;瞎聊 Unity3D Shader 系列之五：RGBA 101&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://blog.shuiguzi.com/xia-liao-unity3d-shader-xi-lie-zhi-liu-chu-shi-shaderlab.html"&gt;瞎聊 Unity3D Shader 系列之六：初识 Shaderlab&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://blog.shuiguzi.com/xia-liao-unity3d-shader-xi-lie-zhi-qi-jiu-jing-shui-xian-bei-xuan-ran.html"&gt;瞎聊 Unity3D Shader 系列之七：究竟谁先被渲染？&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://blog.shuiguzi.com/xia-liao-unity3d-shader-xi-lie-zhi-ba-pragma-zhi-ling.html"&gt;瞎聊 Unity3D Shader 系列之八：#pragma 指令&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;</summary><category term="Shader"></category></entry><entry><title>瞎聊 Unity3D Shader 系列之二：渲染管线</title><link href="http://blog.shuiguzi.com/xia-liao-unity3d-shader-xi-lie-zhi-er-xuan-ran-guan-xian.html" rel="alternate"></link><updated>2015-04-28T14:07:00+08:00</updated><author><name>Rocky Lai</name></author><id>tag:blog.shuiguzi.com,2015-04-28:xia-liao-unity3d-shader-xi-lie-zhi-er-xuan-ran-guan-xian.html</id><summary type="html">&lt;p&gt;这节描述的是图形渲染的大致过程。&lt;/p&gt;
 &lt;p&gt;为了更好理解和记忆这节内容，先来学下面几个词。&lt;/p&gt;
 &lt;ul&gt;
@@ -301,6 +401,7 @@ as well as rendering passes to handle forward and deferred rendering.&lt;/p&gt;
 &lt;li&gt;&lt;a href="http://blog.shuiguzi.com/xia-liao-unity3d-shader-xi-lie-zhi-wu-rgba-101.html"&gt;瞎聊 Unity3D Shader 系列之五：RGBA 101&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://blog.shuiguzi.com/xia-liao-unity3d-shader-xi-lie-zhi-liu-chu-shi-shaderlab.html"&gt;瞎聊 Unity3D Shader 系列之六：初识 Shaderlab&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://blog.shuiguzi.com/xia-liao-unity3d-shader-xi-lie-zhi-qi-jiu-jing-shui-xian-bei-xuan-ran.html"&gt;瞎聊 Unity3D Shader 系列之七：究竟谁先被渲染？&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://blog.shuiguzi.com/xia-liao-unity3d-shader-xi-lie-zhi-ba-pragma-zhi-ling.html"&gt;瞎聊 Unity3D Shader 系列之八：#pragma 指令&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;</summary><category term="Shader"></category></entry><entry><title>瞎聊 Unity3D Shader 系列之一：GPU 与 Shader Model</title><link href="http://blog.shuiguzi.com/xia-liao-unity3d-shader-xi-lie-zhi-yi-gpu-yu-shader-model.html" rel="alternate"></link><updated>2015-04-27T15:54:00+08:00</updated><author><name>Rocky Lai</name></author><id>tag:blog.shuiguzi.com,2015-04-26:xia-liao-unity3d-shader-xi-lie-zhi-yi-gpu-yu-shader-model.html</id><summary type="html">&lt;p&gt;我想首先唠叨下我为什么打算写这一系列的文章及文章的定位。&lt;/p&gt;
 &lt;p&gt;我写的动力主要来源于如下原因：&lt;/p&gt;
 &lt;ul&gt;
@@ -354,6 +455,7 @@ as well as rendering passes to handle forward and deferred rendering.&lt;/p&gt;
 &lt;li&gt;&lt;a href="http://blog.shuiguzi.com/xia-liao-unity3d-shader-xi-lie-zhi-wu-rgba-101.html"&gt;瞎聊 Unity3D Shader 系列之五：RGBA 101&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://blog.shuiguzi.com/xia-liao-unity3d-shader-xi-lie-zhi-liu-chu-shi-shaderlab.html"&gt;瞎聊 Unity3D Shader 系列之六：初识 Shaderlab&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://blog.shuiguzi.com/xia-liao-unity3d-shader-xi-lie-zhi-qi-jiu-jing-shui-xian-bei-xuan-ran.html"&gt;瞎聊 Unity3D Shader 系列之七：究竟谁先被渲染？&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://blog.shuiguzi.com/xia-liao-unity3d-shader-xi-lie-zhi-ba-pragma-zhi-ling.html"&gt;瞎聊 Unity3D Shader 系列之八：#pragma 指令&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;</summary><category term="Shader"></category></entry><entry><title>ShaderlabVS Release Page</title><link href="http://blog.shuiguzi.com/shaderlabvs-release-page.html" rel="alternate"></link><updated>2014-10-28T21:20:00+08:00</updated><author><name>Rocky Lai</name></author><id>tag:blog.shuiguzi.com,2014-10-28:shaderlabvs-release-page.html</id><summary type="html">&lt;h2&gt;&lt;em&gt;Latest Version - V0.5&lt;/em&gt;&lt;/h2&gt;
 &lt;p&gt;&lt;strong&gt;[2014-10-28] V0.5 release note:&lt;/strong&gt;&lt;/p&gt;
 &lt;ul&gt;

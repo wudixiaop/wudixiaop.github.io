@@ -44,3 +44,4 @@ A 叫做 alpha，其数值表示不透明度。 据说提出者用 alpha 来命�
 - [瞎聊 Unity3D Shader 系列之五：RGBA 101]({filename}/Shader_5.md)
 - [瞎聊 Unity3D Shader 系列之六：初识 Shaderlab]({filename}/Shader_6.md)
 - [瞎聊 Unity3D Shader 系列之七：究竟谁先被渲染？]({filename}/Shader_7.md)
+- [瞎聊 Unity3D Shader 系列之八：#pragma 指令]({filename}/Shader_8.md)
