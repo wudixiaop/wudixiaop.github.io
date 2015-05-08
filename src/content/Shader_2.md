@@ -48,3 +48,4 @@ Status: published
 - [瞎聊 Unity3D Shader 系列之六：初识 Shaderlab]({filename}/Shader_6.md)
 - [瞎聊 Unity3D Shader 系列之七：究竟谁先被渲染？]({filename}/Shader_7.md)
 - [瞎聊 Unity3D Shader 系列之八：#pragma 指令]({filename}/Shader_8.md)
+- [瞎聊 Unity3D Shader 系列之九：用来包装变量的 Properties]({filename}/Shader_9.md)
