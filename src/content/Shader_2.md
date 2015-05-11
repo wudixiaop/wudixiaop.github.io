@@ -1,4 +1,4 @@
-Title: 瞎聊 Unity3D Shader 系列之二：渲染管线
+Title: 瞎聊 Unity Shader 系列之二：渲染管线
 Date: 2015-04-28 11:07
 Modified: 2015-04-28 14:07
 Category: Shader
@@ -25,7 +25,7 @@ Status: published
 
 上面是可编程的渲染管线模型的示意。下面多说几点：
 
- - 输入阶段。Unity3D 使用 Mesh Renderer 等组件读取模型顶点数据，然后调用图形 API，将数据传递给 GPU。
+ - 输入阶段。Unity 使用 Mesh Renderer 等组件读取模型顶点数据，然后调用图形 API，将数据传递给 GPU。
  - 现实中同时会进行多条渲染管线，他们是**并行的**。 这点概念比较重要，以后还会提到它。我们记住 GPU 并行能力很强。
  - 最后输出的 FrameBuffer (可以理解为渲染出来的图片) 有几率被抛弃掉，也就是说不显示在显示设备上。这个以后单独说明原因。好比残酷的现实世界，努力了（整个渲染过程）也不一定会成功（被显示出来）。
 
@@ -40,12 +40,12 @@ Status: published
 
 
 ###系列文章目录
-- [瞎聊 Unity3D Shader 系列之一：GPU 与 Shader Model]({filename}/Shader_1.md)
-- [瞎聊 Unity3D Shader 系列之二：渲染管线]({filename}/Shader_2.md)
-- [瞎聊 Unity3D Shader 系列之三：Shader 土地上的语言们]({filename}/Shader_3.md)
-- [瞎聊 Unity3D Shader 系列之四：坐标系]({filename}/Shader_4.md)
-- [瞎聊 Unity3D Shader 系列之五：RGBA 101]({filename}/Shader_5.md)
-- [瞎聊 Unity3D Shader 系列之六：初识 Shaderlab]({filename}/Shader_6.md)
-- [瞎聊 Unity3D Shader 系列之七：究竟谁先被渲染？]({filename}/Shader_7.md)
-- [瞎聊 Unity3D Shader 系列之八：#pragma 指令]({filename}/Shader_8.md)
-- [瞎聊 Unity3D Shader 系列之九：用来包装变量的 Properties]({filename}/Shader_9.md)
+- [瞎聊 Unity Shader 系列之一：GPU 与 Shader Model]({filename}/Shader_1.md)
+- [瞎聊 Unity Shader 系列之二：渲染管线]({filename}/Shader_2.md)
+- [瞎聊 Unity Shader 系列之三：Shader 土地上的语言们]({filename}/Shader_3.md)
+- [瞎聊 Unity Shader 系列之四：坐标系]({filename}/Shader_4.md)
+- [瞎聊 Unity Shader 系列之五：RGBA 101]({filename}/Shader_5.md)
+- [瞎聊 Unity Shader 系列之六：初识 Shaderlab]({filename}/Shader_6.md)
+- [瞎聊 Unity Shader 系列之七：究竟谁先被渲染？]({filename}/Shader_7.md)
+- [瞎聊 Unity Shader 系列之八：#pragma 指令]({filename}/Shader_8.md)
+- [瞎聊 Unity Shader 系列之九：用来包装变量的 Properties]({filename}/Shader_9.md)

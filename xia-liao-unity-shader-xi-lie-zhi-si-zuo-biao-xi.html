@@ -83,7 +83,7 @@
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                     <div class="post-heading">
-                        <h1>瞎聊 Unity3D Shader 系列之四：坐标系</h1>
+                        <h1>瞎聊 Unity Shader 系列之四：坐标系</h1>
                         <span class="meta">
                             2015-04-30 13:55
                              by
@@ -120,12 +120,12 @@
 <p>下面是我们平时会碰到的一些坐标系。按规定，原点的各个轴是数值都是 0 来表示。</p>
 <ul>
 <li><strong>物体坐标系 (Object Space)：</strong> 有时也叫做 Local Space。是 3D 模型内部的坐标系，原点 <code>(0, 0, 0)</code> 一般是模型中心。</li>
-<li><strong>世界坐标系 (World Space)：</strong> Unity3D 系统中的绝对坐标系，原点是在场景的 <code>(0，0，0)</code> 位置处。</li>
+<li><strong>世界坐标系 (World Space)：</strong> Unity 系统中的绝对坐标系，原点是在场景的 <code>(0，0，0)</code> 位置处。</li>
 <li><strong>视口坐标系 (Viewport Space)：</strong> 以摄像机为原点，朝向为 Z 轴的坐标系。原点 <code>(0, 0, 0)</code> 是摄像机的位置。</li>
 <li><strong>屏幕坐标系 (Screen Space)：</strong> 原点 <code>(0, 0)</code> 在屏幕的左下角，右上角为 <code>(Screen.width，Screen.height)</code>。</li>
 </ul>
 <p>那问题来了。这些坐标系们有什么关系？</p>
-<p>我们以立方体为例。我们从<a href="http://blog.shuiguzi.com/xia-liao-unity3d-shader-xi-lie-zhi-er-xuan-ran-guan-xian.html">渲染管线</a>小节中知道，Mesh Renderer 组件得到模型数据之后它会执行 vertex shader（Unity3d 默认的 Shader 给我提供了）。
+<p>我们以立方体为例。我们从<a href="http://blog.shuiguzi.com/xia-liao-unity-shader-xi-lie-zhi-er-xuan-ran-guan-xian.html">渲染管线</a>小节中知道，Mesh Renderer 组件得到模型数据之后它会执行 vertex shader（Unity 默认的 Shader 给我提供了）。
 vertex shader 里面做了下面这些事：</p>
 <ol>
 <li>先把立方体从模型的物体坐标系转换成世界坐标系，<strong>从 物体 到 世界</strong>。这样子，它和摄像机（世界坐标）的位置就用同一个坐标系描述了。</li>
@@ -134,7 +134,7 @@ vertex shader 里面做了下面这些事：</p>
 </ol>
 <p>总结上面一系列变换关系就是： <strong>物体 到 世界 再到 视口 再到 屏幕</strong>。中间经过了三次变换 (transform)。这些变换在数学上通过 <strong>矩阵</strong> 来描述的。这里有个知识点：
 矩阵可以表示变换。在这里推荐关于 3D 数学的一本经典好书 <a href="http://pan.baidu.com/s/1eQ8eSYQ">《3D数学基础图形与游戏开发》</a>。</p>
-<p>到现在是不是有种跃跃欲试，但是想想又头大的感觉，在 Unity3D 里面这些矩阵具体的数值是什么？要是自己去运算那多复杂啊。别急，Unity3D 给我们已经提供了这些矩阵当作 Shader
+<p>到现在是不是有种跃跃欲试，但是想想又头大的感觉，在 Unity 里面这些矩阵具体的数值是什么？要是自己去运算那多复杂啊。别急，Unity 给我们已经提供了这些矩阵当作 Shader
 的内置变量（<a href="http://docs.unity3d.com/Manual/SL-UnityShaderVariables.html">详情参考这个链接</a>），可以在编程的时候直接使用。在这里只是说一下，我们利用 <code>UNITY_MATRIX_MVP</code>
  这个矩阵就可以达到变换到屏幕坐标系的目的。至于怎么做，会在以后的文章中会提到。</p>
 <h3>左手和右手坐标系</h3>
@@ -144,20 +144,20 @@ vertex shader 里面做了下面这些事：</p>
 <p>一般情况下左手和右手坐标系的数值做转换的话只需把 Z 值乘以 -1 即可。比如左手坐标系的 <code>(1, 1, 1)</code> 转成为右手坐标系是  <code>(1, 1, -1)</code>。</p>
 <h3>系列文章目录</h3>
 <ul>
-<li><a href="http://blog.shuiguzi.com/xia-liao-unity3d-shader-xi-lie-zhi-yi-gpu-yu-shader-model.html">瞎聊 Unity3D Shader 系列之一：GPU 与 Shader Model</a></li>
-<li><a href="http://blog.shuiguzi.com/xia-liao-unity3d-shader-xi-lie-zhi-er-xuan-ran-guan-xian.html">瞎聊 Unity3D Shader 系列之二：渲染管线</a></li>
-<li><a href="http://blog.shuiguzi.com/xia-liao-unity3d-shader-xi-lie-zhi-san-shader-tu-di-shang-de-yu-yan-men.html">瞎聊 Unity3D Shader 系列之三：Shader 土地上的语言们</a></li>
-<li><a href="http://blog.shuiguzi.com/xia-liao-unity3d-shader-xi-lie-zhi-si-zuo-biao-xi.html">瞎聊 Unity3D Shader 系列之四：坐标系</a></li>
-<li><a href="http://blog.shuiguzi.com/xia-liao-unity3d-shader-xi-lie-zhi-wu-rgba-101.html">瞎聊 Unity3D Shader 系列之五：RGBA 101</a></li>
-<li><a href="http://blog.shuiguzi.com/xia-liao-unity3d-shader-xi-lie-zhi-liu-chu-shi-shaderlab.html">瞎聊 Unity3D Shader 系列之六：初识 Shaderlab</a></li>
-<li><a href="http://blog.shuiguzi.com/xia-liao-unity3d-shader-xi-lie-zhi-qi-jiu-jing-shui-xian-bei-xuan-ran.html">瞎聊 Unity3D Shader 系列之七：究竟谁先被渲染？</a></li>
-<li><a href="http://blog.shuiguzi.com/xia-liao-unity3d-shader-xi-lie-zhi-ba-pragma-zhi-ling.html">瞎聊 Unity3D Shader 系列之八：#pragma 指令</a></li>
-<li><a href="http://blog.shuiguzi.com/xia-liao-unity3d-shader-xi-lie-zhi-jiu-yong-lai-bao-zhuang-bian-liang-de-properties.html">瞎聊 Unity3D Shader 系列之九：用来包装变量的 Properties</a></li>
+<li><a href="http://blog.shuiguzi.com/xia-liao-unity-shader-xi-lie-zhi-yi-gpu-yu-shader-model.html">瞎聊 Unity Shader 系列之一：GPU 与 Shader Model</a></li>
+<li><a href="http://blog.shuiguzi.com/xia-liao-unity-shader-xi-lie-zhi-er-xuan-ran-guan-xian.html">瞎聊 Unity Shader 系列之二：渲染管线</a></li>
+<li><a href="http://blog.shuiguzi.com/xia-liao-unity-shader-xi-lie-zhi-san-shader-tu-di-shang-de-yu-yan-men.html">瞎聊 Unity Shader 系列之三：Shader 土地上的语言们</a></li>
+<li><a href="http://blog.shuiguzi.com/xia-liao-unity-shader-xi-lie-zhi-si-zuo-biao-xi.html">瞎聊 Unity Shader 系列之四：坐标系</a></li>
+<li><a href="http://blog.shuiguzi.com/xia-liao-unity-shader-xi-lie-zhi-wu-rgba-101.html">瞎聊 Unity Shader 系列之五：RGBA 101</a></li>
+<li><a href="http://blog.shuiguzi.com/xia-liao-unity-shader-xi-lie-zhi-liu-chu-shi-shaderlab.html">瞎聊 Unity Shader 系列之六：初识 Shaderlab</a></li>
+<li><a href="http://blog.shuiguzi.com/xia-liao-unity-shader-xi-lie-zhi-qi-jiu-jing-shui-xian-bei-xuan-ran.html">瞎聊 Unity Shader 系列之七：究竟谁先被渲染？</a></li>
+<li><a href="http://blog.shuiguzi.com/xia-liao-unity-shader-xi-lie-zhi-ba-pragma-zhi-ling.html">瞎聊 Unity Shader 系列之八：#pragma 指令</a></li>
+<li><a href="http://blog.shuiguzi.com/xia-liao-unity-shader-xi-lie-zhi-jiu-yong-lai-bao-zhuang-bian-liang-de-properties.html">瞎聊 Unity Shader 系列之九：用来包装变量的 Properties</a></li>
 </ul>
     </article>
 
 ﻿<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="xia-liao-unity3d-shader-xi-lie-zhi-si-zuo-biao-xi.html" data-title="瞎聊 Unity3D Shader 系列之四：坐标系" data-url="http://blog.shuiguzi.com/xia-liao-unity3d-shader-xi-lie-zhi-si-zuo-biao-xi.html"></div>
+	<div class="ds-thread" data-thread-key="xia-liao-unity-shader-xi-lie-zhi-si-zuo-biao-xi.html" data-title="瞎聊 Unity Shader 系列之四：坐标系" data-url="http://blog.shuiguzi.com/xia-liao-unity-shader-xi-lie-zhi-si-zuo-biao-xi.html"></div>
 <!-- 多说评论框 end -->
 <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 <script type="text/javascript">

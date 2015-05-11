@@ -1,4 +1,4 @@
-Title: 瞎聊 Unity3D Shader 系列之七：究竟谁先被渲染？
+Title: 瞎聊 Unity Shader 系列之七：究竟谁先被渲染？
 Date: 2015-05-06 16:05
 Modified: 2015-05-07 16:13
 Category: Shader
@@ -54,7 +54,7 @@ Queue 标签是上面提到的可选键值对项中的一个，也就是决定�
 - `Geometry-1` 中间不能有空格
 - 这个语法是整型数值的加减法。 `Geometry-1` 和 `Background+999` 得到的结果是一样的，因为 2000 - 1 = 1000 + 999。
 
-我们在 Unity3D 编辑器里面选中 shader 文件，然后从 Inspector 里查看 Shader 的 Render queue 属性值，如下图：
+我们在 Unity 编辑器里面选中 shader 文件，然后从 Inspector 里查看 Shader 的 Render queue 属性值，如下图：
 
 ![render queue](images/Shader/7/geometry_1.png){: width="60%"}
 
@@ -75,12 +75,12 @@ Queue 标签是上面提到的可选键值对项中的一个，也就是决定�
 
 
 ###系列文章目录
-- [瞎聊 Unity3D Shader 系列之一：GPU 与 Shader Model]({filename}/Shader_1.md)
-- [瞎聊 Unity3D Shader 系列之二：渲染管线]({filename}/Shader_2.md)
-- [瞎聊 Unity3D Shader 系列之三：Shader 土地上的语言们]({filename}/Shader_3.md)
-- [瞎聊 Unity3D Shader 系列之四：坐标系]({filename}/Shader_4.md)
-- [瞎聊 Unity3D Shader 系列之五：RGBA 101]({filename}/Shader_5.md)
-- [瞎聊 Unity3D Shader 系列之六：初识 Shaderlab]({filename}/Shader_6.md)
-- [瞎聊 Unity3D Shader 系列之七：究竟谁先被渲染？]({filename}/Shader_7.md)
-- [瞎聊 Unity3D Shader 系列之八：#pragma 指令]({filename}/Shader_8.md)
-- [瞎聊 Unity3D Shader 系列之九：用来包装变量的 Properties]({filename}/Shader_9.md)
+- [瞎聊 Unity Shader 系列之一：GPU 与 Shader Model]({filename}/Shader_1.md)
+- [瞎聊 Unity Shader 系列之二：渲染管线]({filename}/Shader_2.md)
+- [瞎聊 Unity Shader 系列之三：Shader 土地上的语言们]({filename}/Shader_3.md)
+- [瞎聊 Unity Shader 系列之四：坐标系]({filename}/Shader_4.md)
+- [瞎聊 Unity Shader 系列之五：RGBA 101]({filename}/Shader_5.md)
+- [瞎聊 Unity Shader 系列之六：初识 Shaderlab]({filename}/Shader_6.md)
+- [瞎聊 Unity Shader 系列之七：究竟谁先被渲染？]({filename}/Shader_7.md)
+- [瞎聊 Unity Shader 系列之八：#pragma 指令]({filename}/Shader_8.md)
+- [瞎聊 Unity Shader 系列之九：用来包装变量的 Properties]({filename}/Shader_9.md)

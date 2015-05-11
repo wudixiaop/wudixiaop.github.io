@@ -1,4 +1,4 @@
-﻿Title: 瞎聊 Unity3D Shader 系列之一：GPU 与 Shader Model
+﻿Title: 瞎聊 Unity Shader 系列之一：GPU 与 Shader Model
 Date: 2015-04-26 16:50
 Modified: 2015-04-27 15:54
 Category: Shader
@@ -10,7 +10,7 @@ Status: published
 我写的动力主要来源于如下原因：
 
 - 对之前学习的一些总结、复习和提炼
-- 尽可能的填充一些概念上的空白。 有不少关于 Unity3D shader 的文章只讲 Shaderlab 语法，讲各种光照模型等, 这对于缺乏概念的新手来说是不太好理解的。
+- 尽可能的填充一些概念上的空白。 有不少关于 Unity shader 的文章只讲 Shaderlab 语法，讲各种光照模型等, 这对于缺乏概念的新手来说是不太好理解的。
 - 之前信誓旦旦的跟朋友说以后学了 shader 会写点文章出来，算是允诺。。。
 
 文章定位：
@@ -65,12 +65,12 @@ GPU 为大量图形计算而生，而 Shader 是对 GPU 编程的技术。微软
 
 
 ###系列文章目录
-- [瞎聊 Unity3D Shader 系列之一：GPU 与 Shader Model]({filename}/Shader_1.md)
-- [瞎聊 Unity3D Shader 系列之二：渲染管线]({filename}/Shader_2.md)
-- [瞎聊 Unity3D Shader 系列之三：Shader 土地上的语言们]({filename}/Shader_3.md)
-- [瞎聊 Unity3D Shader 系列之四：坐标系]({filename}/Shader_4.md)
-- [瞎聊 Unity3D Shader 系列之五：RGBA 101]({filename}/Shader_5.md)
-- [瞎聊 Unity3D Shader 系列之六：初识 Shaderlab]({filename}/Shader_6.md)
-- [瞎聊 Unity3D Shader 系列之七：究竟谁先被渲染？]({filename}/Shader_7.md)
-- [瞎聊 Unity3D Shader 系列之八：#pragma 指令]({filename}/Shader_8.md)
-- [瞎聊 Unity3D Shader 系列之九：用来包装变量的 Properties]({filename}/Shader_9.md)
+- [瞎聊 Unity Shader 系列之一：GPU 与 Shader Model]({filename}/Shader_1.md)
+- [瞎聊 Unity Shader 系列之二：渲染管线]({filename}/Shader_2.md)
+- [瞎聊 Unity Shader 系列之三：Shader 土地上的语言们]({filename}/Shader_3.md)
+- [瞎聊 Unity Shader 系列之四：坐标系]({filename}/Shader_4.md)
+- [瞎聊 Unity Shader 系列之五：RGBA 101]({filename}/Shader_5.md)
+- [瞎聊 Unity Shader 系列之六：初识 Shaderlab]({filename}/Shader_6.md)
+- [瞎聊 Unity Shader 系列之七：究竟谁先被渲染？]({filename}/Shader_7.md)
+- [瞎聊 Unity Shader 系列之八：#pragma 指令]({filename}/Shader_8.md)
+- [瞎聊 Unity Shader 系列之九：用来包装变量的 Properties]({filename}/Shader_9.md)

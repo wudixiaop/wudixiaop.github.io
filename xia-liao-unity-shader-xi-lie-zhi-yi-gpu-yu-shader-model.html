@@ -83,7 +83,7 @@
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                     <div class="post-heading">
-                        <h1>瞎聊 Unity3D Shader 系列之一：GPU 与 Shader Model</h1>
+                        <h1>瞎聊 Unity Shader 系列之一：GPU 与 Shader Model</h1>
                         <span class="meta">
                             2015-04-26 16:50
                              by
@@ -106,7 +106,7 @@
 <p>我写的动力主要来源于如下原因：</p>
 <ul>
 <li>对之前学习的一些总结、复习和提炼</li>
-<li>尽可能的填充一些概念上的空白。 有不少关于 Unity3D shader 的文章只讲 Shaderlab 语法，讲各种光照模型等, 这对于缺乏概念的新手来说是不太好理解的。</li>
+<li>尽可能的填充一些概念上的空白。 有不少关于 Unity shader 的文章只讲 Shaderlab 语法，讲各种光照模型等, 这对于缺乏概念的新手来说是不太好理解的。</li>
 <li>之前信誓旦旦的跟朋友说以后学了 shader 会写点文章出来，算是允诺。。。</li>
 </ul>
 <p>文章定位：</p>
@@ -148,20 +148,20 @@
 </ul>
 <h3>系列文章目录</h3>
 <ul>
-<li><a href="http://blog.shuiguzi.com/xia-liao-unity3d-shader-xi-lie-zhi-yi-gpu-yu-shader-model.html">瞎聊 Unity3D Shader 系列之一：GPU 与 Shader Model</a></li>
-<li><a href="http://blog.shuiguzi.com/xia-liao-unity3d-shader-xi-lie-zhi-er-xuan-ran-guan-xian.html">瞎聊 Unity3D Shader 系列之二：渲染管线</a></li>
-<li><a href="http://blog.shuiguzi.com/xia-liao-unity3d-shader-xi-lie-zhi-san-shader-tu-di-shang-de-yu-yan-men.html">瞎聊 Unity3D Shader 系列之三：Shader 土地上的语言们</a></li>
-<li><a href="http://blog.shuiguzi.com/xia-liao-unity3d-shader-xi-lie-zhi-si-zuo-biao-xi.html">瞎聊 Unity3D Shader 系列之四：坐标系</a></li>
-<li><a href="http://blog.shuiguzi.com/xia-liao-unity3d-shader-xi-lie-zhi-wu-rgba-101.html">瞎聊 Unity3D Shader 系列之五：RGBA 101</a></li>
-<li><a href="http://blog.shuiguzi.com/xia-liao-unity3d-shader-xi-lie-zhi-liu-chu-shi-shaderlab.html">瞎聊 Unity3D Shader 系列之六：初识 Shaderlab</a></li>
-<li><a href="http://blog.shuiguzi.com/xia-liao-unity3d-shader-xi-lie-zhi-qi-jiu-jing-shui-xian-bei-xuan-ran.html">瞎聊 Unity3D Shader 系列之七：究竟谁先被渲染？</a></li>
-<li><a href="http://blog.shuiguzi.com/xia-liao-unity3d-shader-xi-lie-zhi-ba-pragma-zhi-ling.html">瞎聊 Unity3D Shader 系列之八：#pragma 指令</a></li>
-<li><a href="http://blog.shuiguzi.com/xia-liao-unity3d-shader-xi-lie-zhi-jiu-yong-lai-bao-zhuang-bian-liang-de-properties.html">瞎聊 Unity3D Shader 系列之九：用来包装变量的 Properties</a></li>
+<li><a href="http://blog.shuiguzi.com/xia-liao-unity-shader-xi-lie-zhi-yi-gpu-yu-shader-model.html">瞎聊 Unity Shader 系列之一：GPU 与 Shader Model</a></li>
+<li><a href="http://blog.shuiguzi.com/xia-liao-unity-shader-xi-lie-zhi-er-xuan-ran-guan-xian.html">瞎聊 Unity Shader 系列之二：渲染管线</a></li>
+<li><a href="http://blog.shuiguzi.com/xia-liao-unity-shader-xi-lie-zhi-san-shader-tu-di-shang-de-yu-yan-men.html">瞎聊 Unity Shader 系列之三：Shader 土地上的语言们</a></li>
+<li><a href="http://blog.shuiguzi.com/xia-liao-unity-shader-xi-lie-zhi-si-zuo-biao-xi.html">瞎聊 Unity Shader 系列之四：坐标系</a></li>
+<li><a href="http://blog.shuiguzi.com/xia-liao-unity-shader-xi-lie-zhi-wu-rgba-101.html">瞎聊 Unity Shader 系列之五：RGBA 101</a></li>
+<li><a href="http://blog.shuiguzi.com/xia-liao-unity-shader-xi-lie-zhi-liu-chu-shi-shaderlab.html">瞎聊 Unity Shader 系列之六：初识 Shaderlab</a></li>
+<li><a href="http://blog.shuiguzi.com/xia-liao-unity-shader-xi-lie-zhi-qi-jiu-jing-shui-xian-bei-xuan-ran.html">瞎聊 Unity Shader 系列之七：究竟谁先被渲染？</a></li>
+<li><a href="http://blog.shuiguzi.com/xia-liao-unity-shader-xi-lie-zhi-ba-pragma-zhi-ling.html">瞎聊 Unity Shader 系列之八：#pragma 指令</a></li>
+<li><a href="http://blog.shuiguzi.com/xia-liao-unity-shader-xi-lie-zhi-jiu-yong-lai-bao-zhuang-bian-liang-de-properties.html">瞎聊 Unity Shader 系列之九：用来包装变量的 Properties</a></li>
 </ul>
     </article>
 
 ﻿<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="xia-liao-unity3d-shader-xi-lie-zhi-yi-gpu-yu-shader-model.html" data-title="瞎聊 Unity3D Shader 系列之一：GPU 与 Shader Model" data-url="http://blog.shuiguzi.com/xia-liao-unity3d-shader-xi-lie-zhi-yi-gpu-yu-shader-model.html"></div>
+	<div class="ds-thread" data-thread-key="xia-liao-unity-shader-xi-lie-zhi-yi-gpu-yu-shader-model.html" data-title="瞎聊 Unity Shader 系列之一：GPU 与 Shader Model" data-url="http://blog.shuiguzi.com/xia-liao-unity-shader-xi-lie-zhi-yi-gpu-yu-shader-model.html"></div>
 <!-- 多说评论框 end -->
 <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 <script type="text/javascript">

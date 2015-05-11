@@ -1,4 +1,4 @@
-Title: 瞎聊 Unity3D Shader 系列之四：坐标系
+Title: 瞎聊 Unity Shader 系列之四：坐标系
 Date: 2015-04-30 13:55
 Modified: 2015-04-30 13:55
 Category: Shader
@@ -27,13 +27,13 @@ Status: published
 下面是我们平时会碰到的一些坐标系。按规定，原点的各个轴是数值都是 0 来表示。
 
 - **物体坐标系 (Object Space)：** 有时也叫做 Local Space。是 3D 模型内部的坐标系，原点 `(0, 0, 0)` 一般是模型中心。
-- **世界坐标系 (World Space)：** Unity3D 系统中的绝对坐标系，原点是在场景的 `(0，0，0)` 位置处。
+- **世界坐标系 (World Space)：** Unity 系统中的绝对坐标系，原点是在场景的 `(0，0，0)` 位置处。
 - **视口坐标系 (Viewport Space)：** 以摄像机为原点，朝向为 Z 轴的坐标系。原点 `(0, 0, 0)` 是摄像机的位置。
 - **屏幕坐标系 (Screen Space)：** 原点 `(0, 0)` 在屏幕的左下角，右上角为 `(Screen.width，Screen.height)`。
 
 那问题来了。这些坐标系们有什么关系？
 
-我们以立方体为例。我们从[渲染管线]({filename}/Shader_2.md)小节中知道，Mesh Renderer 组件得到模型数据之后它会执行 vertex shader（Unity3d 默认的 Shader 给我提供了）。
+我们以立方体为例。我们从[渲染管线]({filename}/Shader_2.md)小节中知道，Mesh Renderer 组件得到模型数据之后它会执行 vertex shader（Unity 默认的 Shader 给我提供了）。
 vertex shader 里面做了下面这些事：
 
 1. 先把立方体从模型的物体坐标系转换成世界坐标系，**从 物体 到 世界**。这样子，它和摄像机（世界坐标）的位置就用同一个坐标系描述了。
@@ -43,7 +43,7 @@ vertex shader 里面做了下面这些事：
 总结上面一系列变换关系就是： **物体 到 世界 再到 视口 再到 屏幕**。中间经过了三次变换 (transform)。这些变换在数学上通过 **矩阵** 来描述的。这里有个知识点：
 矩阵可以表示变换。在这里推荐关于 3D 数学的一本经典好书 [《3D数学基础图形与游戏开发》](http://pan.baidu.com/s/1eQ8eSYQ)。
 
-到现在是不是有种跃跃欲试，但是想想又头大的感觉，在 Unity3D 里面这些矩阵具体的数值是什么？要是自己去运算那多复杂啊。别急，Unity3D 给我们已经提供了这些矩阵当作 Shader
+到现在是不是有种跃跃欲试，但是想想又头大的感觉，在 Unity 里面这些矩阵具体的数值是什么？要是自己去运算那多复杂啊。别急，Unity 给我们已经提供了这些矩阵当作 Shader
 的内置变量（[详情参考这个链接](http://docs.unity3d.com/Manual/SL-UnityShaderVariables.html)），可以在编程的时候直接使用。在这里只是说一下，我们利用 `UNITY_MATRIX_MVP`
  这个矩阵就可以达到变换到屏幕坐标系的目的。至于怎么做，会在以后的文章中会提到。
 
@@ -58,12 +58,12 @@ vertex shader 里面做了下面这些事：
 一般情况下左手和右手坐标系的数值做转换的话只需把 Z 值乘以 -1 即可。比如左手坐标系的 `(1, 1, 1)` 转成为右手坐标系是  `(1, 1, -1)`。
 
 ###系列文章目录
-- [瞎聊 Unity3D Shader 系列之一：GPU 与 Shader Model]({filename}/Shader_1.md)
-- [瞎聊 Unity3D Shader 系列之二：渲染管线]({filename}/Shader_2.md)
-- [瞎聊 Unity3D Shader 系列之三：Shader 土地上的语言们]({filename}/Shader_3.md)
-- [瞎聊 Unity3D Shader 系列之四：坐标系]({filename}/Shader_4.md)
-- [瞎聊 Unity3D Shader 系列之五：RGBA 101]({filename}/Shader_5.md)
-- [瞎聊 Unity3D Shader 系列之六：初识 Shaderlab]({filename}/Shader_6.md)
-- [瞎聊 Unity3D Shader 系列之七：究竟谁先被渲染？]({filename}/Shader_7.md)
-- [瞎聊 Unity3D Shader 系列之八：#pragma 指令]({filename}/Shader_8.md)
-- [瞎聊 Unity3D Shader 系列之九：用来包装变量的 Properties]({filename}/Shader_9.md)
+- [瞎聊 Unity Shader 系列之一：GPU 与 Shader Model]({filename}/Shader_1.md)
+- [瞎聊 Unity Shader 系列之二：渲染管线]({filename}/Shader_2.md)
+- [瞎聊 Unity Shader 系列之三：Shader 土地上的语言们]({filename}/Shader_3.md)
+- [瞎聊 Unity Shader 系列之四：坐标系]({filename}/Shader_4.md)
+- [瞎聊 Unity Shader 系列之五：RGBA 101]({filename}/Shader_5.md)
+- [瞎聊 Unity Shader 系列之六：初识 Shaderlab]({filename}/Shader_6.md)
+- [瞎聊 Unity Shader 系列之七：究竟谁先被渲染？]({filename}/Shader_7.md)
+- [瞎聊 Unity Shader 系列之八：#pragma 指令]({filename}/Shader_8.md)
+- [瞎聊 Unity Shader 系列之九：用来包装变量的 Properties]({filename}/Shader_9.md)

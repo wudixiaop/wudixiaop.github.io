@@ -83,9 +83,9 @@
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                     <div class="post-heading">
-                        <h1>瞎聊 Unity3D Shader 系列之五：RGBA 101</h1>
+                        <h1>瞎聊 Unity Shader 系列之二：渲染管线</h1>
                         <span class="meta">
-                            2015-05-04 13:55
+                            2015-04-28 11:07
                              by
                                 <a href="http://blog.shuiguzi.com/author/rocky-lai.html">Rocky Lai</a>
                         </span>
@@ -102,44 +102,48 @@
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
     <!-- Post Content -->
     <article>
-        <p>这节说说 fragment shader 最后输出的像素的颜色表示方法 RGBA。</p>
-<p>玩过 Photoshop 的同学可能知道，存在好几种颜色模式来表示颜色，<a href="http://baike.baidu.com/view/1139658.htm">比如 RGB 和 CMYK</a>. 由于显示器的发光物体，所以使用的 RGB 模式。
-Unity3D 中也采用这种表示方法。</p>
-<h3>RGB模式</h3>
-<p>RGB是用红绿蓝混合来表示的颜色。R 是红色， G 表示绿色， B 是蓝色。一般用8为来表示一个颜色通道，每个通道有 256 个等级（0~255）。它有如下特性：</p>
+        <p>这节描述的是图形渲染的大致过程。</p>
+<p>为了更好理解和记忆这节内容，先来学下面几个词。</p>
 <ul>
-<li><code>(0, 0, 0)</code> 表示黑色</li>
-<li><code>(255, 255, 255)</code> 表示白色</li>
-<li>三个通道数值相同的时候是灰色，比如 <code>(128, 128, 128)</code></li>
-<li>数值越大颜色越亮，反之数值越小越暗</li>
+<li><strong>渲染管线(Rendering Pipeline)：</strong> 一提到管线，感觉很高大上的样子。说的俗一点就是可以理解为流水线。渲染管线我们可暂时理解为 <strong>从得到模型数据到绘制出图像</strong> 这一过程的称呼。</li>
+<li><strong>Vertex Shader：</strong> 对顶点数据编程的一段程序。 人类有懒惰的天性，习惯用简化的词汇来表达同一个东西。对 Vertex Shader 也不例外，一般称其为 VS ，但是在本系列文章中会保持全称。</li>
+<li><strong>Fragment Shader：</strong> 对像素数据编程的一段程序。这里 fragment 可以理解为带有信息（颜色，坐标等）的像素 (Pixel), 一般也简称其为 FS 或者 PS 。 在本系列文章中会保持其全称。</li>
+<li><strong>FrameBuffer：</strong> 缓存帧数据的存储区，它一般包含的是要显示到显示设备上的位图数据（也就是图片数据）。</li>
+<li><strong>Fixed Function：</strong> 由于一些硬件支持等历史原因，早期的图形 API  <strong>只支持对 GPU 做配置</strong>，这部分只可配置的功能就是 fixed fucntion。
+这里注意下，fixed function 的功能只能配置，不像 Vertex Shader　和 fragment Shader 可以编程（写自己的算法）。</li>
 </ul>
-<p><img alt="RGB" src="images/Shader/5/rgb.png" width="61%" /></p>
-<p>但是 Unity Shader 中并不用 256 个等级来表示颜色数值，而是用标准化（取值0~1）的数值来表示。换句话说就是所有通道都除以 255 得到标准化的结果。</p>
-<h3>RGBA 中的 A 是什么</h3>
-<p>A 叫做 alpha，其数值表示不透明度。 据说提出者用 alpha 来命名源于经典的线性插值方程 αA + (1-α)B 所用的希腊字母 α。Unity3D 中的 aplha blending 基于这个线性方程。</p>
-<h3>混合模式</h3>
-<p>抽象一下就是对两个颜色做运算后得到结果颜色的过程。这个过程其实就是个运算公式。下面列举两个 Photoshop 中常见的正片叠底和滤色两个混合模式的计算公式。C为结果色，A 和 B 是需要混合的颜色。</p>
+<h3>渲染管线 (Rendering Pipeline)</h3>
+<p>看图说话</p>
+<p><img alt="2.renderingpipeline.jpg" src="images/Shader/2/rendering-pipeline.jpg" width="100%" /></p>
+<p>上面是可编程的渲染管线模型的示意。下面多说几点：</p>
 <ul>
-<li><strong>正片叠底(Multiply):</strong> C=A*B</li>
-<li><strong>滤色(Screen):</strong> C=1-(1-A)*(1-B)</li>
+<li>输入阶段。Unity 使用 Mesh Renderer 等组件读取模型顶点数据，然后调用图形 API，将数据传递给 GPU。</li>
+<li>现实中同时会进行多条渲染管线，他们是<strong>并行的</strong>。 这点概念比较重要，以后还会提到它。我们记住 GPU 并行能力很强。</li>
+<li>最后输出的 FrameBuffer (可以理解为渲染出来的图片) 有几率被抛弃掉，也就是说不显示在显示设备上。这个以后单独说明原因。好比残酷的现实世界，努力了（整个渲染过程）也不一定会成功（被显示出来）。</li>
 </ul>
-<p>我们要叠加模型多个贴图（比如法线贴图和模型贴图）的时候就可以利用到混合模式。更多混合模式公式参考<a href="http://wenku.baidu.com/view/da9d22d9ad51f01dc281f1f9.html">这个文档</a>。</p>
+<h3>总结</h3>
+<p>渲染管道是从得模型数据到图像生成过程的一种描述。Vertex Shader 能对顶点数据写处理算法，而 Fragment Shader 能对像素数据写处理算法。</p>
+<h3>参考：</h3>
+<ul>
+<li><a href="http://en.wikibooks.org/wiki/Cg_Programming/Programmable_Graphics_Pipeline">Cg Programming in Unity</a></li>
+<li><a href="http://en.wikipedia.org/wiki/Fixed-function">Fixed-function</a></li>
+</ul>
 <h3>系列文章目录</h3>
 <ul>
-<li><a href="http://blog.shuiguzi.com/xia-liao-unity3d-shader-xi-lie-zhi-yi-gpu-yu-shader-model.html">瞎聊 Unity3D Shader 系列之一：GPU 与 Shader Model</a></li>
-<li><a href="http://blog.shuiguzi.com/xia-liao-unity3d-shader-xi-lie-zhi-er-xuan-ran-guan-xian.html">瞎聊 Unity3D Shader 系列之二：渲染管线</a></li>
-<li><a href="http://blog.shuiguzi.com/xia-liao-unity3d-shader-xi-lie-zhi-san-shader-tu-di-shang-de-yu-yan-men.html">瞎聊 Unity3D Shader 系列之三：Shader 土地上的语言们</a></li>
-<li><a href="http://blog.shuiguzi.com/xia-liao-unity3d-shader-xi-lie-zhi-si-zuo-biao-xi.html">瞎聊 Unity3D Shader 系列之四：坐标系</a></li>
-<li><a href="http://blog.shuiguzi.com/xia-liao-unity3d-shader-xi-lie-zhi-wu-rgba-101.html">瞎聊 Unity3D Shader 系列之五：RGBA 101</a></li>
-<li><a href="http://blog.shuiguzi.com/xia-liao-unity3d-shader-xi-lie-zhi-liu-chu-shi-shaderlab.html">瞎聊 Unity3D Shader 系列之六：初识 Shaderlab</a></li>
-<li><a href="http://blog.shuiguzi.com/xia-liao-unity3d-shader-xi-lie-zhi-qi-jiu-jing-shui-xian-bei-xuan-ran.html">瞎聊 Unity3D Shader 系列之七：究竟谁先被渲染？</a></li>
-<li><a href="http://blog.shuiguzi.com/xia-liao-unity3d-shader-xi-lie-zhi-ba-pragma-zhi-ling.html">瞎聊 Unity3D Shader 系列之八：#pragma 指令</a></li>
-<li><a href="http://blog.shuiguzi.com/xia-liao-unity3d-shader-xi-lie-zhi-jiu-yong-lai-bao-zhuang-bian-liang-de-properties.html">瞎聊 Unity3D Shader 系列之九：用来包装变量的 Properties</a></li>
+<li><a href="http://blog.shuiguzi.com/xia-liao-unity-shader-xi-lie-zhi-yi-gpu-yu-shader-model.html">瞎聊 Unity Shader 系列之一：GPU 与 Shader Model</a></li>
+<li><a href="http://blog.shuiguzi.com/xia-liao-unity-shader-xi-lie-zhi-er-xuan-ran-guan-xian.html">瞎聊 Unity Shader 系列之二：渲染管线</a></li>
+<li><a href="http://blog.shuiguzi.com/xia-liao-unity-shader-xi-lie-zhi-san-shader-tu-di-shang-de-yu-yan-men.html">瞎聊 Unity Shader 系列之三：Shader 土地上的语言们</a></li>
+<li><a href="http://blog.shuiguzi.com/xia-liao-unity-shader-xi-lie-zhi-si-zuo-biao-xi.html">瞎聊 Unity Shader 系列之四：坐标系</a></li>
+<li><a href="http://blog.shuiguzi.com/xia-liao-unity-shader-xi-lie-zhi-wu-rgba-101.html">瞎聊 Unity Shader 系列之五：RGBA 101</a></li>
+<li><a href="http://blog.shuiguzi.com/xia-liao-unity-shader-xi-lie-zhi-liu-chu-shi-shaderlab.html">瞎聊 Unity Shader 系列之六：初识 Shaderlab</a></li>
+<li><a href="http://blog.shuiguzi.com/xia-liao-unity-shader-xi-lie-zhi-qi-jiu-jing-shui-xian-bei-xuan-ran.html">瞎聊 Unity Shader 系列之七：究竟谁先被渲染？</a></li>
+<li><a href="http://blog.shuiguzi.com/xia-liao-unity-shader-xi-lie-zhi-ba-pragma-zhi-ling.html">瞎聊 Unity Shader 系列之八：#pragma 指令</a></li>
+<li><a href="http://blog.shuiguzi.com/xia-liao-unity-shader-xi-lie-zhi-jiu-yong-lai-bao-zhuang-bian-liang-de-properties.html">瞎聊 Unity Shader 系列之九：用来包装变量的 Properties</a></li>
 </ul>
     </article>
 
 ﻿<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="xia-liao-unity3d-shader-xi-lie-zhi-wu-rgba-101.html" data-title="瞎聊 Unity3D Shader 系列之五：RGBA 101" data-url="http://blog.shuiguzi.com/xia-liao-unity3d-shader-xi-lie-zhi-wu-rgba-101.html"></div>
+	<div class="ds-thread" data-thread-key="xia-liao-unity-shader-xi-lie-zhi-er-xuan-ran-guan-xian.html" data-title="瞎聊 Unity Shader 系列之二：渲染管线" data-url="http://blog.shuiguzi.com/xia-liao-unity-shader-xi-lie-zhi-er-xuan-ran-guan-xian.html"></div>
 <!-- 多说评论框 end -->
 <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 <script type="text/javascript">

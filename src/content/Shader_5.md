@@ -1,4 +1,4 @@
-Title: 瞎聊 Unity3D Shader 系列之五：RGBA 101
+Title: 瞎聊 Unity Shader 系列之五：RGBA 101
 Date: 2015-05-04 13:55
 Modified: 2015-05-04 13:55
 Category: Shader
@@ -8,7 +8,7 @@ Status: published
 这节说说 fragment shader 最后输出的像素的颜色表示方法 RGBA。
 
 玩过 Photoshop 的同学可能知道，存在好几种颜色模式来表示颜色，[比如 RGB 和 CMYK](http://baike.baidu.com/view/1139658.htm). 由于显示器的发光物体，所以使用的 RGB 模式。
-Unity3D 中也采用这种表示方法。
+Unity 中也采用这种表示方法。
 
 ###RGB模式
 RGB是用红绿蓝混合来表示的颜色。R 是红色， G 表示绿色， B 是蓝色。一般用8为来表示一个颜色通道，每个通道有 256 个等级（0~255）。它有如下特性：
@@ -24,7 +24,7 @@ RGB是用红绿蓝混合来表示的颜色。R 是红色， G 表示绿色， B 
 
 ###RGBA 中的 A 是什么
 
-A 叫做 alpha，其数值表示不透明度。 据说提出者用 alpha 来命名源于经典的线性插值方程 αA + (1-α)B 所用的希腊字母 α。Unity3D 中的 aplha blending 基于这个线性方程。
+A 叫做 alpha，其数值表示不透明度。 据说提出者用 alpha 来命名源于经典的线性插值方程 αA + (1-α)B 所用的希腊字母 α。Unity 中的 aplha blending 基于这个线性方程。
 
 ###混合模式
 
@@ -37,12 +37,12 @@ A 叫做 alpha，其数值表示不透明度。 据说提出者用 alpha 来命�
 我们要叠加模型多个贴图（比如法线贴图和模型贴图）的时候就可以利用到混合模式。更多混合模式公式参考[这个文档](http://wenku.baidu.com/view/da9d22d9ad51f01dc281f1f9.html)。
 
 ###系列文章目录
-- [瞎聊 Unity3D Shader 系列之一：GPU 与 Shader Model]({filename}/Shader_1.md)
-- [瞎聊 Unity3D Shader 系列之二：渲染管线]({filename}/Shader_2.md)
-- [瞎聊 Unity3D Shader 系列之三：Shader 土地上的语言们]({filename}/Shader_3.md)
-- [瞎聊 Unity3D Shader 系列之四：坐标系]({filename}/Shader_4.md)
-- [瞎聊 Unity3D Shader 系列之五：RGBA 101]({filename}/Shader_5.md)
-- [瞎聊 Unity3D Shader 系列之六：初识 Shaderlab]({filename}/Shader_6.md)
-- [瞎聊 Unity3D Shader 系列之七：究竟谁先被渲染？]({filename}/Shader_7.md)
-- [瞎聊 Unity3D Shader 系列之八：#pragma 指令]({filename}/Shader_8.md)
-- [瞎聊 Unity3D Shader 系列之九：用来包装变量的 Properties]({filename}/Shader_9.md)
+- [瞎聊 Unity Shader 系列之一：GPU 与 Shader Model]({filename}/Shader_1.md)
+- [瞎聊 Unity Shader 系列之二：渲染管线]({filename}/Shader_2.md)
+- [瞎聊 Unity Shader 系列之三：Shader 土地上的语言们]({filename}/Shader_3.md)
+- [瞎聊 Unity Shader 系列之四：坐标系]({filename}/Shader_4.md)
+- [瞎聊 Unity Shader 系列之五：RGBA 101]({filename}/Shader_5.md)
+- [瞎聊 Unity Shader 系列之六：初识 Shaderlab]({filename}/Shader_6.md)
+- [瞎聊 Unity Shader 系列之七：究竟谁先被渲染？]({filename}/Shader_7.md)
+- [瞎聊 Unity Shader 系列之八：#pragma 指令]({filename}/Shader_8.md)
+- [瞎聊 Unity Shader 系列之九：用来包装变量的 Properties]({filename}/Shader_9.md)

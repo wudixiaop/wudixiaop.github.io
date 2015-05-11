@@ -83,7 +83,7 @@
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                     <div class="post-heading">
-                        <h1>在Unity3d uGUI中绘制圆形图片</h1>
+                        <h1>在 Unity uGUI 中绘制圆形图片</h1>
                         <span class="meta">
                             2015-04-15 23:30
                              by
@@ -102,7 +102,7 @@
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
     <!-- Post Content -->
     <article>
-        <p>最近项目需要在 Unity3D 的新 UI 系统中实现圆形头像的功能，之前想通过 Mask 控件的方式来实现，但是一番努力后毫无头绪，只能祭上shader了。</p>
+        <p>最近项目需要在 Unity 的新 UI 系统中实现圆形头像的功能，之前想通过 Mask 控件的方式来实现，但是一番努力后毫无头绪，只能祭上shader了。</p>
 <p>大体的思路就是在一个空的 Object 上面挂上 RawImage 组件，组件的 Material 挂上本文中的 shader。截取的逻辑是选取图片正中心 (0.5, 0.5) 为圆的中心点，绘制图片在圆内的像素点为图片的像素，然后图片在圆外的像素点设置为 alpha 为 0 的点，
 如 <code>(0, 0, 0, 0)</code>。逻辑是在 fragment shader 里面实现(shader 代码中的<code>frag</code>)。</p>
 <p>下面直接放出 shader:</p>
@@ -210,7 +210,7 @@
     </article>
 
 ﻿<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="zai-unity3d-uguizhong-hui-zhi-yuan-xing-tu-pian.html" data-title="在Unity3d uGUI中绘制圆形图片" data-url="http://blog.shuiguzi.com/zai-unity3d-uguizhong-hui-zhi-yuan-xing-tu-pian.html"></div>
+	<div class="ds-thread" data-thread-key="zai-unity-ugui-zhong-hui-zhi-yuan-xing-tu-pian.html" data-title="在 Unity uGUI 中绘制圆形图片" data-url="http://blog.shuiguzi.com/zai-unity-ugui-zhong-hui-zhi-yuan-xing-tu-pian.html"></div>
 <!-- 多说评论框 end -->
 <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 <script type="text/javascript">

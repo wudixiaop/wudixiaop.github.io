@@ -1,9 +1,9 @@
-Title: 在Unity3d uGUI中绘制圆形图片
+Title: 在 Unity uGUI 中绘制圆形图片
 Date: 2015-04-15 23:30
 Category: 一点一滴
 Tags: Unity3D
 
-最近项目需要在 Unity3D 的新 UI 系统中实现圆形头像的功能，之前想通过 Mask 控件的方式来实现，但是一番努力后毫无头绪，只能祭上shader了。
+最近项目需要在 Unity 的新 UI 系统中实现圆形头像的功能，之前想通过 Mask 控件的方式来实现，但是一番努力后毫无头绪，只能祭上shader了。
 
 大体的思路就是在一个空的 Object 上面挂上 RawImage 组件，组件的 Material 挂上本文中的 shader。截取的逻辑是选取图片正中心 (0.5, 0.5) 为圆的中心点，绘制图片在圆内的像素点为图片的像素，然后图片在圆外的像素点设置为 alpha 为 0 的点，
 如 `(0, 0, 0, 0)`。逻辑是在 fragment shader 里面实现(shader 代码中的`frag`)。
