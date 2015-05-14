@@ -80,3 +80,4 @@ Unity Shaderlab 是基于shader语言上建立了自己的一套语法规则，�
 - [瞎聊 Unity Shader 系列之七：究竟谁先被渲染？]({filename}/Shader_7.md)
 - [瞎聊 Unity Shader 系列之八：#pragma 指令]({filename}/Shader_8.md)
 - [瞎聊 Unity Shader 系列之九：用来包装变量的 Properties]({filename}/Shader_9.md)
+- [瞎聊 Unity Shader 系列之十：数据的标签：语义绑定]({filename}/Shader_10.md)

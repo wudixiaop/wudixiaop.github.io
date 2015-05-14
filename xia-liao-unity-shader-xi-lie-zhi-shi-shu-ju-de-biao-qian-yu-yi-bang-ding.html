@@ -83,9 +83,9 @@
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                     <div class="post-heading">
-                        <h1>瞎聊 Unity Shader 系列之八：#pragma 指令</h1>
+                        <h1>瞎聊 Unity Shader 系列之十：数据的标签：语义绑定</h1>
                         <span class="meta">
-                            2015-05-07 16:13
+                            2015-05-14 15:53
                              by
                                 <a href="http://blog.shuiguzi.com/author/rocky-lai.html">Rocky Lai</a>
                         </span>
@@ -102,91 +102,110 @@
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
     <!-- Post Content -->
     <article>
-        <p>第三节 <a href="http://blog.shuiguzi.com/xia-liao-unity-shader-xi-lie-zhi-san-shader-tu-di-shang-de-yu-yan-men.html">Shader 土地上的语言们</a> 里面说到过 CG 和 HLSL 等语言被 <code>GGPROGRAM ... ENDCG</code> 语句块里面。这节的主角 #pragma 出现的位置就是在这个语句块里面，用来做编译指示的。就好比告诉
- Shaderlab 的编译器，你应该这么干应该那么干。这里把 #pragma 叫做编译指令吧。</p>
-<p><code>CGPROGRAM ... ENDCG</code> 语句块根据 Shaderlab 写作方式不同，它的位置也不同。</p>
+        <p>这节内容跟 <a href="http://blog.shuiguzi.com/xia-liao-unity-shader-xi-lie-zhi-er-xuan-ran-guan-xian.html">渲染管线</a> 内容关系比较紧密，建议先了解渲染管线的整个流程。</p>
+<p>我们知道渲染管线整个流水线都有数据的输入输出，这样就存在几个问题：</p>
+<ol>
+<li>这些数据都是什么？</li>
+<li>这些数据输入或输出到哪里？</li>
+<li>Shader 里面怎么体现？</li>
+</ol>
+<p>这节内容主要是讲上面三个问题</p>
+<h3>数据的种类</h3>
+<p>一般情况能利用的有如下几种：</p>
 <ul>
-<li>如果是 <strong>surface shader</strong>, 它在 Subshader 语句块里面，不是在 Pass 语句块里面</li>
-<li>如果是 <strong>vertex&amp;&amp;framgment shader</strong>，它是 Pass 语句块里面</li>
+<li>坐标系中的位置 (position)</li>
+<li>法线 (normal)</li>
+<li>切线 (tanent)</li>
+<li>颜色 (color)</li>
+<li>纹理坐标 (texture coordinate)</li>
 </ul>
-<p>其实 surface shader 最终会编译成 vertex&amp;&amp;framgment shader, 最终结果是一样的的。surface shader 会被编译成含多个 Pass 的 vertex&amp;&amp;fragment shader, 而这些都用相同的编译指令。我们可以从 Inspector 的 shader
-属性信息里面去打开被编译为 vertex&amp;&amp;fragment shader 后的代码。</p>
-<p><img alt="surface shader" src="images/Shader/8/surfaceshader.png" width="61%" /></p>
-<p>如果本身不是 surface shader 的话，上面那个 show generated code 按钮是不会出现的。上面提到 #pragma 是在 <code>CGPROGRAM ... ENDCG</code> 语句块里面的，所以它出现的位置也符合上面提到的特征。</p>
-<h3>Surface Shader 的编译指令</h3>
-<p>这类 shader 必须指明</p>
-<ul>
-<li>surfaceFuction 是什么</li>
-<li>关照模型是什么</li>
-</ul>
-<p>语法是</p>
+<h3>数据的输入输出</h3>
+<p>数据存放在寄存器里面。输入的时候从寄存器读取数据，输出的时候将数据写到寄存器里面。</p>
+<h3>Shader 中的体现</h3>
+<p>首先是数据的种类的表示。现实生活中，我们也喜欢物品分类，然后对分类取个名字或贴个标签，以后我们便可以从这一类中存取属于这类的物品。Shader 里面也有类似的做法，给 Shader 函数输入输出的数据结构打上标签。
+这种标签叫做 <strong>语义（Semantic）</strong>， 打标签的行为叫做 <strong>语义绑定</strong> 。一般用一个冒号后面带上标签的名字来表示。长相大概是这个要样子 <code>:XXXXX</code> （XXXXX 表示语义）。</p>
+<p>我们有了标签，那我们把它放在 shader 代码什么地方呢？ 之前提到我们是给函数输入输出的数据结构打上标签，而函数的输入就是参数。对于参数，我们可以使用<strong>结构体</strong>也可以直接使用<strong>基础数据类型</strong>，所以能出现如下两种位置：</p>
+<p>使用基础数据类型做参数时，大概是这个样子：  </p>
 <blockquote>
-<p>#pragma surface surfaceFunction lightModel [optionalparams]</p>
+<p>void shaderFunction(dataType variableName :XXXXX)</p>
 </blockquote>
-<p>从上面语法能知道，它有一些可以选的参数。具体参考 <a href="http://docs.unity3d.com/Manual/SL-SurfaceShaders.html">这个页面</a></p>
-<p>伪代码大概是这样：</p>
-<div class="highlight"><pre><span class="n">Shader</span> <span class="s">&quot;shader 的名字&quot;</span> <span class="p">{</span>
-
-    <span class="n">Subshader</span> <span class="p">{</span>
-       <span class="c1">// CGPROGRAM ... ENDCG 在 Subshader 里面</span>
-       <span class="n">CGPROGRAM</span>
-
-       <span class="c1">// surfaceFunction 是 surf,</span>
-       <span class="c1">// 光照模型是 Standard</span>
-       <span class="c1">// [...] 表示可选参数</span>
-       <span class="cp">#pragma surface surf Standard [...]</span>
-
-
-      <span class="c1">// surfaceFunction</span>
-      <span class="kt">void</span> <span class="n">surf</span> <span class="p">()</span> <span class="p">{</span>
-
-       <span class="p">}</span>
-
-       <span class="n">ENCG</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</pre></div>
-
-
-<h3>Vertex&amp;&amp;Fragment Shader 的编译指令</h3>
-<p>这里的指令集分三类:</p>
+<p>使用结构体声明中时（这个结构体要当作 shader 函数的参数）大概是这个样子:</p>
+<blockquote>
+<p>struct StructName {<br />
+    datatype propertyName :XXXXX<br />
+}  </p>
+</blockquote>
+<p>另外一种是函数的输出，如果直接给返回值后面带上标签，代码会长成这个样子：</p>
+<blockquote>
+<p>dataType :XXXXX shaderFunction()<br />
+{<br />
+   .....<br />
+}  </p>
+</blockquote>
+<p>但是 CG 等语言<strong>没有像上面那么做</strong>（个人觉得上面的方式会容易让人误解为标签就是返回值类型，其实不是），而是将标签移到函数的括号后面，所以最后应该只长成这个样子：</p>
+<blockquote>
+<p>dataType shaderFunction() : XXXXX<br />
+{<br />
+  ......<br />
+}  </p>
+</blockquote>
+<p>好了，就上面3个位置。 那语义（上面的 <code>XXXXX</code>）都有哪些呢？ 一般有如下几种：</p>
 <ul>
-<li>CG/HLSL 程序相关</li>
-<li>面向的 <a href="http://blog.shuiguzi.com/xia-liao-unity-shader-xi-lie-zhi-yi-gpu-yu-shader-model.html">Shader Model</a></li>
-<li>渲染的平台</li>
+<li><strong>POSITION：</strong> 表示顶点在物体坐标内的位置</li>
+<li><strong>SV_POSITION：</strong> 表示被转换到投射空间后的坐标位置 (通过 UNITY_MATRIX_MVP 这个矩阵可以转换)，可以参照 <a href="http://blog.shuiguzi.com/xia-liao-unity-shader-xi-lie-zhi-si-zuo-biao-xi.html">坐标系</a> 这一节内容。</li>
+<li><strong>COLOR：</strong> 表示颜色</li>
+<li><strong>NORMAL：</strong> 表示法线</li>
+<li><strong>TANGENT：</strong> 表示切线</li>
+<li><strong>TEXCOORD0</strong> 和 <strong>TEXCOORD1 :</strong> 纹理坐标 UV0 和 UV1。UV 换个说法就是 XY 坐标，只不过是为了怕重名导致的混淆，所以叫做UV。 U 表示横坐标， V表示纵坐标。</li>
 </ul>
-<p>具体参考 <a href="http://docs.unity3d.com/Manual/SL-ShaderPrograms.html">这个页面</a></p>
-<p>伪代码大概是这样：</p>
-<div class="highlight"><pre><span class="n">Shader</span> <span class="s">&quot;shader 的名字&quot;</span> <span class="p">{</span>
-
-    <span class="n">Subshader</span> <span class="p">{</span>
+<p>现在我们知道通过标签来表示数据的分类, 那怎么表示输入和输出呢？答案是用关键词 in, out, inout。 光从名字上来看我们就知道 in 表示输入， out 表示输出， inout 表示输入输出。
+参数如果特别表明，默认为输入。可以参考下在 Unity 编辑器里面的创建的默认 shader， 里面就有这几个关键词的用法。</p>
+<p>最后要说明一点，上面所说的在 Shaderlab 中都应该包括在 <code>CGPROGRAM ... ENDCG</code> 语句块里面，因为这个是 CG 等语言的内容。</p>
+<h3>举个例子</h3>
+<p>现在举个代码的例子来说明（如果对下面代码结构等不是很明白，强烈建议从头开始看本系列的文章）：</p>
+<div class="highlight"><pre><span class="n">Shader</span> <span class="s">&quot;Custom/Shader10&quot;</span> <span class="p">{</span>
+    <span class="n">SubShader</span> <span class="p">{</span>
+        <span class="n">Tags</span> <span class="p">{</span> <span class="s">&quot;RenderType&quot;</span><span class="o">=</span><span class="s">&quot;Opaque&quot;</span> <span class="p">}</span>
 
         <span class="n">pass</span> <span class="p">{</span>
-            <span class="c1">// CGPROGRAM ... ENDCG 在 Pass 里面</span>
+
             <span class="n">CGPROGRAM</span>
 
-            <span class="c1">// vertex shader 的函数是 vert</span>
             <span class="cp">#pragma vertex vert</span>
-
-            <span class="c1">// fragment shader 的函数是 fragment</span>
             <span class="cp">#pragma fragment frag</span>
 
-            <span class="n">vert</span><span class="p">()</span> <span class="p">{</span>
+            <span class="c1">// 结构体中使用语义绑定</span>
+            <span class="k">struct</span> <span class="n">VertexOutput</span> <span class="p">{</span>
+                <span class="kt">float4</span> <span class="nl">pos</span> <span class="p">:</span><span class="n">SV_POSITION</span><span class="p">;</span>        <span class="c1">// 转换到投射空间后位置</span>
+                <span class="kt">float4</span> <span class="nl">texcoord</span> <span class="p">:</span><span class="n">TEXCOORD0</span><span class="p">;</span>     <span class="c1">// 顶点颜色</span>
+            <span class="p">};</span>
 
-            <span class="p">}</span>
 
-            <span class="n">frag</span> <span class="p">()</span> <span class="p">{</span>
+            <span class="n">VertexOutput</span> <span class="nf">vert</span><span class="p">(</span><span class="n">in</span> <span class="kt">float4</span> <span class="nl">pos</span> <span class="p">:</span><span class="n">POSITION</span> <span class="cm">/*参数中使用予以绑定*/</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="n">VertexOutput</span> <span class="n">output</span><span class="p">;</span>
+                <span class="n">output</span><span class="p">.</span><span class="n">pos</span> <span class="o">=</span> <span class="n">mul</span><span class="p">(</span><span class="n">UNITY_MATRIX_MVP</span><span class="p">,</span> <span class="n">pos</span><span class="p">);</span>
+                <span class="n">output</span><span class="p">.</span><span class="n">texcoord</span> <span class="o">=</span> <span class="n">pos</span> <span class="o">+</span> <span class="kt">float4</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+                <span class="k">return</span> <span class="n">output</span><span class="p">;</span>
+             <span class="p">}</span>
 
+            <span class="kt">float4</span> <span class="n">frag</span><span class="p">(</span><span class="n">VertexOutput</span> <span class="n">input</span><span class="p">)</span> <span class="o">:</span><span class="n">COLOR</span> <span class="c1">// 函数后面使用语义绑定</span>
+            <span class="p">{</span>
+                <span class="k">return</span> <span class="n">input</span><span class="p">.</span><span class="n">texcoord</span><span class="p">;</span>
             <span class="p">}</span>
 
             <span class="n">ENDCG</span>
         <span class="p">}</span>
+
     <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
 
 
-<p>代码中的 vertex shader 和 fragment shader 在渲染管道中的位置请参考这系列文章第二节 <a href="http://blog.shuiguzi.com/xia-liao-unity-shader-xi-lie-zhi-er-xuan-ran-guan-xian.html">渲染管道</a>。</p>
+<p>上面的 shader 如果用在立方体上渲染出漂亮的 RGB 立方体，如下图：</p>
+<p><img alt="rgb cube" src="images/Shader/10/rgb.png" width="40%" /></p>
+<h3>总结</h3>
+<p>用语义和语义绑定来表示数据和数据的流向。</p>
 <h3>系列文章目录</h3>
 <ul>
 <li><a href="http://blog.shuiguzi.com/xia-liao-unity-shader-xi-lie-zhi-yi-gpu-yu-shader-model.html">瞎聊 Unity Shader 系列之一：GPU 与 Shader Model</a></li>
@@ -203,7 +222,7 @@
     </article>
 
 ﻿<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="xia-liao-unity-shader-xi-lie-zhi-ba-pragma-zhi-ling.html" data-title="瞎聊 Unity Shader 系列之八：#pragma 指令" data-url="http://blog.shuiguzi.com/xia-liao-unity-shader-xi-lie-zhi-ba-pragma-zhi-ling.html"></div>
+	<div class="ds-thread" data-thread-key="xia-liao-unity-shader-xi-lie-zhi-shi-shu-ju-de-biao-qian-yu-yi-bang-ding.html" data-title="瞎聊 Unity Shader 系列之十：数据的标签：语义绑定" data-url="http://blog.shuiguzi.com/xia-liao-unity-shader-xi-lie-zhi-shi-shu-ju-de-biao-qian-yu-yi-bang-ding.html"></div>
 <!-- 多说评论框 end -->
 <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 <script type="text/javascript">

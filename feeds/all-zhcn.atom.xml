@@ -1,5 +1,121 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>心亡则忙，亡心则忘</title><link href="http://blog.shuiguzi.com/" rel="alternate"></link><link href="http://blog.shuiguzi.com/feeds/all-zhcn.atom.xml" rel="self"></link><id>http://blog.shuiguzi.com/</id><updated>2015-05-08T14:13:00+08:00</updated><entry><title>瞎聊 Unity Shader 系列之九：用来包装变量的 Properties</title><link href="http://blog.shuiguzi.com/xia-liao-unity-shader-xi-lie-zhi-jiu-yong-lai-bao-zhuang-bian-liang-de-properties.html" rel="alternate"></link><updated>2015-05-08T14:13:00+08:00</updated><author><name>Rocky Lai</name></author><id>tag:blog.shuiguzi.com,2015-05-08:xia-liao-unity-shader-xi-lie-zhi-jiu-yong-lai-bao-zhuang-bian-liang-de-properties.html</id><summary type="html">&lt;p&gt;为了像其他程序语言一样重用代码，Shaderlab 把可变部分提取出来，集中放到一个区域去。这个区域就是 &lt;a href="http://blog.shuiguzi.com/xia-liao-unity-shader-xi-lie-zhi-liu-chu-shi-shaderlab.html"&gt;初始 shaderlab&lt;/a&gt; 这节中提到的的 &lt;code&gt;Properties&lt;/code&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>心亡则忙，亡心则忘</title><link href="http://blog.shuiguzi.com/" rel="alternate"></link><link href="http://blog.shuiguzi.com/feeds%5Call-zhcn.atom.xml" rel="self"></link><id>http://blog.shuiguzi.com/</id><updated>2015-05-14T16:53:00+08:00</updated><entry><title>瞎聊 Unity Shader 系列之十：数据的标签：语义绑定</title><link href="http://blog.shuiguzi.com/xia-liao-unity-shader-xi-lie-zhi-shi-shu-ju-de-biao-qian-yu-yi-bang-ding.html" rel="alternate"></link><updated>2015-05-14T16:53:00+08:00</updated><author><name>Rocky Lai</name></author><id>tag:blog.shuiguzi.com,2015-05-14:xia-liao-unity-shader-xi-lie-zhi-shi-shu-ju-de-biao-qian-yu-yi-bang-ding.html</id><summary type="html">&lt;p&gt;这节内容跟 &lt;a href="http://blog.shuiguzi.com/xia-liao-unity-shader-xi-lie-zhi-er-xuan-ran-guan-xian.html"&gt;渲染管线&lt;/a&gt; 内容关系比较紧密，建议先了解渲染管线的整个流程。&lt;/p&gt;
+&lt;p&gt;我们知道渲染管线整个流水线都有数据的输入输出，这样就存在几个问题：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;这些数据都是什么？&lt;/li&gt;
+&lt;li&gt;这些数据输入或输出到哪里？&lt;/li&gt;
+&lt;li&gt;Shader 里面怎么体现？&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;这节内容主要是讲上面三个问题&lt;/p&gt;
+&lt;h3&gt;数据的种类&lt;/h3&gt;
+&lt;p&gt;一般情况能利用的有如下几种：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;坐标系中的位置 (position)&lt;/li&gt;
+&lt;li&gt;法线 (normal)&lt;/li&gt;
+&lt;li&gt;切线 (tanent)&lt;/li&gt;
+&lt;li&gt;颜色 (color)&lt;/li&gt;
+&lt;li&gt;纹理坐标 (texture coordinate)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;数据的输入输出&lt;/h3&gt;
+&lt;p&gt;数据存放在寄存器里面。输入的时候从寄存器读取数据，输出的时候将数据写到寄存器里面。&lt;/p&gt;
+&lt;h3&gt;Shader 中的体现&lt;/h3&gt;
+&lt;p&gt;首先是数据的种类的表示。现实生活中，我们也喜欢物品分类，然后对分类取个名字或贴个标签，以后我们便可以从这一类中存取属于这类的物品。Shader 里面也有类似的做法，给 Shader 函数输入输出的数据结构打上标签。
+这种标签叫做 &lt;strong&gt;语义（Semantic）&lt;/strong&gt;， 打标签的行为叫做 &lt;strong&gt;语义绑定&lt;/strong&gt; 。一般用一个冒号后面带上标签的名字来表示。长相大概是这个要样子 &lt;code&gt;:XXXXX&lt;/code&gt; （XXXXX 表示语义）。&lt;/p&gt;
+&lt;p&gt;我们有了标签，那我们把它放在 shader 代码什么地方呢？ 之前提到我们是给函数输入输出的数据结构打上标签，而函数的输入就是参数。对于参数，我们可以使用&lt;strong&gt;结构体&lt;/strong&gt;也可以直接使用&lt;strong&gt;基础数据类型&lt;/strong&gt;，所以能出现如下两种位置：&lt;/p&gt;
+&lt;p&gt;使用基础数据类型做参数时，大概是这个样子：  &lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;void shaderFunction(dataType variableName :XXXXX)&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;使用结构体声明中时（这个结构体要当作 shader 函数的参数）大概是这个样子:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;struct StructName {&lt;br /&gt;
+    datatype propertyName :XXXXX&lt;br /&gt;
+}  &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;另外一种是函数的输出，如果直接给返回值后面带上标签，代码会长成这个样子：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;dataType :XXXXX shaderFunction()&lt;br /&gt;
+{&lt;br /&gt;
+   .....&lt;br /&gt;
+}  &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;但是 CG 等语言&lt;strong&gt;没有像上面那么做&lt;/strong&gt;（个人觉得上面的方式会容易让人误解为标签就是返回值类型，其实不是），而是将标签移到函数的括号后面，所以最后应该只长成这个样子：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;dataType shaderFunction() : XXXXX&lt;br /&gt;
+{&lt;br /&gt;
+  ......&lt;br /&gt;
+}  &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;好了，就上面3个位置。 那语义（上面的 &lt;code&gt;XXXXX&lt;/code&gt;）都有哪些呢？ 一般有如下几种：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;POSITION：&lt;/strong&gt; 表示顶点在物体坐标内的位置&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;SV_POSITION：&lt;/strong&gt; 表示被转换到投射空间后的坐标位置 (通过 UNITY_MATRIX_MVP 这个矩阵可以转换)，可以参照 &lt;a href="http://blog.shuiguzi.com/xia-liao-unity-shader-xi-lie-zhi-si-zuo-biao-xi.html"&gt;坐标系&lt;/a&gt; 这一节内容。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;COLOR：&lt;/strong&gt; 表示颜色&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;NORMAL：&lt;/strong&gt; 表示法线&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;TANGENT：&lt;/strong&gt; 表示切线&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;TEXCOORD0&lt;/strong&gt; 和 &lt;strong&gt;TEXCOORD1 :&lt;/strong&gt; 纹理坐标 UV0 和 UV1。UV 换个说法就是 XY 坐标，只不过是为了怕重名导致的混淆，所以叫做UV。 U 表示横坐标， V表示纵坐标。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;现在我们知道通过标签来表示数据的分类, 那怎么表示输入和输出呢？答案是用关键词 in, out, inout。 光从名字上来看我们就知道 in 表示输入， out 表示输出， inout 表示输入输出。
+参数如果特别表明，默认为输入。可以参考下在 Unity 编辑器里面的创建的默认 shader， 里面就有这几个关键词的用法。&lt;/p&gt;
+&lt;p&gt;最后要说明一点，上面所说的在 Shaderlab 中都应该包括在 &lt;code&gt;CGPROGRAM ... ENDCG&lt;/code&gt; 语句块里面，因为这个是 CG 等语言的内容。&lt;/p&gt;
+&lt;h3&gt;举个例子&lt;/h3&gt;
+&lt;p&gt;现在举个代码的例子来说明（如果对下面代码结构等不是很明白，强烈建议从头开始看本系列的文章）：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;Shader&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;Custom/Shader10&amp;quot;&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="n"&gt;SubShader&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="n"&gt;Tags&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;RenderType&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Opaque&amp;quot;&lt;/span&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+
+        &lt;span class="n"&gt;pass&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+
+            &lt;span class="n"&gt;CGPROGRAM&lt;/span&gt;
+
+            &lt;span class="cp"&gt;#pragma vertex vert&lt;/span&gt;
+            &lt;span class="cp"&gt;#pragma fragment frag&lt;/span&gt;
+
+            &lt;span class="c1"&gt;// 结构体中使用语义绑定&lt;/span&gt;
+            &lt;span class="k"&gt;struct&lt;/span&gt; &lt;span class="n"&gt;VertexOutput&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+                &lt;span class="kt"&gt;float4&lt;/span&gt; &lt;span class="nl"&gt;pos&lt;/span&gt; &lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="n"&gt;SV_POSITION&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;        &lt;span class="c1"&gt;// 转换到投射空间后位置&lt;/span&gt;
+                &lt;span class="kt"&gt;float4&lt;/span&gt; &lt;span class="nl"&gt;texcoord&lt;/span&gt; &lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="n"&gt;TEXCOORD0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;     &lt;span class="c1"&gt;// 顶点颜色&lt;/span&gt;
+            &lt;span class="p"&gt;};&lt;/span&gt;
+
+
+            &lt;span class="n"&gt;VertexOutput&lt;/span&gt; &lt;span class="nf"&gt;vert&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;in&lt;/span&gt; &lt;span class="kt"&gt;float4&lt;/span&gt; &lt;span class="nl"&gt;pos&lt;/span&gt; &lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="n"&gt;POSITION&lt;/span&gt; &lt;span class="cm"&gt;/*参数中使用予以绑定*/&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+            &lt;span class="p"&gt;{&lt;/span&gt;
+                &lt;span class="n"&gt;VertexOutput&lt;/span&gt; &lt;span class="n"&gt;output&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+                &lt;span class="n"&gt;output&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;pos&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;mul&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;UNITY_MATRIX_MVP&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;pos&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+                &lt;span class="n"&gt;output&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;texcoord&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;pos&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="kt"&gt;float4&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mf"&gt;0.5&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mf"&gt;0.5&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mf"&gt;0.5&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+                &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;output&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+             &lt;span class="p"&gt;}&lt;/span&gt;
+
+            &lt;span class="kt"&gt;float4&lt;/span&gt; &lt;span class="n"&gt;frag&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;VertexOutput&lt;/span&gt; &lt;span class="n"&gt;input&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="n"&gt;COLOR&lt;/span&gt; &lt;span class="c1"&gt;// 函数后面使用语义绑定&lt;/span&gt;
+            &lt;span class="p"&gt;{&lt;/span&gt;
+                &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;input&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;texcoord&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+            &lt;span class="p"&gt;}&lt;/span&gt;
+
+            &lt;span class="n"&gt;ENDCG&lt;/span&gt;
+        &lt;span class="p"&gt;}&lt;/span&gt;
+
+    &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;上面的 shader 如果用在立方体上渲染出漂亮的 RGB 立方体，如下图：&lt;/p&gt;
+&lt;p&gt;&lt;img alt="rgb cube" src="images/Shader/10/rgb.png" width="40%" /&gt;&lt;/p&gt;
+&lt;h3&gt;总结&lt;/h3&gt;
+&lt;p&gt;用语义和语义绑定来表示数据和数据的流向。&lt;/p&gt;
+&lt;h3&gt;系列文章目录&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://blog.shuiguzi.com/xia-liao-unity-shader-xi-lie-zhi-yi-gpu-yu-shader-model.html"&gt;瞎聊 Unity Shader 系列之一：GPU 与 Shader Model&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://blog.shuiguzi.com/xia-liao-unity-shader-xi-lie-zhi-er-xuan-ran-guan-xian.html"&gt;瞎聊 Unity Shader 系列之二：渲染管线&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://blog.shuiguzi.com/xia-liao-unity-shader-xi-lie-zhi-san-shader-tu-di-shang-de-yu-yan-men.html"&gt;瞎聊 Unity Shader 系列之三：Shader 土地上的语言们&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://blog.shuiguzi.com/xia-liao-unity-shader-xi-lie-zhi-si-zuo-biao-xi.html"&gt;瞎聊 Unity Shader 系列之四：坐标系&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://blog.shuiguzi.com/xia-liao-unity-shader-xi-lie-zhi-wu-rgba-101.html"&gt;瞎聊 Unity Shader 系列之五：RGBA 101&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://blog.shuiguzi.com/xia-liao-unity-shader-xi-lie-zhi-liu-chu-shi-shaderlab.html"&gt;瞎聊 Unity Shader 系列之六：初识 Shaderlab&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://blog.shuiguzi.com/xia-liao-unity-shader-xi-lie-zhi-qi-jiu-jing-shui-xian-bei-xuan-ran.html"&gt;瞎聊 Unity Shader 系列之七：究竟谁先被渲染？&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://blog.shuiguzi.com/xia-liao-unity-shader-xi-lie-zhi-ba-pragma-zhi-ling.html"&gt;瞎聊 Unity Shader 系列之八：#pragma 指令&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://blog.shuiguzi.com/xia-liao-unity-shader-xi-lie-zhi-jiu-yong-lai-bao-zhuang-bian-liang-de-properties.html"&gt;瞎聊 Unity Shader 系列之九：用来包装变量的 Properties&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://blog.shuiguzi.com/xia-liao-unity-shader-xi-lie-zhi-shi-shu-ju-de-biao-qian-yu-yi-bang-ding.html"&gt;瞎聊 Unity Shader 系列之十：数据的标签：语义绑定&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</summary><category term="Shader"></category></entry><entry><title>瞎聊 Unity Shader 系列之九：用来包装变量的 Properties</title><link href="http://blog.shuiguzi.com/xia-liao-unity-shader-xi-lie-zhi-jiu-yong-lai-bao-zhuang-bian-liang-de-properties.html" rel="alternate"></link><updated>2015-05-08T14:13:00+08:00</updated><author><name>Rocky Lai</name></author><id>tag:blog.shuiguzi.com,2015-05-08:xia-liao-unity-shader-xi-lie-zhi-jiu-yong-lai-bao-zhuang-bian-liang-de-properties.html</id><summary type="html">&lt;p&gt;为了像其他程序语言一样重用代码，Shaderlab 把可变部分提取出来，集中放到一个区域去。这个区域就是 &lt;a href="http://blog.shuiguzi.com/xia-liao-unity-shader-xi-lie-zhi-liu-chu-shi-shaderlab.html"&gt;初始 shaderlab&lt;/a&gt; 这节中提到的的 &lt;code&gt;Properties&lt;/code&gt;
 可选项。 在这个区域内每一个元素被叫做 Property。我们把他叫做属性吧。这些属性都包括在 &lt;code&gt;Properties { }&lt;/code&gt; 语句块内。&lt;/p&gt;
 &lt;h3&gt;Shaderlab 的属性&lt;/h3&gt;
 &lt;p&gt;属性的语法是:&lt;/p&gt;
@@ -105,6 +221,7 @@ name ("display name", 3D) = "defaulttexture" {}  &lt;/p&gt;
 &lt;li&gt;&lt;a href="http://blog.shuiguzi.com/xia-liao-unity-shader-xi-lie-zhi-qi-jiu-jing-shui-xian-bei-xuan-ran.html"&gt;瞎聊 Unity Shader 系列之七：究竟谁先被渲染？&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://blog.shuiguzi.com/xia-liao-unity-shader-xi-lie-zhi-ba-pragma-zhi-ling.html"&gt;瞎聊 Unity Shader 系列之八：#pragma 指令&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://blog.shuiguzi.com/xia-liao-unity-shader-xi-lie-zhi-jiu-yong-lai-bao-zhuang-bian-liang-de-properties.html"&gt;瞎聊 Unity Shader 系列之九：用来包装变量的 Properties&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://blog.shuiguzi.com/xia-liao-unity-shader-xi-lie-zhi-shi-shu-ju-de-biao-qian-yu-yi-bang-ding.html"&gt;瞎聊 Unity Shader 系列之十：数据的标签：语义绑定&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;</summary><category term="Shader"></category></entry><entry><title>瞎聊 Unity Shader 系列之八：#pragma 指令</title><link href="http://blog.shuiguzi.com/xia-liao-unity-shader-xi-lie-zhi-ba-pragma-zhi-ling.html" rel="alternate"></link><updated>2015-05-07T16:13:00+08:00</updated><author><name>Rocky Lai</name></author><id>tag:blog.shuiguzi.com,2015-05-07:xia-liao-unity-shader-xi-lie-zhi-ba-pragma-zhi-ling.html</id><summary type="html">&lt;p&gt;第三节 &lt;a href="http://blog.shuiguzi.com/xia-liao-unity-shader-xi-lie-zhi-san-shader-tu-di-shang-de-yu-yan-men.html"&gt;Shader 土地上的语言们&lt;/a&gt; 里面说到过 CG 和 HLSL 等语言被 &lt;code&gt;GGPROGRAM ... ENDCG&lt;/code&gt; 语句块里面。这节的主角 #pragma 出现的位置就是在这个语句块里面，用来做编译指示的。就好比告诉
  Shaderlab 的编译器，你应该这么干应该那么干。这里把 #pragma 叫做编译指令吧。&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;CGPROGRAM ... ENDCG&lt;/code&gt; 语句块根据 Shaderlab 写作方式不同，它的位置也不同。&lt;/p&gt;
@@ -201,6 +318,7 @@ name ("display name", 3D) = "defaulttexture" {}  &lt;/p&gt;
 &lt;li&gt;&lt;a href="http://blog.shuiguzi.com/xia-liao-unity-shader-xi-lie-zhi-qi-jiu-jing-shui-xian-bei-xuan-ran.html"&gt;瞎聊 Unity Shader 系列之七：究竟谁先被渲染？&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://blog.shuiguzi.com/xia-liao-unity-shader-xi-lie-zhi-ba-pragma-zhi-ling.html"&gt;瞎聊 Unity Shader 系列之八：#pragma 指令&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://blog.shuiguzi.com/xia-liao-unity-shader-xi-lie-zhi-jiu-yong-lai-bao-zhuang-bian-liang-de-properties.html"&gt;瞎聊 Unity Shader 系列之九：用来包装变量的 Properties&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://blog.shuiguzi.com/xia-liao-unity-shader-xi-lie-zhi-shi-shu-ju-de-biao-qian-yu-yi-bang-ding.html"&gt;瞎聊 Unity Shader 系列之十：数据的标签：语义绑定&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;</summary><category term="Shader"></category></entry><entry><title>瞎聊 Unity Shader 系列之七：究竟谁先被渲染？</title><link href="http://blog.shuiguzi.com/xia-liao-unity-shader-xi-lie-zhi-qi-jiu-jing-shui-xian-bei-xuan-ran.html" rel="alternate"></link><updated>2015-05-07T16:13:00+08:00</updated><author><name>Rocky Lai</name></author><id>tag:blog.shuiguzi.com,2015-05-06:xia-liao-unity-shader-xi-lie-zhi-qi-jiu-jing-shui-xian-bei-xuan-ran.html</id><summary type="html">&lt;p&gt;这节的问题: 假设有很多对象需要渲染，而你想自己指定这些对象被渲染的顺序的话应该怎么做？&lt;/p&gt;
 &lt;p&gt;先上答案：使用 Subshader 的 Queue 标签指定。&lt;/p&gt;
 &lt;p&gt;那 Queue 标签又是是那么？？ 我们继续往下看，先介绍 Subshader 的标签&lt;/p&gt;
@@ -265,6 +383,7 @@ name ("display name", 3D) = "defaulttexture" {}  &lt;/p&gt;
 &lt;li&gt;&lt;a href="http://blog.shuiguzi.com/xia-liao-unity-shader-xi-lie-zhi-qi-jiu-jing-shui-xian-bei-xuan-ran.html"&gt;瞎聊 Unity Shader 系列之七：究竟谁先被渲染？&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://blog.shuiguzi.com/xia-liao-unity-shader-xi-lie-zhi-ba-pragma-zhi-ling.html"&gt;瞎聊 Unity Shader 系列之八：#pragma 指令&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://blog.shuiguzi.com/xia-liao-unity-shader-xi-lie-zhi-jiu-yong-lai-bao-zhuang-bian-liang-de-properties.html"&gt;瞎聊 Unity Shader 系列之九：用来包装变量的 Properties&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://blog.shuiguzi.com/xia-liao-unity-shader-xi-lie-zhi-shi-shu-ju-de-biao-qian-yu-yi-bang-ding.html"&gt;瞎聊 Unity Shader 系列之十：数据的标签：语义绑定&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;</summary><category term="Shader"></category></entry><entry><title>瞎聊 Unity Shader 系列之六：初识 Shaderlab</title><link href="http://blog.shuiguzi.com/xia-liao-unity-shader-xi-lie-zhi-liu-chu-shi-shaderlab.html" rel="alternate"></link><updated>2015-05-05T17:55:00+08:00</updated><author><name>Rocky Lai</name></author><id>tag:blog.shuiguzi.com,2015-05-05:xia-liao-unity-shader-xi-lie-zhi-liu-chu-shi-shaderlab.html</id><summary type="html">&lt;p&gt;好吧，其实这不算初识 Shaderlab 了，因为在 &lt;a href="http://blog.shuiguzi.com/xia-liao-unity-shader-xi-lie-zhi-san-shader-tu-di-shang-de-yu-yan-men.html"&gt;shaderlab 土地上的语言们&lt;/a&gt; 这节中已经说到在 shaderlab 中有三种方式来写 shader。
 这节的内容主要是来认识下 shaderlab 语法写出来的 shader 长得什么样子。&lt;/p&gt;
 &lt;p&gt;下面有段基于 shaderlab 的 shader 的大概框架的伪代码，在之前要解释下代码中带中括号的部分，如 &lt;code&gt;[Properties]&lt;/code&gt;, 表示是可以选择的，也就是说可以不写。&lt;/p&gt;
@@ -333,6 +452,7 @@ name ("display name", 3D) = "defaulttexture" {}  &lt;/p&gt;
 &lt;li&gt;&lt;a href="http://blog.shuiguzi.com/xia-liao-unity-shader-xi-lie-zhi-qi-jiu-jing-shui-xian-bei-xuan-ran.html"&gt;瞎聊 Unity Shader 系列之七：究竟谁先被渲染？&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://blog.shuiguzi.com/xia-liao-unity-shader-xi-lie-zhi-ba-pragma-zhi-ling.html"&gt;瞎聊 Unity Shader 系列之八：#pragma 指令&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://blog.shuiguzi.com/xia-liao-unity-shader-xi-lie-zhi-jiu-yong-lai-bao-zhuang-bian-liang-de-properties.html"&gt;瞎聊 Unity Shader 系列之九：用来包装变量的 Properties&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://blog.shuiguzi.com/xia-liao-unity-shader-xi-lie-zhi-shi-shu-ju-de-biao-qian-yu-yi-bang-ding.html"&gt;瞎聊 Unity Shader 系列之十：数据的标签：语义绑定&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;</summary><category term="Shader"></category></entry><entry><title>瞎聊 Unity Shader 系列之五：RGBA 101</title><link href="http://blog.shuiguzi.com/xia-liao-unity-shader-xi-lie-zhi-wu-rgba-101.html" rel="alternate"></link><updated>2015-05-04T13:55:00+08:00</updated><author><name>Rocky Lai</name></author><id>tag:blog.shuiguzi.com,2015-05-04:xia-liao-unity-shader-xi-lie-zhi-wu-rgba-101.html</id><summary type="html">&lt;p&gt;这节说说 fragment shader 最后输出的像素的颜色表示方法 RGBA。&lt;/p&gt;
 &lt;p&gt;玩过 Photoshop 的同学可能知道，存在好几种颜色模式来表示颜色，&lt;a href="http://baike.baidu.com/view/1139658.htm"&gt;比如 RGB 和 CMYK&lt;/a&gt;. 由于显示器的发光物体，所以使用的 RGB 模式。
 Unity 中也采用这种表示方法。&lt;/p&gt;
@@ -366,6 +486,7 @@ Unity 中也采用这种表示方法。&lt;/p&gt;
 &lt;li&gt;&lt;a href="http://blog.shuiguzi.com/xia-liao-unity-shader-xi-lie-zhi-qi-jiu-jing-shui-xian-bei-xuan-ran.html"&gt;瞎聊 Unity Shader 系列之七：究竟谁先被渲染？&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://blog.shuiguzi.com/xia-liao-unity-shader-xi-lie-zhi-ba-pragma-zhi-ling.html"&gt;瞎聊 Unity Shader 系列之八：#pragma 指令&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://blog.shuiguzi.com/xia-liao-unity-shader-xi-lie-zhi-jiu-yong-lai-bao-zhuang-bian-liang-de-properties.html"&gt;瞎聊 Unity Shader 系列之九：用来包装变量的 Properties&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://blog.shuiguzi.com/xia-liao-unity-shader-xi-lie-zhi-shi-shu-ju-de-biao-qian-yu-yi-bang-ding.html"&gt;瞎聊 Unity Shader 系列之十：数据的标签：语义绑定&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;</summary><category term="Shader"></category></entry><entry><title>瞎聊 Unity Shader 系列之四：坐标系</title><link href="http://blog.shuiguzi.com/xia-liao-unity-shader-xi-lie-zhi-si-zuo-biao-xi.html" rel="alternate"></link><updated>2015-04-30T13:55:00+08:00</updated><author><name>Rocky Lai</name></author><id>tag:blog.shuiguzi.com,2015-04-30:xia-liao-unity-shader-xi-lie-zhi-si-zuo-biao-xi.html</id><summary type="html">&lt;p&gt;这节从很平常一段对话开始：&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;&lt;strong&gt;甲跟乙说：&lt;/strong&gt; 喂，你看到那个人没有？&lt;br /&gt;
@@ -417,6 +538,7 @@ vertex shader 里面做了下面这些事：&lt;/p&gt;
 &lt;li&gt;&lt;a href="http://blog.shuiguzi.com/xia-liao-unity-shader-xi-lie-zhi-qi-jiu-jing-shui-xian-bei-xuan-ran.html"&gt;瞎聊 Unity Shader 系列之七：究竟谁先被渲染？&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://blog.shuiguzi.com/xia-liao-unity-shader-xi-lie-zhi-ba-pragma-zhi-ling.html"&gt;瞎聊 Unity Shader 系列之八：#pragma 指令&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://blog.shuiguzi.com/xia-liao-unity-shader-xi-lie-zhi-jiu-yong-lai-bao-zhuang-bian-liang-de-properties.html"&gt;瞎聊 Unity Shader 系列之九：用来包装变量的 Properties&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://blog.shuiguzi.com/xia-liao-unity-shader-xi-lie-zhi-shi-shu-ju-de-biao-qian-yu-yi-bang-ding.html"&gt;瞎聊 Unity Shader 系列之十：数据的标签：语义绑定&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;</summary><category term="Shader"></category></entry><entry><title>瞎聊 Unity Shader 系列之三：Shader 土地上的语言们</title><link href="http://blog.shuiguzi.com/xia-liao-unity-shader-xi-lie-zhi-san-shader-tu-di-shang-de-yu-yan-men.html" rel="alternate"></link><updated>2015-05-04T14:33:00+08:00</updated><author><name>Rocky Lai</name></author><id>tag:blog.shuiguzi.com,2015-04-29:xia-liao-unity-shader-xi-lie-zhi-san-shader-tu-di-shang-de-yu-yan-men.html</id><summary type="html">&lt;p&gt;这节是关于 Unity 平台上 shader 语言的选择。&lt;/p&gt;
 &lt;p&gt;计算机行业的各公司（或者组织）似乎都遵循着某种规则。当他们在某个领域划出了一亩三分地，当上了地主后, 就要用方法圈住干活的农民。让他们觉得在我这里不会饿死，有饭吃，你要到别家
 干活的话，需要重头再来，这是一个很亏本的买卖。这个方法就是制定自己体系（软硬件中的各种协议，接口，语言，框架），脱离这套体系，在别的地方玩不起来。开个玩笑来取名这个规矩叫做&lt;strong&gt;圈地规则&lt;/strong&gt;吧。&lt;/p&gt;
@@ -478,6 +600,7 @@ as well as rendering passes to handle forward and deferred rendering.&lt;/p&gt;
 &lt;li&gt;&lt;a href="http://blog.shuiguzi.com/xia-liao-unity-shader-xi-lie-zhi-qi-jiu-jing-shui-xian-bei-xuan-ran.html"&gt;瞎聊 Unity Shader 系列之七：究竟谁先被渲染？&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://blog.shuiguzi.com/xia-liao-unity-shader-xi-lie-zhi-ba-pragma-zhi-ling.html"&gt;瞎聊 Unity Shader 系列之八：#pragma 指令&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://blog.shuiguzi.com/xia-liao-unity-shader-xi-lie-zhi-jiu-yong-lai-bao-zhuang-bian-liang-de-properties.html"&gt;瞎聊 Unity Shader 系列之九：用来包装变量的 Properties&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://blog.shuiguzi.com/xia-liao-unity-shader-xi-lie-zhi-shi-shu-ju-de-biao-qian-yu-yi-bang-ding.html"&gt;瞎聊 Unity Shader 系列之十：数据的标签：语义绑定&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;</summary><category term="Shader"></category></entry><entry><title>瞎聊 Unity Shader 系列之二：渲染管线</title><link href="http://blog.shuiguzi.com/xia-liao-unity-shader-xi-lie-zhi-er-xuan-ran-guan-xian.html" rel="alternate"></link><updated>2015-04-28T14:07:00+08:00</updated><author><name>Rocky Lai</name></author><id>tag:blog.shuiguzi.com,2015-04-28:xia-liao-unity-shader-xi-lie-zhi-er-xuan-ran-guan-xian.html</id><summary type="html">&lt;p&gt;这节描述的是图形渲染的大致过程。&lt;/p&gt;
 &lt;p&gt;为了更好理解和记忆这节内容，先来学下面几个词。&lt;/p&gt;
 &lt;ul&gt;
@@ -515,6 +638,7 @@ as well as rendering passes to handle forward and deferred rendering.&lt;/p&gt;
 &lt;li&gt;&lt;a href="http://blog.shuiguzi.com/xia-liao-unity-shader-xi-lie-zhi-qi-jiu-jing-shui-xian-bei-xuan-ran.html"&gt;瞎聊 Unity Shader 系列之七：究竟谁先被渲染？&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://blog.shuiguzi.com/xia-liao-unity-shader-xi-lie-zhi-ba-pragma-zhi-ling.html"&gt;瞎聊 Unity Shader 系列之八：#pragma 指令&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://blog.shuiguzi.com/xia-liao-unity-shader-xi-lie-zhi-jiu-yong-lai-bao-zhuang-bian-liang-de-properties.html"&gt;瞎聊 Unity Shader 系列之九：用来包装变量的 Properties&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://blog.shuiguzi.com/xia-liao-unity-shader-xi-lie-zhi-shi-shu-ju-de-biao-qian-yu-yi-bang-ding.html"&gt;瞎聊 Unity Shader 系列之十：数据的标签：语义绑定&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;</summary><category term="Shader"></category></entry><entry><title>瞎聊 Unity Shader 系列之一：GPU 与 Shader Model</title><link href="http://blog.shuiguzi.com/xia-liao-unity-shader-xi-lie-zhi-yi-gpu-yu-shader-model.html" rel="alternate"></link><updated>2015-04-27T15:54:00+08:00</updated><author><name>Rocky Lai</name></author><id>tag:blog.shuiguzi.com,2015-04-26:xia-liao-unity-shader-xi-lie-zhi-yi-gpu-yu-shader-model.html</id><summary type="html">&lt;p&gt;我想首先唠叨下我为什么打算写这一系列的文章及文章的定位。&lt;/p&gt;
 &lt;p&gt;我写的动力主要来源于如下原因：&lt;/p&gt;
 &lt;ul&gt;
@@ -570,6 +694,7 @@ as well as rendering passes to handle forward and deferred rendering.&lt;/p&gt;
 &lt;li&gt;&lt;a href="http://blog.shuiguzi.com/xia-liao-unity-shader-xi-lie-zhi-qi-jiu-jing-shui-xian-bei-xuan-ran.html"&gt;瞎聊 Unity Shader 系列之七：究竟谁先被渲染？&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://blog.shuiguzi.com/xia-liao-unity-shader-xi-lie-zhi-ba-pragma-zhi-ling.html"&gt;瞎聊 Unity Shader 系列之八：#pragma 指令&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://blog.shuiguzi.com/xia-liao-unity-shader-xi-lie-zhi-jiu-yong-lai-bao-zhuang-bian-liang-de-properties.html"&gt;瞎聊 Unity Shader 系列之九：用来包装变量的 Properties&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://blog.shuiguzi.com/xia-liao-unity-shader-xi-lie-zhi-shi-shu-ju-de-biao-qian-yu-yi-bang-ding.html"&gt;瞎聊 Unity Shader 系列之十：数据的标签：语义绑定&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;</summary><category term="Shader"></category></entry><entry><title>在 Unity uGUI 中绘制圆形图片</title><link href="http://blog.shuiguzi.com/zai-unity-ugui-zhong-hui-zhi-yuan-xing-tu-pian.html" rel="alternate"></link><updated>2015-04-15T23:30:00+08:00</updated><author><name>Rocky Lai</name></author><id>tag:blog.shuiguzi.com,2015-04-15:zai-unity-ugui-zhong-hui-zhi-yuan-xing-tu-pian.html</id><summary type="html">&lt;p&gt;最近项目需要在 Unity 的新 UI 系统中实现圆形头像的功能，之前想通过 Mask 控件的方式来实现，但是一番努力后毫无头绪，只能祭上shader了。&lt;/p&gt;
 &lt;p&gt;大体的思路就是在一个空的 Object 上面挂上 RawImage 组件，组件的 Material 挂上本文中的 shader。截取的逻辑是选取图片正中心 (0.5, 0.5) 为圆的中心点，绘制图片在圆内的像素点为图片的像素，然后图片在圆外的像素点设置为 alpha 为 0 的点，
 如 &lt;code&gt;(0, 0, 0, 0)&lt;/code&gt;。逻辑是在 fragment shader 里面实现(shader 代码中的&lt;code&gt;frag&lt;/code&gt;)。&lt;/p&gt;
@@ -877,7 +1002,7 @@ as well as rendering passes to handle forward and deferred rendering.&lt;/p&gt;
 &lt;span class="sd"&gt;    double var_float = 1.0; // 或者 float var_float = 1.0;&lt;/span&gt;
 &lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
 &lt;span class="n"&gt;var_int&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;
-&lt;span class="n"&gt;var_binary&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mb"&gt;0b0010&lt;/span&gt; &lt;span class="c"&gt;# 变量值为2&lt;/span&gt;
+&lt;span class="n"&gt;var_binary&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="n"&gt;b0010&lt;/span&gt; &lt;span class="c"&gt;# 变量值为2&lt;/span&gt;
 &lt;span class="n"&gt;var_octal&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="n"&gt;O0010&lt;/span&gt; &lt;span class="c"&gt;# 变量值为8, 0O第二个是字母O&lt;/span&gt;
 &lt;span class="n"&gt;var_hex&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mh"&gt;0x0010&lt;/span&gt; &lt;span class="c"&gt;# 变量值为16&lt;/span&gt;
 &lt;span class="n"&gt;var_float&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mf"&gt;1.0&lt;/span&gt;
