@@ -181,7 +181,7 @@
             <span class="p">};</span>
 
 
-            <span class="n">VertexOutput</span> <span class="nf">vert</span><span class="p">(</span><span class="n">in</span> <span class="kt">float4</span> <span class="nl">pos</span> <span class="p">:</span><span class="n">POSITION</span> <span class="cm">/*参数中使用予以绑定*/</span><span class="p">)</span>
+            <span class="n">VertexOutput</span> <span class="nf">vert</span><span class="p">(</span><span class="n">in</span> <span class="kt">float4</span> <span class="nl">pos</span> <span class="p">:</span><span class="n">POSITION</span> <span class="cm">/*参数中使用语义绑定*/</span><span class="p">)</span>
             <span class="p">{</span>
                 <span class="n">VertexOutput</span> <span class="n">output</span><span class="p">;</span>
                 <span class="n">output</span><span class="p">.</span><span class="n">pos</span> <span class="o">=</span> <span class="n">mul</span><span class="p">(</span><span class="n">UNITY_MATRIX_MVP</span><span class="p">,</span> <span class="n">pos</span><span class="p">);</span>

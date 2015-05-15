@@ -97,7 +97,7 @@ Status: published
     			};
 
 
-    			VertexOutput vert(in float4 pos :POSITION /*参数中使用予以绑定*/)
+    			VertexOutput vert(in float4 pos :POSITION /*参数中使用语义绑定*/)
     		    {
     				VertexOutput output;
     				output.pos = mul(UNITY_MATRIX_MVP, pos);

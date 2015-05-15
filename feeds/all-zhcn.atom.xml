@@ -78,7 +78,7 @@
             &lt;span class="p"&gt;};&lt;/span&gt;
 
 
-            &lt;span class="n"&gt;VertexOutput&lt;/span&gt; &lt;span class="nf"&gt;vert&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;in&lt;/span&gt; &lt;span class="kt"&gt;float4&lt;/span&gt; &lt;span class="nl"&gt;pos&lt;/span&gt; &lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="n"&gt;POSITION&lt;/span&gt; &lt;span class="cm"&gt;/*参数中使用予以绑定*/&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+            &lt;span class="n"&gt;VertexOutput&lt;/span&gt; &lt;span class="nf"&gt;vert&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;in&lt;/span&gt; &lt;span class="kt"&gt;float4&lt;/span&gt; &lt;span class="nl"&gt;pos&lt;/span&gt; &lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="n"&gt;POSITION&lt;/span&gt; &lt;span class="cm"&gt;/*参数中使用语义绑定*/&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
             &lt;span class="p"&gt;{&lt;/span&gt;
                 &lt;span class="n"&gt;VertexOutput&lt;/span&gt; &lt;span class="n"&gt;output&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
                 &lt;span class="n"&gt;output&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;pos&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;mul&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;UNITY_MATRIX_MVP&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;pos&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
