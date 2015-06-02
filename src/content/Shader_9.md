@@ -4,7 +4,7 @@ Modified: 2015-05-08 14:13
 Category: Shader
 Tags: Shader
 Status: published
-
+Keywords: Unity, Shaderlab, Shader, Unity Shader
 
 
 为了像其他程序语言一样重用代码，Shaderlab 把可变部分提取出来，集中放到一个区域去。这个区域就是 [初始 shaderlab]({filename}/Shader_6.md) 这节中提到的的 `Properties`

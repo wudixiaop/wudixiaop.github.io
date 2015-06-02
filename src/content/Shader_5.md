@@ -4,6 +4,7 @@ Modified: 2015-05-04 13:55
 Category: Shader
 Tags: Shader
 Status: published
+Keywords: Unity, Shaderlab, Shader, Unity Shader
 
 这节说说 fragment shader 最后输出的像素的颜色表示方法 RGBA。
 

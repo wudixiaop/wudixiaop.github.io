@@ -4,6 +4,7 @@ Modified: 2015-05-07 16:13
 Category: Shader
 Tags: Shader
 Status: published
+Keywords: Unity, Shaderlab, Shader, Unity Shader
 
 这节的问题: 假设有很多对象需要渲染，而你想自己指定这些对象被渲染的顺序的话应该怎么做？
 

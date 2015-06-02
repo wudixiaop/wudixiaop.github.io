@@ -4,6 +4,7 @@ Modified: 2015-05-14 16:53
 Category: Shader
 Tags: Shader
 Status: published
+Keywords: Unity, Shaderlab, Shader, Unity Shader
 
 这节内容跟 [渲染管线]({filename}/Shader_2.md) 内容关系比较紧密，建议先了解渲染管线的整个流程。
 

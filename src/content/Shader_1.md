@@ -4,6 +4,7 @@ Modified: 2015-04-27 15:54
 Category: Shader
 Tags: Shader
 Status: published
+Keywords: Unity, Shaderlab, Shader, Unity Shader, shader model
 
 我想首先唠叨下我为什么打算写这一系列的文章及文章的定位。
 

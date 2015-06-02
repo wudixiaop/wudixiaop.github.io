@@ -4,6 +4,7 @@ Modified: 2015-05-04 14:33
 Category: Shader
 Tags: Shader
 Status: published
+Keywords: Unity, Shaderlab, Shader, Unity Shader
 
 这节是关于 Unity 平台上 shader 语言的选择。
 

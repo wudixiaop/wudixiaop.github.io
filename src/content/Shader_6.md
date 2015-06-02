@@ -4,6 +4,7 @@ Modified: 2015-05-05 17:55
 Category: Shader
 Tags: Shader
 Status: published
+Keywords: Unity, Shaderlab, Shader, Unity Shader
 
 好吧，其实这不算初识 Shaderlab 了，因为在 [shaderlab 土地上的语言们]({filename}/Shader_3.md) 这节中已经说到在 shaderlab 中有三种方式来写 shader。
 这节的内容主要是来认识下 shaderlab 语法写出来的 shader 长得什么样子。

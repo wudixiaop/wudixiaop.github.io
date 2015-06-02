@@ -3,6 +3,7 @@ Date: 2014-08-31 20:35
 Category: Shader
 Tags: Shader
 Modified: 2010-10-19 18:09
+Keywords: ShaderlabVS, Shaderlab 插件
 
 Last month, [SyntaxTree](http://unityvs.com/), the creator of UnityVS plugin for Visual Studio was acquired by Microsoft. Microsoft have published the UnityVS to Visual Studio users for free at the end of July.
 

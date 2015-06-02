@@ -2,6 +2,7 @@
 Category: 一点一滴
 Date: 2014-12-24 14:50
 Tags: Visual Studio
+keywords: VS, VS tip
 
 好吧，其实我想要说一些我觉得可以在Visual Studio中提高效率的经验。下面直接进入正题：
 

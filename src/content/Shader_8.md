@@ -4,6 +4,7 @@ Modified: 2015-05-07 16:13
 Category: Shader
 Tags: Shader
 Status: published
+Keywords: Unity, Shaderlab, Shader, Unity Shader
 
 第三节 [Shader 土地上的语言们]({filename}/Shader_3.md) 里面说到过 CG 和 HLSL 等语言被 `GGPROGRAM ... ENDCG` 语句块里面。这节的主角 #pragma 出现的位置就是在这个语句块里面，用来做编译指示的。就好比告诉
  Shaderlab 的编译器，你应该这么干应该那么干。这里把 #pragma 叫做编译指令吧。
