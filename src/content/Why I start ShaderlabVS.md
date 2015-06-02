@@ -7,4 +7,4 @@ Keywords: ShaderlabVS, Shaderlab 插件
 
 Last month, [SyntaxTree](http://unityvs.com/), the creator of UnityVS plugin for Visual Studio was acquired by Microsoft. Microsoft have published the UnityVS to Visual Studio users for free at the end of July.
 
-UnityVS is cool tool that make it's possible to debug Unity scripts in VS. But the tool is not support the Unity shaderlab syntax. it's pain for me to to read/write shader in VS, So I created the ShaderlabVS to help myself and may would help someone who need it.
+UnityVS is cool tool that make it's possible to debug Unity scripts in VS. But the tool is not support the Unity shaderlab syntax. it's pain for me to read/write shader in VS, So I created the ShaderlabVS to help myself and may would help someone who need it.
