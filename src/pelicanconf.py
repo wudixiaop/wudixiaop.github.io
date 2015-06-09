@@ -11,8 +11,8 @@ SITENAME = u"心亡则忙，亡心则忘"
 # 开启测试环境
 #
 
-#IN_TEST_Environment = True
-IN_TEST_Environment = False
+IN_TEST_Environment = True
+# IN_TEST_Environment = False
 
 #
 # 通用

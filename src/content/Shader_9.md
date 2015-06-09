@@ -119,3 +119,4 @@ Shaderlab 提供的类型最终会映射成 CG 等语言变量类型，他们的
 - [瞎聊 Unity Shader 系列之八：#pragma 指令]({filename}/Shader_8.md)
 - [瞎聊 Unity Shader 系列之九：用来包装变量的 Properties]({filename}/Shader_9.md)
 - [瞎聊 Unity Shader 系列之十：数据的标签：语义绑定]({filename}/Shader_10.md)
+- [瞎聊 Unity Shader 系列之十一：深度缓存]({filename}/Shader_11.md)
