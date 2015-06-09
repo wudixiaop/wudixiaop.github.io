@@ -34,7 +34,7 @@
 
 
 &lt;h3&gt;在 Unity 图像渲染中顺序中的位置&lt;/h3&gt;
-&lt;p&gt;&lt;img alt="PipelineCullDepth" src="Images/Shader/11/PipelineCullDepth.png" width="90%" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="PipelineCullDepth" src="images/Shader/11/PipelineCullDepth.png" width="90%" /&gt;&lt;/p&gt;
 &lt;p&gt;图片来自 Unity 官方手册 &lt;a href="http://docs.unity3d.com/Manual/SL-CullAndDepth.html"&gt;http://docs.unity3d.com/Manual/SL-CullAndDepth.html&lt;/a&gt;&lt;/p&gt;
 &lt;h3&gt;系列文章目录&lt;/h3&gt;
 &lt;ul&gt;

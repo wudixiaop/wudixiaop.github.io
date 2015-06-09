@@ -49,7 +49,7 @@ Offset 根据一个插值公式来计算出新的深度值。有兴趣的可以 
 
 ###在 Unity 图像渲染中顺序中的位置
 
-![PipelineCullDepth](Images/Shader/11/PipelineCullDepth.png){: width="90%"}
+![PipelineCullDepth](images/Shader/11/PipelineCullDepth.png){: width="90%"}
 
 图片来自 Unity 官方手册 <http://docs.unity3d.com/Manual/SL-CullAndDepth.html>
 
