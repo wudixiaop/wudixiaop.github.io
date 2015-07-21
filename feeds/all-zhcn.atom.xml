@@ -1,5 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>心亡则忙，亡心则忘</title><link href="http://blog.shuiguzi.com/" rel="alternate"></link><link href="http://blog.shuiguzi.com/feeds%5Call-zhcn.atom.xml" rel="self"></link><id>http://blog.shuiguzi.com/</id><updated>2015-06-09T15:17:00+08:00</updated><entry><title>瞎聊 Unity Shader 系列之十一：深度缓存</title><link href="http://blog.shuiguzi.com/xia-liao-unity-shader-xi-lie-zhi-shi-yi-shen-du-huan-cun.html" rel="alternate"></link><updated>2015-06-09T15:17:00+08:00</updated><author><name>Rocky Lai</name></author><id>tag:blog.shuiguzi.com,2015-06-09:xia-liao-unity-shader-xi-lie-zhi-shi-yi-shen-du-huan-cun.html</id><summary type="html">&lt;p&gt;第二节 &lt;a href="http://blog.shuiguzi.com/xia-liao-unity-shader-xi-lie-zhi-er-xuan-ran-guan-xian.html"&gt;渲染管线&lt;/a&gt; 中提到了 Frame Buffer, 这个是用来存储帧位图的数据存储区域。 这里在介绍另外一个缓存, 叫深度缓存 (Depth Buffer), 也叫作 Z-Buffer。从名字上来看这是一个
+<feed xmlns="http://www.w3.org/2005/Atom"><title>心亡则忙，亡心则忘</title><link href="http://blog.shuiguzi.com/" rel="alternate"></link><link href="http://blog.shuiguzi.com/feeds%5Call-zhcn.atom.xml" rel="self"></link><id>http://blog.shuiguzi.com/</id><updated>2015-07-21T12:54:00+08:00</updated><entry><title>好玩：如何把 Github Contributions 填充满</title><link href="http://blog.shuiguzi.com/hao-wan-ru-he-ba-github-contributions-tian-chong-man.html" rel="alternate"></link><updated>2015-07-21T12:54:00+08:00</updated><author><name>Rocky Lai</name></author><id>tag:blog.shuiguzi.com,2015-07-21:hao-wan-ru-he-ba-github-contributions-tian-chong-man.html</id><summary type="html">&lt;p&gt;先看效果：&lt;br /&gt;
+&lt;img alt="rockstar" src="images/RockStar/rockstar.PNG" /&gt;&lt;/p&gt;
+&lt;p&gt;我们要使用 RockStar 这个 python 工具来实现这个效果。RockStar 的 Github 地址 &lt;a href="https://github.com/avinassh/rockstar"&gt;撮这里&lt;/a&gt;。&lt;/p&gt;
+&lt;p&gt;RockStar 只支持 Python 3，不能在 Python 2 上面。如果本机没有 Pyhon3 可以从 &lt;a href="http://python.org"&gt;http://python.org&lt;/a&gt; 里面下载安装，当前版本的下载地址为 &lt;a href="https://www.python.org/downloads/release/python-343/"&gt;https://www.python.org/downloads/release/python-343/&lt;/a&gt;。&lt;/p&gt;
+&lt;p&gt;使用 python 前我们需要在环境变量中加入 python3 的安装路径和脚本文件的路径。假如我们安装在 &lt;code&gt;C:\Python34&lt;/code&gt; 文件夹下，则加入下面地址到环境变量中&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;C:\Python34;C:\Python34\Scripts&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;上面设置完成之后我们就可以用 python 来玩耍啦。首先我们打开命令行来安装 RockStar ，输入&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;pip install rockstar&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;输入完成之后, 我们创建一个新文件夹，比如叫做 RSFunny, 并在这个文件夹下面创建一个 python 脚本，比如叫做 rockystar.py。 脚步的内容如下：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;RockStar&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;RockStar&lt;/span&gt;
+
+&lt;span class="n"&gt;csharp_code&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;&amp;quot;&amp;quot;using System;&lt;/span&gt;
+
+&lt;span class="s"&gt;class HelloWorld&lt;/span&gt;
+&lt;span class="s"&gt;{&lt;/span&gt;
+&lt;span class="s"&gt;    static void Main()&lt;/span&gt;
+&lt;span class="s"&gt;    {&lt;/span&gt;
+&lt;span class="s"&gt;        Console.WriteLine(&amp;quot;I&amp;#39;m Rocky&amp;quot;);&lt;/span&gt;
+&lt;span class="s"&gt;    }&lt;/span&gt;
+&lt;span class="s"&gt;}&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+
+&lt;span class="c"&gt;# 400 天&lt;/span&gt;
+&lt;span class="n"&gt;rock_it_bro&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;RockStar&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;days&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;400&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;file_name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;rockstar.cs&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;code&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;csharp_code&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;rock_it_bro&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;make_me_a_rockstar&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;更多的例子我们能参考这里 &lt;a href="https://github.com/avinassh/rockstar/tree/master/examples"&gt;https://github.com/avinassh/rockstar/tree/master/examples&lt;/a&gt;。&lt;/p&gt;
+&lt;p&gt;接下来，在命令行中跳转到到 RSFunny 目录下, 准备运行 rockstar.py。这里需要注意一下，因为脚本需要用到 git.exe，所以我们需要把 git.exe 的路径加入到当前的环境变量 &lt;code&gt;PATH&lt;/code&gt; 中，不然会抛出找不到文件的错误。
+如果安装了 Github for Windows 客户端，我们可以从客户端的安装目录 &lt;code&gt;%AppData%\..\Local\GitHub&lt;/code&gt; 下找到 git.exe。添加完后，我们运行脚本：  &lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;python rockstar.py&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;运行完后，脚本将 RSFunny 目录变成一个 git 仓库。&lt;/p&gt;
+&lt;p&gt;好了，万事具备，只欠发布到 Github 了。 建议使用最新版 Github for Windows 客户端，简单快捷，居家旅行必备。。。&lt;/p&gt;
+&lt;p&gt;不知道怎么在 Github for Windows 客户端添加？ 那就点点左上角的 + 号，然后结合下面这个截图看看，相信应有收获的。 :) &lt;/p&gt;
+&lt;p&gt;&lt;img alt="gitAddRepo" src="images/RockStar/gitAddRepo.PNG" /&gt;&lt;/p&gt;
+&lt;p&gt;Enjoy!&lt;/p&gt;</summary><category term="RockStar"></category></entry><entry><title>瞎聊 Unity Shader 系列之十一：深度缓存</title><link href="http://blog.shuiguzi.com/xia-liao-unity-shader-xi-lie-zhi-shi-yi-shen-du-huan-cun.html" rel="alternate"></link><updated>2015-06-09T15:17:00+08:00</updated><author><name>Rocky Lai</name></author><id>tag:blog.shuiguzi.com,2015-06-09:xia-liao-unity-shader-xi-lie-zhi-shi-yi-shen-du-huan-cun.html</id><summary type="html">&lt;p&gt;第二节 &lt;a href="http://blog.shuiguzi.com/xia-liao-unity-shader-xi-lie-zhi-er-xuan-ran-guan-xian.html"&gt;渲染管线&lt;/a&gt; 中提到了 Frame Buffer, 这个是用来存储帧位图的数据存储区域。 这里在介绍另外一个缓存, 叫深度缓存 (Depth Buffer), 也叫作 Z-Buffer。从名字上来看这是一个
 存储深度（数据）的存储区。下面我们带着两个问题来解释这个深度缓存。&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;ol&gt;
