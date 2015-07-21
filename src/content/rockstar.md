@@ -22,7 +22,7 @@ RockStar 只支持 Python 3，不能在 Python 2 上面。如果本机没有 Pyh
 
 > pip install rockstar
 
-输入完成之后, 我们创建一个新文件夹，比如叫做 RSFunny, 并在这个文件夹下面创建一个 python 脚本，比如叫做 rockystar.py。 脚步的内容如下：
+输入完成之后, 我们创建一个新文件夹，比如叫做 RSFunny, 并在这个文件夹下面创建一个 python 脚本，比如叫做 rockstar.py。 脚步的内容如下：
 
 	:::python
 	from RockStar import RockStar
