@@ -3,7 +3,7 @@
 &lt;img alt="rockstar" src="images/RockStar/rockstar.PNG" /&gt;&lt;/p&gt;
 &lt;p&gt;我们要使用 RockStar 这个 python 工具来实现这个效果。RockStar 的 Github 地址 &lt;a href="https://github.com/avinassh/rockstar"&gt;撮这里&lt;/a&gt;。&lt;/p&gt;
 &lt;p&gt;RockStar 只支持 Python 3，不能在 Python 2 上面。如果本机没有 Pyhon3 可以从 &lt;a href="http://python.org"&gt;http://python.org&lt;/a&gt; 里面下载安装，当前版本的下载地址为 &lt;a href="https://www.python.org/downloads/release/python-343/"&gt;https://www.python.org/downloads/release/python-343/&lt;/a&gt;。&lt;/p&gt;
-&lt;p&gt;使用 python 前我们需要在环境变量中加入 python3 的安装路径和脚本文件的路径。假如我们安装在 &lt;code&gt;C:\Python34&lt;/code&gt; 文件夹下，则加入下面地址到环境变量中&lt;/p&gt;
+&lt;p&gt;使用 python 前我们需要在环境变量中加入 python3 的安装路径和脚本文件的路径。假如我们安装在 &lt;code&gt;C:\Python34&lt;/code&gt; 文件夹下，则加入下面地址到环境变量 &lt;code&gt;PATH&lt;/code&gt; 中&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;C:\Python34;C:\Python34\Scripts&lt;/p&gt;
 &lt;/blockquote&gt;

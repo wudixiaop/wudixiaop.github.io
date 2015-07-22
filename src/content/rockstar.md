@@ -13,7 +13,7 @@ Keywords: RockStar, Github, Github Contributions 填充
 
 RockStar 只支持 Python 3，不能在 Python 2 上面。如果本机没有 Pyhon3 可以从 <http://python.org> 里面下载安装，当前版本的下载地址为 <https://www.python.org/downloads/release/python-343/>。
 
-使用 python 前我们需要在环境变量中加入 python3 的安装路径和脚本文件的路径。假如我们安装在 `C:\Python34` 文件夹下，则加入下面地址到环境变量中
+使用 python 前我们需要在环境变量中加入 python3 的安装路径和脚本文件的路径。假如我们安装在 `C:\Python34` 文件夹下，则加入下面地址到环境变量 `PATH` 中
 
 > C:\Python34;C:\Python34\Scripts
 
