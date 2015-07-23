@@ -7,7 +7,7 @@ Status: published
 Keywords: RockStar, Github, Github Contributions 填充
 
 先看效果：  
-![rockstar](images/RockStar/rockstar.PNG){: widh="100%"}
+![rockstar](images/RockStar/rockstar.PNG){: width="100%"}
 
 我们要使用 RockStar 这个 python 工具来实现这个效果。RockStar 的 Github 地址 [撮这里](https://github.com/avinassh/rockstar)。
 
@@ -54,6 +54,6 @@ RockStar 只支持 Python 3，不能在 Python 2 上面。如果本机没有 Pyh
 
 不知道怎么在 Github for Windows 客户端添加？ 那就点点左上角的 + 号，然后结合下面这个截图看看，相信应有收获的。 :) 
 
-![gitAddRepo](images/RockStar/gitAddRepo.PNG){: widh="100%"}
+![gitAddRepo](images/RockStar/gitAddRepo.PNG){: width="100%"}
 
 Enjoy!
