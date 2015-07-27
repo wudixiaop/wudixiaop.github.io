@@ -52,3 +52,6 @@ Keywords: Unity, Shaderlab, Shader, Unity Shader
 - [瞎聊 Unity Shader 系列之九：用来包装变量的 Properties]({filename}/Shader_9.md)
 - [瞎聊 Unity Shader 系列之十：数据的标签：语义绑定]({filename}/Shader_10.md)
 - [瞎聊 Unity Shader 系列之十一：深度缓存]({filename}/Shader_11.md)
+
+
+鄙人才疏学浅，有出入的地方非常感谢能帮忙指正。:)
