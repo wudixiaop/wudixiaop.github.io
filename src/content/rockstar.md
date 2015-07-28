@@ -2,7 +2,7 @@ Title: 好玩：如何把 Github Contributions 填充满
 Date: 2015-07-21 12:50
 Modified: 2015-07-21 12:54
 Category: 一点一滴
-Tags: RockStar
+Tags: Python
 Status: published
 Keywords: RockStar, Github, Github Contributions 填充
 
