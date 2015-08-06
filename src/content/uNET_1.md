@@ -148,7 +148,7 @@ Client 端的代码：
 	    }
 	}
 
-我们把上面两个脚本都挂在 GameObject 上, 设置 SetupClient 脚本的 isLocal 属性为 false ，然后运行，输出结果为
+我们把上面两个脚本都挂在 GameObject 上, 设置 SetupClient 脚本的 isLocal 字段值为 false，然后运行。输出结果为：
 
 ![output](images/UNet/outputResult.PNG){: width="88%"}
 

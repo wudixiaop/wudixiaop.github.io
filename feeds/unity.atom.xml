@@ -120,7 +120,7 @@
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;我们把上面两个脚本都挂在 GameObject 上, 设置 SetupClient 脚本的 isLocal 属性为 false ，然后运行，输出结果为&lt;/p&gt;
+&lt;p&gt;我们把上面两个脚本都挂在 GameObject 上, 设置 SetupClient 脚本的 isLocal 字段值为 false，然后运行。输出结果为：&lt;/p&gt;
 &lt;p&gt;&lt;img alt="output" src="images/UNet/outputResult.PNG" width="88%" /&gt;&lt;/p&gt;
 &lt;p&gt;代码的 Github 地址 &lt;a href="https://github.com/wudixiaop/UNet/tree/master/Assets/101%20-%20server%20and%20client"&gt;https://github.com/wudixiaop/UNet/tree/master/Assets/101%20-%20server%20and%20client&lt;/a&gt; 。&lt;/p&gt;</summary><category term="uNET"></category><category term="Unity"></category></entry><entry><title>在 Unity uGUI 中绘制圆形图片</title><link href="http://blog.shuiguzi.com/zai-unity-ugui-zhong-hui-zhi-yuan-xing-tu-pian.html" rel="alternate"></link><updated>2015-04-15T23:30:00+08:00</updated><author><name>Rocky Lai</name></author><id>tag:blog.shuiguzi.com,2015-04-15:zai-unity-ugui-zhong-hui-zhi-yuan-xing-tu-pian.html</id><summary type="html">&lt;p&gt;最近项目需要在 Unity 的新 UI 系统中实现圆形头像的功能，之前想通过 Mask 控件的方式来实现，但是一番努力后毫无头绪，只能祭上shader了。&lt;/p&gt;
 &lt;p&gt;大体的思路就是在一个空的 Object 上面挂上 RawImage 组件，组件的 Material 挂上本文中的 shader。截取的逻辑是选取图片正中心 (0.5, 0.5) 为圆的中心点，绘制图片在圆内的像素点为图片的像素，然后图片在圆外的像素点设置为 alpha 为 0 的点，
