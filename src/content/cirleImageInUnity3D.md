@@ -1,7 +1,7 @@
 Title: 在 Unity uGUI 中绘制圆形图片
 Date: 2015-04-15 23:30
-Category: 一点一滴
-Tags: Unity3D
+Category: Unity
+Tags: Unity
 
 最近项目需要在 Unity 的新 UI 系统中实现圆形头像的功能，之前想通过 Mask 控件的方式来实现，但是一番努力后毫无头绪，只能祭上shader了。
 

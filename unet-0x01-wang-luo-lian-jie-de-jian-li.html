@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="zhcn">
+
+<head>
+            <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="">
+
+        <title>心亡则忙，亡心则忘</title>
+
+        <!-- Bootstrap Core CSS -->
+        <link href="http://localhost:8000/theme/css/bootstrap.min.css" rel="stylesheet">
+
+        <!-- Custom CSS -->
+        <link href="http://localhost:8000/theme/css/clean-blog.css" rel="stylesheet">
+
+        <!-- Code highlight color scheme -->
+            <link href="http://localhost:8000/theme/css/code_blocks/github.css" rel="stylesheet">
+
+
+
+        <meta name="keywords" contents="Unity, Networking, uNET, Unity networking" />
+
+        <meta name="description" contents="UNet 0x01: 网络连接的建立" />
+
+        <meta name="tags" contents="uNET" />
+        <meta name="keywords" contents="uNET" />
+        <meta name="tags" contents="Unity" />
+        <meta name="keywords" contents="Unity" />
+
+        <meta name="author" content="Rocky Lai" />
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="https://github.com/wudixiaop/"><span class="menutext">Rocky Lai @ Github</span></a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+          					<li>
+                      <a href="http://localhost:8000">
+                         <span class="menutext">首页</span>
+                      </a>
+                    </li>
+
+          					<li>
+                      <a href="http://localhost:8000/tags.html">
+                        <span class="menutext">标签</span>
+                      </a>
+                    </li>
+
+          					<li>
+                      <a href="http://localhost:8000/archives.html">
+                        <span class="menutext">归档</span>
+                      </a>
+                    </li>
+
+          					<li>
+                      <a href="http://localhost:8000/author/rocky-lai.html">
+                        <span class="menutext">关于我</span>
+                      </a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <!-- Page Header -->
+        <header class="intro-header" style="background-image: url('http://localhost:8000/theme/images/post-bg.jpg')">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <div class="post-heading">
+                        <h1>UNet 0x01: 网络连接的建立</h1>
+                        <span class="meta">
+                            2015-08-06 16:43
+                             by
+                                <a href="http://localhost:8000/author/rocky-lai.html">Rocky Lai</a>
+                        </span>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+    <!-- Post Content -->
+    <article>
+        <p>看到标题后，没接触过的朋友脑中可能会闪现出这样一个问题： UNet 是什么 ? 其实它是 Unity 5.1 版本新引入的网络系统。官方论坛里面称这个系统为 UNet, 那我们按照官方的习惯来。</p>
+<p><a href="http://docs.unity3d.com/Manual/UNetOverview.html">官方手册文档</a> 介绍其主要有两类功能（按 API 抽象层次来分）：</p>
+<ul>
+<li>低层次 <a href="http://docs.unity3d.com/Manual/UNetUsingTransport.html">NetworkTransport API</a>， 适合于用来构建更复杂高级的多人游戏或者网络基础平台</li>
+<li>高层次的 High Level API， 也叫做 HLAPI，适合开发多人游戏</li>
+</ul>
+<p>这篇文章将只涉及 High Level API。我们的目的是建立（Client 于 Server 间的）网络连接。</p>
+<h3>UNet 的 Server / Client / Host</h3>
+<p>在 UNet 先系统中会出现 1 个 Server 和 n 个 Client (n &gt;= 0)。当没有专门的 Server 的时候，其中一个 Client 会充当 Server 的作用，这个即是 Client 又是 Server 的端在 UNet 中
+被称为 Host。 Host 在同一个进程里面执行 Server 和 Client, 这个 Client　有个专门的名字叫做 Local Client。它跟 Local Server 之间是通过 <strong>消息队列</strong> 和 <strong>直接的函数调</strong> 用来通信的。 </p>
+<p>Unity3d 网站上有张图能比较明显的表达 Server / Client / Local Client / Host 直接的关系，让我们把它偷过来。:)</p>
+<p><img alt="NetworkHost" src="images/UNet/NetworkHost.png" width="78%" /></p>
+<h3>Server 创建</h3>
+<p>Unity 给我们提供了 <a href="http://docs.unity3d.com/ScriptReference/Networking.NetworkServer.html">NetworkServer</a> 类，他的静态方法 <code>Listen(int serverPort)</code> 会打开一个端口监听。</p>
+<p>示例代码如下：</p>
+<div class="highlight"><pre><span class="n">NetworkServer</span><span class="p">.</span><span class="n">Listen</span><span class="p">(</span><span class="n">listenPort</span><span class="p">);</span>
+</pre></div>
+
+
+<h3>Client 创建</h3>
+<p>从前面的途中我们知道有 Local Client 和 Remote Client 之分，他们的创建方法也是不一样的。</p>
+<ul>
+<li>Local Client：使用 <code>ClientScene.ConnectLocalServer()</code> 静态方法创建</li>
+<li>Remote Client：Unity 给我们提供过了 <a href="http://docs.unity3d.com/ScriptReference/Networking.NetworkClient.html">NetworkClient</a> 类来创建。类的实例就是 Remote Client。</li>
+</ul>
+<p>示例代码如下：</p>
+<div class="highlight"><pre><span class="c1">// Remote Client</span>
+<span class="n">NetworkClient</span> <span class="n">client</span> <span class="o">=</span> <span class="n">new</span> <span class="n">NetworkClient</span><span class="p">();</span>
+
+<span class="c1">// Local Client</span>
+<span class="n">NetworkClient</span> <span class="n">client</span> <span class="o">=</span> <span class="n">ClientScene</span><span class="p">.</span><span class="n">ConnectLocalServer</span><span class="p">();</span>
+</pre></div>
+
+
+<h3>事件注册 RegisterHandler</h3>
+<p>其实现在添加这节内容处在只是为了接下来代码答应的调试信息。NetworkServer 和 NetworkClient 类都有 <code>RegisterHandler(short msgType, Networking.NetworkMessageDelegate handler);</code> 方法，这个方法用来来注册对应消息的处理函数。
+它有两个参数：</p>
+<ul>
+<li>第一个参数 msgType 是个 short 类型，Unity 提供 <a href="http://docs.unity3d.com/ScriptReference/Networking.MsgType.html">MsgType</a> 类来得到所有内置的数值。当然我们也可以自定义数值哦~~</li>
+<li>第二个参数 handler 是 NetworkMessageDelegate 类型，类型的原型是 <code>public delegate void NetworkMessageDelegate(Networking.NetworkMessage netMsg)</code>。这是 C# 中的 delegate, 我们要提供的消息响应函数。</li>
+</ul>
+<p>在本节例子中，我们在 Server 和 Client 端都注册 <code>MsgType.Connect</code> 消息，然后其响应函数为 <code>OnConnected(NetworkMessage msg)</code>。</p>
+<div class="highlight"><pre><span class="n">private</span> <span class="kt">void</span> <span class="nf">OnConnected</span><span class="p">(</span><span class="n">NetworkMessage</span> <span class="n">msg</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="c1">// Do someting</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<h3>代码</h3>
+<p>对了，在提供 sample 代码之前，需要说明一下，UNet 的类和其他类型都在 <code>UnityEngine.Networking</code> 这个命名空间之下。</p>
+<p>Server 端的代码：</p>
+<div class="highlight"><pre><span class="n">using</span> <span class="n">UnityEngine</span><span class="p">;</span>
+<span class="n">using</span> <span class="n">UnityEngine</span><span class="p">.</span><span class="n">Networking</span><span class="p">;</span>
+
+<span class="n">public</span> <span class="n">class</span> <span class="nl">SetupServer</span> <span class="p">:</span> <span class="n">MonoBehaviour</span>
+<span class="p">{</span>
+    <span class="n">public</span> <span class="kt">int</span> <span class="n">listenPort</span> <span class="o">=</span> <span class="mi">4444</span><span class="p">;</span>
+
+    <span class="kt">void</span> <span class="nf">Start</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">ServerSetup</span><span class="p">();</span>
+    <span class="p">}</span>
+
+    <span class="n">private</span> <span class="kt">void</span> <span class="nf">ServerSetup</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">NetworkServer</span><span class="p">.</span><span class="n">Listen</span><span class="p">(</span><span class="n">listenPort</span><span class="p">);</span>
+        <span class="n">NetworkServer</span><span class="p">.</span><span class="n">RegisterHandler</span><span class="p">(</span><span class="n">MsgType</span><span class="p">.</span><span class="n">Connect</span><span class="p">,</span> <span class="n">OnConnected</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="n">private</span> <span class="kt">void</span> <span class="nf">OnConnected</span><span class="p">(</span><span class="n">NetworkMessage</span> <span class="n">msg</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">Debug</span><span class="p">.</span><span class="n">Log</span><span class="p">(</span><span class="s">&quot;Server: connection happen&quot;</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>Client 端的代码：</p>
+<div class="highlight"><pre><span class="n">using</span> <span class="n">UnityEngine</span><span class="p">;</span>
+<span class="n">using</span> <span class="n">UnityEngine</span><span class="p">.</span><span class="n">Networking</span><span class="p">;</span>
+
+<span class="n">public</span> <span class="n">class</span> <span class="nl">SetupClient</span> <span class="p">:</span> <span class="n">MonoBehaviour</span>
+<span class="p">{</span>
+    <span class="n">public</span> <span class="n">string</span> <span class="n">server</span> <span class="o">=</span> <span class="s">&quot;127.0.0.1&quot;</span><span class="p">;</span>
+    <span class="n">public</span> <span class="kt">int</span> <span class="n">port</span> <span class="o">=</span> <span class="mi">4444</span><span class="p">;</span>
+    <span class="n">public</span> <span class="kt">bool</span> <span class="n">isLocal</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+
+    <span class="kt">void</span> <span class="nf">Start</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">isLocal</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">LocalClientSetup</span><span class="p">();</span>
+        <span class="p">}</span>
+        <span class="k">else</span>
+        <span class="p">{</span>
+            <span class="n">ClientSetup</span><span class="p">();</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="n">private</span> <span class="kt">void</span> <span class="nf">ClientSetup</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">NetworkClient</span> <span class="n">client</span> <span class="o">=</span> <span class="n">new</span> <span class="n">NetworkClient</span><span class="p">();</span>
+        <span class="n">client</span><span class="p">.</span><span class="n">RegisterHandler</span><span class="p">(</span><span class="n">MsgType</span><span class="p">.</span><span class="n">Connect</span><span class="p">,</span> <span class="n">OnConnected</span><span class="p">);</span>
+        <span class="n">client</span><span class="p">.</span><span class="n">Connect</span><span class="p">(</span><span class="n">server</span><span class="p">,</span> <span class="n">port</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="n">private</span> <span class="kt">void</span> <span class="nf">LocalClientSetup</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">NetworkClient</span> <span class="n">client</span> <span class="o">=</span> <span class="n">ClientScene</span><span class="p">.</span><span class="n">ConnectLocalServer</span><span class="p">();</span>
+        <span class="n">client</span><span class="p">.</span><span class="n">RegisterHandler</span><span class="p">(</span><span class="n">MsgType</span><span class="p">.</span><span class="n">Connect</span><span class="p">,</span> <span class="n">OnConnected</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="n">private</span> <span class="kt">void</span> <span class="nf">OnConnected</span><span class="p">(</span><span class="n">NetworkMessage</span> <span class="n">msg</span><span class="p">)</span> 
+    <span class="p">{</span>
+        <span class="n">Debug</span><span class="p">.</span><span class="n">Log</span><span class="p">(</span><span class="n">string</span><span class="p">.</span><span class="n">Format</span><span class="p">(</span><span class="s">&quot;Client: connected to server {0}&quot;</span><span class="p">,</span> <span class="n">server</span><span class="p">));</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>我们把上面两个脚本都挂在 GameObject 上, 设置 SetupClient 脚本的 isLocal 属性为 false ，然后运行，输出结果为</p>
+<p><img alt="output" src="images/UNet/outputResult.PNG" width="88%" /></p>
+<p>代码的 Github 地址 <a href="https://github.com/wudixiaop/UNet/tree/master/Assets/101%20-%20server%20and%20client">https://github.com/wudixiaop/UNet/tree/master/Assets/101%20-%20server%20and%20client</a> 。</p>
+    </article>
+
+﻿<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="unet-0x01-wang-luo-lian-jie-de-jian-li.html" data-title="UNet 0x01: 网络连接的建立" data-url="http://localhost:8000/unet-0x01-wang-luo-lian-jie-de-jian-li.html"></div>
+<!-- 多说评论框 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"rockylaigithubio"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+<!-- 多说公共JS代码 end -->            </div>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <p class="copyright text-muted">本站点采用<a class="linktext" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">知识共享 署名-非商业性使用-相同方式共享 4.0 国际 许可协议</a></p>
+                    <p class="copyright text-muted">
+                          Rocky Lai @ 2014 - 2015,
+
+                       Blog powered by <a class="linktext" href="http://getpelican.com">Pelican</a>,
+                which takes great advantage of <a class="linktext" href="http://python.org">Python</a>.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- jQuery -->
+    <script src="http://localhost:8000/theme/js/jquery.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="http://localhost:8000/theme/js/bootstrap.min.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="http://localhost:8000/theme/js/clean-blog.min.js"></script>
+
+<div style="opacity: 0">
+		  <script type="text/javascript"> var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://"); document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fbe571cbfce038053e44e02d5eee04481' type='text/javascript'%3E%3C/script%3E"));</script>
+			<script> var _hmt = _hmt || []; (function() { var hm = document.createElement("script"); hm.src = "//hm.baidu.com/hm.js?3a8e2930fa3e4db2aa0fe1cb32188641"; var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(hm, s); })(); </script>
+</div></body>
+
+</html>

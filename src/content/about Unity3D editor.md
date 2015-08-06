@@ -1,7 +1,7 @@
 ﻿Title: 关于 Unity 编辑器一些事儿
 Date: 2014-11-05 22:30
-Category: 一点一滴
-Tags: Unity3D
+Category: Unity
+Tags: Unity
 
 这里描述下Unity3D编辑器使用过程中遇到的坑及其解决方法
 

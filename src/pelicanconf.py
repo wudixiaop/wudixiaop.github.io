@@ -11,8 +11,8 @@ SITENAME = u"心亡则忙，亡心则忘"
 # 开启测试环境
 #
 
-# IN_TEST_Environment = True
-IN_TEST_Environment = False
+IN_TEST_Environment = True
+# IN_TEST_Environment = False
 
 #
 # 通用
@@ -53,7 +53,7 @@ COLOR_SCHEME_CSS = "github.css"
 GITHUB_LINK_DISPLAY_NAME = "Rocky Lai @ Github"
 GITHUB_URL = 'https://github.com/wudixiaop'
 DISPLAY_CATEGORIES_ON_MENU = True
-SUMMARY_MAX_LENGTH = 4
+SUMMARY_MAX_LENGTH = 6
 
 # FEED_DOMAIN = WEB_SITE_DOMAIN
 # FEED_RSS = "feed/rocky-lai.rss.xml"

@@ -11,13 +11,13 @@
         <title>心亡则忙，亡心则忘</title>
 
         <!-- Bootstrap Core CSS -->
-        <link href="http://blog.shuiguzi.com/theme/css/bootstrap.min.css" rel="stylesheet">
+        <link href="http://localhost:8000/theme/css/bootstrap.min.css" rel="stylesheet">
 
         <!-- Custom CSS -->
-        <link href="http://blog.shuiguzi.com/theme/css/clean-blog.css" rel="stylesheet">
+        <link href="http://localhost:8000/theme/css/clean-blog.css" rel="stylesheet">
 
         <!-- Code highlight color scheme -->
-            <link href="http://blog.shuiguzi.com/theme/css/code_blocks/github.css" rel="stylesheet">
+            <link href="http://localhost:8000/theme/css/code_blocks/github.css" rel="stylesheet">
 
 
 
@@ -51,25 +51,25 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
           					<li>
-                      <a href="http://blog.shuiguzi.com">
+                      <a href="http://localhost:8000">
                          <span class="menutext">首页</span>
                       </a>
                     </li>
 
           					<li>
-                      <a href="http://blog.shuiguzi.com/tags.html">
+                      <a href="http://localhost:8000/tags.html">
                         <span class="menutext">标签</span>
                       </a>
                     </li>
 
           					<li>
-                      <a href="http://blog.shuiguzi.com/archives.html">
+                      <a href="http://localhost:8000/archives.html">
                         <span class="menutext">归档</span>
                       </a>
                     </li>
 
           					<li>
-                      <a href="http://blog.shuiguzi.com/author/rocky-lai.html">
+                      <a href="http://localhost:8000/author/rocky-lai.html">
                         <span class="menutext">关于我</span>
                       </a>
                     </li>
@@ -81,7 +81,7 @@
     </nav>
 
     <!-- Page Header -->
-        <header class="intro-header" style="background-image: url('http://blog.shuiguzi.com/theme/images/post-bg.jpg')">
+        <header class="intro-header" style="background-image: url('http://localhost:8000/theme/images/post-bg.jpg')">
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
@@ -90,7 +90,7 @@
                         <span class="meta">
                             2015-05-14 15:53
                              by
-                                <a href="http://blog.shuiguzi.com/author/rocky-lai.html">Rocky Lai</a>
+                                <a href="http://localhost:8000/author/rocky-lai.html">Rocky Lai</a>
                         </span>
                         
                     </div>
@@ -105,7 +105,7 @@
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
     <!-- Post Content -->
     <article>
-        <p>这节内容跟 <a href="http://blog.shuiguzi.com/xia-liao-unity-shader-xi-lie-zhi-er-xuan-ran-guan-xian.html">渲染管线</a> 内容关系比较紧密，建议先了解渲染管线的整个流程。</p>
+        <p>这节内容跟 <a href="http://localhost:8000/xia-liao-unity-shader-xi-lie-zhi-er-xuan-ran-guan-xian.html">渲染管线</a> 内容关系比较紧密，建议先了解渲染管线的整个流程。</p>
 <p>我们知道渲染管线整个流水线都有数据的输入输出，这样就存在几个问题：</p>
 <ol>
 <li>这些数据都是什么？</li>
@@ -155,7 +155,7 @@
 <p>好了，就上面3个位置。 那语义（上面的 <code>XXXXX</code>）都有哪些呢？ 一般有如下几种：</p>
 <ul>
 <li><strong>POSITION：</strong> 表示顶点在物体坐标内的位置</li>
-<li><strong>SV_POSITION：</strong> 表示被转换到投射空间后的坐标位置 (通过 UNITY_MATRIX_MVP 这个矩阵可以转换)，可以参照 <a href="http://blog.shuiguzi.com/xia-liao-unity-shader-xi-lie-zhi-si-zuo-biao-xi.html">坐标系</a> 这一节内容。</li>
+<li><strong>SV_POSITION：</strong> 表示被转换到投射空间后的坐标位置 (通过 UNITY_MATRIX_MVP 这个矩阵可以转换)，可以参照 <a href="http://localhost:8000/xia-liao-unity-shader-xi-lie-zhi-si-zuo-biao-xi.html">坐标系</a> 这一节内容。</li>
 <li><strong>COLOR：</strong> 表示颜色</li>
 <li><strong>NORMAL：</strong> 表示法线</li>
 <li><strong>TANGENT：</strong> 表示切线</li>
@@ -211,23 +211,23 @@
 <p>用语义和语义绑定来表示数据和数据的流向。</p>
 <h3>系列文章目录</h3>
 <ul>
-<li><a href="http://blog.shuiguzi.com/xia-liao-unity-shader-xi-lie-zhi-yi-gpu-yu-shader-model.html">瞎聊 Unity Shader 系列之一：GPU 与 Shader Model</a></li>
-<li><a href="http://blog.shuiguzi.com/xia-liao-unity-shader-xi-lie-zhi-er-xuan-ran-guan-xian.html">瞎聊 Unity Shader 系列之二：渲染管线</a></li>
-<li><a href="http://blog.shuiguzi.com/xia-liao-unity-shader-xi-lie-zhi-san-shader-tu-di-shang-de-yu-yan-men.html">瞎聊 Unity Shader 系列之三：Shader 土地上的语言们</a></li>
-<li><a href="http://blog.shuiguzi.com/xia-liao-unity-shader-xi-lie-zhi-si-zuo-biao-xi.html">瞎聊 Unity Shader 系列之四：坐标系</a></li>
-<li><a href="http://blog.shuiguzi.com/xia-liao-unity-shader-xi-lie-zhi-wu-rgba-101.html">瞎聊 Unity Shader 系列之五：RGBA 101</a></li>
-<li><a href="http://blog.shuiguzi.com/xia-liao-unity-shader-xi-lie-zhi-liu-chu-shi-shaderlab.html">瞎聊 Unity Shader 系列之六：初识 Shaderlab</a></li>
-<li><a href="http://blog.shuiguzi.com/xia-liao-unity-shader-xi-lie-zhi-qi-jiu-jing-shui-xian-bei-xuan-ran.html">瞎聊 Unity Shader 系列之七：究竟谁先被渲染？</a></li>
-<li><a href="http://blog.shuiguzi.com/xia-liao-unity-shader-xi-lie-zhi-ba-pragma-zhi-ling.html">瞎聊 Unity Shader 系列之八：#pragma 指令</a></li>
-<li><a href="http://blog.shuiguzi.com/xia-liao-unity-shader-xi-lie-zhi-jiu-yong-lai-bao-zhuang-bian-liang-de-properties.html">瞎聊 Unity Shader 系列之九：用来包装变量的 Properties</a></li>
-<li><a href="http://blog.shuiguzi.com/xia-liao-unity-shader-xi-lie-zhi-shi-shu-ju-de-biao-qian-yu-yi-bang-ding.html">瞎聊 Unity Shader 系列之十：数据的标签：语义绑定</a></li>
-<li><a href="http://blog.shuiguzi.com/xia-liao-unity-shader-xi-lie-zhi-shi-yi-shen-du-huan-cun.html">瞎聊 Unity Shader 系列之十一：深度缓存</a></li>
+<li><a href="http://localhost:8000/xia-liao-unity-shader-xi-lie-zhi-yi-gpu-yu-shader-model.html">瞎聊 Unity Shader 系列之一：GPU 与 Shader Model</a></li>
+<li><a href="http://localhost:8000/xia-liao-unity-shader-xi-lie-zhi-er-xuan-ran-guan-xian.html">瞎聊 Unity Shader 系列之二：渲染管线</a></li>
+<li><a href="http://localhost:8000/xia-liao-unity-shader-xi-lie-zhi-san-shader-tu-di-shang-de-yu-yan-men.html">瞎聊 Unity Shader 系列之三：Shader 土地上的语言们</a></li>
+<li><a href="http://localhost:8000/xia-liao-unity-shader-xi-lie-zhi-si-zuo-biao-xi.html">瞎聊 Unity Shader 系列之四：坐标系</a></li>
+<li><a href="http://localhost:8000/xia-liao-unity-shader-xi-lie-zhi-wu-rgba-101.html">瞎聊 Unity Shader 系列之五：RGBA 101</a></li>
+<li><a href="http://localhost:8000/xia-liao-unity-shader-xi-lie-zhi-liu-chu-shi-shaderlab.html">瞎聊 Unity Shader 系列之六：初识 Shaderlab</a></li>
+<li><a href="http://localhost:8000/xia-liao-unity-shader-xi-lie-zhi-qi-jiu-jing-shui-xian-bei-xuan-ran.html">瞎聊 Unity Shader 系列之七：究竟谁先被渲染？</a></li>
+<li><a href="http://localhost:8000/xia-liao-unity-shader-xi-lie-zhi-ba-pragma-zhi-ling.html">瞎聊 Unity Shader 系列之八：#pragma 指令</a></li>
+<li><a href="http://localhost:8000/xia-liao-unity-shader-xi-lie-zhi-jiu-yong-lai-bao-zhuang-bian-liang-de-properties.html">瞎聊 Unity Shader 系列之九：用来包装变量的 Properties</a></li>
+<li><a href="http://localhost:8000/xia-liao-unity-shader-xi-lie-zhi-shi-shu-ju-de-biao-qian-yu-yi-bang-ding.html">瞎聊 Unity Shader 系列之十：数据的标签：语义绑定</a></li>
+<li><a href="http://localhost:8000/xia-liao-unity-shader-xi-lie-zhi-shi-yi-shen-du-huan-cun.html">瞎聊 Unity Shader 系列之十一：深度缓存</a></li>
 </ul>
 <p>鄙人才疏学浅，有出入的地方非常感谢能帮忙指正。:)</p>
     </article>
 
 ﻿<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="xia-liao-unity-shader-xi-lie-zhi-shi-shu-ju-de-biao-qian-yu-yi-bang-ding.html" data-title="瞎聊 Unity Shader 系列之十：数据的标签：语义绑定" data-url="http://blog.shuiguzi.com/xia-liao-unity-shader-xi-lie-zhi-shi-shu-ju-de-biao-qian-yu-yi-bang-ding.html"></div>
+	<div class="ds-thread" data-thread-key="xia-liao-unity-shader-xi-lie-zhi-shi-shu-ju-de-biao-qian-yu-yi-bang-ding.html" data-title="瞎聊 Unity Shader 系列之十：数据的标签：语义绑定" data-url="http://localhost:8000/xia-liao-unity-shader-xi-lie-zhi-shi-shu-ju-de-biao-qian-yu-yi-bang-ding.html"></div>
 <!-- 多说评论框 end -->
 <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 <script type="text/javascript">
@@ -264,13 +264,13 @@ var duoshuoQuery = {short_name:"rockylaigithubio"};
     </footer>
 
     <!-- jQuery -->
-    <script src="http://blog.shuiguzi.com/theme/js/jquery.min.js"></script>
+    <script src="http://localhost:8000/theme/js/jquery.min.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="http://blog.shuiguzi.com/theme/js/bootstrap.min.js"></script>
+    <script src="http://localhost:8000/theme/js/bootstrap.min.js"></script>
 
     <!-- Custom Theme JavaScript -->
-    <script src="http://blog.shuiguzi.com/theme/js/clean-blog.min.js"></script>
+    <script src="http://localhost:8000/theme/js/clean-blog.min.js"></script>
 
 <div style="opacity: 0">
 		  <script type="text/javascript"> var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://"); document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fbe571cbfce038053e44e02d5eee04481' type='text/javascript'%3E%3C/script%3E"));</script>

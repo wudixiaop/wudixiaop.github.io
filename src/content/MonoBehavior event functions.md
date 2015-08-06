@@ -1,8 +1,8 @@
 ﻿Title: 一起看看MonoBehavior内部事件执行顺序
 Date: 2014-11-10 21:38
 Modified: 2014-12-23 18:20
-Category: 一点一滴
-Tags: Unity3D
+Category: Unity
+Tags: Unity
 
 ###**写在最前面**
 或许对于大部分Unity3D程序员来说，第一次接触脚本编写的时候都是从MonoBehavior开始的。MonoBehavior是Uniy3d脚本编写核心的类之一， 它预先定义好了很多事件，并且这些事件按照预先定义好顺序执行。了解MonoBehavior提供的这些事件的执行顺序，是我们进一步提高脚步编程和了解Unity3D内部逻辑的必要一步。我们先从MonoBehavior提供的事件说起。
