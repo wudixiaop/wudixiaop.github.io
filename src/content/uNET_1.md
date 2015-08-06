@@ -11,7 +11,7 @@ Keywords: Unity, Networking, uNET, Unity networking
 [官方手册文档](http://docs.unity3d.com/Manual/UNetOverview.html) 介绍其主要有两类功能（按 API 抽象层次来分）：
 
 * 低层次 [NetworkTransport API](http://docs.unity3d.com/Manual/UNetUsingTransport.html)， 适合于用来构建更复杂高级的多人游戏或者网络基础平台
-* 高层次的 High Level API， 也叫做 HLAPI，适合开发多人游戏
+* 高层次的 High Level API，也叫做 HLAPI，建立在 NetworkTransport 之上。适合开发多人游戏
 
 这篇文章将只涉及 High Level API。我们的目的是建立（Client 于 Server 间的）网络连接。
 
