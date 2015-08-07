@@ -1,5 +1,201 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>心亡则忙，亡心则忘</title><link href="http://blog.shuiguzi.com/" rel="alternate"></link><link href="http://blog.shuiguzi.com/feeds%5Cunity.atom.xml" rel="self"></link><id>http://blog.shuiguzi.com/</id><updated>2015-08-06T16:43:00+08:00</updated><entry><title>UNet 0x01: 网络连接的建立</title><link href="http://blog.shuiguzi.com/unet-0x01-wang-luo-lian-jie-de-jian-li.html" rel="alternate"></link><updated>2015-08-06T16:43:00+08:00</updated><author><name>Rocky Lai</name></author><id>tag:blog.shuiguzi.com,2015-08-06:unet-0x01-wang-luo-lian-jie-de-jian-li.html</id><summary type="html">&lt;p&gt;看到标题后，没接触过的朋友脑中可能会闪现出这样一个问题： UNet 是什么 ? 其实它是 Unity 5.1 版本新引入的网络系统。官方论坛里面称这个系统为 UNet, 那我们按照官方的习惯来。&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>心亡则忙，亡心则忘</title><link href="http://blog.shuiguzi.com/" rel="alternate"></link><link href="http://blog.shuiguzi.com/feeds%5Cunity.atom.xml" rel="self"></link><id>http://blog.shuiguzi.com/</id><updated>2015-08-07T16:05:00+08:00</updated><entry><title>UNet 0x02: 发送消息</title><link href="http://blog.shuiguzi.com/unet-0x02-fa-song-xiao-xi.html" rel="alternate"></link><updated>2015-08-07T16:05:00+08:00</updated><author><name>Rocky Lai</name></author><id>tag:blog.shuiguzi.com,2015-08-07:unet-0x02-fa-song-xiao-xi.html</id><summary type="html">&lt;p&gt;&lt;a href="http://blog.shuiguzi.com/unet-0x01-wang-luo-lian-jie-de-jian-li.html"&gt;上一篇文章&lt;/a&gt; 中介绍了如何在 UNet 中建立网络连接，接下来我们在这篇文章中说说建立连接之后怎么在 Client / Server 间发送消息。&lt;/p&gt;
+&lt;p&gt;这篇文章涉及的是 UNet HLAPI 部分消息发送所涉及到一些概念，最后会给出一个示例代码。按之前的风格，我们继续来抱着问题讲述今天的主题。&lt;/p&gt;
+&lt;p&gt;有两个问题：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;UNet HLAPI 中消息怎么表示？&lt;/li&gt;
+&lt;li&gt;UNet HLAPI 中消息怎么发送和接收？&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;UNet HLAPI 中的消息&lt;/h3&gt;
+&lt;p&gt;新的网路系统 UNet 提供了一个抽象类，叫做 &lt;code&gt;MessageBase&lt;/code&gt;, 它的原型大概是下面这样:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;public&lt;/span&gt; &lt;span class="n"&gt;abstract&lt;/span&gt; &lt;span class="n"&gt;class&lt;/span&gt; &lt;span class="n"&gt;MessageBase&lt;/span&gt;
+&lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="c1"&gt;// De-serialize the contents of the reader into this message&lt;/span&gt;
+    &lt;span class="n"&gt;public&lt;/span&gt; &lt;span class="n"&gt;virtual&lt;/span&gt; &lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="n"&gt;Deserialize&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;NetworkReader&lt;/span&gt; &lt;span class="n"&gt;reader&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{}&lt;/span&gt;
+
+    &lt;span class="c1"&gt;// Serialize the contents of this message into the writer&lt;/span&gt;
+    &lt;span class="n"&gt;public&lt;/span&gt; &lt;span class="n"&gt;virtual&lt;/span&gt; &lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="n"&gt;Serialize&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;NetworkWriter&lt;/span&gt; &lt;span class="n"&gt;writer&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{}&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;code&gt;MessageBase&lt;/code&gt; 提供了系列化/反序列化的功能，我们 &lt;strong&gt;需要通过继承这个类来自定义消息&lt;/strong&gt; 。所以一般情况下 UNet HLAPI 中的消息都是 &lt;code&gt;MessageBase&lt;/code&gt; 的子类。&lt;/p&gt;
+&lt;p&gt;UNet 在 &lt;code&gt;UnityEngine.Networking.NetworkSystem&lt;/code&gt; 命名空间中提供了一些内建的类供我们使用，例如:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;EmptyMessage&lt;/li&gt;
+&lt;li&gt;StringMessage&lt;/li&gt;
+&lt;li&gt;IntegerMessage&lt;/li&gt;
+&lt;li&gt;ErrorMessage&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;当然我们也可以不适用内建的类，自己自定义新消息类。比如我们定义一个（我单纯的自认为）高大上的名字的类，叫做 &lt;code&gt;MessageX&lt;/code&gt;，继承自 &lt;code&gt;MessageBase&lt;/code&gt;：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;using&lt;/span&gt; &lt;span class="n"&gt;UnityEngine&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Networking&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+&lt;span class="c1"&gt;// Customize message and Type&lt;/span&gt;
+&lt;span class="c1"&gt;//&lt;/span&gt;
+&lt;span class="n"&gt;public&lt;/span&gt; &lt;span class="n"&gt;class&lt;/span&gt; &lt;span class="nl"&gt;MessageX&lt;/span&gt; &lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;MessageBase&lt;/span&gt;
+&lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="n"&gt;public&lt;/span&gt; &lt;span class="k"&gt;static&lt;/span&gt; &lt;span class="n"&gt;readonly&lt;/span&gt; &lt;span class="kt"&gt;short&lt;/span&gt; &lt;span class="n"&gt;MsgType&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kt"&gt;short&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;MaxValue&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+    &lt;span class="c1"&gt;// Use Field here, NOT Property&lt;/span&gt;
+    &lt;span class="c1"&gt;//&lt;/span&gt;
+    &lt;span class="n"&gt;public&lt;/span&gt; &lt;span class="n"&gt;string&lt;/span&gt; &lt;span class="n"&gt;Message&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="n"&gt;public&lt;/span&gt; &lt;span class="n"&gt;string&lt;/span&gt; &lt;span class="n"&gt;From&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+    &lt;span class="n"&gt;public&lt;/span&gt; &lt;span class="n"&gt;override&lt;/span&gt; &lt;span class="n"&gt;string&lt;/span&gt; &lt;span class="nf"&gt;ToString&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+    &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;string&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Format&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Message &amp;#39;{0}&amp;#39; from &amp;#39;{1}&amp;#39;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;Message&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;From&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;这里要说一下一个自定义消息类型的坑：&lt;strong&gt;要使用字段来代替属性&lt;/strong&gt;，如果使用了属性会导致接受不到发送的消息数据。&lt;/p&gt;
+&lt;p&gt;错误的写法：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;public&lt;/span&gt; &lt;span class="n"&gt;class&lt;/span&gt; &lt;span class="nl"&gt;MessageX&lt;/span&gt; &lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;MessageBase&lt;/span&gt;
+&lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="n"&gt;public&lt;/span&gt; &lt;span class="n"&gt;string&lt;/span&gt; &lt;span class="n"&gt;Message&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="n"&gt;set&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;正确的写法：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;public&lt;/span&gt; &lt;span class="n"&gt;class&lt;/span&gt; &lt;span class="nl"&gt;MessageX&lt;/span&gt; &lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;MessageBase&lt;/span&gt;
+&lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="n"&gt;public&lt;/span&gt; &lt;span class="n"&gt;string&lt;/span&gt; &lt;span class="n"&gt;Message&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;这个坑请注意下，以防掉入~~  &lt;/p&gt;
+&lt;h3&gt;发送消息的 API&lt;/h3&gt;
+&lt;p&gt;上小节，我们有了 &lt;code&gt;MessageX&lt;/code&gt; 这个高大上名字的消息，我们怎么发出去，然后怎么接受呢？&lt;/p&gt;
+&lt;p&gt;先说发送。UNet 中下面几个方法都可以发送:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;NetworkClient.Send(short msgType, MessageBase msg)&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;NetworkConnection.Send(short msgType, MessageBase msg)&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;NetworkServer.SendToAll(short msgType, MessageBase msg)&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;NetworkServer.SendToReady(short msgType, MessageBase msg)&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;NetworkServer.SendToClient(int connectionId, short msgType, MessageBase msg)&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;NetworkServer.SendUnreliableToAll(short msgType, MessageBase msg)&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;NetworkServer.SendUnreliableToReady(short msgType, MessageBase msg)&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;NetworkServer.SendToClientOfPlayer(GameObject player, short msgType, MessageBase msg)&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;各个方法用各自的用途，具体可以参照 &lt;a href="http://docs.unity3d.com/ScriptReference/Networking.NetworkClient.html"&gt;NetworkClient&lt;/a&gt;、
+&lt;a href="http://docs.unity3d.com/ScriptReference/Networking.NetworkConnection.html"&gt;NetworkConnection&lt;/a&gt; 和 
+&lt;a href="http://docs.unity3d.com/ScriptReference/Networking.NetworkServer.html"&gt;NetworkServer&lt;/a&gt; 官方 API 文档。&lt;/p&gt;
+&lt;p&gt;本文章中将使用 &lt;code&gt;NetworkClient.Send(short msgType, MessageBase msg)&lt;/code&gt; 方法，在 Client 端给 Server 端发送消息。发送的代码示意：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;MessageX&lt;/span&gt; &lt;span class="n"&gt;mx&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;new&lt;/span&gt; &lt;span class="n"&gt;MessageX&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+&lt;span class="n"&gt;mx&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Message&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;messageInput&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;text&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="n"&gt;mx&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;From&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;fromInput&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;text&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+&lt;span class="n"&gt;client&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Send&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;MessageX&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;MsgType&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;mx&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;code&gt;Send&lt;/code&gt; 方法中第二个参数是消息的实例，这个很明显，不需要特别解释。那第一个参数 msgType 又是什么的？ 看过上一篇文章 &lt;a href="http://blog.shuiguzi.com/unet-0x01-wang-luo-lian-jie-de-jian-li.html"&gt;UNet 0x01: 网络连接的建立&lt;/a&gt;
+的朋友们可能马上就想起来在 &lt;strong&gt;事件注册 RegisterHandler&lt;/strong&gt; 小节中也有 msgType。对的，就是这个。消息接收就是通过事件注册的方式来处理。接收的示意代码如下：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c1"&gt;// 注册消息处理事件&lt;/span&gt;
+&lt;span class="n"&gt;NetworkServer&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;RegisterHandler&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;MessageX&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;MsgType&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;OnMessageXReceived&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+&lt;span class="n"&gt;public&lt;/span&gt; &lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;OnMessageXReceived&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;NetworkMessage&lt;/span&gt; &lt;span class="n"&gt;msg&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="n"&gt;MessageX&lt;/span&gt; &lt;span class="n"&gt;mx&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;msg&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ReadMessage&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;MessageX&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+    &lt;span class="n"&gt;Debug&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Log&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;string&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Format&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;SERVER: {0}&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;mx&lt;/span&gt;&lt;span class="p"&gt;));&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;上面使用到了 &lt;code&gt;NetworkMessage.ReadMessage&amp;lt;T&amp;gt;()&lt;/code&gt; 方法来得到发送过来的 &lt;code&gt;MessageX&lt;/code&gt; 类型的消息。&lt;/p&gt;
+&lt;h3&gt;将所有串联起来的示例&lt;/h3&gt;
+&lt;p&gt;我们创建一个简单的 UI 如下&lt;/p&gt;
+&lt;p&gt;&lt;img alt="UI" src="images/UNet/sendMessageUI.PNG" width="72%" /&gt;&lt;/p&gt;
+&lt;p&gt;我们创建一个 &lt;code&gt;SendMessageX&lt;/code&gt; 类用来接收 UI 输入的文字，然后发送给 Server, 用 &lt;code&gt;Debug.log()&lt;/code&gt; 输出到控制台窗口。&lt;code&gt;SendMessageX&lt;/code&gt; 类的代码如下：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;using&lt;/span&gt; &lt;span class="n"&gt;UnityEngine&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="n"&gt;using&lt;/span&gt; &lt;span class="n"&gt;UnityEngine&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Networking&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="n"&gt;using&lt;/span&gt; &lt;span class="n"&gt;UnityEngine&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;UI&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+&lt;span class="n"&gt;public&lt;/span&gt; &lt;span class="n"&gt;class&lt;/span&gt; &lt;span class="nl"&gt;SendMessageX&lt;/span&gt; &lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;MonoBehaviour&lt;/span&gt;
+&lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="n"&gt;public&lt;/span&gt; &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;serverPort&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;4444&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="n"&gt;public&lt;/span&gt; &lt;span class="n"&gt;InputField&lt;/span&gt; &lt;span class="n"&gt;messageInput&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="n"&gt;public&lt;/span&gt; &lt;span class="n"&gt;InputField&lt;/span&gt; &lt;span class="n"&gt;fromInput&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+    &lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;Start&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+    &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="n"&gt;SetupServer&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+        &lt;span class="n"&gt;SetupClient&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+
+    &lt;span class="cp"&gt;#region Server&lt;/span&gt;
+
+    &lt;span class="n"&gt;private&lt;/span&gt; &lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;SetupServer&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+    &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;NetworkServer&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;active&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="p"&gt;{&lt;/span&gt;
+            &lt;span class="k"&gt;return&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+        &lt;span class="p"&gt;}&lt;/span&gt;
+
+        &lt;span class="n"&gt;NetworkServer&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;RegisterHandler&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;MsgType&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Connect&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;OnConnected&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+        &lt;span class="n"&gt;NetworkServer&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;RegisterHandler&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;MessageX&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;MsgType&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;OnMessageXReceived&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+        &lt;span class="kt"&gt;bool&lt;/span&gt; &lt;span class="n"&gt;success&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;NetworkServer&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Listen&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;serverPort&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+        &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;success&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="p"&gt;{&lt;/span&gt;
+            &lt;span class="n"&gt;Debug&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Log&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Server Started&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+        &lt;span class="p"&gt;}&lt;/span&gt;
+        &lt;span class="k"&gt;else&lt;/span&gt;
+        &lt;span class="p"&gt;{&lt;/span&gt;
+            &lt;span class="n"&gt;Debug&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Log&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Start Server failed&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+        &lt;span class="p"&gt;}&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+
+    &lt;span class="n"&gt;private&lt;/span&gt; &lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;OnConnected&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;NetworkMessage&lt;/span&gt; &lt;span class="n"&gt;msg&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="n"&gt;Debug&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Log&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;A client connected!&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+
+    &lt;span class="n"&gt;public&lt;/span&gt; &lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;OnMessageXReceived&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;NetworkMessage&lt;/span&gt; &lt;span class="n"&gt;msg&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="n"&gt;MessageX&lt;/span&gt; &lt;span class="n"&gt;mx&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;msg&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ReadMessage&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;MessageX&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+        &lt;span class="n"&gt;Debug&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Log&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;string&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Format&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;SERVER: {0}&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;mx&lt;/span&gt;&lt;span class="p"&gt;));&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+
+    &lt;span class="cp"&gt;#endregion&lt;/span&gt;
+
+    &lt;span class="cp"&gt;#region Client&lt;/span&gt;
+
+    &lt;span class="n"&gt;NetworkClient&lt;/span&gt; &lt;span class="n"&gt;client&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+    &lt;span class="n"&gt;private&lt;/span&gt; &lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;SetupClient&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+    &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;client&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="n"&gt;null&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="p"&gt;{&lt;/span&gt;
+            &lt;span class="n"&gt;client&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;new&lt;/span&gt; &lt;span class="n"&gt;NetworkClient&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+            &lt;span class="n"&gt;client&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Connect&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;127.0.0.1&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;serverPort&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+        &lt;span class="p"&gt;}&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+
+    &lt;span class="n"&gt;public&lt;/span&gt; &lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;SendMesssageXToServer&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+    &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="n"&gt;MessageX&lt;/span&gt; &lt;span class="n"&gt;mx&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;new&lt;/span&gt; &lt;span class="n"&gt;MessageX&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+        &lt;span class="n"&gt;mx&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Message&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;messageInput&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;text&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+        &lt;span class="n"&gt;mx&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;From&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;fromInput&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;text&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+        &lt;span class="n"&gt;client&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Send&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;MessageX&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;MsgType&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;mx&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+        &lt;span class="n"&gt;Debug&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Log&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;string&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Format&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;CLIENT: {0}&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;mx&lt;/span&gt;&lt;span class="p"&gt;));&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+
+    &lt;span class="cp"&gt;#endregion&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;如果将 &lt;code&gt;Remote Client&lt;/code&gt; 输入到 &lt;strong&gt;From&lt;/strong&gt;、 &lt;code&gt;Hello World&lt;/code&gt; 输入到 &lt;strong&gt;Message&lt;/strong&gt; 输入框之后，点击 &lt;strong&gt;Send Message&lt;/strong&gt; 按钮，我们得到如下输出结果：&lt;/p&gt;
+&lt;p&gt;&lt;img alt="sendMessageOutput" src="images/UNet/sendMessageOutput.PNG" width="88%" /&gt;&lt;/p&gt;
+&lt;p&gt;所有代码可以在这里找到：&lt;a href="https://github.com/wudixiaop/UNet/tree/master/Assets/102%20-%20send%20message"&gt;https://github.com/wudixiaop/UNet/tree/master/Assets/102%20-%20send%20message&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Enjoy!&lt;/p&gt;</summary><category term="UNet"></category><category term="Unity"></category></entry><entry><title>UNet 0x01: 网络连接的建立</title><link href="http://blog.shuiguzi.com/unet-0x01-wang-luo-lian-jie-de-jian-li.html" rel="alternate"></link><updated>2015-08-06T16:43:00+08:00</updated><author><name>Rocky Lai</name></author><id>tag:blog.shuiguzi.com,2015-08-06:unet-0x01-wang-luo-lian-jie-de-jian-li.html</id><summary type="html">&lt;p&gt;看到标题后，没接触过的朋友脑中可能会闪现出这样一个问题： UNet 是什么 ? 其实它是 Unity 5.1 版本新引入的网络系统。官方论坛里面称这个系统为 UNet, 那我们按照官方的习惯来。&lt;/p&gt;
 &lt;p&gt;&lt;a href="http://docs.unity3d.com/Manual/UNetOverview.html"&gt;官方手册文档&lt;/a&gt; 介绍其主要有两类功能（按 API 抽象层次来分）：&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;低层次 &lt;a href="http://docs.unity3d.com/Manual/UNetUsingTransport.html"&gt;NetworkTransport API&lt;/a&gt;， 适合于用来构建更复杂高级的多人游戏或者网络基础平台&lt;/li&gt;
