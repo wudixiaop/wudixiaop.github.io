@@ -2,9 +2,9 @@ Title: UNet 0x01: 网络连接的建立
 Date: 2015-08-06 16:43
 Modified: 2015-08-06 16:43
 Category: Unity
-Tags: uNET, Unity
+Tags: UNet, Unity
 Status: published
-Keywords: Unity, Networking, uNET, Unity networking
+Keywords: Unity, Networking, UNet, Unity networking
 
 看到标题后，没接触过的朋友脑中可能会闪现出这样一个问题： UNet 是什么 ? 其实它是 Unity 5.1 版本新引入的网络系统。官方论坛里面称这个系统为 UNet, 那我们按照官方的习惯来。
 
