@@ -217,7 +217,7 @@ UNet 在 `UnityEngine.Networking.NetworkSystem` 命名空间中提供了一些�
 	}
 
 
-如果将 `Remote Client` 输入到 __From__、 `Hello World` 输入到 __Message__ 输入框之后，点击 __Send Message__ 按钮，我们得到如下输出结果：
+如果将 `Remote Client` 输入到 __From__、`Hello World` 输入到 __Message__ 输入框之后，点击 __Send Message__ 按钮，我们得到如下输出结果：
 
 ![sendMessageOutput](images/UNet/sendMessageOutput.PNG){: width="88%"}
 

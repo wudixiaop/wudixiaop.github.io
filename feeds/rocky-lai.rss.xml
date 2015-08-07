@@ -192,7 +192,7 @@
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;如果将 &lt;code&gt;Remote Client&lt;/code&gt; 输入到 &lt;strong&gt;From&lt;/strong&gt;、 &lt;code&gt;Hello World&lt;/code&gt; 输入到 &lt;strong&gt;Message&lt;/strong&gt; 输入框之后，点击 &lt;strong&gt;Send Message&lt;/strong&gt; 按钮，我们得到如下输出结果：&lt;/p&gt;
+&lt;p&gt;如果将 &lt;code&gt;Remote Client&lt;/code&gt; 输入到 &lt;strong&gt;From&lt;/strong&gt;、&lt;code&gt;Hello World&lt;/code&gt; 输入到 &lt;strong&gt;Message&lt;/strong&gt; 输入框之后，点击 &lt;strong&gt;Send Message&lt;/strong&gt; 按钮，我们得到如下输出结果：&lt;/p&gt;
 &lt;p&gt;&lt;img alt="sendMessageOutput" src="images/UNet/sendMessageOutput.PNG" width="88%" /&gt;&lt;/p&gt;
 &lt;p&gt;所有代码可以在这里找到：&lt;a href="https://github.com/wudixiaop/UNet/tree/master/Assets/102%20-%20send%20message"&gt;https://github.com/wudixiaop/UNet/tree/master/Assets/102%20-%20send%20message&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Enjoy!&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Rocky Lai</dc:creator><pubDate>Fri, 07 Aug 2015 16:05:00 +0800</pubDate><guid>tag:blog.shuiguzi.com,2015-08-07:unet-0x02-fa-song-xiao-xi.html</guid><category>UNet</category><category>Unity</category></item><item><title>UNet 0x01: 网络连接的建立</title><link>http://blog.shuiguzi.com/unet-0x01-wang-luo-lian-jie-de-jian-li.html</link><description>&lt;p&gt;看到标题后，没接触过的朋友脑中可能会闪现出这样一个问题： UNet 是什么 ? 其实它是 Unity 5.1 版本新引入的网络系统。官方论坛里面称这个系统为 UNet, 那我们按照官方的习惯来。&lt;/p&gt;
