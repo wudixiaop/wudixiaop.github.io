@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>心亡则忙，亡心则忘</title><link href="http://blog.shuiguzi.com/" rel="alternate"></link><link href="http://blog.shuiguzi.com/feeds%5Cyi-dian-yi-di.atom.xml" rel="self"></link><id>http://blog.shuiguzi.com/</id><updated>2015-07-21T12:54:00+08:00</updated><entry><title>好玩：如何把 Github Contributions 填充满</title><link href="http://blog.shuiguzi.com/hao-wan-ru-he-ba-github-contributions-tian-chong-man.html" rel="alternate"></link><updated>2015-07-21T12:54:00+08:00</updated><author><name>Rocky Lai</name></author><id>tag:blog.shuiguzi.com,2015-07-21:hao-wan-ru-he-ba-github-contributions-tian-chong-man.html</id><summary type="html">&lt;p&gt;先看效果：&lt;br /&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>心亡则忙，亡心则忘</title><link href="http://blog.shuiguzi.com/" rel="alternate"></link><link href="http://blog.shuiguzi.com/feeds/yi-dian-yi-di.atom.xml" rel="self"></link><id>http://blog.shuiguzi.com/</id><updated>2015-07-21T12:54:00+08:00</updated><entry><title>好玩：如何把 Github Contributions 填充满</title><link href="http://blog.shuiguzi.com/hao-wan-ru-he-ba-github-contributions-tian-chong-man.html" rel="alternate"></link><updated>2015-07-21T12:54:00+08:00</updated><author><name>Rocky Lai</name></author><id>tag:blog.shuiguzi.com,2015-07-21:hao-wan-ru-he-ba-github-contributions-tian-chong-man.html</id><summary type="html">&lt;p&gt;先看效果：&lt;br /&gt;
 &lt;img alt="rockstar" src="images/RockStar/rockstar.PNG" width="100%" /&gt;&lt;/p&gt;
 &lt;p&gt;我们要使用 RockStar 这个 python 工具来实现这个效果。RockStar 的 Github 地址 &lt;a href="https://github.com/avinassh/rockstar"&gt;撮这里&lt;/a&gt;。&lt;/p&gt;
 &lt;p&gt;RockStar 只支持 Python 3，不能在 Python 2 上面。如果本机没有 Pyhon3 可以从 &lt;a href="http://python.org"&gt;http://python.org&lt;/a&gt; 里面下载安装，当前版本的下载地址为 &lt;a href="https://www.python.org/downloads/release/python-343/"&gt;https://www.python.org/downloads/release/python-343/&lt;/a&gt;。&lt;/p&gt;
@@ -243,7 +243,7 @@
 &lt;span class="sd"&gt;    double var_float = 1.0; // 或者 float var_float = 1.0;&lt;/span&gt;
 &lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
 &lt;span class="n"&gt;var_int&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;
-&lt;span class="n"&gt;var_binary&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="n"&gt;b0010&lt;/span&gt; &lt;span class="c"&gt;# 变量值为2&lt;/span&gt;
+&lt;span class="n"&gt;var_binary&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mb"&gt;0b0010&lt;/span&gt; &lt;span class="c"&gt;# 变量值为2&lt;/span&gt;
 &lt;span class="n"&gt;var_octal&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="n"&gt;O0010&lt;/span&gt; &lt;span class="c"&gt;# 变量值为8, 0O第二个是字母O&lt;/span&gt;
 &lt;span class="n"&gt;var_hex&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mh"&gt;0x0010&lt;/span&gt; &lt;span class="c"&gt;# 变量值为16&lt;/span&gt;
 &lt;span class="n"&gt;var_float&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mf"&gt;1.0&lt;/span&gt;

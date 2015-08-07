@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>心亡则忙，亡心则忘</title><link>http://blog.shuiguzi.com/</link><description></description><atom:link href="http://blog.shuiguzi.com/feeds%5Crocky-lai.rss.xml" rel="self"></atom:link><lastBuildDate>Fri, 07 Aug 2015 16:05:00 +0800</lastBuildDate><item><title>UNet 0x02: 发送消息</title><link>http://blog.shuiguzi.com/unet-0x02-fa-song-xiao-xi.html</link><description>&lt;p&gt;&lt;a href="http://blog.shuiguzi.com/unet-0x01-wang-luo-lian-jie-de-jian-li.html"&gt;上一篇文章&lt;/a&gt; 中介绍了如何在 UNet 中建立网络连接，接下来我们在这篇文章中说说建立连接之后怎么在 Client / Server 间发送消息。&lt;/p&gt;
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>心亡则忙，亡心则忘</title><link>http://blog.shuiguzi.com/</link><description></description><atom:link href="http://blog.shuiguzi.com/feeds/rocky-lai.rss.xml" rel="self"></atom:link><lastBuildDate>Fri, 07 Aug 2015 16:05:00 +0800</lastBuildDate><item><title>UNet 0x02: 发送消息</title><link>http://blog.shuiguzi.com/unet-0x02-fa-song-xiao-xi.html</link><description>&lt;p&gt;&lt;a href="http://blog.shuiguzi.com/unet-0x01-wang-luo-lian-jie-de-jian-li.html"&gt;上一篇文章&lt;/a&gt; 中介绍了如何在 UNet 中建立网络连接，接下来我们在这篇文章中说说建立连接之后怎么在 Client / Server 间发送消息。&lt;/p&gt;
 &lt;p&gt;这篇文章涉及的是 UNet HLAPI 部分消息发送所涉及到一些概念，最后会给出一个示例代码。按之前的风格，我们继续来抱着问题讲述今天的主题。&lt;/p&gt;
 &lt;p&gt;有两个问题：&lt;/p&gt;
 &lt;ul&gt;
@@ -71,14 +71,14 @@
 &lt;p&gt;上小节，我们有了 &lt;code&gt;MessageX&lt;/code&gt; 这个高大上名字的消息，我们怎么发出去，然后怎么接受呢？&lt;/p&gt;
 &lt;p&gt;先说发送。UNet 中下面几个方法都可以发送:&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;code&gt;NetworkClient.Send(short msgType, MessageBase msg)&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;NetworkConnection.Send(short msgType, MessageBase msg)&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;NetworkServer.SendToAll(short msgType, MessageBase msg)&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;NetworkServer.SendToReady(short msgType, MessageBase msg)&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;NetworkServer.SendToClient(int connectionId, short msgType, MessageBase msg)&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;NetworkServer.SendUnreliableToAll(short msgType, MessageBase msg)&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;NetworkServer.SendUnreliableToReady(short msgType, MessageBase msg)&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;NetworkServer.SendToClientOfPlayer(GameObject player, short msgType, MessageBase msg)&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;NetworkClient.Send( short msgType, MessageBase msg)&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;NetworkConnection.Send( short msgType, MessageBase msg)&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;NetworkServer.SendToAll( short msgType, MessageBase msg)&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;NetworkServer.SendToReady( short msgType, MessageBase msg)&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;NetworkServer.SendToClient( int connectionId, short msgType, MessageBase msg)&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;NetworkServer.SendUnreliableToAll( short msgType, MessageBase msg)&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;NetworkServer.SendUnreliableToReady( short msgType, MessageBase msg)&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;NetworkServer.SendToClientOfPlayer( GameObject player, short msgType, MessageBase msg)&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;各个方法用各自的用途，具体可以参照 &lt;a href="http://docs.unity3d.com/ScriptReference/Networking.NetworkClient.html"&gt;NetworkClient&lt;/a&gt;、
 &lt;a href="http://docs.unity3d.com/ScriptReference/Networking.NetworkConnection.html"&gt;NetworkConnection&lt;/a&gt; 和 
@@ -234,7 +234,7 @@
 它有两个参数：&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;第一个参数 msgType 是个 short 类型，Unity 提供 &lt;a href="http://docs.unity3d.com/ScriptReference/Networking.MsgType.html"&gt;MsgType&lt;/a&gt; 类来得到所有内置的数值。当然我们也可以自定义数值哦~~&lt;/li&gt;
-&lt;li&gt;第二个参数 handler 是 NetworkMessageDelegate 类型，类型的原型是 &lt;code&gt;public delegate void NetworkMessageDelegate(Networking.NetworkMessage netMsg)&lt;/code&gt;。这是 C# 中的 delegate, 我们要提供的消息响应函数。&lt;/li&gt;
+&lt;li&gt;第二个参数 handler 是 NetworkMessageDelegate 类型，类型的原型是 &lt;strong&gt;delegate void NetworkMessageDelegate( Networking.NetworkMessage netMsg )&lt;/strong&gt;。这是 C# 中的 delegate, 我们要提供的消息响应函数。&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;在本节例子中，我们在 Server 和 Client 端都注册 &lt;code&gt;MsgType.Connect&lt;/code&gt; 消息，然后其响应函数为 &lt;code&gt;OnConnected(NetworkMessage msg)&lt;/code&gt;。&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;private&lt;/span&gt; &lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;OnConnected&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;NetworkMessage&lt;/span&gt; &lt;span class="n"&gt;msg&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
@@ -1432,7 +1432,7 @@ as well as rendering passes to handle forward and deferred rendering.&lt;/p&gt;
 &lt;span class="sd"&gt;    double var_float = 1.0; // 或者 float var_float = 1.0;&lt;/span&gt;
 &lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
 &lt;span class="n"&gt;var_int&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;
-&lt;span class="n"&gt;var_binary&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="n"&gt;b0010&lt;/span&gt; &lt;span class="c"&gt;# 变量值为2&lt;/span&gt;
+&lt;span class="n"&gt;var_binary&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mb"&gt;0b0010&lt;/span&gt; &lt;span class="c"&gt;# 变量值为2&lt;/span&gt;
 &lt;span class="n"&gt;var_octal&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="n"&gt;O0010&lt;/span&gt; &lt;span class="c"&gt;# 变量值为8, 0O第二个是字母O&lt;/span&gt;
 &lt;span class="n"&gt;var_hex&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mh"&gt;0x0010&lt;/span&gt; &lt;span class="c"&gt;# 变量值为16&lt;/span&gt;
 &lt;span class="n"&gt;var_float&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mf"&gt;1.0&lt;/span&gt;

@@ -88,14 +88,14 @@ UNet 在 `UnityEngine.Networking.NetworkSystem` 命名空间中提供了一些�
 
 先说发送。UNet 中下面几个方法都可以发送:
 
-* `NetworkClient.Send(short msgType, MessageBase msg)`
-* `NetworkConnection.Send(short msgType, MessageBase msg)`
-* `NetworkServer.SendToAll(short msgType, MessageBase msg)`
-* `NetworkServer.SendToReady(short msgType, MessageBase msg)`
-* `NetworkServer.SendToClient(int connectionId, short msgType, MessageBase msg)`
-* `NetworkServer.SendUnreliableToAll(short msgType, MessageBase msg)`
-* `NetworkServer.SendUnreliableToReady(short msgType, MessageBase msg)`
-* `NetworkServer.SendToClientOfPlayer(GameObject player, short msgType, MessageBase msg)`
+* __NetworkClient.Send( short msgType, MessageBase msg)__
+* __NetworkConnection.Send( short msgType, MessageBase msg)__
+* __NetworkServer.SendToAll( short msgType, MessageBase msg)__
+* __NetworkServer.SendToReady( short msgType, MessageBase msg)__
+* __NetworkServer.SendToClient( int connectionId, short msgType, MessageBase msg)__
+* __NetworkServer.SendUnreliableToAll( short msgType, MessageBase msg)__
+* __NetworkServer.SendUnreliableToReady( short msgType, MessageBase msg)__
+* __NetworkServer.SendToClientOfPlayer( GameObject player, short msgType, MessageBase msg)__
 
 各个方法用各自的用途，具体可以参照 [NetworkClient](http://docs.unity3d.com/ScriptReference/Networking.NetworkClient.html)、
 [NetworkConnection](http://docs.unity3d.com/ScriptReference/Networking.NetworkConnection.html) 和 

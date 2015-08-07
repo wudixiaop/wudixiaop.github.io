@@ -179,14 +179,14 @@
 <p>上小节，我们有了 <code>MessageX</code> 这个高大上名字的消息，我们怎么发出去，然后怎么接受呢？</p>
 <p>先说发送。UNet 中下面几个方法都可以发送:</p>
 <ul>
-<li><code>NetworkClient.Send(short msgType, MessageBase msg)</code></li>
-<li><code>NetworkConnection.Send(short msgType, MessageBase msg)</code></li>
-<li><code>NetworkServer.SendToAll(short msgType, MessageBase msg)</code></li>
-<li><code>NetworkServer.SendToReady(short msgType, MessageBase msg)</code></li>
-<li><code>NetworkServer.SendToClient(int connectionId, short msgType, MessageBase msg)</code></li>
-<li><code>NetworkServer.SendUnreliableToAll(short msgType, MessageBase msg)</code></li>
-<li><code>NetworkServer.SendUnreliableToReady(short msgType, MessageBase msg)</code></li>
-<li><code>NetworkServer.SendToClientOfPlayer(GameObject player, short msgType, MessageBase msg)</code></li>
+<li><strong>NetworkClient.Send( short msgType, MessageBase msg)</strong></li>
+<li><strong>NetworkConnection.Send( short msgType, MessageBase msg)</strong></li>
+<li><strong>NetworkServer.SendToAll( short msgType, MessageBase msg)</strong></li>
+<li><strong>NetworkServer.SendToReady( short msgType, MessageBase msg)</strong></li>
+<li><strong>NetworkServer.SendToClient( int connectionId, short msgType, MessageBase msg)</strong></li>
+<li><strong>NetworkServer.SendUnreliableToAll( short msgType, MessageBase msg)</strong></li>
+<li><strong>NetworkServer.SendUnreliableToReady( short msgType, MessageBase msg)</strong></li>
+<li><strong>NetworkServer.SendToClientOfPlayer( GameObject player, short msgType, MessageBase msg)</strong></li>
 </ul>
 <p>各个方法用各自的用途，具体可以参照 <a href="http://docs.unity3d.com/ScriptReference/Networking.NetworkClient.html">NetworkClient</a>、
 <a href="http://docs.unity3d.com/ScriptReference/Networking.NetworkConnection.html">NetworkConnection</a> 和 
