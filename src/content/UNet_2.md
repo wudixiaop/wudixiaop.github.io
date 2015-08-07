@@ -181,7 +181,7 @@ UNet 在 `UnityEngine.Networking.NetworkSystem` 命名空间中提供了一些�
 	        Debug.Log("A client connected!");
 	    }
 	
-	    public void OnMessageXReceived(NetworkMessage msg)
+	    private void OnMessageXReceived(NetworkMessage msg)
 	    {
 	        MessageX mx = msg.ReadMessage<MessageX>();
 	        Debug.Log(string.Format("SERVER: {0}", mx));
