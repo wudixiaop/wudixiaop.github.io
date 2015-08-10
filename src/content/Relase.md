@@ -5,7 +5,7 @@ Tags: Shader
 keywords: ShaderlabVS, Visual Studio 插件
 
 
-##_Latest Version - V0.5_
+###_Latest Version - V0.5_
 
 **[2014-10-28] V0.5 release note:**
 
@@ -24,7 +24,7 @@ keywords: ShaderlabVS, Visual Studio 插件
 <img alt="preview" src="https://github.com/wudixiaop/ShaderlabVS/raw/master/img/Highlighting.PNG" width="100%"/>
 
 ------------------------------
-##_History:_
+###_History:_
 
 **[2014-10-19] V0.4 release note:**
 

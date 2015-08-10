@@ -7,7 +7,7 @@ keywords: VS, VS tip
 好吧，其实我想要说一些我觉得可以在Visual Studio中提高效率的经验。下面直接进入正题：
 
 
-##熟记并使用各种快捷键
+###熟记并使用各种快捷键
 快捷键之所以叫快捷键就是因为它会让事情变得更快捷。好吧，其实我知道前面一句废话。下面就列举一些碰上常用的(基于Visual C# 2005快捷键映射)
 
 
@@ -31,7 +31,7 @@ keywords: VS, VS tip
 当然还有很多其他快捷，但是平时自己用的少，就不列举了。
 
 
-##偷懒技巧一：使用代码片段管理器(Code Snippets Manager)
+###偷懒技巧一：使用代码片段管理器(Code Snippets Manager)
 
 
 如果还不知道有这个东西的童鞋可以在Vistual Studio的工具菜单中找到。具体怎么用大家可以参照别的童鞋们的文章
@@ -51,7 +51,7 @@ keywords: VS, VS tip
 > * 生成属性: **prop**, **propfull**, **propdp**(Wpf系列中的依赖属性)
 
 
-##偷懒技巧二: Toolbox
+###偷懒技巧二: Toolbox
 
 
 文字看多了，咱们来看视频吧
@@ -61,7 +61,7 @@ keywords: VS, VS tip
 视频源地址：<http://channel9.msdn.com/Series/vstips/lazycodesnippets>
 
 
-##成为高手~~
+###成为高手~~
 
 
 不想成为标题党的程序员不是一个好写手。好吧，其实我是来推荐**VsVim**这个插件的。。。

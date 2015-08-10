@@ -97,7 +97,8 @@
                     UNet 0x03: NetworkManager 初见
                 </h2>
             </a>
-                <p>阅读本章之前, 建议先阅读 <a href="http://blog.shuiguzi.com/unet-0x01-wang-luo-lian-jie-de-jian-li.html">UNet 0x01: 网络连接的建立</a> 和 ...</p>
+                <p>阅读本章之前, 建议先阅读 <a href="http://blog.shuiguzi.com/unet-0x01-wang-luo-lian-jie-de-jian-li.html">UNet 0x01: 网络连接的建立</a> 和 <a href="http://blog.shuiguzi.com/unet-0x02-fa-song-xiao-xi.html">UNet 0x02: 发送消息</a> 这两篇文章。</p>
+<p>前两篇文章我们建立 Client / Server 间的连接的时候，手动配置了 Server 的端口和 Client ...</p>
             <p class="post-meta">
                 2015-08-10 14:04
                  by
@@ -111,7 +112,11 @@
                     UNet 0x02: 发送消息
                 </h2>
             </a>
-                <p><a href="http://blog.shuiguzi.com/unet-0x01-wang-luo-lian-jie-de-jian-li.html">上一篇文章</a> 中介绍了如何在 UNet 中建立网络连接，接下来我们在这篇文章中说说建立连接之后怎么在 Client ...</p>
+                <p><a href="http://blog.shuiguzi.com/unet-0x01-wang-luo-lian-jie-de-jian-li.html">上一篇文章</a> 中介绍了如何在 UNet 中建立网络连接，接下来我们在这篇文章中说说建立连接之后怎么在 Client / Server 间发送消息。</p>
+<p>这篇文章涉及的是 UNet HLAPI 部分消息发送所涉及到一些概念，最后会给出一个示例代码。按之前的风格，我们继续来抱着问题讲述今天的主题。</p>
+<p>有两个问题：</p>
+<ul>
+<li>UNet HLAPI ...</li></ul>
             <p class="post-meta">
                 2015-08-07 16:04
                  by
@@ -125,7 +130,10 @@
                     UNet 0x01: 网络连接的建立
                 </h2>
             </a>
-                <p>看到标题后，没接触过的朋友脑中可能会闪现出这样一个问题： UNet 是什么 ? 其实它是 Unity ...</p>
+                <p>看到标题后，没接触过的朋友脑中可能会闪现出这样一个问题： UNet 是什么 ? 其实它是 Unity 5.1 版本新引入的网络系统。官方论坛里面称这个系统为 UNet, 那我们按照官方的习惯来。</p>
+<p><a href="http://docs.unity3d.com/Manual/UNetOverview.html">官方手册文档</a> 介绍其主要有两类功能（按 API 抽象层次来分）：</p>
+<ul>
+<li>低层次 ...</li></ul>
             <p class="post-meta">
                 2015-08-06 16:43
                  by
@@ -141,7 +149,8 @@
             </a>
                 <p>先看效果：<br />
 <img alt="rockstar" src="images/RockStar/rockstar.PNG" width="100%" /></p>
-<p>我们要使用 RockStar 这个 python 工具来实现这个效果 ...</p>
+<p>我们要使用 RockStar 这个 python 工具来实现这个效果。RockStar 的 Github 地址 <a href="https://github.com/avinassh/rockstar">撮这里</a>。</p>
+<p>RockStar 只支持 Python 3，不能在 Python 2 ...</p>
             <p class="post-meta">
                 2015-07-21 12:50
                  by
@@ -155,7 +164,11 @@
                     瞎聊 Unity Shader 系列之十一：深度缓存
                 </h2>
             </a>
-                <p>第二节 <a href="http://blog.shuiguzi.com/xia-liao-unity-shader-xi-lie-zhi-er-xuan-ran-guan-xian.html">渲染管线</a> 中提到了 Frame Buffer, 这个是用来存储帧位图的数据存储区域 ...</p>
+                <p>第二节 <a href="http://blog.shuiguzi.com/xia-liao-unity-shader-xi-lie-zhi-er-xuan-ran-guan-xian.html">渲染管线</a> 中提到了 Frame Buffer, 这个是用来存储帧位图的数据存储区域。 这里在介绍另外一个缓存, 叫深度缓存 (Depth Buffer), 也叫作 Z-Buffer。从名字上来看这是一个
+存储深度（数据）的存储区。下面我们带着两个问题来解释这个深度缓存。</p>
+<blockquote>
+<ol>
+<li>存储的深度数据是什么 ...</li></ol></blockquote>
             <p class="post-meta">
                 2015-06-09 15:17
                  by
@@ -170,37 +183,21 @@
                 </h2>
             </a>
                 <p>这节内容跟 <a href="http://blog.shuiguzi.com/xia-liao-unity-shader-xi-lie-zhi-er-xuan-ran-guan-xian.html">渲染管线</a> 内容关系比较紧密，建议先了解渲染管线的整个流程。</p>
-<p>我们知道渲染管线整个流水线都有数据的输入输出，这样就存在几个问题 ...</p>
+<p>我们知道渲染管线整个流水线都有数据的输入输出，这样就存在几个问题：</p>
+<ol>
+<li>这些数据都是什么？</li>
+<li>这些数据输入或输出到哪里？</li>
+<li>Shader 里面怎么体现？</li>
+</ol>
+<p>这节内容主要是讲上面三个问题</p>
+<h3>数据的种类</h3>
+<p>一般情况能利用的有如下几种：</p>
+<ul>
+<li>坐标系中的位置 (position)</li>
+<li>法线 (normal)</li>
+<li>切线 ...</li></ul>
             <p class="post-meta">
                 2015-05-14 15:53
-                 by
-                    <a href="http://blog.shuiguzi.com/author/rocky-lai.html">Rocky Lai</a>
-            </p>
-        </div>
-        <hr>
-        <div class="post-preview">
-            <a href="http://blog.shuiguzi.com/xia-liao-unity-shader-xi-lie-zhi-jiu-yong-lai-bao-zhuang-bian-liang-de-properties.html" rel="bookmark" title="Permalink to 瞎聊 Unity Shader 系列之九：用来包装变量的 Properties">
-                <h2 class="post-title">
-                    瞎聊 Unity Shader 系列之九：用来包装变量的 Properties
-                </h2>
-            </a>
-                <p>为了像其他程序语言一样重用代码，Shaderlab 把可变部分提取出来，集中放到一个区域去。这个区域就是 <a href="http://blog.shuiguzi.com/xia-liao-unity-shader-xi-lie-zhi-liu-chu-shi-shaderlab.html">初始 ...</a></p>
-            <p class="post-meta">
-                2015-05-08 14:03
-                 by
-                    <a href="http://blog.shuiguzi.com/author/rocky-lai.html">Rocky Lai</a>
-            </p>
-        </div>
-        <hr>
-        <div class="post-preview">
-            <a href="http://blog.shuiguzi.com/xia-liao-unity-shader-xi-lie-zhi-ba-pragma-zhi-ling.html" rel="bookmark" title="Permalink to 瞎聊 Unity Shader 系列之八：#pragma 指令">
-                <h2 class="post-title">
-                    瞎聊 Unity Shader 系列之八：#pragma 指令
-                </h2>
-            </a>
-                <p>第三节 <a href="http://blog.shuiguzi.com/xia-liao-unity-shader-xi-lie-zhi-san-shader-tu-di-shang-de-yu-yan-men.html">Shader 土地上的语言们</a> 里面说到过 CG 和 ...</p>
-            <p class="post-meta">
-                2015-05-07 16:13
                  by
                     <a href="http://blog.shuiguzi.com/author/rocky-lai.html">Rocky Lai</a>
             </p>

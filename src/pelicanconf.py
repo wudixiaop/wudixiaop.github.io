@@ -21,7 +21,7 @@ DISQUS_SITENAME = "wudixiaopgithubio"
 SITEURL = 'http://blog.shuiguzi.com'
 THEME = "Theme/CLEANBLOG"
 WEB_SITE_DOMAIN = "http://blog.shuigui.com"
-DEFAULT_PAGINATION = 8
+DEFAULT_PAGINATION = 6
 
 if IN_TEST_Environment:
     SITEURL = "http://localhost:8000"
@@ -53,7 +53,7 @@ COLOR_SCHEME_CSS = "github.css"
 GITHUB_LINK_DISPLAY_NAME = "Rocky Lai @ Github"
 GITHUB_URL = 'https://github.com/wudixiaop'
 DISPLAY_CATEGORIES_ON_MENU = True
-SUMMARY_MAX_LENGTH = 6
+SUMMARY_MAX_LENGTH = 18
 
 # FEED_DOMAIN = WEB_SITE_DOMAIN
 # FEED_RSS = "feed/rocky-lai.rss.xml"
