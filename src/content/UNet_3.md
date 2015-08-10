@@ -108,6 +108,6 @@ NetworkManager 组件挂上 GameObject 之后我们可以像其他组件一同�
 	
 新建一个 GameObject， 在它挂上上面的脚本，然后添加 NetworkManager 组件，然后运行项目。控制台会得到类似下面的输出结果：
 
-![output](images/UNet/103output.PNG){: width="100%"}
+![output](images/UNet/103Output.PNG){: width="100%"}
 
 Enjoy!

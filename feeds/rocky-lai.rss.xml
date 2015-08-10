@@ -86,7 +86,7 @@
 
 &lt;p&gt;代码可以在这里找到：&lt;a href="https://github.com/wudixiaop/UNet/tree/master/Assets/103%20-%20introduce%20NetworkManager"&gt;Github 地址&lt;/a&gt;。&lt;/p&gt;
 &lt;p&gt;新建一个 GameObject， 在它挂上上面的脚本，然后添加 NetworkManager 组件，然后运行项目。控制台会得到类似下面的输出结果：&lt;/p&gt;
-&lt;p&gt;&lt;img alt="output" src="images/UNet/103output.PNG" width="100%" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="output" src="images/UNet/103Output.PNG" width="100%" /&gt;&lt;/p&gt;
 &lt;p&gt;Enjoy!&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Rocky Lai</dc:creator><pubDate>Mon, 10 Aug 2015 16:05:00 +0800</pubDate><guid>tag:blog.shuiguzi.com,2015-08-10:unet-0x03-networkmanager-chu-jian.html</guid><category>UNet</category><category>Unity</category></item><item><title>UNet 0x02: 发送消息</title><link>http://blog.shuiguzi.com/unet-0x02-fa-song-xiao-xi.html</link><description>&lt;p&gt;&lt;a href="http://blog.shuiguzi.com/unet-0x01-wang-luo-lian-jie-de-jian-li.html"&gt;上一篇文章&lt;/a&gt; 中介绍了如何在 UNet 中建立网络连接，接下来我们在这篇文章中说说建立连接之后怎么在 Client / Server 间发送消息。&lt;/p&gt;
 &lt;p&gt;这篇文章涉及的是 UNet HLAPI 部分消息发送所涉及到一些概念，最后会给出一个示例代码。按之前的风格，我们继续来抱着问题讲述今天的主题。&lt;/p&gt;
 &lt;p&gt;有两个问题：&lt;/p&gt;
