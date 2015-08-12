@@ -1,5 +1,87 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>心亡则忙，亡心则忘</title><link href="http://blog.shuiguzi.com/" rel="alternate"></link><link href="http://blog.shuiguzi.com/feeds%5Cunity.atom.xml" rel="self"></link><id>http://blog.shuiguzi.com/</id><updated>2015-08-10T16:05:00+08:00</updated><entry><title>UNet 0x03: NetworkManager 初见</title><link href="http://blog.shuiguzi.com/unet-0x03-networkmanager-chu-jian.html" rel="alternate"></link><updated>2015-08-10T16:05:00+08:00</updated><author><name>Rocky Lai</name></author><id>tag:blog.shuiguzi.com,2015-08-10:unet-0x03-networkmanager-chu-jian.html</id><summary type="html">&lt;p&gt;阅读本章之前, 建议先阅读 &lt;a href="http://blog.shuiguzi.com/unet-0x01-wang-luo-lian-jie-de-jian-li.html"&gt;UNet 0x01: 网络连接的建立&lt;/a&gt; 和 &lt;a href="http://blog.shuiguzi.com/unet-0x02-fa-song-xiao-xi.html"&gt;UNet 0x02: 发送消息&lt;/a&gt; 这两篇文章。&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>心亡则忙，亡心则忘</title><link href="http://blog.shuiguzi.com/" rel="alternate"></link><link href="http://blog.shuiguzi.com/feeds%5Cunity.atom.xml" rel="self"></link><id>http://blog.shuiguzi.com/</id><updated>2015-08-12T16:53:00+08:00</updated><entry><title>UNet 0x04: 做一个简单的 Network Manager 界面</title><link href="http://blog.shuiguzi.com/unet-0x04-zuo-yi-ge-jian-dan-de-network-manager-jie-mian.html" rel="alternate"></link><updated>2015-08-12T16:53:00+08:00</updated><author><name>Rocky Lai</name></author><id>tag:blog.shuiguzi.com,2015-08-12:unet-0x04-zuo-yi-ge-jian-dan-de-network-manager-jie-mian.html</id><summary type="html">&lt;p&gt;上一篇中我们引入了 NetworkManager 组件，然后在代码里面通过它来建立了网络连接。这篇让我们来把连接部分的代码独立出来，并提供 GUI 来达到管理 Server / Client 的开启和停止的目的。
+这样我们以后就可以重复利用代码了。&lt;/p&gt;
+&lt;p&gt;下面是我们这个简单的 NetworkManger 界面提供的功能：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;可以启动 / 停止 Server，并且多个程序端只能启动一个 Server&lt;/li&gt;
+&lt;li&gt;可以启动 / 停止 Client 并连接 Server&lt;/li&gt;
+&lt;li&gt;当 Server 停止时，所有 Client 端界面都会重置&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;这个简单的界面如下：&lt;/p&gt;
+&lt;p&gt;&lt;img alt="ui" src="images/UNet/SimpleUI.PNG" /&gt;&lt;/p&gt;
+&lt;p&gt;本篇中的 demo 可以 &lt;a href="https://github.com/wudixiaop/UNet/tree/master/Assets/104%20-%20simple%20network%20GUI"&gt;戳这里&lt;/a&gt; 得到，下面就 Demo 细说一下。&lt;/p&gt;
+&lt;h3&gt;代码&lt;/h3&gt;
+&lt;p&gt;我们通过 NetworkManager 的 &lt;code&gt;StartServer()&lt;/code&gt; / &lt;code&gt;StopServer()&lt;/code&gt; 方法来开启 / 停止 Server, &lt;code&gt;StartClient()&lt;/code&gt; / &lt;code&gt;StopClient()&lt;/code&gt; 方法来启动 / 停止 Client。我们可以新建一个 GameObject，
+然后把下面脚本挂在它上面。脚本代码如下:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;using&lt;/span&gt; &lt;span class="n"&gt;UnityEngine&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="n"&gt;using&lt;/span&gt; &lt;span class="n"&gt;UnityEngine&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Networking&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+&lt;span class="n"&gt;public&lt;/span&gt; &lt;span class="n"&gt;class&lt;/span&gt; &lt;span class="nl"&gt;SimpleNetworkGUI&lt;/span&gt; &lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;MonoBehaviour&lt;/span&gt;
+&lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="kt"&gt;bool&lt;/span&gt; &lt;span class="n"&gt;isHaveNetworkRole&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;false&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+    &lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;Start&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+    &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="n"&gt;isHaveNetworkRole&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;false&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+
+    &lt;span class="n"&gt;private&lt;/span&gt; &lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;OnDisconnected&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;NetworkMessage&lt;/span&gt; &lt;span class="n"&gt;msg&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="n"&gt;isHaveNetworkRole&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;false&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+        &lt;span class="n"&gt;Application&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;LoadLevel&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Application&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;loadedLevel&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+
+    &lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;OnGUI&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+    &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;isHaveNetworkRole&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="p"&gt;{&lt;/span&gt;
+            &lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;GUI&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Button&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;new&lt;/span&gt; &lt;span class="n"&gt;Rect&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Screen&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;width&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="mi"&gt;80&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;Screen&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;height&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="mi"&gt;12&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;160&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;24&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;Stop&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+            &lt;span class="p"&gt;{&lt;/span&gt;
+                &lt;span class="n"&gt;NetworkManager&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;singleton&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;StopServer&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+                &lt;span class="n"&gt;NetworkManager&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;singleton&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;StopClient&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+                &lt;span class="n"&gt;OnDisconnected&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;null&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+            &lt;span class="p"&gt;}&lt;/span&gt;
+            &lt;span class="k"&gt;return&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+        &lt;span class="p"&gt;}&lt;/span&gt;
+
+        &lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;GUI&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Button&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;new&lt;/span&gt; &lt;span class="n"&gt;Rect&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Screen&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;width&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="mf"&gt;2f&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="mi"&gt;80&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;Screen&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;height&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="mi"&gt;12&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;160&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;24&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;Start Server&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+        &lt;span class="p"&gt;{&lt;/span&gt;
+            &lt;span class="n"&gt;isHaveNetworkRole&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;NetworkManager&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;singleton&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;StartServer&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+        &lt;span class="p"&gt;}&lt;/span&gt;
+
+        &lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;GUI&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Button&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;new&lt;/span&gt; &lt;span class="n"&gt;Rect&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Screen&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;width&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="mf"&gt;2f&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="mi"&gt;80&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;Screen&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;height&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="mi"&gt;24&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;160&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;24&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;Start Client&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+        &lt;span class="p"&gt;{&lt;/span&gt;
+            &lt;span class="n"&gt;var&lt;/span&gt; &lt;span class="n"&gt;client&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;NetworkManager&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;singleton&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;StartClient&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+            &lt;span class="n"&gt;client&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;RegisterHandler&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;MsgType&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Disconnect&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;OnDisconnected&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+            &lt;span class="n"&gt;isHaveNetworkRole&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;true&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+        &lt;span class="p"&gt;}&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;关于 Demo 其他一些需要知道的&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;首先，代码中利用了 NetworkManager 组件。我们可以把这个组件挂到挂有上面 UI 脚本的 GameObject 之上。&lt;/li&gt;
+&lt;li&gt;为了演示效果，Demo 里面创建了一个Prefab， 这个 Prefab 会传递给上面的 NetworkManager 组件（Spawn Info 下的 Player Prefab）。当 Client 连接已经启动的 Server 的时候，Server 端会创建这个 Perfab 的实例。
+这个 Prefab 比较特殊，它上面需要添加 &lt;strong&gt;NetworkIndentity&lt;/strong&gt; 组件，这样才能传递过去给 NetworkManager。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;到这里，可能有的朋友有疑问。什么 Spawn？ NetworkIndentity 又是什么鬼？&lt;/p&gt;
+&lt;h3&gt;UNet 中的 Spawn&lt;/h3&gt;
+&lt;p&gt;换句话说，Spawn 就是网络对象实例的初始化这个行为，再换句话说就是创建网络对象。在 UNet 中用 Spawn 来描述，而不是用 Instantiate。&lt;/p&gt;
+&lt;p&gt;UNet 是个以 Server 为主导的系统，所有的 Spawn 行为都要在 Server 端发生，通过调用 &lt;code&gt;NetworkServer.Spawn( GameObject go )&lt;/code&gt; 方法，产生的对象会在各个 Client 出现对应的实例。&lt;/p&gt;
+&lt;h3&gt;网络对象与 NetworkIndentity&lt;/h3&gt;
+&lt;p&gt;每个网络对象（Networked Object）都需要在根上带上 NetworkIndentity 组件。那 NetworkIndentity 组件是什么？ 大概是这个样子：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;它是标志对象网络身份的一个组件&lt;/li&gt;
+&lt;li&gt;拥有系统用来跟踪对象的信息，比如 SenceId, NetworkID, AssetID 等&lt;/li&gt;
+&lt;li&gt;所有需要 Spawn 的 Prefab 都必须在对象根上带有这个组件&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;对了，需要注意一点。带有 NetworkIndentity 组件的对象，在未 Spawn 之前是不可用的，Disabled 状态，即使在 Hierarchy 里面有它的实例也会自动被 Disabled.&lt;/p&gt;
+&lt;h3&gt;NetworkManagerHUD 组件&lt;/h3&gt;
+&lt;p&gt;为什么要提到这个组件呢。因为它也是一个 NetworkManager 管理的界面。它是 Unity 提供给我们的，提供比我们这篇文章所给的更加丰富的功能。平时开发调试的时候，建议使用这个控件。
+引出 NetworkManagerHUD 组件也是这篇文章的目的。&lt;/p&gt;
+&lt;p&gt;好了，这篇就到这里。Enjoy!&lt;/p&gt;</summary><category term="UNet"></category><category term="Unity"></category></entry><entry><title>UNet 0x03: NetworkManager 初见</title><link href="http://blog.shuiguzi.com/unet-0x03-networkmanager-chu-jian.html" rel="alternate"></link><updated>2015-08-10T16:05:00+08:00</updated><author><name>Rocky Lai</name></author><id>tag:blog.shuiguzi.com,2015-08-10:unet-0x03-networkmanager-chu-jian.html</id><summary type="html">&lt;p&gt;阅读本章之前, 建议先阅读 &lt;a href="http://blog.shuiguzi.com/unet-0x01-wang-luo-lian-jie-de-jian-li.html"&gt;UNet 0x01: 网络连接的建立&lt;/a&gt; 和 &lt;a href="http://blog.shuiguzi.com/unet-0x02-fa-song-xiao-xi.html"&gt;UNet 0x02: 发送消息&lt;/a&gt; 这两篇文章。&lt;/p&gt;
 &lt;p&gt;前两篇文章我们建立 Client / Server 间的连接的时候，手动配置了 Server 的端口和 Client 要连接的目标 Server 及其端口。这些都是在代码里面实现
 的。这篇文章我们引入 UNet 提供的一个网络管理组件来达到同样的效果。这个组件的名字叫做 NetworkManager。&lt;/p&gt;
 &lt;p&gt;NetworkManager 组件提供了很多功能，但是这篇文章只引入 NetworkManager 组件，不打算深入讲这个组件。下面是 NetworkManager 在 Inspector 里面的长相：&lt;/p&gt;

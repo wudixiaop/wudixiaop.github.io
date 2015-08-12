@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="zhcn">
+
+<head>
+            <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="">
+
+        <title>心亡则忙，亡心则忘</title>
+
+        <!-- Bootstrap Core CSS -->
+        <link href="http://blog.shuiguzi.com/theme/css/bootstrap.min.css" rel="stylesheet">
+
+        <!-- Custom CSS -->
+        <link href="http://blog.shuiguzi.com/theme/css/clean-blog.css" rel="stylesheet">
+
+        <!-- Code highlight color scheme -->
+            <link href="http://blog.shuiguzi.com/theme/css/code_blocks/github.css" rel="stylesheet">
+
+
+
+        <meta name="keywords" contents="Unity, Networking, UNet, Unity networking" />
+
+        <meta name="description" contents="UNet 0x04: 做一个简单的 Network Manager 界面" />
+
+        <meta name="tags" contents="UNet" />
+        <meta name="keywords" contents="UNet" />
+        <meta name="tags" contents="Unity" />
+        <meta name="keywords" contents="Unity" />
+
+        <meta name="author" content="Rocky Lai" />
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="https://github.com/wudixiaop/"><span class="menutext">Rocky Lai @ Github</span></a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+          					<li>
+                      <a href="http://blog.shuiguzi.com">
+                         <span class="menutext">首页</span>
+                      </a>
+                    </li>
+
+          					<li>
+                      <a href="http://blog.shuiguzi.com/tags.html">
+                        <span class="menutext">标签</span>
+                      </a>
+                    </li>
+
+          					<li>
+                      <a href="http://blog.shuiguzi.com/archives.html">
+                        <span class="menutext">归档</span>
+                      </a>
+                    </li>
+
+          					<li>
+                      <a href="http://blog.shuiguzi.com/author/rocky-lai.html">
+                        <span class="menutext">关于我</span>
+                      </a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <!-- Page Header -->
+        <header class="intro-header" style="background-image: url('http://blog.shuiguzi.com/theme/images/post-bg.jpg')">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-10 col-md-10 col-md-offset-1">
+                    <div class="post-heading">
+                        <h1>UNet 0x04: 做一个简单的 Network Manager 界面</h1>
+                        <span class="meta">
+                            2015-08-12 16:16
+                             by
+                                <a href="http://blog.shuiguzi.com/author/rocky-lai.html">Rocky Lai</a>
+                        </span>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-10 col-md-10 col-md-offset-1">
+    <!-- Post Content -->
+    <article>
+        <p>上一篇中我们引入了 NetworkManager 组件，然后在代码里面通过它来建立了网络连接。这篇让我们来把连接部分的代码独立出来，并提供 GUI 来达到管理 Server / Client 的开启和停止的目的。
+这样我们以后就可以重复利用代码了。</p>
+<p>下面是我们这个简单的 NetworkManger 界面提供的功能：</p>
+<ul>
+<li>可以启动 / 停止 Server，并且多个程序端只能启动一个 Server</li>
+<li>可以启动 / 停止 Client 并连接 Server</li>
+<li>当 Server 停止时，所有 Client 端界面都会重置</li>
+</ul>
+<p>这个简单的界面如下：</p>
+<p><img alt="ui" src="images/UNet/SimpleUI.PNG" /></p>
+<p>本篇中的 demo 可以 <a href="https://github.com/wudixiaop/UNet/tree/master/Assets/104%20-%20simple%20network%20GUI">戳这里</a> 得到，下面就 Demo 细说一下。</p>
+<h3>代码</h3>
+<p>我们通过 NetworkManager 的 <code>StartServer()</code> / <code>StopServer()</code> 方法来开启 / 停止 Server, <code>StartClient()</code> / <code>StopClient()</code> 方法来启动 / 停止 Client。我们可以新建一个 GameObject，
+然后把下面脚本挂在它上面。脚本代码如下:</p>
+<div class="highlight"><pre><span class="n">using</span> <span class="n">UnityEngine</span><span class="p">;</span>
+<span class="n">using</span> <span class="n">UnityEngine</span><span class="p">.</span><span class="n">Networking</span><span class="p">;</span>
+
+<span class="n">public</span> <span class="n">class</span> <span class="nl">SimpleNetworkGUI</span> <span class="p">:</span> <span class="n">MonoBehaviour</span>
+<span class="p">{</span>
+    <span class="kt">bool</span> <span class="n">isHaveNetworkRole</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+
+    <span class="kt">void</span> <span class="nf">Start</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">isHaveNetworkRole</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="n">private</span> <span class="kt">void</span> <span class="nf">OnDisconnected</span><span class="p">(</span><span class="n">NetworkMessage</span> <span class="n">msg</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">isHaveNetworkRole</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+        <span class="n">Application</span><span class="p">.</span><span class="n">LoadLevel</span><span class="p">(</span><span class="n">Application</span><span class="p">.</span><span class="n">loadedLevel</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="kt">void</span> <span class="nf">OnGUI</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">isHaveNetworkRole</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">GUI</span><span class="p">.</span><span class="n">Button</span><span class="p">(</span><span class="n">new</span> <span class="n">Rect</span><span class="p">(</span><span class="n">Screen</span><span class="p">.</span><span class="n">width</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">-</span> <span class="mi">80</span><span class="p">,</span> <span class="n">Screen</span><span class="p">.</span><span class="n">height</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">-</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">160</span><span class="p">,</span> <span class="mi">24</span><span class="p">),</span> <span class="s">&quot;Stop&quot;</span><span class="p">))</span>
+            <span class="p">{</span>
+                <span class="n">NetworkManager</span><span class="p">.</span><span class="n">singleton</span><span class="p">.</span><span class="n">StopServer</span><span class="p">();</span>
+                <span class="n">NetworkManager</span><span class="p">.</span><span class="n">singleton</span><span class="p">.</span><span class="n">StopClient</span><span class="p">();</span>
+                <span class="n">OnDisconnected</span><span class="p">(</span><span class="n">null</span><span class="p">);</span>
+            <span class="p">}</span>
+            <span class="k">return</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="k">if</span><span class="p">(</span><span class="n">GUI</span><span class="p">.</span><span class="n">Button</span><span class="p">(</span><span class="n">new</span> <span class="n">Rect</span><span class="p">(</span><span class="n">Screen</span><span class="p">.</span><span class="n">width</span> <span class="o">/</span> <span class="mf">2f</span> <span class="o">-</span> <span class="mi">80</span><span class="p">,</span> <span class="n">Screen</span><span class="p">.</span><span class="n">height</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">-</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">160</span><span class="p">,</span> <span class="mi">24</span><span class="p">),</span> <span class="s">&quot;Start Server&quot;</span><span class="p">))</span>
+        <span class="p">{</span>
+            <span class="n">isHaveNetworkRole</span> <span class="o">=</span> <span class="n">NetworkManager</span><span class="p">.</span><span class="n">singleton</span><span class="p">.</span><span class="n">StartServer</span><span class="p">();</span>
+        <span class="p">}</span>
+
+        <span class="k">if</span><span class="p">(</span><span class="n">GUI</span><span class="p">.</span><span class="n">Button</span><span class="p">(</span><span class="n">new</span> <span class="n">Rect</span><span class="p">(</span><span class="n">Screen</span><span class="p">.</span><span class="n">width</span> <span class="o">/</span> <span class="mf">2f</span> <span class="o">-</span> <span class="mi">80</span><span class="p">,</span> <span class="n">Screen</span><span class="p">.</span><span class="n">height</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">+</span> <span class="mi">24</span><span class="p">,</span> <span class="mi">160</span><span class="p">,</span> <span class="mi">24</span><span class="p">),</span> <span class="s">&quot;Start Client&quot;</span><span class="p">))</span>
+        <span class="p">{</span>
+            <span class="n">var</span> <span class="n">client</span> <span class="o">=</span> <span class="n">NetworkManager</span><span class="p">.</span><span class="n">singleton</span><span class="p">.</span><span class="n">StartClient</span><span class="p">();</span>
+            <span class="n">client</span><span class="p">.</span><span class="n">RegisterHandler</span><span class="p">(</span><span class="n">MsgType</span><span class="p">.</span><span class="n">Disconnect</span><span class="p">,</span> <span class="n">OnDisconnected</span><span class="p">);</span>
+            <span class="n">isHaveNetworkRole</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<h3>关于 Demo 其他一些需要知道的</h3>
+<ul>
+<li>首先，代码中利用了 NetworkManager 组件。我们可以把这个组件挂到挂有上面 UI 脚本的 GameObject 之上。</li>
+<li>为了演示效果，Demo 里面创建了一个Prefab， 这个 Prefab 会传递给上面的 NetworkManager 组件（Spawn Info 下的 Player Prefab）。当 Client 连接已经启动的 Server 的时候，Server 端会创建这个 Perfab 的实例。
+这个 Prefab 比较特殊，它上面需要添加 <strong>NetworkIndentity</strong> 组件，这样才能传递过去给 NetworkManager。</li>
+</ul>
+<p>到这里，可能有的朋友有疑问。什么 Spawn？ NetworkIndentity 又是什么鬼？</p>
+<h3>UNet 中的 Spawn</h3>
+<p>换句话说，Spawn 就是网络对象实例的初始化这个行为，再换句话说就是创建网络对象。在 UNet 中用 Spawn 来描述，而不是用 Instantiate。</p>
+<p>UNet 是个以 Server 为主导的系统，所有的 Spawn 行为都要在 Server 端发生，通过调用 <code>NetworkServer.Spawn( GameObject go )</code> 方法，产生的对象会在各个 Client 出现对应的实例。</p>
+<h3>网络对象与 NetworkIndentity</h3>
+<p>每个网络对象（Networked Object）都需要在根上带上 NetworkIndentity 组件。那 NetworkIndentity 组件是什么？ 大概是这个样子：</p>
+<ul>
+<li>它是标志对象网络身份的一个组件</li>
+<li>拥有系统用来跟踪对象的信息，比如 SenceId, NetworkID, AssetID 等</li>
+<li>所有需要 Spawn 的 Prefab 都必须在对象根上带有这个组件</li>
+</ul>
+<p>对了，需要注意一点。带有 NetworkIndentity 组件的对象，在未 Spawn 之前是不可用的，Disabled 状态，即使在 Hierarchy 里面有它的实例也会自动被 Disabled.</p>
+<h3>NetworkManagerHUD 组件</h3>
+<p>为什么要提到这个组件呢。因为它也是一个 NetworkManager 管理的界面。它是 Unity 提供给我们的，提供比我们这篇文章所给的更加丰富的功能。平时开发调试的时候，建议使用这个控件。
+引出 NetworkManagerHUD 组件也是这篇文章的目的。</p>
+<p>好了，这篇就到这里。Enjoy!</p>
+    </article>
+
+﻿<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="unet-0x04-zuo-yi-ge-jian-dan-de-network-manager-jie-mian.html" data-title="UNet 0x04: 做一个简单的 Network Manager 界面" data-url="http://blog.shuiguzi.com/unet-0x04-zuo-yi-ge-jian-dan-de-network-manager-jie-mian.html"></div>
+<!-- 多说评论框 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"rockylaigithubio"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+<!-- 多说公共JS代码 end -->            </div>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-10 col-md-10 col-md-offset-1">
+                    <p class="copyright text-muted">本站点采用<a class="linktext" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">知识共享 署名-非商业性使用-相同方式共享 4.0 国际 许可协议</a></p>
+                    <p class="copyright text-muted">
+                          Rocky Lai @ 2014 - 2015,
+
+                       Blog powered by <a class="linktext" href="http://getpelican.com">Pelican</a>,
+                which takes great advantage of <a class="linktext" href="http://python.org">Python</a>.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- jQuery -->
+    <script src="http://blog.shuiguzi.com/theme/js/jquery.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="http://blog.shuiguzi.com/theme/js/bootstrap.min.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="http://blog.shuiguzi.com/theme/js/clean-blog.min.js"></script>
+
+<div style="opacity: 0">
+		  <script type="text/javascript"> var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://"); document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fbe571cbfce038053e44e02d5eee04481' type='text/javascript'%3E%3C/script%3E"));</script>
+			<script> var _hmt = _hmt || []; (function() { var hm = document.createElement("script"); hm.src = "//hm.baidu.com/hm.js?3a8e2930fa3e4db2aa0fe1cb32188641"; var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(hm, s); })(); </script>
+</div></body>
+
+</html>
