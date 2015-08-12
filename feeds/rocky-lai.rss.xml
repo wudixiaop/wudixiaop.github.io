@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>心亡则忙，亡心则忘</title><link>http://blog.shuiguzi.com/</link><description></description><atom:link href="http://blog.shuiguzi.com/feeds%5Crocky-lai.rss.xml" rel="self"></atom:link><lastBuildDate>Wed, 12 Aug 2015 14:53:00 +0800</lastBuildDate><item><title>UNet 0x04: 做一个简单的 Network Manager 界面</title><link>http://blog.shuiguzi.com/unet-0x04-zuo-yi-ge-jian-dan-de-network-manager-jie-mian.html</link><description>&lt;p&gt;上一篇中我们引入了 NetworkManager 组件，然后在代码里面通过它来建立了网络连接。这篇让我们来把连接部分的代码独立出来，并提供 GUI 来达到管理 Server / Client 的开启和停止的目的。
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>心亡则忙，亡心则忘</title><link>http://blog.shuiguzi.com/</link><description>学习、思考、分享</description><atom:link href="http://blog.shuiguzi.com/feeds%5Crocky-lai.rss.xml" rel="self"></atom:link><lastBuildDate>Wed, 12 Aug 2015 14:53:00 +0800</lastBuildDate><item><title>UNet 0x04: 做一个简单的 Network Manager 界面</title><link>http://blog.shuiguzi.com/unet-0x04-zuo-yi-ge-jian-dan-de-network-manager-jie-mian.html</link><description>&lt;p&gt;上一篇中我们引入了 NetworkManager 组件，然后在代码里面通过它来建立了网络连接。这篇让我们来把连接部分的代码独立出来，并提供 GUI 来达到管理 Server / Client 的开启和停止的目的。
 这样我们以后就可以重复利用代码了。&lt;/p&gt;
 &lt;p&gt;下面是我们这个简单的 NetworkManger 界面提供的功能：&lt;/p&gt;
 &lt;ul&gt;
