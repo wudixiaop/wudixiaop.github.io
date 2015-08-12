@@ -57,11 +57,13 @@ Unity 给我们提供了 [NetworkServer](http://docs.unity3d.com/ScriptReference
 	
 ### 事件注册 RegisterHandler
 
-其实现在添加这节内容处在只是为了接下来代码答应的调试信息。NetworkServer 和 NetworkClient 类都有 `RegisterHandler(short msgType, Networking.NetworkMessageDelegate handler);` 方法，这个方法用来来注册对应消息的处理函数。
-它有两个参数：
+其实现在添加这节内容处在只是为了接下来代码答应的调试信息。NetworkServer 和 NetworkClient 类都有 `RegisterHandler(short msgType, Networking.NetworkMessageDelegate handler);` 
+方法，这个方法用来来注册对应消息的处理函数。它有两个参数：
 
-* 第一个参数 msgType 是个 short 类型，Unity 提供 [MsgType](http://docs.unity3d.com/ScriptReference/Networking.MsgType.html) 类来得到所有内置的数值。当然我们也可以自定义数值哦~~
-* 第二个参数 handler 是 NetworkMessageDelegate 类型，类型的原型是 __delegate void NetworkMessageDelegate( Networking.NetworkMessage netMsg )__。这是 C# 中的 delegate, 我们要提供的消息响应函数。
+* 第一个参数 msgType 是个 short 类型，Unity 提供 [MsgType](http://docs.unity3d.com/ScriptReference/Networking.MsgType.html) 类来得到所有内置的数值。
+当然我们也可以自定义数值哦~~
+* 第二个参数 handler 是 NetworkMessageDelegate 类型，类型的原型是 __delegate void NetworkMessageDelegate( Networking.NetworkMessage netMsg )__。
+这是 C# 中的 delegate, 我们要提供的消息响应函数。
 
 
 在本节例子中，我们在 Server 和 Client 端都注册 `MsgType.Connect` 消息，然后其响应函数为 `OnConnected(NetworkMessage msg)`。

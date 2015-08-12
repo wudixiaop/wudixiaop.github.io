@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>心亡则忙，亡心则忘</title><link href="http://blog.shuiguzi.com/" rel="alternate"></link><link href="http://blog.shuiguzi.com/feeds%5Cunity.atom.xml" rel="self"></link><id>http://blog.shuiguzi.com/</id><updated>2015-08-12T16:53:00+08:00</updated><entry><title>UNet 0x04: 做一个简单的 Network Manager 界面</title><link href="http://blog.shuiguzi.com/unet-0x04-zuo-yi-ge-jian-dan-de-network-manager-jie-mian.html" rel="alternate"></link><updated>2015-08-12T16:53:00+08:00</updated><author><name>Rocky Lai</name></author><id>tag:blog.shuiguzi.com,2015-08-12:unet-0x04-zuo-yi-ge-jian-dan-de-network-manager-jie-mian.html</id><summary type="html">&lt;p&gt;上一篇中我们引入了 NetworkManager 组件，然后在代码里面通过它来建立了网络连接。这篇让我们来把连接部分的代码独立出来，并提供 GUI 来达到管理 Server / Client 的开启和停止的目的。
+<feed xmlns="http://www.w3.org/2005/Atom"><title>心亡则忙，亡心则忘</title><link href="http://blog.shuiguzi.com/" rel="alternate"></link><link href="http://blog.shuiguzi.com/feeds%5Cunity.atom.xml" rel="self"></link><id>http://blog.shuiguzi.com/</id><updated>2015-08-12T14:53:00+08:00</updated><entry><title>UNet 0x04: 做一个简单的 Network Manager 界面</title><link href="http://blog.shuiguzi.com/unet-0x04-zuo-yi-ge-jian-dan-de-network-manager-jie-mian.html" rel="alternate"></link><updated>2015-08-12T14:53:00+08:00</updated><author><name>Rocky Lai</name></author><id>tag:blog.shuiguzi.com,2015-08-12:unet-0x04-zuo-yi-ge-jian-dan-de-network-manager-jie-mian.html</id><summary type="html">&lt;p&gt;上一篇中我们引入了 NetworkManager 组件，然后在代码里面通过它来建立了网络连接。这篇让我们来把连接部分的代码独立出来，并提供 GUI 来达到管理 Server / Client 的开启和停止的目的。
 这样我们以后就可以重复利用代码了。&lt;/p&gt;
 &lt;p&gt;下面是我们这个简单的 NetworkManger 界面提供的功能：&lt;/p&gt;
 &lt;ul&gt;
@@ -96,7 +96,7 @@
 &lt;li&gt;如果想启动 Host (Server + Local Client)，NetworkManager 提供 &lt;code&gt;StartHost()&lt;/code&gt; 方法&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3&gt;得到 NetworkManager 实例&lt;/h3&gt;
-&lt;p&gt;NetworkManager 组件挂上 GameObject 之后我们可以像其他组件一同通过 &lt;code&gt;GetComponent&amp;lt;T&amp;gt;()&lt;/code&gt; 这个方法来得到起实例，但是这推荐使用 &lt;code&gt;NetworkManager.singleton&lt;/code&gt; 
+&lt;p&gt;NetworkManager 组件挂上 GameObject 之后我们可以像其他组件一同通过 &lt;code&gt;GetComponent&amp;lt;T&amp;gt;()&lt;/code&gt; 这个方法来得到其实例，但是这推荐使用 &lt;code&gt;NetworkManager.singleton&lt;/code&gt; 
 来得到其实例。&lt;/p&gt;
 &lt;h3&gt;为什么要使用 NetworkManager&lt;/h3&gt;
 &lt;p&gt;我觉得大概有如下几点：&lt;/p&gt;
@@ -400,11 +400,13 @@
 
 
 &lt;h3&gt;事件注册 RegisterHandler&lt;/h3&gt;
-&lt;p&gt;其实现在添加这节内容处在只是为了接下来代码答应的调试信息。NetworkServer 和 NetworkClient 类都有 &lt;code&gt;RegisterHandler(short msgType, Networking.NetworkMessageDelegate handler);&lt;/code&gt; 方法，这个方法用来来注册对应消息的处理函数。
-它有两个参数：&lt;/p&gt;
+&lt;p&gt;其实现在添加这节内容处在只是为了接下来代码答应的调试信息。NetworkServer 和 NetworkClient 类都有 &lt;code&gt;RegisterHandler(short msgType, Networking.NetworkMessageDelegate handler);&lt;/code&gt; 
+方法，这个方法用来来注册对应消息的处理函数。它有两个参数：&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;第一个参数 msgType 是个 short 类型，Unity 提供 &lt;a href="http://docs.unity3d.com/ScriptReference/Networking.MsgType.html"&gt;MsgType&lt;/a&gt; 类来得到所有内置的数值。当然我们也可以自定义数值哦~~&lt;/li&gt;
-&lt;li&gt;第二个参数 handler 是 NetworkMessageDelegate 类型，类型的原型是 &lt;strong&gt;delegate void NetworkMessageDelegate( Networking.NetworkMessage netMsg )&lt;/strong&gt;。这是 C# 中的 delegate, 我们要提供的消息响应函数。&lt;/li&gt;
+&lt;li&gt;第一个参数 msgType 是个 short 类型，Unity 提供 &lt;a href="http://docs.unity3d.com/ScriptReference/Networking.MsgType.html"&gt;MsgType&lt;/a&gt; 类来得到所有内置的数值。
+当然我们也可以自定义数值哦~~&lt;/li&gt;
+&lt;li&gt;第二个参数 handler 是 NetworkMessageDelegate 类型，类型的原型是 &lt;strong&gt;delegate void NetworkMessageDelegate( Networking.NetworkMessage netMsg )&lt;/strong&gt;。
+这是 C# 中的 delegate, 我们要提供的消息响应函数。&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;在本节例子中，我们在 Server 和 Client 端都注册 &lt;code&gt;MsgType.Connect&lt;/code&gt; 消息，然后其响应函数为 &lt;code&gt;OnConnected(NetworkMessage msg)&lt;/code&gt;。&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;private&lt;/span&gt; &lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;OnConnected&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;NetworkMessage&lt;/span&gt; &lt;span class="n"&gt;msg&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;

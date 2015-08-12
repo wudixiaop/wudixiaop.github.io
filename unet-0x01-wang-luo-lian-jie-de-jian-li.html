@@ -142,11 +142,13 @@
 
 
 <h3>事件注册 RegisterHandler</h3>
-<p>其实现在添加这节内容处在只是为了接下来代码答应的调试信息。NetworkServer 和 NetworkClient 类都有 <code>RegisterHandler(short msgType, Networking.NetworkMessageDelegate handler);</code> 方法，这个方法用来来注册对应消息的处理函数。
-它有两个参数：</p>
+<p>其实现在添加这节内容处在只是为了接下来代码答应的调试信息。NetworkServer 和 NetworkClient 类都有 <code>RegisterHandler(short msgType, Networking.NetworkMessageDelegate handler);</code> 
+方法，这个方法用来来注册对应消息的处理函数。它有两个参数：</p>
 <ul>
-<li>第一个参数 msgType 是个 short 类型，Unity 提供 <a href="http://docs.unity3d.com/ScriptReference/Networking.MsgType.html">MsgType</a> 类来得到所有内置的数值。当然我们也可以自定义数值哦~~</li>
-<li>第二个参数 handler 是 NetworkMessageDelegate 类型，类型的原型是 <strong>delegate void NetworkMessageDelegate( Networking.NetworkMessage netMsg )</strong>。这是 C# 中的 delegate, 我们要提供的消息响应函数。</li>
+<li>第一个参数 msgType 是个 short 类型，Unity 提供 <a href="http://docs.unity3d.com/ScriptReference/Networking.MsgType.html">MsgType</a> 类来得到所有内置的数值。
+当然我们也可以自定义数值哦~~</li>
+<li>第二个参数 handler 是 NetworkMessageDelegate 类型，类型的原型是 <strong>delegate void NetworkMessageDelegate( Networking.NetworkMessage netMsg )</strong>。
+这是 C# 中的 delegate, 我们要提供的消息响应函数。</li>
 </ul>
 <p>在本节例子中，我们在 Server 和 Client 端都注册 <code>MsgType.Connect</code> 消息，然后其响应函数为 <code>OnConnected(NetworkMessage msg)</code>。</p>
 <div class="highlight"><pre><span class="n">private</span> <span class="kt">void</span> <span class="nf">OnConnected</span><span class="p">(</span><span class="n">NetworkMessage</span> <span class="n">msg</span><span class="p">)</span>
