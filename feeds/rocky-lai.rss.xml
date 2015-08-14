@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>心亡则忙，亡心则忘</title><link>http://blog.shuiguzi.com/</link><description>学习、思考、分享</description><atom:link href="http://blog.shuiguzi.com/feeds/rocky-lai.rss.xml" rel="self"></atom:link><lastBuildDate>Wed, 12 Aug 2015 14:53:00 +0800</lastBuildDate><item><title>UNet 0x04: 做一个简单的 Network Manager 界面</title><link>http://blog.shuiguzi.com/unet-0x04-zuo-yi-ge-jian-dan-de-network-manager-jie-mian.html</link><description>&lt;p&gt;上一篇中我们引入了 NetworkManager 组件，然后在代码里面通过它来建立了网络连接。这篇让我们来把连接部分的代码独立出来，并提供 GUI 来达到管理 Server / Client 的开启和停止的目的。
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>心亡则忙，亡心则忘</title><link>http://blog.shuiguzi.com/</link><description>学习、思考、分享</description><atom:link href="http://blog.shuiguzi.com/feeds/rocky-lai.rss.xml" rel="self"></atom:link><lastBuildDate>Fri, 14 Aug 2015 20:00:00 +0800</lastBuildDate><item><title>UNet 0x04: 做一个简单的 Network Manager 界面</title><link>http://blog.shuiguzi.com/unet-0x04-zuo-yi-ge-jian-dan-de-network-manager-jie-mian.html</link><description>&lt;p&gt;上一篇中我们引入了 NetworkManager 组件，然后在代码里面通过它来建立了网络连接。这篇让我们来把连接部分的代码独立出来，并提供 GUI 来达到管理 Server / Client 的开启和停止的目的。
 这样我们以后就可以重复利用代码了。&lt;/p&gt;
 &lt;p&gt;下面是我们这个简单的 NetworkManger 界面提供的功能：&lt;/p&gt;
 &lt;ul&gt;
@@ -1483,7 +1483,8 @@ as well as rendering passes to handle forward and deferred rendering.&lt;/p&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;大概就这些。。。&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Rocky Lai</dc:creator><pubDate>Thu, 26 Mar 2015 15:37:00 +0800</pubDate><guid>tag:blog.shuiguzi.com,2015-03-26:yi-ge-li-zi-xue-xi-swiftzhong-de-bi-bao-yong-fa.html</guid><category>Swift</category></item><item><title>如何在Github for Mac/Windows上使用非Github的仓库</title><link>http://blog.shuiguzi.com/ru-he-zai-github-for-macwindowsshang-shi-yong-fei-githubde-cang-ku.html</link><description>&lt;p&gt;你或许跟我一样，不想花太多时间去"精通"git的各种命令，想用简单明了的方法来玩git。而Github的客户端恰是这种良药。使用过的童鞋可能有过跟我一样困惑：Github客户端在界面上只能管理Github的代码仓库，怎么才能管理非Github的仓库呢？&lt;/p&gt;
+&lt;p&gt;大概就这些。。。&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Rocky Lai</dc:creator><pubDate>Thu, 26 Mar 2015 15:37:00 +0800</pubDate><guid>tag:blog.shuiguzi.com,2015-03-26:yi-ge-li-zi-xue-xi-swiftzhong-de-bi-bao-yong-fa.html</guid><category>Swift</category></item><item><title>如何在Github for Mac/Windows上使用非Github的仓库</title><link>http://blog.shuiguzi.com/ru-he-zai-github-for-macwindowsshang-shi-yong-fei-githubde-cang-ku.html</link><description>&lt;p&gt;&lt;strong&gt;[2015-08-14 更新]&lt;/strong&gt; 之前的 Github for Windows 和 Github for Mac 已经合并成 Github Desktop 了。下载地址为 &lt;a href="https://desktop.github.com"&gt;https://desktop.github.com&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;你或许跟我一样，不想花太多时间去"精通"git的各种命令，想用简单明了的方法来玩git。而Github的客户端恰是这种良药。使用过的童鞋可能有过跟我一样困惑：Github客户端在界面上只能管理Github的代码仓库，怎么才能管理非Github的仓库呢？&lt;/p&gt;
 &lt;p&gt;这个问题也就是本文要解决的内容。先讲Github for Mac, 然后是Github for Windows&lt;/p&gt;
 &lt;h3&gt;Github for Mac&lt;/h3&gt;
 &lt;p&gt;首先创建一个本地的仓库, 假设取名为&lt;strong&gt;Freekick&lt;/strong&gt;&lt;/p&gt;
@@ -1505,7 +1506,7 @@ as well as rendering passes to handle forward and deferred rendering.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;Github for Windows:&lt;/strong&gt; &lt;a href="https://windows.github.com/"&gt;https://windows.github.com/&lt;/a&gt;  &lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;Github for Mac:&lt;/strong&gt; &lt;a href="https://mac.github.com/"&gt;https://mac.github.com/&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Rocky Lai</dc:creator><pubDate>Wed, 28 Jan 2015 16:54:00 +0800</pubDate><guid>tag:blog.shuiguzi.com,2015-01-28:ru-he-zai-github-for-macwindowsshang-shi-yong-fei-githubde-cang-ku.html</guid><category>Git</category></item><item><title>从C#到Python</title><link>http://blog.shuiguzi.com/cong-cdao-python.html</link><description>&lt;p&gt;项目组最近可能要用Python写一插件，虽然自己只是会用，但是还是被要求给大家做个简单的Python入门培训。只能冲个胖子，硬着头皮上了。
+&lt;/ul&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Rocky Lai</dc:creator><pubDate>Fri, 14 Aug 2015 20:00:00 +0800</pubDate><guid>tag:blog.shuiguzi.com,2015-01-28:ru-he-zai-github-for-macwindowsshang-shi-yong-fei-githubde-cang-ku.html</guid><category>Git</category></item><item><title>从C#到Python</title><link>http://blog.shuiguzi.com/cong-cdao-python.html</link><description>&lt;p&gt;项目组最近可能要用Python写一插件，虽然自己只是会用，但是还是被要求给大家做个简单的Python入门培训。只能冲个胖子，硬着头皮上了。
 由于项目组里大部分童鞋们都会C#，可能如果从C#做类比的角度来阐述Python语法会更好点，然后下面奇怪的Python教程出来了。大家可以在这里得到PPT和代码:  &lt;a href="https://github.com/wudixiaop/Nana/tree/master/Python/Tutorial/Python%20Quick%20Start"&gt;https://github.com/wudixiaop/Nana/tree/master/Python/Tutorial/Python%20Quick%20Start&lt;/a&gt;。&lt;/p&gt;
 &lt;p&gt;下面是讲语法的代码，语法部分在注释中有描述。&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# -*- encoding:utf-8 -*-&lt;/span&gt;

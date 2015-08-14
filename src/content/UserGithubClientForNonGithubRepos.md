@@ -1,7 +1,10 @@
 ﻿Title: 如何在Github for Mac/Windows上使用非Github的仓库
 Date: 2015-1-28 16:54
+Modified: 2015-08-14 20:00
 Category: 一点一滴
 Tags: Git
+
+__[2015-08-14 更新]__ 之前的 Github for Windows 和 Github for Mac 已经合并成 Github Desktop 了。下载地址为 <https://desktop.github.com>
 
 你或许跟我一样，不想花太多时间去"精通"git的各种命令，想用简单明了的方法来玩git。而Github的客户端恰是这种良药。使用过的童鞋可能有过跟我一样困惑：Github客户端在界面上只能管理Github的代码仓库，怎么才能管理非Github的仓库呢？
 
