@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>心亡则忙，亡心则忘</title><link href="http://blog.shuiguzi.com/" rel="alternate"></link><link href="http://blog.shuiguzi.com/feeds%5Call-zhcn.atom.xml" rel="self"></link><id>http://blog.shuiguzi.com/</id><updated>2015-08-12T14:53:00+08:00</updated><entry><title>UNet 0x04: 做一个简单的 Network Manager 界面</title><link href="http://blog.shuiguzi.com/unet-0x04-zuo-yi-ge-jian-dan-de-network-manager-jie-mian.html" rel="alternate"></link><updated>2015-08-12T14:53:00+08:00</updated><author><name>Rocky Lai</name></author><id>tag:blog.shuiguzi.com,2015-08-12:unet-0x04-zuo-yi-ge-jian-dan-de-network-manager-jie-mian.html</id><summary type="html">&lt;p&gt;上一篇中我们引入了 NetworkManager 组件，然后在代码里面通过它来建立了网络连接。这篇让我们来把连接部分的代码独立出来，并提供 GUI 来达到管理 Server / Client 的开启和停止的目的。
+<feed xmlns="http://www.w3.org/2005/Atom"><title>心亡则忙，亡心则忘</title><link href="http://blog.shuiguzi.com/" rel="alternate"></link><link href="http://blog.shuiguzi.com/feeds/all-zhcn.atom.xml" rel="self"></link><id>http://blog.shuiguzi.com/</id><updated>2015-08-12T14:53:00+08:00</updated><entry><title>UNet 0x04: 做一个简单的 Network Manager 界面</title><link href="http://blog.shuiguzi.com/unet-0x04-zuo-yi-ge-jian-dan-de-network-manager-jie-mian.html" rel="alternate"></link><updated>2015-08-12T14:53:00+08:00</updated><author><name>Rocky Lai</name></author><id>tag:blog.shuiguzi.com,2015-08-12:unet-0x04-zuo-yi-ge-jian-dan-de-network-manager-jie-mian.html</id><summary type="html">&lt;p&gt;上一篇中我们引入了 NetworkManager 组件，然后在代码里面通过它来建立了网络连接。这篇让我们来把连接部分的代码独立出来，并提供 GUI 来达到管理 Server / Client 的开启和停止的目的。
 这样我们以后就可以重复利用代码了。&lt;/p&gt;
 &lt;p&gt;下面是我们这个简单的 NetworkManger 界面提供的功能：&lt;/p&gt;
 &lt;ul&gt;
@@ -88,7 +88,7 @@
 &lt;p&gt;&lt;img alt="networkmanager" src="images/UNet/NetworkManagerInspector.PNG" width="46.2%" /&gt;&lt;/p&gt;
 &lt;p&gt;上图中 Network Info 部分就是就是配置 Server 地址及其端口的地方。&lt;/p&gt;
 &lt;p&gt;接下来看看 NetworkManager 如何启动一个 Server / Client / Host。&lt;/p&gt;
-&lt;h3&gt;利用 NetowrkManager 方法替换之前代码&lt;/h3&gt;
+&lt;h3&gt;利用 NetowrkManager 的方法替换之前代码&lt;/h3&gt;
 &lt;p&gt;利用 NetworkManager 的方法替换之前的代码，大体为：&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;之前我们用 &lt;code&gt;NetworkServer.listen(port)&lt;/code&gt; 来启动一个 Server 并监听某个端口。NetworkManager 提供 &lt;code&gt;StartServer()&lt;/code&gt; 方法替代&lt;/li&gt;
@@ -1604,7 +1604,7 @@ as well as rendering passes to handle forward and deferred rendering.&lt;/p&gt;
 &lt;span class="sd"&gt;    double var_float = 1.0; // 或者 float var_float = 1.0;&lt;/span&gt;
 &lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
 &lt;span class="n"&gt;var_int&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;
-&lt;span class="n"&gt;var_binary&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="n"&gt;b0010&lt;/span&gt; &lt;span class="c"&gt;# 变量值为2&lt;/span&gt;
+&lt;span class="n"&gt;var_binary&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mb"&gt;0b0010&lt;/span&gt; &lt;span class="c"&gt;# 变量值为2&lt;/span&gt;
 &lt;span class="n"&gt;var_octal&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="n"&gt;O0010&lt;/span&gt; &lt;span class="c"&gt;# 变量值为8, 0O第二个是字母O&lt;/span&gt;
 &lt;span class="n"&gt;var_hex&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mh"&gt;0x0010&lt;/span&gt; &lt;span class="c"&gt;# 变量值为16&lt;/span&gt;
 &lt;span class="n"&gt;var_float&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mf"&gt;1.0&lt;/span&gt;

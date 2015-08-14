@@ -19,7 +19,7 @@ NetworkManager 组件提供了很多功能，但是这篇文章只引入 Network
 
 接下来看看 NetworkManager 如何启动一个 Server / Client / Host。
 
-###利用 NetowrkManager 方法替换之前代码
+###利用 NetowrkManager 的方法替换之前代码
 
 利用 NetworkManager 的方法替换之前的代码，大体为：
 
