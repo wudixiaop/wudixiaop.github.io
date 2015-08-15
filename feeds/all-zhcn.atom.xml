@@ -1,5 +1,129 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>心亡则忙，亡心则忘</title><link href="http://blog.shuiguzi.com/" rel="alternate"></link><link href="http://blog.shuiguzi.com/feeds/all-zhcn.atom.xml" rel="self"></link><id>http://blog.shuiguzi.com/</id><updated>2015-08-14T20:00:00+08:00</updated><entry><title>UNet 0x04: 做一个简单的 Network Manager 界面</title><link href="http://blog.shuiguzi.com/unet-0x04-zuo-yi-ge-jian-dan-de-network-manager-jie-mian.html" rel="alternate"></link><updated>2015-08-12T14:53:00+08:00</updated><author><name>Rocky Lai</name></author><id>tag:blog.shuiguzi.com,2015-08-12:unet-0x04-zuo-yi-ge-jian-dan-de-network-manager-jie-mian.html</id><summary type="html">&lt;p&gt;上一篇中我们引入了 NetworkManager 组件，然后在代码里面通过它来建立了网络连接。这篇让我们来把连接部分的代码独立出来，并提供 GUI 来达到管理 Server / Client 的开启和停止的目的。
+<feed xmlns="http://www.w3.org/2005/Atom"><title>心亡则忙，亡心则忘</title><link href="http://blog.shuiguzi.com/" rel="alternate"></link><link href="http://blog.shuiguzi.com/feeds/all-zhcn.atom.xml" rel="self"></link><id>http://blog.shuiguzi.com/</id><updated>2015-08-15T14:53:00+08:00</updated><entry><title>UNet 0x05: SyncVar</title><link href="http://blog.shuiguzi.com/unet-0x05-syncvar.html" rel="alternate"></link><updated>2015-08-15T14:53:00+08:00</updated><author><name>Rocky Lai</name></author><id>tag:blog.shuiguzi.com,2015-08-15:unet-0x05-syncvar.html</id><summary type="html">&lt;p&gt;开篇需要先介绍一个 UNet 系统里面提供的一个类，名字叫做 &lt;strong&gt;NetworkBehaviour&lt;/strong&gt;。看到名字，不禁让人想起
+ MonoBehaviour。NetworkBehaviour 继承自 MonoBehaviour，所以基于 NetworkBehaviour 的脚本也是能挂在 
+ GameObject 上面的。&lt;/p&gt;
+&lt;p&gt;NetworkBehaviour 给我们提供了什么功能呢？大概是如下几点：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Synchronized Variables&lt;/li&gt;
+&lt;li&gt;Network callbacks&lt;/li&gt;
+&lt;li&gt;Server and Client functions&lt;/li&gt;
+&lt;li&gt;Sending Commands&lt;/li&gt;
+&lt;li&gt;Client RPC Calls&lt;/li&gt;
+&lt;li&gt;Networked Events&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;为了让描述更准确，上面采用了 &lt;a href="http://docs.unity3d.com/Manual/class-NetworkBehaviour.html"&gt;官方手册&lt;/a&gt; 
+中的英文描述。这篇的主角就是 Synchronized Variables。&lt;/p&gt;
+&lt;h3&gt;SyncVar 初见&lt;/h3&gt;
+&lt;p&gt;我们在接下来把 Synchronized Variables 简称为 SyncVar 。我们先给它来下个粗略的定义：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;它是 NetworkBehaviour 的一个带有 [SyncVar] 属性的字段&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;注意定义中 &lt;strong&gt;SyncVar 是字段，不是属性&lt;/strong&gt;。示意代码大概是这个样子：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;public&lt;/span&gt; &lt;span class="n"&gt;class&lt;/span&gt; &lt;span class="nl"&gt;SpaceShip&lt;/span&gt; &lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;NetworkBehaviour&lt;/span&gt;
+&lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;SyncVar&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+    &lt;span class="n"&gt;public&lt;/span&gt; &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;health&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+    &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;SyncVar&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+    &lt;span class="n"&gt;public&lt;/span&gt; &lt;span class="n"&gt;string&lt;/span&gt; &lt;span class="n"&gt;playerName&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;上面代码中带有两个 SyncVar。&lt;/p&gt;
+&lt;p&gt;当 SyncVar 发生改变时，UNet 会从 Server 端向所有有效的 Client 端发送这些改变。注意这里的方向，是从 Server 
+到 Client ，而不是从 Client 到 Server 的方向。&lt;/p&gt;
+&lt;h3&gt;SyncVar 数据类型&lt;/h3&gt;
+&lt;p&gt;既然 SyncVar 是字段，字段是有数据类型的。UNet 中这样规定：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;可以是&lt;/strong&gt; 所有基本数据类型，比如 string，int，float，bool 等&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;可以是&lt;/strong&gt; 结构数据，比如 Vector3 等&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;不可以是&lt;/strong&gt; 类、列表、集合&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;大概就是 &lt;strong&gt;值类型可以，引用类型不可以&lt;/strong&gt;。当然大部分情况下是这样，特殊情况是存在的。除了 &lt;code&gt;String&lt;/code&gt; 这个特殊的
+引用类型除外，下面会介绍。&lt;/p&gt;
+&lt;p&gt;那就是疑问了，既然不能是列表和集合，那如果真要同步一组数组怎么办？&lt;/p&gt;
+&lt;p&gt;UNet 提供了一些特殊的类，称之为 SyncList, 这些类是:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;SyncListString&lt;/li&gt;
+&lt;li&gt;SyncListFloat&lt;/li&gt;
+&lt;li&gt;SyncListInt&lt;/li&gt;
+&lt;li&gt;SyncListUInt&lt;/li&gt;
+&lt;li&gt;SyncListBool &lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;他们都继承自 &lt;code&gt;SyncList&amp;lt;T&amp;gt;&lt;/code&gt; 泛型类。当然内建类型有局限性，不能满足所有需求，所以 UNet 还给我们提供
+了 &lt;code&gt;SyncListStruct&amp;lt;T&amp;gt;&lt;/code&gt; 泛型类，我们可以通过定义它的子类来扩展，从而达到我们的需求。下面是一个 &lt;code&gt;SyncListStruct&amp;lt;T&amp;gt;&lt;/code&gt; 的例子：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;public&lt;/span&gt; &lt;span class="n"&gt;class&lt;/span&gt; &lt;span class="nl"&gt;MyScript&lt;/span&gt; &lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;NetworkBehaviour&lt;/span&gt;
+&lt;span class="p"&gt;{&lt;/span&gt;
+
+    &lt;span class="n"&gt;public&lt;/span&gt; &lt;span class="k"&gt;struct&lt;/span&gt; &lt;span class="n"&gt;POW&lt;/span&gt;
+    &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="n"&gt;public&lt;/span&gt; &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;pow&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+        &lt;span class="n"&gt;public&lt;/span&gt; &lt;span class="kt"&gt;float&lt;/span&gt; &lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+
+    &lt;span class="n"&gt;public&lt;/span&gt; &lt;span class="n"&gt;class&lt;/span&gt; &lt;span class="nl"&gt;SyncListPOW&lt;/span&gt; &lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;SyncListStruct&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;POW&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class="p"&gt;{&lt;/span&gt;
+
+    &lt;span class="p"&gt;}&lt;/span&gt;
+
+    &lt;span class="n"&gt;public&lt;/span&gt; &lt;span class="n"&gt;SyncListPOW&lt;/span&gt; &lt;span class="n"&gt;m_pows&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;new&lt;/span&gt; &lt;span class="n"&gt;SyncListPOW&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;注意到没有？上面的 &lt;strong&gt;m_pows&lt;/strong&gt; 字段并没有 [SyncVar] 属性。这里有一点非常重要，&lt;strong&gt;SyncList 类型
+的字段，不需要带上 [SyncVar] 属性&lt;/strong&gt;。这下子，上面给出的定义要改改了。&lt;/p&gt;
+&lt;h3&gt;SyncVar 定义&lt;/h3&gt;
+&lt;p&gt;让我们来重新给 SyncVar 下定义：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;它是 NetworkBehaviour 中的一个字段， 如果&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;它的类型是基本类型或结构，则需要带上 [SyncVar] 属性&lt;/li&gt;
+&lt;li&gt;它的类型继承自 SyncList&lt;T&gt; 或者 SyncListStruct&lt;T&gt;，则不需要带上 [SyncVar] 属性&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;h3&gt;代码示例&lt;/h3&gt;
+&lt;p&gt;Demo 可以再这里找到：&lt;a href="https://github.com/wudixiaop/UNet/tree/master/Assets/105%20-%20Sync%20Var"&gt;https://github.com/wudixiaop/UNet/tree/master/Assets/105%20-%20Sync%20Var&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;SyncVar 相关代码如下：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;using&lt;/span&gt; &lt;span class="n"&gt;UnityEngine&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Networking&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="n"&gt;using&lt;/span&gt; &lt;span class="n"&gt;UnityEngine&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+&lt;span class="n"&gt;public&lt;/span&gt; &lt;span class="n"&gt;class&lt;/span&gt; &lt;span class="nl"&gt;SyncVarSample&lt;/span&gt; &lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;NetworkBehaviour&lt;/span&gt;
+&lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;SyncVar&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+    &lt;span class="n"&gt;string&lt;/span&gt; &lt;span class="n"&gt;State&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;Init State&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+    &lt;span class="n"&gt;private&lt;/span&gt; &lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;ChangeState&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+    &lt;span class="p"&gt;{&lt;/span&gt;
+
+        &lt;span class="n"&gt;State&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Random&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Range&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kt"&gt;int&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;MaxValue&lt;/span&gt;&lt;span class="p"&gt;).&lt;/span&gt;&lt;span class="n"&gt;ToString&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+
+    &lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;OnGUI&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+    &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="n"&gt;GUI&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Label&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;new&lt;/span&gt; &lt;span class="n"&gt;Rect&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;20&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;120&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;24&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="n"&gt;State&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+        &lt;span class="c1"&gt;// 因为 UNet 是以 Server 为主导的系统，只有在 Server 端改变值才能起作用&lt;/span&gt;
+        &lt;span class="c1"&gt;//&lt;/span&gt;
+        &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;isServer&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="p"&gt;{&lt;/span&gt;
+            &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;GUI&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Button&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;new&lt;/span&gt; &lt;span class="n"&gt;Rect&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;56&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;160&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;24&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;ChangeState&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+            &lt;span class="p"&gt;{&lt;/span&gt;
+                &lt;span class="n"&gt;ChangeState&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+            &lt;span class="p"&gt;}&lt;/span&gt;
+        &lt;span class="p"&gt;}&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;需要将上面脚本挂到 Spawn Prefab 上面（Spawn Prefab详细参照&lt;a href="http://blog.shuiguzi.com/unet-0x04-zuo-yi-ge-jian-dan-de-network-manager-jie-mian.html"&gt;上一篇文章&lt;/a&gt;）。&lt;/p&gt;
+&lt;p&gt;将 Demo 程序 build 之后，单独运行 build 出来的程序，并启动 Server。在 Unity 编辑器中运行程序，连接 Server。
+我们会得到如下截图的样子。&lt;/p&gt;
+&lt;p&gt;&lt;img alt="syncvaroutput" src="images/UNet/syncvarOutput.jpg" width="100%" /&gt;&lt;/p&gt;
+&lt;p&gt;我们每次点击 ChangeState 按钮，左上角的数字就会发生变化。Server 改变了 State 字段的值，Client 端也对应发生改变。&lt;/p&gt;
+&lt;p&gt;这篇就到这里。Enjoy!&lt;/p&gt;</summary><category term="UNet"></category><category term="Unity"></category></entry><entry><title>UNet 0x04: 做一个简单的 Network Manager 界面</title><link href="http://blog.shuiguzi.com/unet-0x04-zuo-yi-ge-jian-dan-de-network-manager-jie-mian.html" rel="alternate"></link><updated>2015-08-12T14:53:00+08:00</updated><author><name>Rocky Lai</name></author><id>tag:blog.shuiguzi.com,2015-08-12:unet-0x04-zuo-yi-ge-jian-dan-de-network-manager-jie-mian.html</id><summary type="html">&lt;p&gt;上一篇中我们引入了 NetworkManager 组件，然后在代码里面通过它来建立了网络连接。这篇让我们来把连接部分的代码独立出来，并提供 GUI 来达到管理 Server / Client 的开启和停止的目的。
 这样我们以后就可以重复利用代码了。&lt;/p&gt;
 &lt;p&gt;下面是我们这个简单的 NetworkManger 界面提供的功能：&lt;/p&gt;
 &lt;ul&gt;
