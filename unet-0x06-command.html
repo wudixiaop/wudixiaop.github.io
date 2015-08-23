@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="zhcn">
+
+<head>
+            <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="">
+
+        <title>心亡则忙，亡心则忘</title>
+
+        <!-- Bootstrap Core CSS -->
+        <link href="http://blog.shuiguzi.com/theme/css/bootstrap.min.css" rel="stylesheet">
+
+        <!-- Custom CSS -->
+        <link href="http://blog.shuiguzi.com/theme/css/clean-blog.css" rel="stylesheet">
+
+        <!-- Code highlight color scheme -->
+            <link href="http://blog.shuiguzi.com/theme/css/code_blocks/github.css" rel="stylesheet">
+
+
+
+        <meta name="keywords" contents="Unity, Networking, UNet, Unity networking" />
+
+        <meta name="description" contents="UNet 0x06: Command" />
+
+        <meta name="tags" contents="UNet" />
+        <meta name="keywords" contents="UNet" />
+        <meta name="tags" contents="Unity" />
+        <meta name="keywords" contents="Unity" />
+
+        <meta name="author" content="Rocky Lai" />
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="https://github.com/wudixiaop/"><span class="menutext">Rocky Lai @ Github</span></a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+          					<li>
+                      <a href="http://blog.shuiguzi.com">
+                         <span class="menutext">首页</span>
+                      </a>
+                    </li>
+
+          					<li>
+                      <a href="http://blog.shuiguzi.com/tags.html">
+                        <span class="menutext">标签</span>
+                      </a>
+                    </li>
+
+          					<li>
+                      <a href="http://blog.shuiguzi.com/archives.html">
+                        <span class="menutext">归档</span>
+                      </a>
+                    </li>
+
+          					<li>
+                      <a href="http://blog.shuiguzi.com/author/rocky-lai.html">
+                        <span class="menutext">关于我</span>
+                      </a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <!-- Page Header -->
+        <header class="intro-header" style="background-image: url('http://blog.shuiguzi.com/theme/images/post-bg.jpg')">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-10 col-md-10 col-md-offset-1">
+                    <div class="post-heading">
+                        <h1>UNet 0x06: Command</h1>
+                        <span class="meta">
+                            2015-08-23 12:01
+                             by
+                                <a href="http://blog.shuiguzi.com/author/rocky-lai.html">Rocky Lai</a>
+                        </span>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-10 col-md-10 col-md-offset-1">
+    <!-- Post Content -->
+    <article>
+        <p>最开始我们来对上篇文章 <a href="http://blog.shuiguzi.com/unet-0x05-syncvar.html">UNet 0x05: SyncVar</a> 中的程序做点修改。在这里也建议朋友们先阅读上篇，然后继续阅读下面内容。</p>
+<p>我们先把只在 Server 端绘制的按钮：</p>
+<div class="highlight"><pre><span class="k">if</span> <span class="p">(</span><span class="n">isServer</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">GUI</span><span class="p">.</span><span class="n">Button</span><span class="p">(</span><span class="n">new</span> <span class="n">Rect</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">56</span><span class="p">,</span> <span class="mi">160</span><span class="p">,</span> <span class="mi">24</span><span class="p">),</span> <span class="s">&quot;ChangeState&quot;</span><span class="p">))</span>
+    <span class="p">{</span>
+        <span class="n">ChangeState</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>改成在 Client 端绘制</p>
+<div class="highlight"><pre><span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">isServer</span><span class="p">)</span> <span class="c1">// 这里是改变的地方</span>
+<span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">GUI</span><span class="p">.</span><span class="n">Button</span><span class="p">(</span><span class="n">new</span> <span class="n">Rect</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">56</span><span class="p">,</span> <span class="mi">160</span><span class="p">,</span> <span class="mi">24</span><span class="p">),</span> <span class="s">&quot;ChangeState&quot;</span><span class="p">))</span>
+    <span class="p">{</span>
+        <span class="n">ChangeState</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>改完之后我们运行程序会得到一个结果：无论我们怎么点 ChangeState 按钮，Client 端左上角文字有变化，而 Server 端左上角的文字都不会变化。</p>
+<p>这为什么呢？我们上篇文章中提到 SyncVar 只能从 Server 到 Client 端的方向起作用，所以我们上面点击 ChangeState 按钮
+是在 Client 端执行的，只改变了 Client 端的值，不会对 Server 端起作用。</p>
+<p>这篇要介绍的就是能从 Client 端做出的改变也能同步的所有终端的功能。它就是 NetworkBevhaiour 提供 <strong>sending commands</strong> 功能。</p>
+<h3>Command</h3>
+<p>那什么是 Command 呢？如果了解设计模式的朋友应该知道有种设计模式叫做 Command 模式（命令模式），这里的 Command 代表一种行为，
+UNet 中的 Command 也是代表一种行为，换句话说就是一个函数。但是在 UNet 中这个函数有些特别的规定，它要求：</p>
+<ul>
+<li>函数的名字 <strong>必须以 Cmd 开头</strong>，这里注意大小写哟。</li>
+<li>必须带上 <strong>[Command]</strong> 属性</li>
+</ul>
+<p>用代码来示范下就是：</p>
+<div class="highlight"><pre><span class="p">[</span><span class="n">Command</span><span class="p">]</span>
+<span class="n">private</span> <span class="kt">void</span> <span class="n">CmdDoSomething</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="c1">// do something</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>这里还有几点需要知道的：</p>
+<ul>
+<li>Command 是从 Client 端发起的。当需要从 Client 端发出改变的时候使用它。</li>
+<li>每个客户端的 spawn 之后的对象，都会在其他各端（包括 Server）有同样的实例。而真实执行 Command 的是在 Server 上
+的那个实例。所以其实 Command 的执行最终也是在 Server 上的，只不过 Client 会发送请求，要求 Server 上对应的实例来
+执行这个 Command。这正好符合 UNet 是以 Server 为主导的理念。</li>
+</ul>
+<p>接下来我们继续对上篇文章中的代码做些修改。</p>
+<p>首先，我们新加入一个 Command 方法：</p>
+<div class="highlight"><pre><span class="p">[</span><span class="n">Command</span><span class="p">]</span>
+<span class="n">private</span> <span class="kt">void</span> <span class="n">CmdChangeState</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">ChangeState</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>然后我们把 ChangeState 调用的方法从 <code>ChangeState()</code> 改成 <code>CmdChangeState()</code>：</p>
+<div class="highlight"><pre><span class="kt">void</span> <span class="nf">OnGUI</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">GUI</span><span class="p">.</span><span class="n">Label</span><span class="p">(</span><span class="n">new</span> <span class="n">Rect</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">120</span><span class="p">,</span> <span class="mi">24</span><span class="p">),</span> <span class="n">State</span><span class="p">);</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">isServer</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">GUI</span><span class="p">.</span><span class="n">Button</span><span class="p">(</span><span class="n">new</span> <span class="n">Rect</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">56</span><span class="p">,</span> <span class="mi">160</span><span class="p">,</span> <span class="mi">24</span><span class="p">),</span> <span class="s">&quot;ChangeState&quot;</span><span class="p">))</span>
+        <span class="p">{</span>
+            <span class="n">CmdChangeState</span><span class="p">();</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>这样我们就利用了 Command 方法 <code>CmdChangeState</code> 来作出改变了。</p>
+<h3>示例代码</h3>
+<p>下面是加上 Command 方法之后的最终代码。这样每次在 Client 端点击 ChangeState 按钮的时候，各个终端中 State 字段的值都会发生改变。
+Demo 程序的地址为: <a href="https://github.com/wudixiaop/UNet/tree/master/Assets/106%20-%20Command">https://github.com/wudixiaop/UNet/tree/master/Assets/106%20-%20Command</a> 。</p>
+<div class="highlight"><pre><span class="n">using</span> <span class="n">UnityEngine</span><span class="p">;</span>
+<span class="n">using</span> <span class="n">UnityEngine</span><span class="p">.</span><span class="n">Networking</span><span class="p">;</span>
+
+<span class="n">public</span> <span class="n">class</span> <span class="nl">CommandSample</span> <span class="p">:</span> <span class="n">NetworkBehaviour</span> <span class="p">{</span>
+
+<span class="p">[</span><span class="n">SyncVar</span><span class="p">]</span>
+<span class="n">string</span> <span class="n">State</span> <span class="o">=</span> <span class="s">&quot;Init State&quot;</span><span class="p">;</span>
+
+<span class="n">private</span> <span class="kt">void</span> <span class="nf">ChangeState</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">State</span> <span class="o">=</span> <span class="n">Random</span><span class="p">.</span><span class="n">Range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="kt">int</span><span class="p">.</span><span class="n">MaxValue</span><span class="p">).</span><span class="n">ToString</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="p">[</span><span class="n">Command</span><span class="p">]</span>
+<span class="n">private</span> <span class="kt">void</span> <span class="n">CmdChangeState</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">ChangeState</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="n">OnGUI</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">GUI</span><span class="p">.</span><span class="n">Label</span><span class="p">(</span><span class="n">new</span> <span class="n">Rect</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">120</span><span class="p">,</span> <span class="mi">24</span><span class="p">),</span> <span class="n">State</span><span class="p">);</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">isServer</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">GUI</span><span class="p">.</span><span class="n">Button</span><span class="p">(</span><span class="n">new</span> <span class="n">Rect</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">56</span><span class="p">,</span> <span class="mi">160</span><span class="p">,</span> <span class="mi">24</span><span class="p">),</span> <span class="s">&quot;ChangeState&quot;</span><span class="p">))</span>
+        <span class="p">{</span>
+            <span class="c1">//  ChangeState();</span>
+            <span class="n">CmdChangeState</span><span class="p">();</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>}</p>
+<h3>SyncVar Vs Command</h3>
+<p>下面是一张从 Unity 手册中借来的一种图片，</p>
+<p><img alt="UNetDirection" src="images/UNet/UNetDirections.jpg" width="46%" /></p>
+<p>上面图中的 <code>State Updates</code> 是指的 SyncVar。我们从图中可以了解到：</p>
+<ul>
+<li>SyncVar 是从 Server -&gt; Client 方向来改变所有端的同一对象实例的状态</li>
+<li>Command 是从 Client -&gt; Server 方向来改变所有端的同一对象实例的状态</li>
+</ul>
+    </article>
+
+﻿<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="unet-0x06-command.html" data-title="UNet 0x06: Command" data-url="http://blog.shuiguzi.com/unet-0x06-command.html"></div>
+<!-- 多说评论框 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"rockylaigithubio"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+<!-- 多说公共JS代码 end -->            </div>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-10 col-md-10 col-md-offset-1">
+                    <p class="copyright text-muted">本站点采用<a class="linktext" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">知识共享 署名-非商业性使用-相同方式共享 4.0 国际 许可协议</a></p>
+                    <p class="copyright text-muted">
+                          Rocky Lai @ 2014 - 2015,
+
+                       Blog powered by <a class="linktext" href="http://getpelican.com">Pelican</a>,
+                which takes great advantage of <a class="linktext" href="http://python.org">Python</a>.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- jQuery -->
+    <script src="http://blog.shuiguzi.com/theme/js/jquery.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="http://blog.shuiguzi.com/theme/js/bootstrap.min.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="http://blog.shuiguzi.com/theme/js/clean-blog.min.js"></script>
+
+<div style="opacity: 0">
+		  <script type="text/javascript"> var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://"); document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fbe571cbfce038053e44e02d5eee04481' type='text/javascript'%3E%3C/script%3E"));</script>
+			<script> var _hmt = _hmt || []; (function() { var hm = document.createElement("script"); hm.src = "//hm.baidu.com/hm.js?3a8e2930fa3e4db2aa0fe1cb32188641"; var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(hm, s); })(); </script>
+</div></body>
+
+</html>
