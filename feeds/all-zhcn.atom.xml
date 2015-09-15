@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>心亡则忙，亡心则忘</title><link href="http://blog.shuiguzi.com/" rel="alternate"></link><link href="http://blog.shuiguzi.com/feeds/all-zhcn.atom.xml" rel="self"></link><id>http://blog.shuiguzi.com/</id><updated>2015-09-15T22:28:00+08:00</updated><entry><title>改变图片亮度</title><link href="http://blog.shuiguzi.com/gai-bian-tu-pian-liang-du.html" rel="alternate"></link><updated>2015-09-15T22:28:00+08:00</updated><author><name>Rocky Lai</name></author><id>tag:blog.shuiguzi.com,2015-09-15:gai-bian-tu-pian-liang-du.html</id><summary type="html">&lt;p&gt;有的时候我们有可能有需求将较暗的图像简单的提亮，这篇文章主要讲一种改变图片亮度的方式。我们从两个问题入手：&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>心亡则忙，亡心则忘</title><link href="http://blog.shuiguzi.com/" rel="alternate"></link><link href="http://blog.shuiguzi.com/feeds/all-zhcn.atom.xml" rel="self"></link><id>http://blog.shuiguzi.com/</id><updated>2015-09-15T22:28:00+08:00</updated><entry><title>如何改变图片亮度</title><link href="http://blog.shuiguzi.com/ru-he-gai-bian-tu-pian-liang-du.html" rel="alternate"></link><updated>2015-09-15T22:28:00+08:00</updated><author><name>Rocky Lai</name></author><id>tag:blog.shuiguzi.com,2015-09-15:ru-he-gai-bian-tu-pian-liang-du.html</id><summary type="html">&lt;p&gt;有的时候我们有可能有需求将较暗的图像简单的提亮，这篇文章主要讲一种改变图片亮度的方式。我们从两个问题入手：&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;为了提亮图片，我们操作的对象是什么？&lt;/li&gt;
-&lt;li&gt;怎么操作对象能达到提亮的效果？&lt;/li&gt;
+&lt;li&gt;怎么操作对象能达到改变亮度的效果？&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3&gt;Unity 中的 Color&lt;/h3&gt;
 &lt;p&gt;首先我们来回答第一个问题。聪明的你可能已经知道，我们要操作的对象是 &lt;strong&gt;像素&lt;/strong&gt; 。Unity 中 Color 
@@ -15,7 +15,7 @@
 &lt;li&gt;&lt;code&gt;a&lt;/code&gt; aplha通道&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;各个通道的数值都是被标准化为 &lt;code&gt;0...1&lt;/code&gt; 之间的值。&lt;/p&gt;
-&lt;h3&gt;提亮算法&lt;/h3&gt;
+&lt;h3&gt;改变亮度的算法&lt;/h3&gt;
 &lt;p&gt;上面 Color 各通道的数值都被标准化，这里我们也依葫芦画瓢来把我们要提高的亮度 brightness 一个数值，不过我们设定它的取值区间为
 &lt;code&gt;-1...1&lt;/code&gt;。当 brightness 为负数的时候，图片减暗，正数时，图片变亮。&lt;/p&gt;
 &lt;p&gt;算法, 假设 RGB 通道值为 c：&lt;/p&gt;
