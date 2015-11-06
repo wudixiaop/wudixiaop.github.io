@@ -18,7 +18,7 @@ keywords: ShaderlabVS, Visual Studio 插件
 > **Download Address:** <http://pan.baidu.com/s/1jGAjzd8>
 
 <hr>
-**A introduction of ShaderlabVS can be found at <https://github.com/wudixiaop/ShaderlabVS/blob/master/README.md>. If you have feedbacks or questions, send email to me. My email is rockylai@qq.com.**  
+**A introduction of ShaderlabVS can be found at <https://github.com/wudixiaop/ShaderlabVS/blob/master/README.md>. If you have feedbacks or questions, send email to me. My email is rockylai@shuiguzi.com.**  
 
 
 ###_Screenshot_  
