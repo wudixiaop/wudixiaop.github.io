@@ -1,5 +1,161 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>心亡则忙，亡心则忘</title><link href="http://blog.shuiguzi.com/" rel="alternate"></link><link href="http://blog.shuiguzi.com/feeds/all-zhcn.atom.xml" rel="self"></link><id>http://blog.shuiguzi.com/</id><updated>2015-09-23T16:33:00+08:00</updated><entry><title>远离 XCodeGhost 影响，各种 XCode 版本下载</title><link href="http://blog.shuiguzi.com/yuan-chi-xcodeghost-ying-xiang-ge-chong-xcode-ban-ben-xia-zai.html" rel="alternate"></link><updated>2015-09-23T16:33:00+08:00</updated><author><name>Rocky Lai</name></author><id>tag:blog.shuiguzi.com,2015-09-23:yuan-chi-xcodeghost-ying-xiang-ge-chong-xcode-ban-ben-xia-zai.html</id><summary type="html">&lt;p&gt;最近 &lt;a href="http://baike.baidu.com/link?url=2582FqWOjsj0CU1shau0JPU--sgJ-moKqnYCcDy87QwZd5jPUwyxiFRbfjmrb8tpZcN8jfSu2Iw-Vokfjn8tJK"&gt;XCodeGhost&lt;/a&gt; 病毒闹的沸沸扬扬,
+<feed xmlns="http://www.w3.org/2005/Atom"><title>心亡则忙，亡心则忘</title><link href="http://blog.shuiguzi.com/" rel="alternate"></link><link href="http://blog.shuiguzi.com/feeds/all-zhcn.atom.xml" rel="self"></link><id>http://blog.shuiguzi.com/</id><updated>2015-11-10T16:16:56+08:00</updated><entry><title>Unity 5: Asset Bundle 和 Asset Bundle Manager</title><link href="http://blog.shuiguzi.com/unity-5-asset-bundle-he-asset-bundle-manager.html" rel="alternate"></link><updated>2015-11-10T16:16:56+08:00</updated><author><name>Rocky Lai</name></author><id>tag:blog.shuiguzi.com,2015-11-10:unity-5-asset-bundle-he-asset-bundle-manager.html</id><summary type="html">&lt;p&gt;这篇是 Unity 官方教程 &lt;a href="http://unity3d.com/cn/learn/tutorials/topics/scripting/assetbundles-and-assetbundle-manager?playlist=17117"&gt;AssetBundles and the AssetBundle Manager&lt;/a&gt; 的翻译， 分两部分，这是第一部分。翻译不到之处请不吝指出。非常谢谢！&lt;/p&gt;
+&lt;hr&gt;
+
+&lt;div style="display:none"&gt;
+###INTRODUCTION
+
+AssetBundles allow on demand streaming and loading of Assets from a local or remote location. With AssetBundles, Assets can be stored remotely and accessed as needed, increasing the flexibility of the project and reducing the initial application size.
+&lt;/div&gt;
+
+&lt;h3&gt;介绍&lt;/h3&gt;
+&lt;p&gt;AssetBundle 允许按需地从本地或者远程服务器上加载资源(Asset)。通过 AssetBundle 的方式，资源可以远程存储，有需要的时候访问，这样提升了项目的灵活性和降低初始程序的大小。&lt;/p&gt;
+&lt;div style="display:none"&gt;
+This lesson will introduce AssetBundles and discuss how to work with them, the steps and stages of the AssetBundle workflow, how to assign Assets to an AssetBundle, how and when to use AssetBundle Variants, how to build and test AssetBundles and Variants - all in the context of using the AssetBundle Manager to simplify creating, testing and deploying AssetBundles. The final section of the lesson will cover specific examples of loading and using AssetBundles and AssetBundle Variants with simple use-cases and simple example scripts.
+&lt;/div&gt;
+
+&lt;p&gt;这篇教程将会介绍 AssetBundle 和及其应用，AssetBundle 流程的步骤和各阶段和怎么样编译和测试 AssetBundle 及其变体 - 所有的一切可以用 AssetBundle Manager 来简化创建，测试和部署 AssetBundle。教程的最后一部分将使用一些加载和使用 AssetBundle 变种的简单用例和脚本示例。&lt;/p&gt;
+&lt;div style='display:none'&gt;
+###SAMPLE PROJECT
+&lt;/div&gt;
+
+&lt;h3&gt;演示项目&lt;/h3&gt;
+&lt;div style='display:none'&gt;
+Before starting this Tutorial Article, it would be best to download the AssetBundle Manager with the AssetBundle Sample project here.
+&lt;/div&gt;
+
+&lt;p&gt;在开始教程之前，最后先下载好 AssetBundle 和 AssetBundle Manager 的&lt;a href="http://u3d.as/jyk"&gt;示例程序&lt;/a&gt;。&lt;/p&gt;
+&lt;div style='display:none'&gt;
+###WHAT IS AN ASSETBUNDLE?
+
+AssetBundles are files created in the Unity editor during edit-time, which can be used later by a build of a project at run-time. AssetBundles can contain asset files such as models, materials, textures and scenes. AssetBundles cannot contain scripts.
+&lt;/div&gt;
+
+&lt;h3&gt;什么是 AssetBundle&lt;/h3&gt;
+&lt;p&gt;AssetBundle 是由 Unity 编辑器在编辑时期创建的，可以被编译出来的程序在运行期使用的文件。AssetBundle 可以包含模型，材质，纹理和场景文件等资源。但是 AssetBundle 不能包含脚本。&lt;/p&gt;
+&lt;div style='display:none'&gt;
+Specifically, an AssetBundle is a collection of assets and/or scenes from a project saved in a compact file with the purpose of being loaded separately to the built executable application. AssetBundles can be loaded on demand by a game or application built in Unity. This allows streaming and asynchronous loading of content such as models, textures, audio clips, or even entire scenes. AssetBundles can be “pre-cached” and stored locally for immediate loading when first running an application. The primary purpose of AssetBundles, however, is to stream content on demand from a remote location, to be loaded into the application as necessary. AssetBundles can contain any kind of asset type recognized by Unity, including custom binary data. The only exception is that script assets are not allowed.
+&lt;/div&gt;
+
+&lt;p&gt;明确一点说，一个 AssetBundle 就是存储项目资源和 / 或场景集合的文件，目的是为了之后在游戏或者程序中加载。
+AssetBundle 可以被在 Unity 中编译出来的游戏或者程序按需加载。它允许传送和异步加载像模型，材质，声音剪辑，
+甚至是整个场景。当在程序中初次运行时， AssetBundle 会被存储到本地 “预缓存” 以备以后被立即加载。Assetbundle 的主要目是为了需要的时候能从远程传送内容并加载进程序。AssetBundle 可以包含可以被 Unity 识别的任何资源类型，包括二进制文件。唯一的另外就是不允许是脚本资源。&lt;/p&gt;
+&lt;div style='display:none'&gt;
+There are many use-cases for AssetBundles. New content can be dynamically loaded and unloaded from an application. Post-release DLC can easily be implemented. An application’s disk footprint or size can be reduced when first deployed, with assets being loaded after installation of the application and only as the assets are needed. Platform and device specific assets can be loaded without having to download or store redundant assets for other platforms or resolutions. Localization of applications becomes easy by downloading and installing only the assets needed based on the user’s location, language or preferences. Applications can be fixed, changed or updated with new content without having to resubmit the application for approval.
+&lt;/div&gt;
+
+&lt;p&gt;AssetsBundle 有很多用处。比如新的内容可以动态地在程序中加载和释放。可以很简单实现发布后的可下载内容(DLC, Downloadable Content)。
+程序第一次安装的的时候的大小或者磁盘占用空间会减少，资源只有安装的程序需要的时候才会被加载。平台或者设备相关的资源加载时可以不必要下载或冗余存储其他平台和方案中的资源。本地化的程序可以更容易来下载和安装基于用户位置，语言和偏好的资源。新的内容可以下修复，改变或更新，而不需要重新发布程序。&lt;/p&gt;
+&lt;div style='display:none'&gt;
+The detailed organization of any project’s assets into AssetBundles will be heavily dependent upon the needs of that particular project. There are, however, some basic tenets to understand about AssetBundles.
+&lt;/div&gt;
+
+&lt;p&gt;AssetBundle 内项目资源的组织严重依赖于项目的需求。但是，也有一些可以更好的理解 AssetBundle 的原则。&lt;/p&gt;
+&lt;div style='display:none'&gt;
+* AssetBundles are downloaded and cached in their entirety.
+* AssetBundles do not need to be loaded in their entirety.
+* Assets in AssetBundles can have dependencies on other assets.
+* Assets in AssetBundles can share dependencies with other assets.
+* Each AssetBundle has some technical overhead, both in the size of the file and the need to manage that file.
+* AssetBundles should be built for each target platform.
+&lt;/div&gt;
+
+&lt;ul&gt;
+&lt;li&gt;AssetBundle 是整体被下载和缓存的&lt;/li&gt;
+&lt;li&gt;AssetBundle 不需要整体被加载&lt;/li&gt;
+&lt;li&gt;AssetBundle 中的资源可以包括依赖的其他资源&lt;/li&gt;
+&lt;li&gt;AssetBundle 中的资源可以共享依赖的其他资源&lt;/li&gt;
+&lt;li&gt;每个 AssetBundle 在文件大小和处理上都有一些技术上的开销。&lt;/li&gt;
+&lt;li&gt;每个平台上的 AssetBundle 都需要单独编译&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div style='display:none'&gt;
+AssetBundles are downloaded in their entirety. If an AssetBundle contains Assets that are not immediately needed, even though they won’t necessarily be loaded into the scene, they will take up both bandwidth to download and disk-space to store.
+&lt;/div&gt;
+
+&lt;p&gt;AssetBundle 是整体被下载的。如果在一个 AssetBundle 中包含不需要立即加载，甚至不需要加载进场景的资源，它们也会占用下载带宽和存储空间。&lt;/p&gt;
+&lt;div style='display:none'&gt;
+The contents of AssetBundles do not need to be loaded in their entirety. Once an AssetBundle has been downloaded, Assets can be selectively loaded from the AssetBundle.
+&lt;/div&gt;
+
+&lt;p&gt;AssetBundle 的内容不需要整体加载的。一旦 AssetBundle 被下载过了，资源可以有选择性的从 AssetBundle 中加载。&lt;/p&gt;
+&lt;div style='display:none'&gt;
+Assets can have dependencies on other assets. For example, a model can have several dependencies. The final model in the game is not just mesh data, but it is a GameObject with all of its Components and all of the Component’s dependencies.
+&lt;/div&gt;
+
+&lt;p&gt;资源能包括依赖的其他资源。比如，一个模型有好几个依赖。最终在游戏里的摩西不光只有网格数据，它会是一个包含所有组件和组件的依赖项的游戏对象(GameObject)。&lt;/p&gt;
+&lt;p&gt;&lt;img alt="meshmodelwmaterial" src="http://unity3d.com/sites/default/files/meshmodelwmaterial.png" width="30%" /&gt;&lt;br /&gt;
+&lt;small&gt;&lt;em&gt;应用了材质的模型&lt;/em&gt;&lt;/small&gt;&lt;/p&gt;
+&lt;div style='display:none'&gt;
+This model is dependent on a Material Asset in the model’s Mesh Renderer, and that Material Asset is dependent on a Texture Asset for the Material’s Albedo Texture. As a matter of fact, this tank is dependent upon three Materials, not just one.
+&lt;/div&gt;
+
+&lt;p&gt;这个模型依赖于在模型的 Mesh Renderer 组件中的一个材质资源，而这个材质资源依赖于应用在材质的 Albedo 纹理上的纹理资源。实际上，这个坦克依赖了三个材质，而不是仅仅一个。&lt;/p&gt;
+&lt;p&gt;&lt;img alt="dependencies" src="http://unity3d.com/sites/default/files/dependencies2.png" width="100%" /&gt;
+&lt;div style='display:none'&gt;
+&lt;em&gt;The tank model’s Asset dependency chain: Model &amp;gt; Material &amp;gt; Texture&lt;/em&gt;
+&lt;/div&gt;
+&lt;small&gt;&lt;em&gt;坦克模型资源的依赖链：模型 &amp;gt; 材质 &amp;gt; 纹理&lt;/em&gt;&lt;/small&gt;&lt;/p&gt;
+&lt;div style='display:none'&gt;
+Assets can share dependencies with other assets. For example, two different models can share the same Material, which in turn could be dependent on a Texture.
+&lt;/div&gt;
+
+&lt;p&gt;资源可以共享依赖的其他资源。比如，两个模型可以共享同一个材质, 相应的可能依赖于同一个纹理。&lt;/p&gt;
+&lt;div style='display:none'&gt;
+_Both rock columns are different models that share the same Material_
+&lt;/div&gt;
+
+&lt;p&gt;&lt;img alt="two rock columns" src="http://unity3d.com/sites/default/files/two_rock_columns.png" width="90%" /&gt;&lt;br /&gt;
+&lt;small&gt;&lt;em&gt;两个共享同一个材质的不同的岩石柱模型&lt;/em&gt;&lt;/small&gt;&lt;/p&gt;
+&lt;div style='display:none'&gt;
+Each AssetBundle has some technical overhead. AssetBundles are files that wrap Assets. This wrapper adds to the overall size of the AssetBundle. Even though this is not a significant increase in size, it is measureable. AssetBundles also require a certain amount of management to organize, create, upload and maintain. The more AssetBundles being used increases overhead for a project, both technical and managerial.
+&lt;/div&gt;
+
+&lt;p&gt;每个 AssetBundle 都会有一些技术上的开销。AssetBundles 是包装资源的文件。这个包装会增加 AssetBundle 的总大小。即使这个增量不大，可测量。AssetBundle 还要求一定量的处理来组织，创建，上传和维护。从技术上和处理上，使用的 AssetBundle 越多，其在项目中的开销越大。&lt;/p&gt;
+&lt;div style='display:none'&gt;
+When organizing AssetBundles, a balance must be struck between too many small AssetBundles that need to be tracked and generate overhead, and too few AssetBundles that are large and contain unnecessary or redundant data. The exact balance will depend heavily upon the needs of the project.
+&lt;/div&gt;
+
+&lt;p&gt;当组织 AssetBundle 时，需要在 &lt;strong&gt;使用数量多体积小但需要跟踪和生成开销的 AssetBundle &lt;/strong&gt; 还是 
+&lt;strong&gt;数量小但体积大且包含很多不必要的多余的数据的 AssetBundle&lt;/strong&gt; 中做出平衡。具体的平衡策略严重依赖于项目的需求。&lt;/p&gt;
+&lt;div style='display:none'&gt;
+The contents of an AssetBundle are compiled and optimized for the current target platform according to the Import Settings and the current Target Platform. Because of this, AssetBundles should be built for each target platform.
+&lt;/div&gt;
+
+&lt;p&gt;AssetBundle 的内容是根据当前的 Import Settings 和 平台来编译和优化的。所以，AssetBundle 需要为不同平台编译。&lt;/p&gt;
+&lt;div style='display:none'&gt;
+###MANIFESTS AND DEPENDENCY MANAGEMENT
+
+There are several important points to understand regarding dependencies and dependency management.
+&lt;/div&gt;
+
+&lt;h3&gt;清单和依赖管理&lt;/h3&gt;
+&lt;p&gt;理解关于依赖和依赖管理，有几个重要的点。&lt;/p&gt;
+&lt;div style='display:none'&gt;
+Asset dependencies are never lost. Dependent Assets will be added to the AssetBundle automatically along with the selected Asset if that dependent Asset has not been assigned to any AssetBundle when the AssetBundles are built. This is very convenient and prevents the loss of dependent assets. However, this can also cause the duplication of Assets. For example, using the two rock columns above which share the same Material, if both rock columns are in separate AssetBundles and the Material is not explicitly assigned to an AssetBundle, that Material will be added to both AssetBundles containing the rock columns. It is worth noting that when this happens, both duplicate Assets are stored in their respective AssetBundles and the Asset dependencies are now split. Each model Asset will now depend upon the local copy of the Material Asset, removing any advantage of having shared Material Assets. To prevent this from happening, the Material needs to be explicitly assigned to an AssetBundle. This can be an AssetBundle of its own, or shared with other Assets. In either case, the AssetBundles with the rock columns will now be dependent upon the AssetBundle with the rocks’ Material.
+&lt;/div&gt;
+
+&lt;p&gt;资源依赖永远不会丢失。当 AssetBundle 编译的时候，即便独立的资源没有指定到任何的 AssetBundle，也会跟着被选中的资源中被自动的加入 AssetBundle中。这样很便捷并且可以防止独立资源的丢失。尽管如此，这还是会引起资源的重复。比如，以上面使用同一个材质的两个岩石柱为例，如果两个岩石柱分开在不同的两个 AssetBundles 中并且这个材质没有显式的指定到一个 AssetBundle 上，这个材质就会被加入到这两个包含岩石柱的 AssetBndles 中。这个值得注意，两个重复的资源现在被存储到各自的 AssetBundle 中，资源的依赖性被分离了。每个模型资源现在依赖于各自的材质资源的本地拷贝，丢失了共享材质的优势。为了比避免这个发生，这个材质需要显式的指定到一个 AssetBundle 中。这样 AssetBundle 可以自己使用它也，也可以和其他资源一起共享。这种情况下，拥有岩石柱的 AssetBundles 依赖于拥有岩石材质的 AssetBundle 了。&lt;/p&gt;
+&lt;div style='display:none'&gt;
+The dependencies and other information for a project’s AssetBundles are stored in a Manifest. The manifest is very much like a “table of contents” for the project’s AssetBundles. When AssetBundles are built, Unity generates a large amount of data. The details of this data are saved in the Manifest. There is one Manifest created for each target platform. The Manifest lists all of the AssetBundles created from the project for the current build target, and stores and tracks all of their dependencies. With the Manifest, it is possible to query all AssetBundles and all their dependencies.
+&lt;/div&gt;
+
+&lt;p&gt;项目的 AssetBundle 的依赖和其他信息存储在 &lt;strong&gt;清单(Manifest)&lt;/strong&gt; 中。清单非常像关于项目的 AssetBundles 的 "目录"。当 AssetBundle 在编译的时候，Unity 会生产大量的数据。数据的细节存储在清单里。每个平台都会创建一个清单。清单为编译对象列举了所有从项目创建的 AssetBundles，存储位置和跟踪他们的依赖。利用清单，可以查询所有的 AssetBundles 和他们的依赖。&lt;/p&gt;
+&lt;div style='display:none'&gt;
+There is one special setup for AssetBundles called AssetBundle Variants. AssetBundle Variants are designed to support one specific use case - remapping a choice of different Assets to individual objects in a project. This is particularly useful when working with projects that need to select one Asset from a wide variety of different possible choices based on criteria like resolution, language, localization, or user preference. AssetBundle Variants can hold the variety of Assets required to cover all supported options for an object and the desired Asset can be mapped to that object as needed from the chosen AssetBundle Variant.
+&lt;/div&gt;
+
+&lt;p&gt;对于 AssetBundles 有一种特殊设置，叫做 AssetBundle 变体。AssetBundle 变体被设计来支持更特殊的使用场景 - 对单独的对象映射不同的资源选择。这对于需要依据一些标准，如分辨率，语言，地区或者用户偏好来从很多可能中选择一个资源的项目特别有用。AssetBundle 变体可以包含用来覆盖所有支持的选项的多种资源，
+并且按需从选择的 AssetBundle 变体中映射期望的资源到对象上。&lt;/p&gt;
+&lt;div style='display:none'&gt;
+AssetBundles are files which contain asset files such as models, materials, textures and scenes. AssetBundles are created by the Unity editor during edit-time and can be used later at run-time by a built application. AssetBundles are designed to load Assets on demand from a local or remote source. AssetBundles can have Variants which can be mapped to objects in the scene depending upon the user’s preference.
+&lt;/div&gt;
+
+&lt;p&gt;AesstBundles 是包含模型，材质，纹理和场景文件等资源文件的文件。AssetBundles 在编辑器的编辑期创建，可以被编译出来的程序之后使用。AssetBundles 被设计来从本地或远程源中按需加载资源。AssetBundles 可以拥有变种，可以基于用户偏好映射到对象上。&lt;/p&gt;
+&lt;div style='display:none'&gt;
+For more detailed information about working with AssetBundles and the AssetBundle Manager, please see the next tutorial lesson in this series.
+&lt;/div&gt;
+
+&lt;p&gt;关于使用 AssetBundle 和  AssetBundle Manger 的更多细节，请看这系列的下一个教程。&lt;/p&gt;</summary><category term="Unity"></category></entry><entry><title>远离 XCodeGhost 影响，各种 XCode 版本下载</title><link href="http://blog.shuiguzi.com/yuan-chi-xcodeghost-ying-xiang-ge-chong-xcode-ban-ben-xia-zai.html" rel="alternate"></link><updated>2015-09-23T16:33:00+08:00</updated><author><name>Rocky Lai</name></author><id>tag:blog.shuiguzi.com,2015-09-23:yuan-chi-xcodeghost-ying-xiang-ge-chong-xcode-ban-ben-xia-zai.html</id><summary type="html">&lt;p&gt;最近 &lt;a href="http://baike.baidu.com/link?url=2582FqWOjsj0CU1shau0JPU--sgJ-moKqnYCcDy87QwZd5jPUwyxiFRbfjmrb8tpZcN8jfSu2Iw-Vokfjn8tJK"&gt;XCodeGhost&lt;/a&gt; 病毒闹的沸沸扬扬,
 多款 app 受其影响。就个人觉得之所以会出现这么多从第三方下载 XCode 的情况，可能有如下几个原因引起：&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;下载 XCode 太慢&lt;/li&gt;
