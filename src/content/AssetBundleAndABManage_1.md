@@ -1,4 +1,4 @@
-Title: Unity 5: Asset Bundle 和 Asset Bundle Manager
+Title: Unity 5: Asset Bundle 和 Asset Bundle Manager (1)
 Date: 2015-11-10 16:16:56
 Modified: 2015-11-10 16:16:56
 Category: Unity
@@ -7,7 +7,6 @@ Status: published
 Keywords: Unity, Asset Bundle, Asset Bundle Manager
 
 这篇是 Unity 官方教程 [AssetBundles and the AssetBundle Manager](http://unity3d.com/cn/learn/tutorials/topics/scripting/assetbundles-and-assetbundle-manager?playlist=17117) 的翻译， 分两部分，这是第一部分。翻译不到之处请不吝指出。非常谢谢！
-
 <hr>
 
 <div style="display:none">
@@ -24,7 +23,7 @@ AssetBundle 允许按需地从本地或者远程服务器上加载资源(Asset)�
 This lesson will introduce AssetBundles and discuss how to work with them, the steps and stages of the AssetBundle workflow, how to assign Assets to an AssetBundle, how and when to use AssetBundle Variants, how to build and test AssetBundles and Variants - all in the context of using the AssetBundle Manager to simplify creating, testing and deploying AssetBundles. The final section of the lesson will cover specific examples of loading and using AssetBundles and AssetBundle Variants with simple use-cases and simple example scripts.
 </div>
 
-这篇教程将会介绍 AssetBundle 和及其应用，AssetBundle 流程的步骤和各阶段和怎么样编译和测试 AssetBundle 及其变体 - 所有的一切可以用 AssetBundle Manager 来简化创建，测试和部署 AssetBundle。教程的最后一部分将使用一些加载和使用 AssetBundle 变种的简单用例和脚本示例。
+这篇教程将会介绍 AssetBundle 和及其应用，AssetBundle 流程的步骤和各阶段和怎么样编译和测试 AssetBundle 及其变体 - 所有的一切可以用 AssetBundle Manager 来简化创建，测试和部署 AssetBundle。教程的最后一部分将使用一些加载和使用 AssetBundle 变体的简单用例和脚本示例。
 
 <div style='display:none'>
 ###SAMPLE PROJECT
@@ -184,10 +183,16 @@ There is one special setup for AssetBundles called AssetBundle Variants. AssetBu
 AssetBundles are files which contain asset files such as models, materials, textures and scenes. AssetBundles are created by the Unity editor during edit-time and can be used later at run-time by a built application. AssetBundles are designed to load Assets on demand from a local or remote source. AssetBundles can have Variants which can be mapped to objects in the scene depending upon the user’s preference.
 </div>
 
-AesstBundles 是包含模型，材质，纹理和场景文件等资源文件的文件。AssetBundles 在编辑器的编辑期创建，可以被编译出来的程序之后使用。AssetBundles 被设计来从本地或远程源中按需加载资源。AssetBundles 可以拥有变种，可以基于用户偏好映射到对象上。
+AesstBundles 是包含模型，材质，纹理和场景文件等资源文件的文件。AssetBundles 在编辑器的编辑期创建，可以被编译出来的程序之后使用。AssetBundles 被设计来从本地或远程源中按需加载资源。AssetBundles 可以拥有变体，可以基于用户偏好映射到对象上。
 
 <div style='display:none'>
 For more detailed information about working with AssetBundles and the AssetBundle Manager, please see the next tutorial lesson in this series.
 </div>
 
 关于使用 AssetBundle 和  AssetBundle Manger 的更多细节，请看这系列的下一个教程。
+
+<hr>
+
+文章连接：  
+* [Unity 5: Asset Bundle 和 Asset Bundle Manager (1)]({filename}/AssetBundleAndABManage_1.md)  
+* [Unity 5: Asset Bundle 和 Asset Bundle Manager (2)]({filename}/AssetBundleAndABManage_2.md)
