@@ -1,4 +1,4 @@
-Title: Unity 5: Asset Bundle 和 Asset Bundle Manager
+Title: Unity 5: 使用 Asset Bundle 和 Asset Bundle Manager
 Date: 2015
 Modified: 
 Category: Unity
@@ -6,20 +6,43 @@ Tags: Unity
 Status: skip
 Keywords: Unity, Asset Bundle, Asset Bundle Manager
 
-这篇是 Unity 官方教程 [AssetBundles and the AssetBundle Manager](http://unity3d.com/cn/learn/tutorials/topics/scripting/assetbundles-and-assetbundle-manager?playlist=17117) 的翻译， 分两部分，这是第一部分。翻译不到之处请不吝指出。非常谢谢！
+这篇是 Unity 官方教程 [AssetBundles and the AssetBundle Manager](http://unity3d.com/cn/learn/tutorials/topics/scripting/assetbundles-and-assetbundle-manager?playlist=17117) 的翻译， 分两部分，这是第二部分。翻译不到之处请不吝指出。非常谢谢！
+<hr>
 
+<div style='display:none'>
 ##WORKING WITH ASSETBUNDLES AND THE ASSETBUNDLE MANAGER
 ###INTRODUCTION
+</div>
 
+###介绍
+
+<div style='display:none'>
 One of the key areas of effort in working with AssetBundles is the building and testing of bundles. Often, during development, the Assets themselves are changing regularly. Normally this would require regularly building AssetBundles, uploading them to a host and testing these remotely hosted AssetBundles through a network connection with the working project.
+</div>
 
+使用 AssetBundle 中一个关键的地方是编译和测试 bundles。一般情况下，资源在开发过程中是会变的。正常情况下，可能需要要求有规律的编译 AssetBundle, 上传到服务器上和通过网络连接在当前项目中测试远程服务器上的 AssetBundle.
+
+<div style='display:none'>
 This section focuses on using the AssetBundle Manager when working with AssetBundles. The AssetBundle Manager provides a High-level API for a massively improved workflow compared to manipulating AssetBundles directly with the foundation Low-level API.
+</div>
 
+这节主要关注当和 AssetBundle 一起使用时，AssetBundle Manager 的使用。相对利用基础的低层 API 来操作 AssetBundle, AssetBundle Manager 为太幅改进的流程提供了高层的 API。
+
+<div style='display:none'>
 ###WORKING WITH ASSETBUNDLES
 
 The steps of working with AssetBundles in the editor fall roughly into these steps: - Organizing & Setting-up AssetBundles in the editor. - Building AssetBundles. - Uploading AssetBundles to external storage. - Downloading AssetBundles at run-time. - Loading objects from AssetBundles.
+</div>
 
-It is worth noting that some AssetBundles can be stored locally for immediate loading as a default setup. This is useful to protect against an install where the application cannot reach remote external storage to download desired AssetBundles. For example, the application would load default language and localization data from a local AssetBundle when the application has no access to downloadable content.
+###使用 AssetBundle  
+
+在编辑器中使用 AssetBundle 的大体步骤：- 在编辑器中组织 & 设置 AssetBundle。 - 编译 AssetBundle。 - 上传 AssetBundle 到外部存储 - 运行期下载 AssetBundle - 从 AssetBundle 加载对象。  
+
+<div style='display:none'>
+It is worth noting that some AssetBundles can be stored locally for immediate loading as a default setup. This is useful to protect against an install where the application cannot reach remote external storage to download desired AssetBundles. For example, the application would load default language and localization data from a local AssetBundle when the application has no access to downloadable content.  
+</div>
+
+值得注意的一点，有些 AssetBundle 可以存储在本地作为即时加载的默认设置。
 
 It is also worth noting that an AssetBundle contains platform ready Assets. The contents of an AssetBundle have been compiled and optimized for the current target platform according to the Import Settings and the Target Platform set in the Build Settings. Because of this, AssetBundles should be built for each target platform.
 
