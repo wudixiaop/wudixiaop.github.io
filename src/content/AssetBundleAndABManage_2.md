@@ -1,6 +1,6 @@
 Title: Unity 5: 使用 Asset Bundle 和 Asset Bundle Manager (2)
-Date: 2015
-Modified: 
+Date: 2015-11-11 20:28:07
+Modified: 2015-11-11 20:28:08
 Category: Unity
 Tags: Unity
 Status: published
