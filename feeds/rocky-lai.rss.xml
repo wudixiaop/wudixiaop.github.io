@@ -327,7 +327,7 @@ What is important to note here is how several Asset, AssetBundles and AssetBundl
 
 &lt;p&gt;文章连接：&lt;br /&gt;
 &lt;em&gt; &lt;a href="http://blog.shuiguzi.com/unity-5-asset-bundle-he-asset-bundle-manager-1.html"&gt;Unity 5: Asset Bundle 和 Asset Bundle Manager (1)&lt;/a&gt;&lt;br /&gt;
-&lt;/em&gt; &lt;a href="http://blog.shuiguzi.com/unity-5-shi-yong-asset-bundle-he-asset-bundle-manager-2.html"&gt;Unity 5: Asset Bundle 和 Asset Bundle Manager (2)&lt;/a&gt;&lt;br /&gt;
+&lt;/em&gt; &lt;a href="http://blog.shuiguzi.com/unity-5-shi-yong-asset-bundle-he-asset-bundle-manager-2.html"&gt;Unity 5: Asset Bundle 和 Asset Bundle Manager (2)&lt;/a&gt; &lt;br /&gt;
 * &lt;a href="http://blog.shuiguzi.com/unity-5-shi-yong-asset-bundle-he-asset-bundle-manager-3.html"&gt;Unity 5: Asset Bundle 和 Asset Bundle Manager (3)&lt;/a&gt;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Rocky Lai</dc:creator><pubDate>Thu, 12 Nov 2015 16:08:22 +0800</pubDate><guid>tag:blog.shuiguzi.com,2015-11-12:unity-5-shi-yong-asset-bundle-he-asset-bundle-manager-3.html</guid><category>Unity</category></item><item><title>Unity 5: 使用 Asset Bundle 和 Asset Bundle Manager (2)</title><link>http://blog.shuiguzi.com/unity-5-shi-yong-asset-bundle-he-asset-bundle-manager-2.html</link><description>&lt;p&gt;这篇是 Unity 官方教程 &lt;a href="http://unity3d.com/cn/learn/tutorials/topics/scripting/assetbundles-and-assetbundle-manager?playlist=17117"&gt;AssetBundles and the AssetBundle Manager&lt;/a&gt; 的翻译， 分三部分，这是第二部分。翻译不到之处请不吝指出。非常谢谢！
 &lt;hr&gt;&lt;/p&gt;
 &lt;div style='display:none'&gt;
@@ -684,7 +684,7 @@ To run one of the sample scenes, the AssetBundle Manager must be running in one 
 
 &lt;p&gt;文章连接：&lt;br /&gt;
 &lt;em&gt; &lt;a href="http://blog.shuiguzi.com/unity-5-asset-bundle-he-asset-bundle-manager-1.html"&gt;Unity 5: Asset Bundle 和 Asset Bundle Manager (1)&lt;/a&gt;&lt;br /&gt;
-&lt;/em&gt; &lt;a href="http://blog.shuiguzi.com/unity-5-shi-yong-asset-bundle-he-asset-bundle-manager-2.html"&gt;Unity 5: Asset Bundle 和 Asset Bundle Manager (2)&lt;/a&gt;&lt;br /&gt;
+&lt;/em&gt; &lt;a href="http://blog.shuiguzi.com/unity-5-shi-yong-asset-bundle-he-asset-bundle-manager-2.html"&gt;Unity 5: Asset Bundle 和 Asset Bundle Manager (2)&lt;/a&gt; &lt;br /&gt;
 * &lt;a href="http://blog.shuiguzi.com/unity-5-shi-yong-asset-bundle-he-asset-bundle-manager-3.html"&gt;Unity 5: Asset Bundle 和 Asset Bundle Manager (3)&lt;/a&gt;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Rocky Lai</dc:creator><pubDate>Wed, 11 Nov 2015 20:28:08 +0800</pubDate><guid>tag:blog.shuiguzi.com,2015-11-11:unity-5-shi-yong-asset-bundle-he-asset-bundle-manager-2.html</guid><category>Unity</category></item><item><title>Unity 5: Asset Bundle 和 Asset Bundle Manager (1)</title><link>http://blog.shuiguzi.com/unity-5-asset-bundle-he-asset-bundle-manager-1.html</link><description>&lt;p&gt;这篇是 Unity 官方教程 &lt;a href="http://unity3d.com/cn/learn/tutorials/topics/scripting/assetbundles-and-assetbundle-manager?playlist=17117"&gt;AssetBundles and the AssetBundle Manager&lt;/a&gt; 的翻译， 分两部分，这是第一部分。翻译不到之处请不吝指出。非常谢谢！
 &lt;hr&gt;&lt;/p&gt;
 &lt;div style="display:none"&gt;
@@ -845,7 +845,7 @@ For more detailed information about working with AssetBundles and the AssetBundl
 
 &lt;p&gt;文章连接：&lt;br /&gt;
 &lt;em&gt; &lt;a href="http://blog.shuiguzi.com/unity-5-asset-bundle-he-asset-bundle-manager-1.html"&gt;Unity 5: Asset Bundle 和 Asset Bundle Manager (1)&lt;/a&gt;&lt;br /&gt;
-&lt;/em&gt; &lt;a href="http://blog.shuiguzi.com/unity-5-shi-yong-asset-bundle-he-asset-bundle-manager-2.html"&gt;Unity 5: Asset Bundle 和 Asset Bundle Manager (2)&lt;/a&gt;&lt;br /&gt;
+&lt;/em&gt; &lt;a href="http://blog.shuiguzi.com/unity-5-shi-yong-asset-bundle-he-asset-bundle-manager-2.html"&gt;Unity 5: Asset Bundle 和 Asset Bundle Manager (2)&lt;/a&gt; &lt;br /&gt;
 * &lt;a href="http://blog.shuiguzi.com/unity-5-shi-yong-asset-bundle-he-asset-bundle-manager-3.html"&gt;Unity 5: Asset Bundle 和 Asset Bundle Manager (3)&lt;/a&gt;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Rocky Lai</dc:creator><pubDate>Tue, 10 Nov 2015 16:16:56 +0800</pubDate><guid>tag:blog.shuiguzi.com,2015-11-10:unity-5-asset-bundle-he-asset-bundle-manager-1.html</guid><category>Unity</category></item><item><title>远离 XCodeGhost 影响，各种 XCode 版本下载</title><link>http://blog.shuiguzi.com/yuan-chi-xcodeghost-ying-xiang-ge-chong-xcode-ban-ben-xia-zai.html</link><description>&lt;p&gt;最近 &lt;a href="http://baike.baidu.com/link?url=2582FqWOjsj0CU1shau0JPU--sgJ-moKqnYCcDy87QwZd5jPUwyxiFRbfjmrb8tpZcN8jfSu2Iw-Vokfjn8tJK"&gt;XCodeGhost&lt;/a&gt; 病毒闹的沸沸扬扬,
 多款 app 受其影响。就个人觉得之所以会出现这么多从第三方下载 XCode 的情况，可能有如下几个原因引起：&lt;/p&gt;
 &lt;ul&gt;
