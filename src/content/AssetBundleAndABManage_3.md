@@ -8,7 +8,7 @@ Keywords: Unity, Asset Bundle, Asset Bundle Manager
 
 这篇是 Unity 官方教程 [AssetBundles and the AssetBundle Manager](http://unity3d.com/cn/learn/tutorials/topics/scripting/assetbundles-and-assetbundle-manager?playlist=17117) 的翻译， 分三部分，这是第三部分。翻译不到之处请不吝指出。非常谢谢！
 
-译者注：英文太啰嗦了，但是还是坚持的把它翻译完了。因为啰嗦的好处是起码能让概念多复习几遍，跟容易记得住。如果读者觉得啰嗦，可以自行执行 **跳读技能** 来阅读译文。
+译者注：英文太啰嗦了，但是还是坚持的把它翻译完了。因为啰嗦的好处是起码能让概念多复习几遍，更容易记得住。如果读者觉得啰嗦，可以自行执行 **跳读技能** 来阅读译文。
 
 本文的项目连接：<http://u3d.as/jyk>
 <hr>
@@ -373,5 +373,5 @@ What is important to note here is how several Asset, AssetBundles and AssetBundl
 
 文章连接：  
 * [Unity 5: Asset Bundle 和 Asset Bundle Manager (1)]({filename}/AssetBundleAndABManage_1.md)  
-* [Unity 5: Asset Bundle 和 Asset Bundle Manager (2)]({filename}/AssetBundleAndABManage_2.md)   
-* [Unity 5: Asset Bundle 和 Asset Bundle Manager (3)]({filename}/AssetBundleAndABManage_3.md)
+* [Unity 5: Asset Bundle 和 Asset Bundle Manager (2)]({filename}/AssetBundleAndABManage_2.md)  
+* [Unity 5: Asset Bundle 和 Asset Bundle Manager (3)]({filename}/AssetBundleAndABManage_3.md)  
