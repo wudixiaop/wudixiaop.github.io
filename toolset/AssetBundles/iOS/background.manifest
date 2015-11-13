@@ -1,0 +1,77 @@
+ManifestFileVersion: 0
+CRC: 3075765048
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 47cc9ef77ec315a74baabd217588605e
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: f4033edbc2350ecd0ef21d011bdafde0
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 23
+  Script: {instanceID: 0}
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 33
+  Script: {instanceID: 0}
+- Class: 43
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+- Class: 90
+  Script: {instanceID: 0}
+- Class: 95
+  Script: {instanceID: 0}
+Assets:
+- Assets/AssetBundleSample/SampleAssets/Tanks/Models/Column07.FBX
+- Assets/AssetBundleSample/SampleAssets/Tanks/Models/Column08.FBX
+- Assets/AssetBundleSample/SampleAssets/Tanks/Models/Dunes04.fbx
+- Assets/AssetBundleSample/SampleAssets/Tanks/Models/Column12.FBX
+- Assets/AssetBundleSample/SampleAssets/Tanks/Models/Tank.fbx
+- Assets/AssetBundleSample/SampleAssets/Tanks/Models/Tree 5.fbx
+- Assets/AssetBundleSample/SampleAssets/Tanks/Models/Tank 3.fbx
+- Assets/AssetBundleSample/SampleAssets/Tanks/Models/Dunes01.fbx
+- Assets/AssetBundleSample/SampleAssets/Tanks/Models/Column11.FBX
+- Assets/AssetBundleSample/SampleAssets/Tanks/Models/Terrain 2.fbx
+- Assets/AssetBundleSample/SampleAssets/Tanks/Models/Cactus 5.fbx
+- Assets/AssetBundleSample/SampleAssets/Tanks/Models/Tree 3.fbx
+- Assets/AssetBundleSample/SampleAssets/Tanks/Models/Tree 1.fbx
+- Assets/AssetBundleSample/SampleAssets/Tanks/Models/Cactus 3.fbx
+- Assets/AssetBundleSample/SampleAssets/Tanks/Models/Tree 4.fbx
+- Assets/AssetBundleSample/SampleAssets/Tanks/Models/Tree.fbx
+- Assets/AssetBundleSample/SampleAssets/Tanks/Models/Tank 2.fbx
+- Assets/AssetBundleSample/SampleAssets/Tanks/Models/Dunes05.fbx
+- Assets/AssetBundleSample/SampleAssets/Tanks/Models/Tree 2.fbx
+- Assets/AssetBundleSample/SampleAssets/Tanks/Models/Dunes03.fbx
+- Assets/AssetBundleSample/SampleAssets/Tanks/Models/Column04.FBX
+- Assets/AssetBundleSample/SampleAssets/Tanks/Models/Dunes06.fbx
+- Assets/AssetBundleSample/SampleAssets/Tanks/Models/Column01.FBX
+- Assets/AssetBundleSample/SampleAssets/Tanks/Models/Cactus 1.fbx
+- Assets/AssetBundleSample/SampleAssets/Tanks/Models/Cactus 2.fbx
+- Assets/AssetBundleSample/SampleAssets/Tanks/Models/Tank 5.fbx
+- Assets/AssetBundleSample/SampleAssets/Tanks/Models/Column02.FBX
+- Assets/AssetBundleSample/SampleAssets/Tanks/Models/Tank 4.fbx
+- Assets/AssetBundleSample/SampleAssets/Tanks/Models/Column10.FBX
+- Assets/AssetBundleSample/SampleAssets/Tanks/Models/Column03.FBX
+- Assets/AssetBundleSample/SampleAssets/Tanks/Models/Column06.FBX
+- Assets/AssetBundleSample/SampleAssets/Tanks/Models/Terrain 5.fbx
+- Assets/AssetBundleSample/SampleAssets/Tanks/Models/Terrain 4.fbx
+- Assets/AssetBundleSample/SampleAssets/Tanks/Models/Terrain 1.fbx
+- Assets/AssetBundleSample/SampleAssets/Tanks/Models/Column05.FBX
+- Assets/AssetBundleSample/SampleAssets/Tanks/Models/Terrain.fbx
+- Assets/AssetBundleSample/SampleAssets/Tanks/Models/Cactus.fbx
+- Assets/AssetBundleSample/SampleAssets/Tanks/Models/Terrain 3.fbx
+- Assets/AssetBundleSample/SampleAssets/Tanks/Models/Cactus 4.fbx
+- Assets/AssetBundleSample/SampleAssets/Tanks/bg_002.png
+- Assets/AssetBundleSample/SampleAssets/Tanks/Models/Dunes02.fbx
+- Assets/AssetBundleSample/SampleAssets/Tanks/Models/Column09.FBX
+- Assets/AssetBundleSample/SampleAssets/Tanks/Models/Tank 1.fbx
+Dependencies:
+- AssetBundles/iOS/tanks-albedo.normal-hd
