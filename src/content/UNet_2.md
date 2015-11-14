@@ -38,7 +38,7 @@ UNet 在 `UnityEngine.Networking.NetworkSystem` 命名空间中提供了一些�
 * IntegerMessage
 * ErrorMessage
 
-当然我们也可以不适用内建的类，自己自定义新消息类。比如我们定义一个（我单纯的自认为）高大上的名字的类，叫做 `MessageX`，继承自 `MessageBase`：
+当然我们也可以不使用内建的类，自己自定义新消息类。比如我们定义一个（我单纯的自认为）高大上的名字的类，叫做 `MessageX`，继承自 `MessageBase`：
 
 	:::C#
 	using UnityEngine.Networking;
@@ -61,7 +61,7 @@ UNet 在 `UnityEngine.Networking.NetworkSystem` 命名空间中提供了一些�
 	}
 	
 
-这里要说一下一个自定义消息类型的坑：__要使用字段来代替属性__，如果使用了属性会导致接受不到发送的消息数据。
+这里要说一下一个自定义消息类型的坑：__要使用字段来代替属性__，如果使用了属性会导致接收不到发送的消息数据。
 
 错误的写法：
 

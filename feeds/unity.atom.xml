@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>心亡则忙，亡心则忘</title><link href="http://blog.shuiguzi.com/" rel="alternate"></link><link href="http://blog.shuiguzi.com/feeds/unity.atom.xml" rel="self"></link><id>http://blog.shuiguzi.com/</id><updated>2015-11-12T16:08:22+08:00</updated><entry><title>Unity 5: 使用 Asset Bundle 和 Asset Bundle Manager (3)</title><link href="http://blog.shuiguzi.com/unity-5-shi-yong-asset-bundle-he-asset-bundle-manager-3.html" rel="alternate"></link><updated>2015-11-12T16:08:22+08:00</updated><author><name>Rocky Lai</name></author><id>tag:blog.shuiguzi.com,2015-11-12:unity-5-shi-yong-asset-bundle-he-asset-bundle-manager-3.html</id><summary type="html">&lt;p&gt;这篇是 Unity 官方教程 &lt;a href="http://unity3d.com/cn/learn/tutorials/topics/scripting/assetbundles-and-assetbundle-manager?playlist=17117"&gt;AssetBundles and the AssetBundle Manager&lt;/a&gt; 的翻译， 分三部分，这是第三部分。翻译不到之处请不吝指出。非常谢谢！&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>心亡则忙，亡心则忘</title><link href="http://blog.shuiguzi.com/" rel="alternate"></link><link href="http://blog.shuiguzi.com/feeds/unity.atom.xml" rel="self"></link><id>http://blog.shuiguzi.com/</id><updated>2015-11-14T16:08:22+08:00</updated><entry><title>Unity 5: 使用 Asset Bundle 和 Asset Bundle Manager (3)</title><link href="http://blog.shuiguzi.com/unity-5-shi-yong-asset-bundle-he-asset-bundle-manager-3.html" rel="alternate"></link><updated>2015-11-14T16:08:22+08:00</updated><author><name>Rocky Lai</name></author><id>tag:blog.shuiguzi.com,2015-11-12:unity-5-shi-yong-asset-bundle-he-asset-bundle-manager-3.html</id><summary type="html">&lt;p&gt;这篇是 Unity 官方教程 &lt;a href="http://unity3d.com/cn/learn/tutorials/topics/scripting/assetbundles-and-assetbundle-manager?playlist=17117"&gt;AssetBundles and the AssetBundle Manager&lt;/a&gt; 的翻译， 分三部分，这是第三部分。翻译不到之处请不吝指出。非常谢谢！&lt;/p&gt;
 &lt;p&gt;译者注：英文太啰嗦了，但是还是坚持的把它翻译完了。因为啰嗦的好处是起码能让概念多复习几遍，更容易记得住。如果读者觉得啰嗦，可以自行执行 &lt;strong&gt;跳读技能&lt;/strong&gt; 来阅读译文。&lt;/p&gt;
 &lt;p&gt;本文的项目连接：&lt;a href="http://u3d.as/jyk"&gt;http://u3d.as/jyk&lt;/a&gt;
 &lt;hr&gt;&lt;/p&gt;
@@ -1418,7 +1418,7 @@ Demo 程序的地址为: &lt;a href="https://github.com/wudixiaop/UNet/tree/mast
 &lt;li&gt;IntegerMessage&lt;/li&gt;
 &lt;li&gt;ErrorMessage&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;当然我们也可以不适用内建的类，自己自定义新消息类。比如我们定义一个（我单纯的自认为）高大上的名字的类，叫做 &lt;code&gt;MessageX&lt;/code&gt;，继承自 &lt;code&gt;MessageBase&lt;/code&gt;：&lt;/p&gt;
+&lt;p&gt;当然我们也可以不使用内建的类，自己自定义新消息类。比如我们定义一个（我单纯的自认为）高大上的名字的类，叫做 &lt;code&gt;MessageX&lt;/code&gt;，继承自 &lt;code&gt;MessageBase&lt;/code&gt;：&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;using&lt;/span&gt; &lt;span class="n"&gt;UnityEngine&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Networking&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 
 &lt;span class="c1"&gt;// Customize message and Type&lt;/span&gt;
@@ -1440,7 +1440,7 @@ Demo 程序的地址为: &lt;a href="https://github.com/wudixiaop/UNet/tree/mast
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;这里要说一下一个自定义消息类型的坑：&lt;strong&gt;要使用字段来代替属性&lt;/strong&gt;，如果使用了属性会导致接受不到发送的消息数据。&lt;/p&gt;
+&lt;p&gt;这里要说一下一个自定义消息类型的坑：&lt;strong&gt;要使用字段来代替属性&lt;/strong&gt;，如果使用了属性会导致接收不到发送的消息数据。&lt;/p&gt;
 &lt;p&gt;错误的写法：&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;public&lt;/span&gt; &lt;span class="n"&gt;class&lt;/span&gt; &lt;span class="nl"&gt;MessageX&lt;/span&gt; &lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;MessageBase&lt;/span&gt;
 &lt;span class="p"&gt;{&lt;/span&gt;

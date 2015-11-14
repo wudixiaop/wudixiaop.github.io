@@ -135,7 +135,7 @@
 <li>IntegerMessage</li>
 <li>ErrorMessage</li>
 </ul>
-<p>当然我们也可以不适用内建的类，自己自定义新消息类。比如我们定义一个（我单纯的自认为）高大上的名字的类，叫做 <code>MessageX</code>，继承自 <code>MessageBase</code>：</p>
+<p>当然我们也可以不使用内建的类，自己自定义新消息类。比如我们定义一个（我单纯的自认为）高大上的名字的类，叫做 <code>MessageX</code>，继承自 <code>MessageBase</code>：</p>
 <div class="highlight"><pre><span class="n">using</span> <span class="n">UnityEngine</span><span class="p">.</span><span class="n">Networking</span><span class="p">;</span>
 
 <span class="c1">// Customize message and Type</span>
@@ -157,7 +157,7 @@
 </pre></div>
 
 
-<p>这里要说一下一个自定义消息类型的坑：<strong>要使用字段来代替属性</strong>，如果使用了属性会导致接受不到发送的消息数据。</p>
+<p>这里要说一下一个自定义消息类型的坑：<strong>要使用字段来代替属性</strong>，如果使用了属性会导致接收不到发送的消息数据。</p>
 <p>错误的写法：</p>
 <div class="highlight"><pre><span class="n">public</span> <span class="n">class</span> <span class="nl">MessageX</span> <span class="p">:</span> <span class="n">MessageBase</span>
 <span class="p">{</span>
