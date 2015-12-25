@@ -3,23 +3,23 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Hexo
-subtitle:
+title: 心亡则忙，亡心则忘
+subtitle: 学习、思考、分享
 description:
-author: John Doe
-language:
+author: Rocky Lai
+language: zh-hans
 timezone:
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://yoursite.com
+url: http://blog.shuiguzi.com
 root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:
 
 # Directory
 source_dir: source
-public_dir: ../
+public_dir: public
 tag_dir: tags
 archive_dir: archives
 category_dir: categories
@@ -69,3 +69,8 @@ theme: hexo-theme-next-0.4.5.2
 ## Docs: http://hexo.io/docs/deployment.html
 deploy:
   type:
+  
+#plugins
+#
+duoshuo_shortname: rockylaigithubio
+baidu_analytics: 3a8e2930fa3e4db2aa0fe1cb32188641
