@@ -3,11 +3,11 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Hexo
-subtitle:
+title: 心忘则忙，亡心则忘
+subtitle: 学习、思考、分享
 description:
-author: John Doe
-language:
+author: RockyLai
+language: zh-Hans
 timezone:
 
 # URL
@@ -63,7 +63,7 @@ pagination_dir: page
 # Extensions
 ## Plugins: http://hexo.io/plugins/
 ## Themes: http://hexo.io/themes/
-theme: landscape
+theme: hexo-theme-next-0.4.5.2
 
 # Deployment
 ## Docs: http://hexo.io/docs/deployment.html
