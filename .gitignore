@@ -1,3 +1,10 @@
+src/.DS_Store
+src/Thumbs.db
+src/db.json
+src/*.log
+src/node_modules/
+src/public/
+src/.deploy*/
 .DS_Store
 Thumbs.db
 db.json
