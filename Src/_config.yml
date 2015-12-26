@@ -20,7 +20,7 @@ permalink_defaults:
 
 # Directory
 source_dir: source
-public_dir: public
+public_dir: ../public
 tag_dir: tags
 archive_dir: archives
 category_dir: categories
@@ -70,8 +70,6 @@ theme: hexo-theme-next-0.4.5.2
 ## Docs: http://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repo: https://github.com/wudixiaop/wudixiaop.github.io.git
-  branch: hexoBlogPublic
   
 # hexo-next
 since: 2014
