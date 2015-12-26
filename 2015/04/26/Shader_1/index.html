@@ -1,0 +1,762 @@
+<!doctype html>
+<html class="theme-next use-motion theme-next-mist">
+<head>
+  
+
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+  
+    <link href='//fonts.lug.ustc.edu.cn/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+  
+
+
+<link rel="stylesheet" type="text/css" href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" />
+
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.2"/>
+
+
+
+
+  <meta name="keywords" content="Shader," />
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
+
+
+<meta name="description" content="我想首先唠叨下我为什么打算写这一系列的文章及文章的定位。
+我写的动力主要来源于如下原因：
+
+对之前学习的一些总结、复习和提炼
+尽可能的填充一些概念上的空白。 有不少关于 Unity shader 的文章只讲 Shaderlab 语法，讲各种光照模型等, 这对于缺乏概念的新手来说是不太好理解的。
+之前信誓旦旦的跟朋友说以后学了 shader 会写点文章出来，算是允诺。。。
+
+文章定位：
+
+这是学习笔">
+<meta property="og:type" content="article">
+<meta property="og:title" content="瞎聊 Unity Shader 系列之一：GPU 与 Shader Model">
+<meta property="og:url" content="http://blog.shuiguzi.com/2015/04/26/Shader_1/index.html">
+<meta property="og:site_name" content="心忘则忙，亡心则忘">
+<meta property="og:description" content="我想首先唠叨下我为什么打算写这一系列的文章及文章的定位。
+我写的动力主要来源于如下原因：
+
+对之前学习的一些总结、复习和提炼
+尽可能的填充一些概念上的空白。 有不少关于 Unity shader 的文章只讲 Shaderlab 语法，讲各种光照模型等, 这对于缺乏概念的新手来说是不太好理解的。
+之前信誓旦旦的跟朋友说以后学了 shader 会写点文章出来，算是允诺。。。
+
+文章定位：
+
+这是学习笔">
+<meta property="og:updated_time" content="2015-12-26T10:51:30.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="瞎聊 Unity Shader 系列之一：GPU 与 Shader Model">
+<meta name="twitter:description" content="我想首先唠叨下我为什么打算写这一系列的文章及文章的定位。
+我写的动力主要来源于如下原因：
+
+对之前学习的一些总结、复习和提炼
+尽可能的填充一些概念上的空白。 有不少关于 Unity shader 的文章只讲 Shaderlab 语法，讲各种光照模型等, 这对于缺乏概念的新手来说是不太好理解的。
+之前信誓旦旦的跟朋友说以后学了 shader 会写点文章出来，算是允诺。。。
+
+文章定位：
+
+这是学习笔">
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: 'always'
+  };
+</script>
+
+
+
+  <title> 瞎聊 Unity Shader 系列之一：GPU 与 Shader Model | 心忘则忙，亡心则忘 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  <!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?3a8e2930fa3e4db2aa0fe1cb32188641";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <div class="container one-column page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">心忘则忙，亡心则忘</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">学习、思考、分享</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu ">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content"> 
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                瞎聊 Unity Shader 系列之一：GPU 与 Shader Model
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2015-04-26T16:50:00+08:00" content="2015-04-26">
+              2015-04-26
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Shader/" itemprop="url" rel="index">
+                    <span itemprop="name">Shader</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/04/26/Shader_1/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/04/26/Shader_1/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <span itemprop="articleBody"><p>我想首先唠叨下我为什么打算写这一系列的文章及文章的定位。</p>
+<p>我写的动力主要来源于如下原因：</p>
+<ul>
+<li>对之前学习的一些总结、复习和提炼</li>
+<li>尽可能的填充一些概念上的空白。 有不少关于 Unity shader 的文章只讲 Shaderlab 语法，讲各种光照模型等, 这对于缺乏概念的新手来说是不太好理解的。</li>
+<li>之前信誓旦旦的跟朋友说以后学了 shader 会写点文章出来，算是允诺。。。</li>
+</ul>
+<p>文章定位：</p>
+<ul>
+<li>这是学习笔记，不是教程。如果内容会有出入，非常感谢和希望您能指正。</li>
+<li>主要基础概念为主，可能很零散。</li>
+</ul>
+<p>之前有前辈说过，学习一门知识前，了解其由来对入门很有好处。我比较赞同这个观点，所以开篇我们来说写历史。</p>
+<h3 id="CPU__u4E4B_u5916_u7684_u53E6_u5916_u4E00_u4E2A_PU_-_GPU"><a href="#CPU__u4E4B_u5916_u7684_u53E6_u5916_u4E00_u4E2A_PU_-_GPU" class="headerlink" title="CPU 之外的另外一个 PU - GPU"></a>CPU 之外的另外一个 PU - GPU</h3><p>随着计算机处理图形的计算量越来越来大，CPU难以满足计算速度上的需求, 为了将图形的计算单独拿出来执行，上世纪70年代开始出现了为加速图形绘制的硬件。<br>这些硬件跟大部分刚出来的新事物一样，功能有限，而且不太完善，当然那个时候也不叫 GPU。</p>
+<p>1999 年，NVIDIA 公司发布了 GeForce256, 并且提出一个 Graphics Process Unit (GPU) 概念。很多文章都提到这款显卡有划时代的意义，因为它使第一款<br>带有可编程顶点处理能力的显卡，这意味着显卡从<strong>之前的只可配置</strong>上升到了<strong>可编程</strong>的高度，开发者从此可以实现自己顶点处理算法。NVIDIA 也是提出 GPU 这个词<br>来对 GeForece256 与之前显卡做区分。</p>
+<p>2000 年以后， GPU 技术一直在不断的发展，处理和运算能力不断打变强变大。为了利用 GPU 强大的并行计算能力，出现了 CUDA 并行计算平台。有兴趣的同学可以关注下<br><a href="https://developer.nvidia.com/cuda-zone" target="_blank" rel="external">CUDA官网</a>.</p>
+<h3 id="Shader_Model"><a href="#Shader_Model" class="headerlink" title="Shader Model"></a>Shader Model</h3><p>首先我们要提下当今跟 GPU 打交道的形API：<a href="http://en.wikipedia.org/wiki/DirectX" target="_blank" rel="external">Microsoft DirectX</a>、 <a href="https://www.opengl.org" target="_blank" rel="external">OPENGL</a> 和<br> 转为嵌入式设备设计的<a href="https://www.khronos.org/opengles/" target="_blank" rel="external">OPENGL GS</a>。Directx 是微软提供的图形 API, OPENGL 和 OPENGL ES 现在是由 <a href="http://baike.baidu.com/link?url=vW0PfmVKQC00WWRibyVSrnjRYVdVj1lk9HG6B4w9uc9lnlnWnYoDJd1puZu1CNf2_vacBBTFFbdMzZWCNkliSK" target="_blank" rel="external">Khronos Group</a> 团队维护开发的图形API。</p>
+<p>这些图形 API 都提供对 GPU 编程的能力，这能力就是我们说的 Shader。图形 API 的更新会提供不同的 shader 的能力 (当然是越来越强大)。<br>微软提出了一个词叫 Shader Model, 并用不同的版本号来区分 Shader 的能力。通常我们也会称 Shader Model 为 SM。</p>
+<p>下面列出到现在为止 Shader Model 的各个版本与 DirectX 版本的对应关系：</p>
+<ul>
+<li>Shader Model 1.0（DirectX8.0）</li>
+<li>Shader Model 2.0（DirectX9.0b）</li>
+<li>Shader Model 3.0（DirectX9.0c）</li>
+<li>Shader Model 4.0（DirectX10）</li>
+<li>Shader Model 4.1（DirectX10.1）</li>
+<li>Shader Model 5.0（DirectX11）</li>
+</ul>
+<p>我们先不关注各个版本区别，只要知道版本号越高，提供的功能越来越强大。</p>
+<h3 id="u603B_u7ED3"><a href="#u603B_u7ED3" class="headerlink" title="总结"></a>总结</h3><p>GPU 为大量图形计算而生，而 Shader 是对 GPU 编程的技术。微软用 Shader Model 的不同版本号来区分不同 Shader 的能力。</p>
+<h3 id="u53C2_u8003"><a href="#u53C2_u8003" class="headerlink" title="参考"></a>参考</h3><ul>
+<li><a href="http://en.wikipedia.org/wiki/Graphics_processing_unit" target="_blank" rel="external">Wikipidia: Graphics processing unit </a></li>
+<li><a href="http://www.amazon.com/gp/product/1568814240?tag=realtimerenderin&amp;pldnSite=1" target="_blank" rel="external"><em>Real-Time Rendering, Third Edition</em></a></li>
+<li><a href="http://baike.baidu.com/link?url=DDy0sTi56RE9TiVdj5MOCqwmV7ATJEkBHQp7V8eRzA_lyq1HPOLgmBULeSo-Khw2-mb7Wst75LJF3_I3SjZAZa" target="_blank" rel="external">Shader Model</a></li>
+</ul>
+</span>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Shader/" rel="tag">#Shader</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/04/15/cirleImageInUnity3D/" rel="next" title="在 Unity uGUI 中绘制圆形图片">
+                <i class="fa fa-chevron-left"></i> 在 Unity uGUI 中绘制圆形图片
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/04/28/Shader_2/" rel="prev" title="瞎聊 Unity Shader 系列之二：渲染管线">
+                瞎聊 Unity Shader 系列之二：渲染管线 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+ </div>
+
+        
+
+        
+          <div class="comments" id="comments">
+            
+              <div class="ds-thread" data-thread-key="2015/04/26/Shader_1/"
+                   data-title="瞎聊 Unity Shader 系列之一：GPU 与 Shader Model" data-url="http://blog.shuiguzi.com/2015/04/26/Shader_1/">
+              </div>
+            
+          </div>
+        
+      </div>
+
+      
+        
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" src="https://avatars1.githubusercontent.com/u/5707242?v=3&s=460" alt="RockyLai" itemprop="image"/>
+          <p class="site-author-name" itemprop="name">RockyLai</p>
+        </div>
+        <p class="site-description motion-element" itemprop="description"></p>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">32</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            <a href="/categories">
+              <span class="site-state-item-count">3</span>
+              <span class="site-state-item-name">分类</span>
+              </a>
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">9</span>
+              <span class="site-state-item-name">标签</span>
+              </a>
+          </div>
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/wudixiaop" target="_blank">
+                  <i class="fa fa-github"></i> Github
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="rockylai@shuiguzi.com" target="_blank">
+                  <i class="fa fa-email"></i> Email
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator"></div>
+          <div class="post-toc">
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#CPU__u4E4B_u5916_u7684_u53E6_u5916_u4E00_u4E2A_PU_-_GPU"><span class="nav-number">1.</span> <span class="nav-text">CPU 之外的另外一个 PU - GPU</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Shader_Model"><span class="nav-number">2.</span> <span class="nav-text">Shader Model</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u603B_u7ED3"><span class="nav-number">3.</span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u53C2_u8003"><span class="nav-number">4.</span> <span class="nav-text">参考</span></a></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator"></div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+      
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner"> <div class="copyright" >
+  
+  &copy;  2014 - 
+  <span itemprop="copyrightYear">2015</span>
+  <span class="with-love">
+    <i class="icon-next-heart fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">RockyLai</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+ </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+  
+    
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"rockylaigithubio"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+    
+     
+
+
+    
+  
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
+  
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.2" id="motion.global"></script>
+
+
+
+
+  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.2"></script>
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.2" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 0.4 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    var $tocContent = $('.post-toc-content');
+    if (isDesktop() && CONFIG.sidebar === 'post') {
+      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+        displaySidebar();
+      }
+    }
+  });
+</script>
+
+
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      if (CONFIG.sidebar === 'always') {
+        displaySidebar();
+      }
+      if (isMobile()) {
+        FastClick.attach(document.body);
+      }
+
+      motionIntegrator.bootstrap();
+    });
+  </script>
+
+  
+  
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/lazyload.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#posts").find('img').lazyload({
+        placeholder: "/images/loading.gif",
+        effect: "fadeIn"
+      });
+    });
+  </script>
+</body>
+</html>
