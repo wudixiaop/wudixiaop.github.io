@@ -68,8 +68,10 @@ theme: hexo-theme-next-0.4.5.2
 
 # Deployment
 ## Docs: http://hexo.io/docs/deployment.html
-deploy: https://github.com/wudixiaop/wudixiaop.github.io.git
+deploy:
   type: git
+  repo: https://github.com/wudixiaop/wudixiaop.github.io.git
+  branch: hexoBlogPublic
   
 # hexo-next
 since: 2014
