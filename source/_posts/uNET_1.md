@@ -21,13 +21,11 @@ tags: UNet
 
 Unity3d 网站上有张图能比较明显的表达 Server / Client / Local Client / Host 直接的关系，让我们把它偷过来。:)
 
-![NetworkHost](images/UNet/NetworkHost.png){: width="78%"}
-
+![NetworkHost](/images/UNet/NetworkHost.png)
 
 ### Server 创建
 
 Unity 给我们提供了 [NetworkServer](http://docs.unity3d.com/ScriptReference/Networking.NetworkServer.html) 类，他的静态方法 `Listen(int serverPort)` 会打开一个端口监听。
-
 
 示例代码如下：
 
@@ -41,7 +39,6 @@ NetworkServer.Listen(listenPort);
 
 * Local Client：使用 `ClientScene.ConnectLocalServer()` 静态方法创建
 * Remote Client：Unity 给我们提供过了 [NetworkClient](http://docs.unity3d.com/ScriptReference/Networking.NetworkClient.html) 类来创建。类的实例就是 Remote Client。
-
 
 示例代码如下：
 
