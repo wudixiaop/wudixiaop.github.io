@@ -13,7 +13,7 @@ timezone:
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://yoursite.com
+url: http://blog.shuiguzi.com
 root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:
@@ -68,8 +68,8 @@ theme: hexo-theme-next-0.4.5.2
 
 # Deployment
 ## Docs: http://hexo.io/docs/deployment.html
-deploy:
-  type:
+deploy: https://github.com/wudixiaop/wudixiaop.github.io.git
+  type: git
   
 # hexo-next
 since: 2014
