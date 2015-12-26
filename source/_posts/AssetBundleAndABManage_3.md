@@ -1,6 +1,7 @@
 title: Unity 5：使用 Asset Bundle 和 Asset Bundle Manager (3)
 date: 2015-11-12 16:08:22
-tags: Unity
+tags: AssetBundle
+category: Unity
 ---
 
 这篇是 Unity 官方教程 [AssetBundles and the AssetBundle Manager](http://unity3d.com/cn/learn/tutorials/topics/scripting/assetbundles-and-assetbundle-manager?playlist=17117) 的翻译， 分三部分，这是第三部分。翻译不到之处请不吝指出。非常谢谢！

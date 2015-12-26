@@ -8,7 +8,8 @@ subtitle: 学习、思考、分享
 description:
 author: RockyLai
 language: zh-Hans
-timezone:
+timezone: 
+
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
@@ -69,3 +70,11 @@ theme: hexo-theme-next-0.4.5.2
 ## Docs: http://hexo.io/docs/deployment.html
 deploy:
   type:
+  
+# hexo-next
+since: 2014
+avatar: https://avatars1.githubusercontent.com/u/5707242?v=3&s=460
+# Social links
+social:
+  Github: https://github.com/wudixiaop
+  Email: rockylai@shuiguzi.com
