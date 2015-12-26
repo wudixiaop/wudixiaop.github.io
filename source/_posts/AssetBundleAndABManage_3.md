@@ -365,11 +365,4 @@ The script comprises of a BeginExample() function and three Coroutines, called f
 What is important to note here is how several Asset, AssetBundles and AssetBundleVariants are being accessed and loaded in this scene, and how these values can be set at run-time.
 </div>
 
-这小结要注意的内容是，多个 资源，AssetBunle 和 AssetBunle 变体怎么被访问和加载进场景里，和怎么样在运行期设置这些值。
-
-<hr>
-
-文章连接：  
-* [Unity 5: Asset Bundle 和 Asset Bundle Manager (1)]({filename}/AssetBundleAndABManage_1.md)  
-* [Unity 5: Asset Bundle 和 Asset Bundle Manager (2)]({filename}/AssetBundleAndABManage_2.md)  
-* [Unity 5: Asset Bundle 和 Asset Bundle Manager (3)]({filename}/AssetBundleAndABManage_3.md)  
+这小结要注意的内容是，多个 资源，AssetBunle 和 AssetBunle 变体怎么被访问和加载进场景里，和怎么样在运行期设置这些值。  

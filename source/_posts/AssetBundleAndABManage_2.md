@@ -430,12 +430,5 @@ To run one of the sample scenes, the AssetBundle Manager must be running in one 
 
 要运行示例场景，AssetBundle Manager 必须运行在这些模式中的一种。要成功运行 AssetBundle 变体，AssetBundle 必须被编译并且本地资源服务器必须被开启。
 
-[译者：剩下的内容请关注本文的第三部分]
-
-<hr>
-
-文章连接：  
-* [Unity 5: Asset Bundle 和 Asset Bundle Manager (1)]({filename}/AssetBundleAndABManage_1.md)  
-* [Unity 5: Asset Bundle 和 Asset Bundle Manager (2)]({filename}/AssetBundleAndABManage_2.md)   
-* [Unity 5: Asset Bundle 和 Asset Bundle Manager (3)]({filename}/AssetBundleAndABManage_3.md)  
+[译者：剩下的内容请关注本文的第三部分]  
 
