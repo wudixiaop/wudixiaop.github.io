@@ -17,11 +17,11 @@ tags: Shader
 > **Download Address:** <http://pan.baidu.com/s/1jGAjzd8>
 
 <hr>
-**A introduction of ShaderlabVS can be found at <https://github.com/wudixiaop/ShaderlabVS/blob/master/README.md>. If you have feedbacks or questions, send email to me. My email is rockylai@shuiguzi.com.**  
+**A introduction of ShaderlabVS can be found at [here](https://github.com/wudixiaop/ShaderlabVS/blob/master/README.md). If you have feedbacks or questions, send email to me. My email is rockylai@shuiguzi.com.**  
 
 
 ### _Screenshot_  
-<img alt="preview" src="https://github.com/wudixiaop/ShaderlabVS/raw/master/img/Highlighting.PNG" width="60%"/>
+![preview](https://github.com/wudixiaop/ShaderlabVS/raw/master/img/Highlighting.PNG)
 
 ### _History:_
 
