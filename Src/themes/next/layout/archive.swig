@@ -45,7 +45,7 @@
 
   </section>
 
-  
+  {% include '_partials/pagination.swig' %}
 
 {% endblock %}
 
