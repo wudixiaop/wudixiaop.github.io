@@ -15,6 +15,8 @@ tags: UNet
 
 这个简单的界面如下：
 
+<!--more-->
+
 ![ui](/images/UNet/SimpleUI.PNG)
 
 本篇中的 demo 可以 [戳这里](https://github.com/wudixiaop/UNet/tree/master/Assets/104%20-%20simple%20network%20GUI) 得到，下面就 Demo 细说一下。

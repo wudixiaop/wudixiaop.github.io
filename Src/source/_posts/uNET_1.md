@@ -19,6 +19,8 @@ tags: UNet
 在 UNet 先系统中会出现 1 个 Server 和 n 个 Client (n >= 0)。当没有专门的 Server 的时候，其中一个 Client 会充当 Server 的作用，这个即是 Client 又是 Server 的端在 UNet 中
 被称为 Host。 Host 在同一个进程里面执行 Server 和 Client, 这个 Client　有个专门的名字叫做 Local Client。它跟 Local Server 之间是通过 __消息队列__ 和 __直接的函数调__ 用来通信的。 
 
+<!--more-->
+
 Unity3d 网站上有张图能比较明显的表达 Server / Client / Local Client / Host 直接的关系，让我们把它偷过来。:)
 
 ![NetworkHost](/images/UNet/NetworkHost.png)

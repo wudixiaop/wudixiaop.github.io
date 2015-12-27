@@ -19,6 +19,8 @@ tags: Shader
 
 如果本身不是 surface shader 的话，上面那个 show generated code 按钮是不会出现的。上面提到 #pragma 是在 `CGPROGRAM ... ENDCG` 语句块里面的，所以它出现的位置也符合上面提到的特征。
 
+<!--more-->
+
 ### Surface Shader 的编译指令
 
 这类 shader 必须指明

@@ -55,7 +55,7 @@ Closures are self-contained blocks of functionality that can be passed">
 在讲例子之前我们来看下什么是闭包(Closure).《The Swift Programming Language》是这样定义的:
 
 Closures are self-contained blocks of functionality that can be passed">
-<meta property="og:updated_time" content="2015-12-26T12:10:56.000Z">
+<meta property="og:updated_time" content="2015-12-27T11:48:52.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="一个例子学习Swift中的闭包用法">
 <meta name="twitter:description" content="初学习Swift, 觉得Swift中的闭包用法比较灵活, 所以在学习的时候编了个小例子来把用法罗列了出来, 分享出来给大家。
@@ -289,6 +289,7 @@ Closures are self-contained blocks of functionality that can be passed">
 </blockquote>
 <p>上面定义中 <strong>parameters</strong> 是指参数， <strong>returnType</strong> 是返回类型，而 <strong>statements</strong> 指的是我们要实现的逻辑的代码, 闭包的代码都被 <strong>{}</strong> 包含着。<br>观察力强的同学们估计发现了，它怎么跟Swift的函数长的差不多，难道它们是亲戚? Swift中函数是一种特殊的闭包，记住函数是闭包，不是闭包是函数哦。</p>
 <p>接下来我们说说文章开头提到的那个栗子。</p>
+<a id="more"></a>
 <p>假设我们要找出某一些人中最小年龄是多少，我们要通过排序的方法来得到这个年龄。有这么一组年龄数字:</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">let ages = [<span class="number">10</span>, <span class="number">23</span>, <span class="number">15</span>, <span class="number">13</span>, <span class="number">19</span>]</span><br></pre></td></tr></table></figure>
 <p>首先我们使用最原始的办法，自己定义排序方法:</p>

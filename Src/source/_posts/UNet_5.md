@@ -20,6 +20,8 @@ NetworkBehaviour 给我们提供了什么功能呢？大概是如下几点：
 为了让描述更准确，上面采用了 [官方手册](http://docs.unity3d.com/Manual/class-NetworkBehaviour.html) 
 中的英文描述。这篇的主角就是 Synchronized Variables。
 
+<!--more-->
+
 ### SyncVar 初见
 
 我们在接下来把 Synchronized Variables 简称为 SyncVar 。我们先给它来下个粗略的定义：

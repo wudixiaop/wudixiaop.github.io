@@ -19,6 +19,8 @@ tags: Shader
 
 那么问题来了，Shader 语言到底哪家强？这个也发生过强烈的讨论。
 
+<!--more-->
+
 其实这个问题好回答，既然跟着 Unity 地主干，听 Unity 地主的话就好了。那么另外一个问题又来了，Unity 地主的观点又是什么？
 
 ### Unity 体系规则 Shaderlab

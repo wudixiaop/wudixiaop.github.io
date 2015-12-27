@@ -210,8 +210,8 @@
             
             
               
-                <a class="post-title-link" href="/2015/08/15/UNet_5/" itemprop="url">
-                  UNet 0x05：SyncVar
+                <a class="post-title-link" href="/2015/03/26/ClosureInSwift/" itemprop="url">
+                  一个例子学习Swift中的闭包用法
                 </a>
               
             
@@ -221,8 +221,419 @@
         <div class="post-meta">
           <span class="post-time">
             发表于
-            <time itemprop="dateCreated" datetime="2015-08-15T12:01:00+08:00" content="2015-08-15">
-              2015-08-15
+            <time itemprop="dateCreated" datetime="2015-03-26T15:37:00+08:00" content="2015-03-26">
+              2015-03-26
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/一点一滴/" itemprop="url" rel="index">
+                    <span itemprop="name">一点一滴</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/03/26/ClosureInSwift/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/03/26/ClosureInSwift/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <p>初学习Swift, 觉得Swift中的闭包用法比较灵活, 所以在学习的时候编了个小例子来把用法罗列了出来, 分享出来给大家。</p>
+<p>在讲例子之前我们来看下什么是闭包(Closure).《The Swift Programming Language》是这样定义的:</p>
+<blockquote>
+<p>Closures are self-contained blocks of functionality that can be passed around and used in your code</p>
+</blockquote>
+<p>中文版中这样翻译：</p>
+<blockquote>
+<p>闭包是自包含的函数代码块，可以在代码中被传递和使用。</p>
+</blockquote>
+<p>看解释我们知道，闭包是代码段，它能实现一些逻辑（函数），它可以被传递和使用（就像类型一样）。</p>
+<p>然后我们来看看闭包长的什么样子。下面是闭包的定义:</p>
+<blockquote>
+<p>{ (parameters) -&gt; returnType in<br>   statements<br>}</p>
+</blockquote>
+<p>上面定义中 <strong>parameters</strong> 是指参数， <strong>returnType</strong> 是返回类型，而 <strong>statements</strong> 指的是我们要实现的逻辑的代码, 闭包的代码都被 <strong>{}</strong> 包含着。<br>观察力强的同学们估计发现了，它怎么跟Swift的函数长的差不多，难道它们是亲戚? Swift中函数是一种特殊的闭包，记住函数是闭包，不是闭包是函数哦。</p>
+<p>接下来我们说说文章开头提到的那个栗子。</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/03/26/ClosureInSwift/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                <a class="post-title-link" href="/2015/01/28/UserGithubClientForNonGithubRepos/" itemprop="url">
+                  如何在Github for Mac/Windows上使用非Github的仓库
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2015-01-28T16:54:00+08:00" content="2015-01-28">
+              2015-01-28
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/一点一滴/" itemprop="url" rel="index">
+                    <span itemprop="name">一点一滴</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/01/28/UserGithubClientForNonGithubRepos/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/01/28/UserGithubClientForNonGithubRepos/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <p><strong>[2015-08-14 更新]</strong> 之前的 Github for Windows 和 Github for Mac 已经合并成 Github Desktop 了。下载地址为 <a href="https://desktop.github.com">https://desktop.github.com</a></p>
+<p>你或许跟我一样，不想花太多时间去”精通”git的各种命令，想用简单明了的方法来玩git。而Github的客户端恰是这种良药。使用过的童鞋可能有过跟我一样困惑：Github客户端在界面上只能管理Github的代码仓库，怎么才能管理非Github的仓库呢？</p>
+<p>这个问题也就是本文要解决的内容。先讲Github for Mac, 然后是Github for Windows</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/01/28/UserGithubClientForNonGithubRepos/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                <a class="post-title-link" href="/2015/01/07/CSharp to Python Tutorial/" itemprop="url">
+                  从C#到Python
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2015-01-07T20:13:00+08:00" content="2015-01-07">
+              2015-01-07
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/一点一滴/" itemprop="url" rel="index">
+                    <span itemprop="name">一点一滴</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/01/07/CSharp to Python Tutorial/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/01/07/CSharp to Python Tutorial/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <p>项目组最近可能要用Python写一插件，虽然自己只是会用，但是还是被要求给大家做个简单的Python入门培训。只能冲个胖子，硬着头皮上了。<br>由于项目组里大部分童鞋们都会C#，可能如果从C#做类比的角度来阐述Python语法会更好点，然后下面奇怪的Python教程出来了。大家可以在这里得到PPT和代码:  <a href="https://github.com/wudixiaop/Nana/tree/master/Python/Tutorial/Python%20Quick%20Start">https://github.com/wudixiaop/Nana/tree/master/Python/Tutorial/Python%20Quick%20Start</a>。</p>
+<p>下面是讲语法的代码，语法部分在注释中有描述。</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/01/07/CSharp to Python Tutorial/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                <a class="post-title-link" href="/2014/12/24/VSTips/" itemprop="url">
+                  如何在Visual Studio中愉快的玩耍
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2014-12-24T14:50:00+08:00" content="2014-12-24">
+              2014-12-24
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/一点一滴/" itemprop="url" rel="index">
+                    <span itemprop="name">一点一滴</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2014/12/24/VSTips/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2014/12/24/VSTips/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <p>好吧，其实我想要说一些我觉得可以在Visual Studio中提高效率的经验。下面直接进入正题：</p>
+<h3 id="u719F_u8BB0_u5E76_u4F7F_u7528_u5404_u79CD_u5FEB_u6377_u952E"><a href="#u719F_u8BB0_u5E76_u4F7F_u7528_u5404_u79CD_u5FEB_u6377_u952E" class="headerlink" title="熟记并使用各种快捷键"></a>熟记并使用各种快捷键</h3><p>快捷键之所以叫快捷键就是因为它会让事情变得更快捷。好吧，其实我知道前面一句废话。下面就列举一些碰上常用的(基于Visual C# 2005快捷键映射)</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2014/12/24/VSTips/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                <a class="post-title-link" href="/2014/11/10/MonoBehavior event functions/" itemprop="url">
+                  一起看看MonoBehavior内部事件执行顺序
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2014-11-10T21:38:00+08:00" content="2014-11-10">
+              2014-11-10
             </time>
           </span>
 
@@ -247,8 +658,121 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2015/08/15/UNet_5/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/08/15/UNet_5/" itemprop="commentsCount"></span>
+                <a href="/2014/11/10/MonoBehavior event functions/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2014/11/10/MonoBehavior event functions/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <h3 id="u5199_u5728_u6700_u524D_u9762"><a href="#u5199_u5728_u6700_u524D_u9762" class="headerlink" title="写在最前面"></a>写在最前面</h3><p>或许对于大部分Unity3D程序员来说，第一次接触脚本编写的时候都是从MonoBehavior开始的。MonoBehavior是Uniy3d脚本编写核心的类之一， 它预先定义好了很多事件，并且这些事件按照预先定义好顺序执行。了解MonoBehavior提供的这些事件的执行顺序，是我们进一步提高脚步编程和了解Unity3D内部逻辑的必要一步。我们先从MonoBehavior提供的事件说起。</p>
+<h3 id="MonoBehavior_u90FD_u63D0_u4F9B_u4E86_u4EC0_u4E48_u4E8B_u4EF6"><a href="#MonoBehavior_u90FD_u63D0_u4F9B_u4E86_u4EC0_u4E48_u4E8B_u4EF6" class="headerlink" title="MonoBehavior都提供了什么事件"></a>MonoBehavior都提供了什么事件</h3><p>MonoBehavior提供的事件从编辑器到游戏结束都有涉及。下面列举一些常用的，更详列表可以参照 <a href="http://docs.unity3d.com/ScriptReference/MonoBehaviour.html">这个页面</a>。</p>
+<h4 id="u4E0E_u7F16_u8F91_u76F8_u5173"><a href="#u4E0E_u7F16_u8F91_u76F8_u5173" class="headerlink" title="与编辑相关"></a>与编辑相关</h4><table>
+<thead>
+<tr>
+<th style="text-align:left">名称</th>
+<th style="text-align:left">注释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Reset</td>
+<td style="text-align:left">Reset to default values.</td>
+</tr>
+</tbody>
+</table>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2014/11/10/MonoBehavior event functions/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                <a class="post-title-link" href="/2014/11/05/about Unity3D editor/" itemprop="url">
+                  关于 Unity 编辑器一些事儿
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2014-11-05T22:30:00+08:00" content="2014-11-05">
+              2014-11-05
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Unity/" itemprop="url" rel="index">
+                    <span itemprop="name">Unity</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2014/11/05/about Unity3D editor/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2014/11/05/about Unity3D editor/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -270,60 +794,34 @@
         
           <span itemprop="articleBody">
             
-              <p>开篇需要先介绍一个 UNet 系统里面提供的一个类，名字叫做 <strong>NetworkBehaviour</strong>。看到名字，不禁让人想起<br> MonoBehaviour。NetworkBehaviour 继承自 MonoBehaviour，所以基于 NetworkBehaviour 的脚本也是能挂在<br> GameObject 上面的。</p>
-<p>NetworkBehaviour 给我们提供了什么功能呢？大概是如下几点：</p>
-<ul>
-<li>Synchronized Variables</li>
-<li>Network callbacks</li>
-<li>Server and Client functions</li>
-<li>Sending Commands</li>
-<li>Client RPC Calls</li>
-<li>Networked Events</li>
-</ul>
-<p>为了让描述更准确，上面采用了 <a href="http://docs.unity3d.com/Manual/class-NetworkBehaviour.html" target="_blank" rel="external">官方手册</a><br>中的英文描述。这篇的主角就是 Synchronized Variables。</p>
-<h3 id="SyncVar__u521D_u89C1"><a href="#SyncVar__u521D_u89C1" class="headerlink" title="SyncVar 初见"></a>SyncVar 初见</h3><p>我们在接下来把 Synchronized Variables 简称为 SyncVar 。我们先给它来下个粗略的定义：</p>
+              <p><strong> 本文只适合Unty 4.x</strong></p>
+<p>这里描述下Unity3D编辑器使用过程中遇到的坑及其解决方法</p>
+<h4 id="u4E8B_u4EF6_u4E00_uFF1AUnity3d_u7F16_u8F91_u5668_u542F_u52A8_u65F6_u9ED8_u8BA4_u6253_u5F00_u6700_u8FD1_u4E00_u6B21_u6253_u5F00_u7684_u9879_u76EE"><a href="#u4E8B_u4EF6_u4E00_uFF1AUnity3d_u7F16_u8F91_u5668_u542F_u52A8_u65F6_u9ED8_u8BA4_u6253_u5F00_u6700_u8FD1_u4E00_u6B21_u6253_u5F00_u7684_u9879_u76EE" class="headerlink" title="事件一：Unity3d编辑器启动时默认打开最近一次打开的项目"></a>事件一：Unity3d编辑器启动时默认打开最近一次打开的项目</h4><p>默认设置中，Unity3D启动时会自动打开默认最近一次打开的项目。每当只想打开小项目，而偏偏上次打开过一个大项目时，这点让人很抓狂。 </p>
+<p><strong>解决方法:</strong>  </p>
 <blockquote>
-<p>它是 NetworkBehaviour 的一个带有 [SyncVar] 属性的字段</p>
+<ol>
+<li>在编辑器中打开<strong>Unity Preferences</strong>窗口,通过 <strong>Edit-&gt;Preferences…</strong>打开</li>
+<li>在<strong>General</strong>选项卡中把<strong>Always Show Project Wizard</strong>勾选上</li>
+</ol>
 </blockquote>
-<p>注意定义中 <strong>SyncVar 是字段，不是属性</strong>。示意代码大概是这个样子：</p>
-<figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">SpaceShip</span> : <span class="title">NetworkBehaviour</span></span><br><span class="line">&#123;</span><br><span class="line">    [SyncVar]</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span> health;</span><br><span class="line"></span><br><span class="line">    [SyncVar]</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">string</span> playerName;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>上面代码中带有两个 SyncVar。</p>
-<p>当 SyncVar 发生改变时，UNet 会从 Server 端向所有有效的 Client 端发送这些改变。注意这里的方向，是从 Server<br>到 Client ，而不是从 Client 到 Server 的方向。</p>
-<h3 id="SyncVar__u6570_u636E_u7C7B_u578B"><a href="#SyncVar__u6570_u636E_u7C7B_u578B" class="headerlink" title="SyncVar 数据类型"></a>SyncVar 数据类型</h3><p>既然 SyncVar 是字段，字段是有数据类型的。UNet 中这样规定：</p>
-<ul>
-<li><strong>可以是</strong> 所有基本数据类型，比如 string，int，float，bool 等</li>
-<li><strong>可以是</strong> 结构数据，比如 Vector3 等</li>
-<li><strong>不可以是</strong> 类、列表、集合</li>
-</ul>
-<p>大概就是 <strong>值类型可以，引用类型不可以</strong>。当然大部分情况下是这样，特殊情况是存在的。除了 <code>String</code> 这个特殊的<br>引用类型除外，下面会介绍。</p>
-<p>那就是疑问了，既然不能是列表和集合，那如果真要同步一组数组怎么办？</p>
-<p>UNet 提供了一些特殊的类，称之为 SyncList, 这些类是:</p>
-<ul>
-<li>SyncListString</li>
-<li>SyncListFloat</li>
-<li>SyncListInt</li>
-<li>SyncListUInt</li>
-<li>SyncListBool </li>
-</ul>
-<p>他们都继承自 <code>SyncList&lt;T&gt;</code> 泛型类。当然内建类型有局限性，不能满足所有需求，所以 UNet 还给我们提供<br>了 <code>SyncListStruct&lt;T&gt;</code> 泛型类，我们可以通过定义它的子类来扩展，从而达到我们的需求。下面是一个 <code>SyncListStruct&lt;T&gt;</code> 的例子：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> MyScript : NetworkBehaviour</span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">struct</span> POW</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">int</span> <span class="built_in">pow</span>;</span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">float</span> f;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">class</span> SyncListPOW : SyncListStruct&lt;POW&gt;</span><br><span class="line">    &#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> SyncListPOW m_pows = <span class="keyword">new</span> SyncListPOW();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>注意到没有？上面的 <strong>m_pows</strong> 字段并没有 [SyncVar] 属性。这里有一点非常重要，<strong>SyncList 类型<br>的字段，不需要带上 [SyncVar] 属性</strong>。这下子，上面给出的定义要改改了。</p>
-<h3 id="SyncVar__u5B9A_u4E49"><a href="#SyncVar__u5B9A_u4E49" class="headerlink" title="SyncVar 定义"></a>SyncVar 定义</h3><p>让我们来重新给 SyncVar 下定义：</p>
+<h4 id="u4E8B_u4EF6_u4E8C_uFF1AProject_Wizard_u4E2D_u6700_u8FD1_u6253_u5F00_u9879_u76EE_u8BB0_u5F55_u5220_u9664_u4E0D_u4E86"><a href="#u4E8B_u4EF6_u4E8C_uFF1AProject_Wizard_u4E2D_u6700_u8FD1_u6253_u5F00_u9879_u76EE_u8BB0_u5F55_u5220_u9664_u4E0D_u4E86" class="headerlink" title="事件二：Project Wizard中最近打开项目记录删除不了"></a>事件二：Project Wizard中最近打开项目记录删除不了</h4><p>一直不明白为啥不让删除呢？  </p>
+<p><strong>解决方法：</strong>  </p>
 <blockquote>
-<p>它是 NetworkBehaviour 中的一个字段， 如果</p>
 <ul>
-<li>它的类型是基本类型或结构，则需要带上 [SyncVar] 属性</li>
-<li>它的类型继承自 SyncList<t> 或者 SyncListStruct<t>，则不需要带上 [SyncVar] 属性</t></t></li>
+<li><strong>方法一：让项目地址失效</strong>  <blockquote>
+<ul>
+<li>重名名项目文件夹</li>
+<li>把项目移动到别的文件夹</li>
 </ul>
 </blockquote>
-<h3 id="u4EE3_u7801_u793A_u4F8B"><a href="#u4EE3_u7801_u793A_u4F8B" class="headerlink" title="代码示例"></a>代码示例</h3><p>Demo 可以再这里找到：<a href="https://github.com/wudixiaop/UNet/tree/master/Assets/105%20-%20Sync%20Var" target="_blank" rel="external">https://github.com/wudixiaop/UNet/tree/master/Assets/105%20-%20Sync%20Var</a></p>
-<p>SyncVar 相关代码如下：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> UnityEngine.Networking;</span><br><span class="line"><span class="keyword">using</span> UnityEngine;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> SyncVarSample : NetworkBehaviour</span><br><span class="line">&#123;</span><br><span class="line">    [SyncVar]</span><br><span class="line">    <span class="built_in">string</span> State = <span class="string">"Init State"</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">ChangeState</span><span class="params">()</span></span><br><span class="line">    </span>&#123;</span><br><span class="line">        </span><br><span class="line">        State = Random.Range(<span class="number">0</span>, <span class="keyword">int</span>.MaxValue).ToString();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">OnGUI</span><span class="params">()</span></span><br><span class="line">    </span>&#123;</span><br><span class="line">        GUI.Label(<span class="keyword">new</span> Rect(<span class="number">10</span>, <span class="number">20</span>, <span class="number">120</span>, <span class="number">24</span>), State);</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 因为 UNet 是以 Server 为主导的系统，只有在 Server 端改变值才能起作用</span></span><br><span class="line">        <span class="comment">//</span></span><br><span class="line">        <span class="keyword">if</span> (isServer)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (GUI.Button(<span class="keyword">new</span> Rect(<span class="number">10</span>, <span class="number">56</span>, <span class="number">160</span>, <span class="number">24</span>), <span class="string">"ChangeState"</span>))</span><br><span class="line">            &#123;</span><br><span class="line">                ChangeState();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>需要将上面脚本挂到 Spawn Prefab 上面（Spawn Prefab详细参照 <a href="/2015/08/12/UNet_4/" title="[上一篇文章]">[上一篇文章]</a>）。</p>
-<p>将 Demo 程序 build 之后，单独运行 build 出来的程序，并启动 Server。在 Unity 编辑器中运行程序，连接 Server。<br>我们会得到如下截图的样子。</p>
-<p><img src="/images/UNet/syncvarOutput.jpg" alt="syncvaroutput"></p>
-<p>我们每次点击 ChangeState 按钮，左上角的数字就会发生变化。Server 改变了 State 字段的值，Client 端也对应发生改变。</p>
-<p>这篇就到这里。Enjoy!</p>
+</li>
+<li><strong>方法二：修改注册表</strong>  <blockquote>
+<p>删除 HKEY_CURRENT_USER\Software\Unity Technologies\Unity Editor 4.x 下面以 RecentlyUsedProjectPaths 开头的项</p>
+</blockquote>
+</li>
+</ul>
+</blockquote>
+<p>以后继续补充…</p>
 
             
           </span>
@@ -361,8 +859,8 @@
             
             
               
-                <a class="post-title-link" href="/2015/08/12/UNet_4/" itemprop="url">
-                  UNet 0x04： 做一个简单的 Network Manager 界面
+                <a class="post-title-link" href="/2014/10/28/Release/" itemprop="url">
+                  ShaderlabVS Release Page
                 </a>
               
             
@@ -372,8 +870,8 @@
         <div class="post-meta">
           <span class="post-time">
             发表于
-            <time itemprop="dateCreated" datetime="2015-08-12T14:01:00+08:00" content="2015-08-12">
-              2015-08-12
+            <time itemprop="dateCreated" datetime="2014-10-28T21:20:00+08:00" content="2014-10-28">
+              2014-10-28
             </time>
           </span>
 
@@ -382,8 +880,8 @@
               &nbsp; | &nbsp; 分类于
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Unity/" itemprop="url" rel="index">
-                    <span itemprop="name">Unity</span>
+                  <a href="/categories/Shader/" itemprop="url" rel="index">
+                    <span itemprop="name">Shader</span>
                   </a>
                 </span>
 
@@ -398,8 +896,116 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2015/08/12/UNet_4/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/08/12/UNet_4/" itemprop="commentsCount"></span>
+                <a href="/2014/10/28/Release/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2014/10/28/Release/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <h3 id="Latest_Version_-_V0-6"><a href="#Latest_Version_-_V0-6" class="headerlink" title="Latest Version - V0.6"></a><em>Latest Version - V0.6</em></h3><p><hr><br><strong>[2015-10-17] V0.6 release note:</strong></p>
+<ul>
+<li>Add VS2015 support</li>
+<li>Improve code completion feature</li>
+</ul>
+<p><strong>IMPROTANT :</strong> We have to execute <code>vs2015_register.cmd</code> after extension installed to linke .shader and .cginc files to ShaderlabVS plugin on VS2015. It’s not required on VS2013 / VS2012.</p>
+<blockquote>
+<p><strong>Download Address:</strong> <a href="http://pan.baidu.com/s/1jGAjzd8">http://pan.baidu.com/s/1jGAjzd8</a></p>
+</blockquote>
+<p><hr><br><strong>A introduction of ShaderlabVS can be found at <a href="https://github.com/wudixiaop/ShaderlabVS/blob/master/README.md">here</a>. If you have feedbacks or questions, send email to me. My email is rockylai@shuiguzi.com.</strong>  </p>
+<h3 id="Screenshot"><a href="#Screenshot" class="headerlink" title="Screenshot"></a><em>Screenshot</em></h3><p><img src="https://github.com/wudixiaop/ShaderlabVS/raw/master/img/Highlighting.PNG" alt="preview"></p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2014/10/28/Release/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                <a class="post-title-link" href="/2014/08/31/Why I start ShaderlabVS/" itemprop="url">
+                  Why I start ShaderlabVS
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2014-08-31T20:35:00+08:00" content="2014-08-31">
+              2014-08-31
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Shader/" itemprop="url" rel="index">
+                    <span itemprop="name">Shader</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2014/08/31/Why I start ShaderlabVS/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2014/08/31/Why I start ShaderlabVS/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -421,34 +1027,8 @@
         
           <span itemprop="articleBody">
             
-              <p>上一篇中我们引入了 NetworkManager 组件，然后在代码里面通过它来建立了网络连接。这篇让我们来把连接部分的代码独立出来，并提供 GUI 来达到管理 Server / Client 的开启和停止的目的。<br>这样我们以后就可以重复利用代码了。</p>
-<p>下面是我们这个简单的 NetworkManger 界面提供的功能：</p>
-<ul>
-<li>可以启动 / 停止 Server，并且多个程序端只能启动一个 Server</li>
-<li>可以启动 / 停止 Client 并连接 Server</li>
-<li>当 Server 停止时，所有 Client 端界面都会重置</li>
-</ul>
-<p>这个简单的界面如下：</p>
-<p><img src="/images/UNet/SimpleUI.PNG" alt="ui"></p>
-<p>本篇中的 demo 可以 <a href="https://github.com/wudixiaop/UNet/tree/master/Assets/104%20-%20simple%20network%20GUI" target="_blank" rel="external">戳这里</a> 得到，下面就 Demo 细说一下。</p>
-<h3 id="u4EE3_u7801"><a href="#u4EE3_u7801" class="headerlink" title="代码"></a>代码</h3><p>我们通过 NetworkManager 的 <code>StartServer()</code> / <code>StopServer()</code> 方法来开启 / 停止 Server, <code>StartClient()</code> / <code>StopClient()</code> 方法来启动 / 停止 Client。我们可以新建一个 GameObject，<br>然后把下面脚本挂在它上面。脚本代码如下:</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> UnityEngine;</span><br><span class="line"><span class="keyword">using</span> UnityEngine.Networking;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> SimpleNetworkGUI : MonoBehaviour</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">bool</span> isHaveNetworkRole = <span class="literal">false</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">Start</span><span class="params">()</span></span><br><span class="line">    </span>&#123;</span><br><span class="line">        isHaveNetworkRole = <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">OnDisconnected</span><span class="params">(NetworkMessage msg)</span></span><br><span class="line">    </span>&#123;</span><br><span class="line">        isHaveNetworkRole = <span class="literal">false</span>;</span><br><span class="line">        Application.LoadLevel(Application.loadedLevel);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">OnGUI</span><span class="params">()</span></span><br><span class="line">    </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(isHaveNetworkRole)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(GUI.Button(<span class="keyword">new</span> Rect(Screen.width / <span class="number">2</span> - <span class="number">80</span>, Screen.height / <span class="number">2</span> - <span class="number">12</span>, <span class="number">160</span>, <span class="number">24</span>), <span class="string">"Stop"</span>))</span><br><span class="line">            &#123;</span><br><span class="line">                NetworkManager.singleton.StopServer();</span><br><span class="line">                NetworkManager.singleton.StopClient();</span><br><span class="line">                OnDisconnected(null);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span>(GUI.Button(<span class="keyword">new</span> Rect(Screen.width / <span class="number">2f</span> - <span class="number">80</span>, Screen.height / <span class="number">2</span> - <span class="number">12</span>, <span class="number">160</span>, <span class="number">24</span>), <span class="string">"Start Server"</span>))</span><br><span class="line">        &#123;</span><br><span class="line">            isHaveNetworkRole = NetworkManager.singleton.StartServer();</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span>(GUI.Button(<span class="keyword">new</span> Rect(Screen.width / <span class="number">2f</span> - <span class="number">80</span>, Screen.height / <span class="number">2</span> + <span class="number">24</span>, <span class="number">160</span>, <span class="number">24</span>), <span class="string">"Start Client"</span>))</span><br><span class="line">        &#123;</span><br><span class="line">            var client = NetworkManager.singleton.StartClient();</span><br><span class="line">            client.RegisterHandler(MsgType.Disconnect, OnDisconnected);</span><br><span class="line">            isHaveNetworkRole = <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="u5173_u4E8E_Demo__u5176_u4ED6_u4E00_u4E9B_u9700_u8981_u77E5_u9053_u7684"><a href="#u5173_u4E8E_Demo__u5176_u4ED6_u4E00_u4E9B_u9700_u8981_u77E5_u9053_u7684" class="headerlink" title="关于 Demo 其他一些需要知道的"></a>关于 Demo 其他一些需要知道的</h3><ul>
-<li>首先，代码中利用了 NetworkManager 组件。我们可以把这个组件挂到挂有上面 UI 脚本的 GameObject 之上。</li>
-<li>为了演示效果，Demo 里面创建了一个Prefab， 这个 Prefab 会传递给上面的 NetworkManager 组件（Spawn Info 下的 Player Prefab）。当 Client 连接已经启动的 Server 的时候，Server 端会创建这个 Perfab 的实例。<br>这个 Prefab 比较特殊，它上面需要添加 <strong>NetworkIndentity</strong> 组件，这样才能传递过去给 NetworkManager。</li>
-</ul>
-<p>到这里，可能有的朋友有疑问。什么 Spawn？ NetworkIndentity 又是什么鬼？</p>
-<h3 id="UNet__u4E2D_u7684_Spawn"><a href="#UNet__u4E2D_u7684_Spawn" class="headerlink" title="UNet 中的 Spawn"></a>UNet 中的 Spawn</h3><p>换句话说，Spawn 就是网络对象实例的初始化这个行为，再换句话说就是创建网络对象。在 UNet 中用 Spawn 来描述，而不是用 Instantiate。</p>
-<p>UNet 是个以 Server 为主导的系统，所有的 Spawn 行为都要在 Server 端发生，通过调用 <code>NetworkServer.Spawn( GameObject go )</code> 方法，产生的对象会在各个 Client 出现对应的实例。</p>
-<h3 id="u7F51_u7EDC_u5BF9_u8C61_u4E0E_NetworkIndentity"><a href="#u7F51_u7EDC_u5BF9_u8C61_u4E0E_NetworkIndentity" class="headerlink" title="网络对象与 NetworkIndentity"></a>网络对象与 NetworkIndentity</h3><p>每个网络对象（Networked Object）都需要在根上带上 NetworkIndentity 组件。那 NetworkIndentity 组件是什么？ 大概是这个样子：</p>
-<ul>
-<li>它是标志对象网络身份的一个组件</li>
-<li>拥有系统用来跟踪对象的信息，比如 SenceId, NetworkID, AssetID 等</li>
-<li>所有需要 Spawn 的 Prefab 都必须在对象根上带有这个组件</li>
-</ul>
-<p>对了，需要注意一点。带有 NetworkIndentity 组件的对象，在未 Spawn 之前是不可用的，Disabled 状态，即使在 Hierarchy 里面有它的实例也会自动被 Disabled.</p>
-<h3 id="NetworkManagerHUD__u7EC4_u4EF6"><a href="#NetworkManagerHUD__u7EC4_u4EF6" class="headerlink" title="NetworkManagerHUD 组件"></a>NetworkManagerHUD 组件</h3><p>为什么要提到这个组件呢。因为它也是一个 NetworkManager 管理的界面。它是 Unity 提供给我们的，提供比我们这篇文章所给的更加丰富的功能。平时开发调试的时候，建议使用这个控件。<br>引出 NetworkManagerHUD 组件也是这篇文章的目的。</p>
-<p>好了，这篇就到这里。Enjoy!</p>
+              <p>Last month, <a href="http://unityvs.com/" target="_blank" rel="external">SyntaxTree</a>, the creator of UnityVS plugin for Visual Studio was acquired by Microsoft. Microsoft have published the UnityVS to Visual Studio users for free at the end of July.</p>
+<p>UnityVS is cool tool that make it’s possible to debug Unity scripts in VS. But the tool is not support the Unity shaderlab syntax. it’s pain for me to read/write shader in VS, So I created the ShaderlabVS to help myself and may would help someone who need it.</p>
 
             
           </span>
@@ -474,7 +1054,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/16/">16</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span>
   </nav>
 
 

@@ -76,7 +76,7 @@ Shader 里面怎么体现？
 切线 (tanent)
 颜色 (colo">
 <meta property="og:image" content="http://blog.shuiguzi.com/images/Shader/10/rgb.png">
-<meta property="og:updated_time" content="2015-12-26T12:10:56.000Z">
+<meta property="og:updated_time" content="2015-12-27T11:49:37.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="瞎聊 Unity Shader 系列之十：数据的标签：语义绑定">
 <meta name="twitter:description" content="这节内容跟 [渲染管线] 内容关系比较紧密，建议先了解渲染管线的整个流程。
@@ -323,6 +323,7 @@ Shader 里面怎么体现？
 <h3 id="u6570_u636E_u7684_u8F93_u5165_u8F93_u51FA"><a href="#u6570_u636E_u7684_u8F93_u5165_u8F93_u51FA" class="headerlink" title="数据的输入输出"></a>数据的输入输出</h3><p>数据存放在寄存器里面。输入的时候从寄存器读取数据，输出的时候将数据写到寄存器里面。</p>
 <h3 id="Shader__u4E2D_u7684_u4F53_u73B0"><a href="#Shader__u4E2D_u7684_u4F53_u73B0" class="headerlink" title="Shader 中的体现"></a>Shader 中的体现</h3><p>首先是数据的种类的表示。现实生活中，我们也喜欢物品分类，然后对分类取个名字或贴个标签，以后我们便可以从这一类中存取属于这类的物品。Shader 里面也有类似的做法，给 Shader 函数输入输出的数据结构打上标签。<br>这种标签叫做 <strong>语义（Semantic）</strong>， 打标签的行为叫做 <strong>语义绑定</strong> 。一般用一个冒号后面带上标签的名字来表示。长相大概是这个要样子 <code>:XXXXX</code> （XXXXX 表示语义）。</p>
 <p>我们有了标签，那我们把它放在 shader 代码什么地方呢？ 之前提到我们是给函数输入输出的数据结构打上标签，而函数的输入就是参数。对于参数，我们可以使用<strong>结构体</strong>也可以直接使用<strong>基础数据类型</strong>，所以能出现如下两种位置：</p>
+<a id="more"></a>
 <p>使用基础数据类型做参数时，大概是这个样子：  </p>
 <blockquote>
 <p> void shaderFunction(dataType variableName :XXXXX)</p>

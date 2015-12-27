@@ -56,7 +56,7 @@ NetworkBehaviour 给我们提供了什么功能呢？大概是如下几点：
 
 Synch">
 <meta property="og:image" content="http://blog.shuiguzi.com/images/UNet/syncvarOutput.jpg">
-<meta property="og:updated_time" content="2015-12-26T12:10:56.000Z">
+<meta property="og:updated_time" content="2015-12-27T11:51:17.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="UNet 0x05：SyncVar">
 <meta name="twitter:description" content="开篇需要先介绍一个 UNet 系统里面提供的一个类，名字叫做 NetworkBehaviour。看到名字，不禁让人想起 MonoBehaviour。NetworkBehaviour 继承自 MonoBehaviour，所以基于 NetworkBehaviour 的脚本也是能挂在 GameObject 上面的。
@@ -285,6 +285,7 @@ Synch">
 <li>Networked Events</li>
 </ul>
 <p>为了让描述更准确，上面采用了 <a href="http://docs.unity3d.com/Manual/class-NetworkBehaviour.html" target="_blank" rel="external">官方手册</a><br>中的英文描述。这篇的主角就是 Synchronized Variables。</p>
+<a id="more"></a>
 <h3 id="SyncVar__u521D_u89C1"><a href="#SyncVar__u521D_u89C1" class="headerlink" title="SyncVar 初见"></a>SyncVar 初见</h3><p>我们在接下来把 Synchronized Variables 简称为 SyncVar 。我们先给它来下个粗略的定义：</p>
 <blockquote>
 <p>它是 NetworkBehaviour 的一个带有 [SyncVar] 属性的字段</p>

@@ -53,6 +53,7 @@ In the following simple scene, one legitimate way of organizing the scene into A
 </div>
 
 在接下来的简单的场景中, 为了AssetBundle 最大的用途，有个合理的组织 AssetBundle 场景内容的方式就是把草地，沙丘，岩石柱，树和仙人掌都打包到一个基础场景里面。这个基础场景可能包含依赖的材质，因为他们很简单，以后不太可能会基于分辨率或者设备而改变。坦克模型将需要一个自己的 AssetBundle, 这样允许改变或者更新玩家资源。为了实现坦克游戏对象，还需要两个额外的 AssetBundle. 一个是独立的材质资源，另外是独立的纹理资源。这将会给需要给纹理和材质的更改和更新时带来最小的麻烦。这个特别的组织方式也允许有其他版本或者基于平台、位置或者目标设备分辨率选择 AssetBundle 的变体。
+<!--more-->
 
 ![simpleScene](http://unity3d.com/sites/default/files/simple_scene.png) 
 <div style='display:none'>

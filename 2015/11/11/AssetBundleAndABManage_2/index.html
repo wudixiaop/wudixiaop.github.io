@@ -71,7 +71,7 @@
 <meta property="og:image" content="http://unity3d.com/sites/default/files/assetbundle_menu_item.png">
 <meta property="og:image" content="http://unity3d.com/sites/default/files/assetbundles_folder.png">
 <meta property="og:image" content="http://unity3d.com/sites/default/files/grouped_by_target.png">
-<meta property="og:updated_time" content="2015-12-26T12:10:56.000Z">
+<meta property="og:updated_time" content="2015-12-27T11:47:32.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Unity 5：使用 Asset Bundle 和 Asset Bundle Manager (2)">
 <meta name="twitter:description" content="这篇是 Unity 官方教程 AssetBundles and the AssetBundle Manager 的翻译， 分三部分，这是第二部分。翻译不到之处请不吝指出。非常谢谢！
@@ -313,7 +313,7 @@
 <p>值得注意的是一个 AssetBundle 包括平台准备资源。AssetBundle 的内容会根据 Import Settings 里设置的当前平台和 Build Settings 里面的目标平台做编译和优化。因为这样，需要为每个平台编译 AssetBundle。</p>
 <div style="display:none"><br>In the following simple scene, one legitimate way of organizing the scene into AssetBundles for the greatest versatility would be to have a base scene, which would include the ground, dunes, rock columns, tree and cactus. This scene could be allowed to include the dependent Materials, as these are fairly simple and would not likely need to be changed depending upon resolution or device. The tank model would be in an AssetBundle of it’s own, which would allow changes or updates to the player Asset. Two additional AssetBundles would be used to complete the tank GameObject. These would be the dependent Materials in one, and the dependent Texture in another. This would allow for changes and updates to the texture and material as needed with the least amount of trouble. This particular organization will also allow for alternative versions, or variants, of these Assets to be loaded from a choice of AssetBundle Variants on demand depending upon need, such as platform, location or resolution of the target device.<br></div>
 
-<p>在接下来的简单的场景中, 为了AssetBundle 最大的用途，有个合理的组织 AssetBundle 场景内容的方式就是把草地，沙丘，岩石柱，树和仙人掌都打包到一个基础场景里面。这个基础场景可能包含依赖的材质，因为他们很简单，以后不太可能会基于分辨率或者设备而改变。坦克模型将需要一个自己的 AssetBundle, 这样允许改变或者更新玩家资源。为了实现坦克游戏对象，还需要两个额外的 AssetBundle. 一个是独立的材质资源，另外是独立的纹理资源。这将会给需要给纹理和材质的更改和更新时带来最小的麻烦。这个特别的组织方式也允许有其他版本或者基于平台、位置或者目标设备分辨率选择 AssetBundle 的变体。</p>
+<p>在接下来的简单的场景中, 为了AssetBundle 最大的用途，有个合理的组织 AssetBundle 场景内容的方式就是把草地，沙丘，岩石柱，树和仙人掌都打包到一个基础场景里面。这个基础场景可能包含依赖的材质，因为他们很简单，以后不太可能会基于分辨率或者设备而改变。坦克模型将需要一个自己的 AssetBundle, 这样允许改变或者更新玩家资源。为了实现坦克游戏对象，还需要两个额外的 AssetBundle. 一个是独立的材质资源，另外是独立的纹理资源。这将会给需要给纹理和材质的更改和更新时带来最小的麻烦。这个特别的组织方式也允许有其他版本或者基于平台、位置或者目标设备分辨率选择 AssetBundle 的变体。<br><a id="more"></a></p>
 <p><img src="http://unity3d.com/sites/default/files/simple_scene.png" alt="simpleScene"> </p>
 <div style="display:none"><br><small><em>A Simplified Example Scene</em></small><br></div><br><small><em>一个简单的示例场景</em></small><br><br><div style="display:none"><br>To organize and setup AssetBundles in the editor, the Assets themselves need to be assigned to an AssetBundle. When viewing an Asset, the AssetBundle Name and AssetBundle Variant can be found at the bottom of the preview window in the Inspector. The preview window must be open to see them.<br></div>
 

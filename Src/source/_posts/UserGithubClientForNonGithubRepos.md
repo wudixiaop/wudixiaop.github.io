@@ -11,6 +11,8 @@ __[2015-08-14 更新]__ 之前的 Github for Windows 和 Github for Mac 已经�
 
 这个问题也就是本文要解决的内容。先讲Github for Mac, 然后是Github for Windows
 
+<!--more-->
+
 ### Github for Mac
 
 首先创建一个本地的仓库, 假设取名为**Freekick**

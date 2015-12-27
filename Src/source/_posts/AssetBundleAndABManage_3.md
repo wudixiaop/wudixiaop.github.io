@@ -58,6 +58,8 @@ There are two public variables: public string assetBundleName; and public string
 The script comprises of a Start() function and two Coroutines, called from Start(). In Initialize(), DontDestroyOnLoad() is called, the path to the AssetBundles is set and the AssetBundle Manifest is initialized. In InstantiateGameObjectAsync() the Asset and AssetBundle name are requested using AssetBundleManager.LoadAssetAsync() and if the Asset requested is not null, it is instantiated.
 </div>
 
+<!--more-->
+
 这个脚本是由一个 `Start()` 函数和被 `Start()` 调用的两个协程组成的。`Initialize()` 调用了 `DontDestoryOnLoad()`, 设置了 AssetBundle 的路径和初始化了 AssetBundle 清单。在 `InstantiateGameObjectAsync()` 中，如果资源不为空，`AssetBundleManager.LoadAssetAsync()` 调用资源和 AssetBundle 的名字。
 
 <div style='display:none'>

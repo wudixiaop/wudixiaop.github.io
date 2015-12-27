@@ -63,7 +63,7 @@ Unity 中的 Color首先我们来回答第一个问题。聪明的你可能已�
 Color 类有 4 个字段表示颜色的各通道数值，他">
 <meta property="og:image" content="http://blog.shuiguzi.com/images/BrigthenImage/b1.png">
 <meta property="og:image" content="http://blog.shuiguzi.com/images/BrigthenImage/b2.png">
-<meta property="og:updated_time" content="2015-12-26T12:10:56.000Z">
+<meta property="og:updated_time" content="2015-12-27T11:48:39.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="如何改变图片亮度">
 <meta name="twitter:description" content="有的时候我们有可能有需求将较暗的图像简单的提亮，这篇文章主要讲一种改变图片亮度的方式。我们从两个问题入手：
@@ -298,7 +298,8 @@ Color 类有 4 个字段表示颜色的各通道数值，他">
 <li><code>a</code> aplha通道</li>
 </ul>
 <p>各个通道的数值都是被标准化为 <code>0...1</code> 之间的值。</p>
-<h3 id="u6539_u53D8_u4EAE_u5EA6_u7684_u7B97_u6CD5"><a href="#u6539_u53D8_u4EAE_u5EA6_u7684_u7B97_u6CD5" class="headerlink" title="改变亮度的算法"></a>改变亮度的算法</h3><p>上面 Color 各通道的数值都被标准化，这里我们也依葫芦画瓢来把我们要提高的亮度 brightness 一个数值，不过我们设定它的取值区间为<br><code>-1...1</code>。当 brightness 为负数的时候，图片减暗，正数时，图片变亮。</p>
+<h3 id="u6539_u53D8_u4EAE_u5EA6_u7684_u7B97_u6CD5"><a href="#u6539_u53D8_u4EAE_u5EA6_u7684_u7B97_u6CD5" class="headerlink" title="改变亮度的算法"></a>改变亮度的算法</h3><a id="more"></a>
+<p>上面 Color 各通道的数值都被标准化，这里我们也依葫芦画瓢来把我们要提高的亮度 brightness 一个数值，不过我们设定它的取值区间为<br><code>-1...1</code>。当 brightness 为负数的时候，图片减暗，正数时，图片变亮。</p>
 <p>算法, 假设 RGB 通道值为 c：</p>
 <ul>
 <li>当 brightness &lt; 0 时 c = c + c * brightness</li>

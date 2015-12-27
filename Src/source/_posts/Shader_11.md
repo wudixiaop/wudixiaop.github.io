@@ -32,6 +32,8 @@ ZTest Less | Greater | LEqual | GEqual | Equal | NotEqual | Always
 
 ZTest 默认的值是 LEqual, 也就是渲染在物体在这个深度值同位置或者之前的物体，不渲染之后的物体。
 
+<!--more-->
+
 你也许会想，那如果连个像素的深度值一样怎么办？ 深度值一样的情况也叫做 **深度冲突** (Z-fighting)。解决方法是给其中某一个物体设置偏移量。 Shaderlab 中语法是:
 
 {% codeblock %}

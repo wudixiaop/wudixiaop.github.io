@@ -53,7 +53,7 @@
 前两篇文章我们建立 Client / Server 间的连接的时候，手动配置了 Server 的端口和 Client 要连接的目标 Server 及其端口。这些都是在代码里面实现的。这篇文章我们引入 UNet 提供的一个网络管理组件来达到同样的效果。这个组件的名字叫做 Net">
 <meta property="og:image" content="http://blog.shuiguzi.com/images/UNet/NetworkManagerInspector.PNG">
 <meta property="og:image" content="http://blog.shuiguzi.com/images/UNet/103Output.PNG">
-<meta property="og:updated_time" content="2015-12-26T12:10:56.000Z">
+<meta property="og:updated_time" content="2015-12-27T11:50:54.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="UNet 0x03：NetworkManager 初见">
 <meta name="twitter:description" content="阅读本章之前, 建议先阅读 [UNet 0x01: 网络连接的建立] 和 [UNet 0x02: 发送消息] 这两篇文章。
@@ -275,6 +275,7 @@
 <p><img src="/images/UNet/NetworkManagerInspector.PNG" alt="networkmanager"></p>
 <p>上图中 Network Info 部分就是就是配置 Server 地址及其端口的地方。</p>
 <p>接下来看看 NetworkManager 如何启动一个 Server / Client / Host。</p>
+<a id="more"></a>
 <h3 id="u5229_u7528_NetowrkManager__u7684_u65B9_u6CD5_u66FF_u6362_u4E4B_u524D_u4EE3_u7801"><a href="#u5229_u7528_NetowrkManager__u7684_u65B9_u6CD5_u66FF_u6362_u4E4B_u524D_u4EE3_u7801" class="headerlink" title="利用 NetowrkManager 的方法替换之前代码"></a>利用 NetowrkManager 的方法替换之前代码</h3><p>利用 NetworkManager 的方法替换之前的代码，大体为：</p>
 <ul>
 <li>之前我们用 <code>NetworkServer.listen(port)</code> 来启动一个 Server 并监听某个端口。NetworkManager 提供 <code>StartServer()</code> 方法替代</li>

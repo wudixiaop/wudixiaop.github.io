@@ -11,6 +11,8 @@ tags: Unity
 
 下面直接放出 shader:
 
+<!--more-->
+
 {% codeblock %}
 Shader "Sprites/Circle"
 {

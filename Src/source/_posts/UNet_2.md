@@ -18,6 +18,8 @@ tags:
 
 新的网路系统 UNet 提供了一个抽象类，叫做 `MessageBase`, 它的原型大概是下面这样:
 
+<!--more-->
+
 {% codeblock %}
 public abstract class MessageBase
 {

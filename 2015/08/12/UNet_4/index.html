@@ -58,7 +58,7 @@
 可以启动 / 停止 Server，并且多个程序端只能启动一个 Server
 可以启">
 <meta property="og:image" content="http://blog.shuiguzi.com/images/UNet/SimpleUI.PNG">
-<meta property="og:updated_time" content="2015-12-26T12:10:56.000Z">
+<meta property="og:updated_time" content="2015-12-27T11:51:09.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="UNet 0x04： 做一个简单的 Network Manager 界面">
 <meta name="twitter:description" content="上一篇中我们引入了 NetworkManager 组件，然后在代码里面通过它来建立了网络连接。这篇让我们来把连接部分的代码独立出来，并提供 GUI 来达到管理 Server / Client 的开启和停止的目的。这样我们以后就可以重复利用代码了。
@@ -285,6 +285,7 @@
 <li>当 Server 停止时，所有 Client 端界面都会重置</li>
 </ul>
 <p>这个简单的界面如下：</p>
+<a id="more"></a>
 <p><img src="/images/UNet/SimpleUI.PNG" alt="ui"></p>
 <p>本篇中的 demo 可以 <a href="https://github.com/wudixiaop/UNet/tree/master/Assets/104%20-%20simple%20network%20GUI" target="_blank" rel="external">戳这里</a> 得到，下面就 Demo 细说一下。</p>
 <h3 id="u4EE3_u7801"><a href="#u4EE3_u7801" class="headerlink" title="代码"></a>代码</h3><p>我们通过 NetworkManager 的 <code>StartServer()</code> / <code>StopServer()</code> 方法来开启 / 停止 Server, <code>StartClient()</code> / <code>StopClient()</code> 方法来启动 / 停止 Client。我们可以新建一个 GameObject，<br>然后把下面脚本挂在它上面。脚本代码如下:</p>

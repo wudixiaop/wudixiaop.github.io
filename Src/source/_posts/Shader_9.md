@@ -15,6 +15,8 @@ tags: Shader
 
 Shaderlab 提供不同的数据类型（详情见下面）。如果把这些类型和默认值格式填充进上面的语法后，会变成下面的样子：
 
+<!--more-->
+
 > 数值类：
 >> name ("display name", Range (min, max)) = number  
 >> name ("display name", Float) = number  

@@ -54,7 +54,7 @@
 我们先把只在 Server 端绘制的按钮：
 1234567if (isServer)&amp;#123;    if (GUI.Button(new Rect(10, 56, 160, 24), &quot;ChangeState&quot;))    &amp;#123;        Chan">
 <meta property="og:image" content="http://blog.shuiguzi.com/images/UNet/UNetDirections.jpg">
-<meta property="og:updated_time" content="2015-12-26T12:10:56.000Z">
+<meta property="og:updated_time" content="2015-12-27T11:51:25.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="UNet 0x06：Command">
 <meta name="twitter:description" content="最开始我们来对上篇文章 [UNet 0x05: SyncVar] 中的程序做点修改。在这里也建议朋友们先阅读上篇，然后继续阅读下面内容。
@@ -275,6 +275,7 @@
 <p>我们先把只在 Server 端绘制的按钮：</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (isServer)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span> (GUI.Button(<span class="keyword">new</span> Rect(<span class="number">10</span>, <span class="number">56</span>, <span class="number">160</span>, <span class="number">24</span>), <span class="string">"ChangeState"</span>))</span><br><span class="line">    &#123;</span><br><span class="line">        ChangeState();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>改成在 Client 端绘制</p>
+<a id="more"></a>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (!isServer) <span class="comment">// 这里是改变的地方</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span> (GUI.Button(<span class="keyword">new</span> Rect(<span class="number">10</span>, <span class="number">56</span>, <span class="number">160</span>, <span class="number">24</span>), <span class="string">"ChangeState"</span>))</span><br><span class="line">    &#123;</span><br><span class="line">        ChangeState();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>改完之后我们运行程序会得到一个结果：无论我们怎么点 ChangeState 按钮，Client 端左上角文字有变化，而 Server 端左上角的文字都不会变化。</p>
 <p>这为什么呢？我们上篇文章中提到 SyncVar 只能从 Server 到 Client 端的方向起作用，所以我们上面点击 ChangeState 按钮<br>是在 Client 端执行的，只改变了 Client 端的值，不会对 Server 端起作用。</p>

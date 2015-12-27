@@ -23,6 +23,8 @@ tags: Shader
 ### _Screenshot_  
 ![preview](https://github.com/wudixiaop/ShaderlabVS/raw/master/img/Highlighting.PNG)
 
+<!--more-->
+
 ### _History:_
 
 **[2014-10-28] V0.5 release note:**

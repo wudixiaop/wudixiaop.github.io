@@ -13,6 +13,9 @@ tags: Unity
 
 速度太慢的问题怎么解决相信网络上有一大推方法，这里就不多说了，下面主要列出 XCode 各个版本的下载地址（**需要 apple id**）:
 
+<!--more-->
+
+
 * Xcode 7
 	* 7.1 beta: <https://developer.apple.com/services-account/download?path=/Developer_Tools/Xcode_7.1_beta/Xcode_7.1_beta.dmg>
 	* 7.0 : <https://developer.apple.com/services-account/download?path=/Developer_Tools/Xcode_7/Xcode_7.dmg>

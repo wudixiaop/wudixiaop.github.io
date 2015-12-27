@@ -57,7 +57,7 @@ RockStar 只支持 Python 3，不能在 Python 2 上面。如果本机没有 Pyh
 RockStar 只支持 Python 3，不能在 Python 2 上面。如果本机没有 Pyhon3 可以从 http://python.org 里面下载安装，当前版本的下载地址为 https://www.python.org/downloads/relea">
 <meta property="og:image" content="http://blog.shuiguzi.com/images/RockStar/rockstar.PNG">
 <meta property="og:image" content="http://blog.shuiguzi.com/images/RockStar/gitAddRepo.PNG">
-<meta property="og:updated_time" content="2015-12-26T12:10:56.000Z">
+<meta property="og:updated_time" content="2015-12-27T11:49:22.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="好玩：如何把 Github Contributions 填充满">
 <meta name="twitter:description" content="先看效果：  
@@ -288,6 +288,7 @@ RockStar 只支持 Python 3，不能在 Python 2 上面。如果本机没有 Pyh
 <p>pip install rockstar</p>
 </blockquote>
 <p>输入完成之后, 我们创建一个新文件夹，比如叫做 RSFunny, 并在这个文件夹下面创建一个 python 脚本，比如叫做 rockstar.py。 脚步的内容如下：</p>
+<a id="more"></a>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> RockStar <span class="keyword">import</span> RockStar</span><br><span class="line"></span><br><span class="line">csharp_code = <span class="string">"""using System;</span><br><span class="line"></span><br><span class="line">class HelloWorld</span><br><span class="line">&#123;</span><br><span class="line">    static void Main()</span><br><span class="line">    &#123;</span><br><span class="line">        Console.WriteLine("I'm Rocky");</span><br><span class="line">    &#125;</span><br><span class="line">&#125;"""</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 400 天</span></span><br><span class="line">rock_it_bro = RockStar(days=<span class="number">400</span>, file_name=<span class="string">'rockstar.cs'</span>, code=csharp_code)</span><br><span class="line">rock_it_bro.make_me_a_rockstar()</span><br></pre></td></tr></table></figure>
 <p>更多的例子我们能参考这里 <a href="https://github.com/avinassh/rockstar/tree/master/examples" target="_blank" rel="external">https://github.com/avinassh/rockstar/tree/master/examples</a>。</p>
 <p>接下来，在命令行中跳转到到 RSFunny 目录下, 准备运行 rockstar.py。这里需要注意一下，因为脚本需要用到 git.exe，所以我们需要把 git.exe 的路径加入到当前的环境变量 <code>PATH</code> 中，不然会抛出找不到文件的错误。<br>如果安装了 Github for Windows 客户端，我们可以从客户端的安装目录 <code>%AppData%\..\Local\GitHub</code> 下找到 git.exe。添加完后，我们运行脚本：  </p>

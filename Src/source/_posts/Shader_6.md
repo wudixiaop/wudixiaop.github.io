@@ -9,6 +9,8 @@ tags: Shader
 
 下面有段基于 shaderlab 的 shader 的大概框架的伪代码，在之前要解释下代码中带中括号的部分，如 `[Properties]`, 表示是可以选择的，也就是说可以不写。
 
+<!--more-->
+
 {% codeblock %}
 //shader 的名字会显示在 Unity 的 Inspector 中选择 shader 的菜单里面
 Shader "shader 的名字" {

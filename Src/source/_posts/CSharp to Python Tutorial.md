@@ -10,6 +10,7 @@ tags: Python
 
 下面是讲语法的代码，语法部分在注释中有描述。
 
+<!--more-->
 
 {% codeblock lang:python %}
     # -*- encoding:utf-8 -*-

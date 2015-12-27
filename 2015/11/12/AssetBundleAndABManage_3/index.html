@@ -63,7 +63,7 @@
 <meta property="og:image" content="http://unity3d.com/sites/default/files/build_assetbundles.png">
 <meta property="og:image" content="http://unity3d.com/sites/default/files/local_assetbundle_server.png">
 <meta property="og:image" content="http://unity3d.com/sites/default/files/assetbundle_serer_url.png">
-<meta property="og:updated_time" content="2015-12-26T12:10:56.000Z">
+<meta property="og:updated_time" content="2015-12-27T11:47:44.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Unity 5：使用 Asset Bundle 和 Asset Bundle Manager (3)">
 <meta name="twitter:description" content="这篇是 Unity 官方教程 AssetBundles and the AssetBundle Manager 的翻译， 分三部分，这是第三部分。翻译不到之处请不吝指出。非常谢谢！
@@ -315,6 +315,7 @@
 </ul>
 <div style="display:none"><br>The script comprises of a Start() function and two Coroutines, called from Start(). In Initialize(), DontDestroyOnLoad() is called, the path to the AssetBundles is set and the AssetBundle Manifest is initialized. In InstantiateGameObjectAsync() the Asset and AssetBundle name are requested using AssetBundleManager.LoadAssetAsync() and if the Asset requested is not null, it is instantiated.<br></div>
 
+<a id="more"></a>
 <p>这个脚本是由一个 <code>Start()</code> 函数和被 <code>Start()</code> 调用的两个协程组成的。<code>Initialize()</code> 调用了 <code>DontDestoryOnLoad()</code>, 设置了 AssetBundle 的路径和初始化了 AssetBundle 清单。在 <code>InstantiateGameObjectAsync()</code> 中，如果资源不为空，<code>AssetBundleManager.LoadAssetAsync()</code> 调用资源和 AssetBundle 的名字。</p>
 <div style="display:none"><br>What is important to note here, by looking at the Asset “MyCube” in “AssetBundleSample/Assets” is that “MyCube” is dependent upon “MyMaterial” which is then dependent on “UnityLogo”. Only the Asset “MyCube” was requested, and all of the dependent Assets were correctly loaded.<br></div>
 

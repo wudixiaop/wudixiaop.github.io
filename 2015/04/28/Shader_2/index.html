@@ -58,7 +58,7 @@ Vertex Shader： 对顶点数据编程的一段程序。 人类有懒惰的天�
 渲染管线(Rendering Pipeline)： 一提到管线，感觉很高大上的样子。说的俗一点就是可以理解为流水线。渲染管线我们可暂时理解为 从得到模型数据到绘制出图像 这一过程的称呼。
 Vertex Shader： 对顶点数据编程的一段程序。 人类有懒惰的天性，习惯用简化的词汇来表达同一个东西。对 Vertex">
 <meta property="og:image" content="http://blog.shuiguzi.com/images/Shader/2/rendering-pipeline.jpg">
-<meta property="og:updated_time" content="2015-12-26T12:10:56.000Z">
+<meta property="og:updated_time" content="2015-12-27T11:49:50.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="瞎聊 Unity Shader 系列之二：渲染管线">
 <meta name="twitter:description" content="这节描述的是图形渲染的大致过程。
@@ -294,6 +294,7 @@ Vertex Shader： 对顶点数据编程的一段程序。 人类有懒惰的天�
 <li>现实中同时会进行多条渲染管线，他们是<strong>并行的</strong>。 这点概念比较重要，以后还会提到它。我们记住 GPU 并行能力很强。</li>
 <li>最后输出的 FrameBuffer (可以理解为渲染出来的图片) 有几率被抛弃掉，也就是说不显示在显示设备上。这个以后单独说明原因。好比残酷的现实世界，努力了（整个渲染过程）也不一定会成功（被显示出来）。</li>
 </ul>
+<a id="more"></a>
 <h3 id="u603B_u7ED3"><a href="#u603B_u7ED3" class="headerlink" title="总结"></a>总结</h3><p>渲染管道是从得模型数据到图像生成过程的一种描述。Vertex Shader 能对顶点数据写处理算法，而 Fragment Shader 能对像素数据写处理算法。</p>
 <h3 id="u53C2_u8003_uFF1A"><a href="#u53C2_u8003_uFF1A" class="headerlink" title="参考："></a>参考：</h3><ul>
 <li><a href="http://en.wikibooks.org/wiki/Cg_Programming/Programmable_Graphics_Pipeline" target="_blank" rel="external">Cg Programming in Unity</a></li>

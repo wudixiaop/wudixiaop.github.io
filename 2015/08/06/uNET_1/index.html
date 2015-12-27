@@ -59,7 +59,7 @@
 高层次的 High Level">
 <meta property="og:image" content="http://blog.shuiguzi.com/images/UNet/NetworkHost.png">
 <meta property="og:image" content="http://blog.shuiguzi.com/images/UNet/outputResult.PNG">
-<meta property="og:updated_time" content="2015-12-26T12:10:56.000Z">
+<meta property="og:updated_time" content="2015-12-27T11:50:37.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="UNet 0x01：网络连接的建立">
 <meta name="twitter:description" content="看到标题后，没接触过的朋友脑中可能会闪现出这样一个问题： UNet 是什么 ? 其实它是 Unity 5.1 版本新引入的网络系统。官方论坛里面称这个系统为 UNet, 那我们按照官方的习惯来。
@@ -286,6 +286,7 @@
 </ul>
 <p>这篇文章将只涉及 High Level API。我们的目的是建立（Client 于 Server 间的）网络连接。</p>
 <h3 id="UNet__u7684_Server_/_Client_/_Host"><a href="#UNet__u7684_Server_/_Client_/_Host" class="headerlink" title="UNet 的 Server / Client / Host"></a>UNet 的 Server / Client / Host</h3><p>在 UNet 先系统中会出现 1 个 Server 和 n 个 Client (n &gt;= 0)。当没有专门的 Server 的时候，其中一个 Client 会充当 Server 的作用，这个即是 Client 又是 Server 的端在 UNet 中<br>被称为 Host。 Host 在同一个进程里面执行 Server 和 Client, 这个 Client　有个专门的名字叫做 Local Client。它跟 Local Server 之间是通过 <strong>消息队列</strong> 和 <strong>直接的函数调</strong> 用来通信的。 </p>
+<a id="more"></a>
 <p>Unity3d 网站上有张图能比较明显的表达 Server / Client / Local Client / Host 直接的关系，让我们把它偷过来。:)</p>
 <p><img src="/images/UNet/NetworkHost.png" alt="NetworkHost"></p>
 <h3 id="Server__u521B_u5EFA"><a href="#Server__u521B_u5EFA" class="headerlink" title="Server 创建"></a>Server 创建</h3><p>Unity 给我们提供了 <a href="http://docs.unity3d.com/ScriptReference/Networking.NetworkServer.html" target="_blank" rel="external">NetworkServer</a> 类，他的静态方法 <code>Listen(int serverPort)</code> 会打开一个端口监听。</p>

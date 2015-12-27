@@ -66,6 +66,8 @@ The detailed organization of any project’s assets into AssetBundles will be he
 
 AssetBundle 内项目资源的组织严重依赖于项目的需求。但是，也有一些可以更好的理解 AssetBundle 的原则。
 
+<!--more-->
+
 <div style='display:none'>
 * AssetBundles are downloaded and cached in their entirety.
 * AssetBundles do not need to be loaded in their entirety.

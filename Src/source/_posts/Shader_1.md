@@ -32,6 +32,7 @@ tags: Shader
 2000 年以后， GPU 技术一直在不断的发展，处理和运算能力不断打变强变大。为了利用 GPU 强大的并行计算能力，出现了 CUDA 并行计算平台。有兴趣的同学可以关注下
 [CUDA官网](https://developer.nvidia.com/cuda-zone).
 
+<!--more-->
 
 ### Shader Model
 
