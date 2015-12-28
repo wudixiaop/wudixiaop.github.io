@@ -16,7 +16,11 @@ category: Shader
 4. 改完后确定就可以了
 
 #### 插件安装碰到错误: `扩展“ShaderlabVS”需要的 .NET Framework 版本没有安装。
-尝试安装已移除 .Net Framework 依赖版本的 0.6.1。下载地址：http://pan.baidu.com/s/1qX3CNy0
+尝试安装已移除 .Net Framework 依赖版本的 0.6.1。  
+
+下载地址：
+- VS2015: http://pan.baidu.com/s/1pK5GIU3
+- VS2012 / VS2013: http://pan.baidu.com/s/1pK5GIU3 
 
 <!--more-->
 
