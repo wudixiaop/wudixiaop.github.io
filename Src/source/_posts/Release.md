@@ -14,10 +14,11 @@ tags: Shader
 
 **IMPROTANT :** We have to execute `vs2015_register.cmd` after extension installed to linke .shader and .cginc files to ShaderlabVS plugin on VS2015. It's not required on VS2013 / VS2012.
 
-> **Download Address:** <http://pan.baidu.com/s/1jGAjzd8>
+> **Download Address:** <http://pan.baidu.com/s/1jGAjzd8>  
 
 <hr>
-**A introduction of ShaderlabVS can be found at [here](https://github.com/wudixiaop/ShaderlabVS/blob/master/README.md). If you have feedbacks or questions, send email to me. My email is rockylai@shuiguzi.com.**  
+A introduction of ShaderlabVS can be found at [here](https://github.com/wudixiaop/ShaderlabVS/blob/master/README.md). **If you have feedbacks or questions, reivew the {% post_link ShaderlabVSFAQ [FAQ page]  %}
+send email to me. My email is rockylai@shuiguzi.com.**  
 
 
 ### _Screenshot_  

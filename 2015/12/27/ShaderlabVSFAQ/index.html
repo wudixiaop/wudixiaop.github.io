@@ -34,7 +34,7 @@
 
 
 
-  <meta name="keywords" content="Graphic," />
+  <meta name="keywords" content="Shader," />
 
 
 
@@ -43,36 +43,22 @@
   <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
 
 
-<meta name="description" content="有的时候我们有可能有需求将较暗的图像简单的提亮，这篇文章主要讲一种改变图片亮度的方式。我们从两个问题入手：
-
-为了提亮图片，我们操作的对象是什么？
-怎么操作对象能达到改变亮度的效果？
-
-Unity 中的 Color首先我们来回答第一个问题。聪明的你可能已经知道，我们要操作的对象是 像素 。Unity 中 Color类的一个实例能表示一个像素点。
-Color 类有 4 个字段表示颜色的各通道数值，他">
+<meta name="description" content="谢谢朋友们这一年多来对 ShaderlabVS 插件的支持。这里整理出一些朋友给我的留言或者邮件中提到的常见问题，希望对大家有帮助。
+常见问题插件安装碰到错误: `扩展“ShaderlabVS”需要的 .NET Framework 版本没有安装。尝试安装已移除 .Net Framework 依赖版本的 0.6.1。下载地址：http://pan.baidu.com/s/1qX3CNy0
+插件安装上">
 <meta property="og:type" content="article">
-<meta property="og:title" content="如何改变图片亮度">
-<meta property="og:url" content="http://blog.shuiguzi.com/2015/09/15/BrightenTexture2D/index.html">
+<meta property="og:title" content="ShaderlabVS 的一些常见问题">
+<meta property="og:url" content="http://blog.shuiguzi.com/2015/12/27/ShaderlabVSFAQ/index.html">
 <meta property="og:site_name" content="心忘则忙，亡心则忘">
-<meta property="og:description" content="有的时候我们有可能有需求将较暗的图像简单的提亮，这篇文章主要讲一种改变图片亮度的方式。我们从两个问题入手：
-
-为了提亮图片，我们操作的对象是什么？
-怎么操作对象能达到改变亮度的效果？
-
-Unity 中的 Color首先我们来回答第一个问题。聪明的你可能已经知道，我们要操作的对象是 像素 。Unity 中 Color类的一个实例能表示一个像素点。
-Color 类有 4 个字段表示颜色的各通道数值，他">
-<meta property="og:image" content="http://blog.shuiguzi.com/images/BrigthenImage/b1.png">
-<meta property="og:image" content="http://blog.shuiguzi.com/images/BrigthenImage/b2.png">
-<meta property="og:updated_time" content="2015-12-27T11:48:39.000Z">
+<meta property="og:description" content="谢谢朋友们这一年多来对 ShaderlabVS 插件的支持。这里整理出一些朋友给我的留言或者邮件中提到的常见问题，希望对大家有帮助。
+常见问题插件安装碰到错误: `扩展“ShaderlabVS”需要的 .NET Framework 版本没有安装。尝试安装已移除 .Net Framework 依赖版本的 0.6.1。下载地址：http://pan.baidu.com/s/1qX3CNy0
+插件安装上">
+<meta property="og:updated_time" content="2015-12-28T01:36:54.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="如何改变图片亮度">
-<meta name="twitter:description" content="有的时候我们有可能有需求将较暗的图像简单的提亮，这篇文章主要讲一种改变图片亮度的方式。我们从两个问题入手：
-
-为了提亮图片，我们操作的对象是什么？
-怎么操作对象能达到改变亮度的效果？
-
-Unity 中的 Color首先我们来回答第一个问题。聪明的你可能已经知道，我们要操作的对象是 像素 。Unity 中 Color类的一个实例能表示一个像素点。
-Color 类有 4 个字段表示颜色的各通道数值，他">
+<meta name="twitter:title" content="ShaderlabVS 的一些常见问题">
+<meta name="twitter:description" content="谢谢朋友们这一年多来对 ShaderlabVS 插件的支持。这里整理出一些朋友给我的留言或者邮件中提到的常见问题，希望对大家有帮助。
+常见问题插件安装碰到错误: `扩展“ShaderlabVS”需要的 .NET Framework 版本没有安装。尝试安装已移除 .Net Framework 依赖版本的 0.6.1。下载地址：http://pan.baidu.com/s/1qX3CNy0
+插件安装上">
 
 
 <script type="text/javascript" id="hexo.configuration">
@@ -84,7 +70,7 @@ Color 类有 4 个字段表示颜色的各通道数值，他">
 
 
 
-  <title> 如何改变图片亮度 | 心忘则忙，亡心则忘 </title>
+  <title> ShaderlabVS 的一些常见问题 | 心忘则忙，亡心则忘 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -229,7 +215,7 @@ Color 类有 4 个字段表示颜色的各通道数值，他">
             
             
               
-                如何改变图片亮度
+                ShaderlabVS 的一些常见问题
               
             
           </h1>
@@ -238,8 +224,8 @@ Color 类有 4 个字段表示颜色的各通道数值，他">
         <div class="post-meta">
           <span class="post-time">
             发表于
-            <time itemprop="dateCreated" datetime="2015-09-15T22:26:00+08:00" content="2015-09-15">
-              2015-09-15
+            <time itemprop="dateCreated" datetime="2015-12-27T21:33:08+08:00" content="2015-12-27">
+              2015-12-27
             </time>
           </span>
 
@@ -248,8 +234,8 @@ Color 类有 4 个字段表示颜色的各通道数值，他">
               &nbsp; | &nbsp; 分类于
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Unity/" itemprop="url" rel="index">
-                    <span itemprop="name">Unity</span>
+                  <a href="/categories/Shader/" itemprop="url" rel="index">
+                    <span itemprop="name">Shader</span>
                   </a>
                 </span>
 
@@ -264,8 +250,8 @@ Color 类有 4 个字段表示颜色的各通道数值，他">
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2015/09/15/BrightenTexture2D/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/09/15/BrightenTexture2D/" itemprop="commentsCount"></span>
+                <a href="/2015/12/27/ShaderlabVSFAQ/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/12/27/ShaderlabVSFAQ/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -284,33 +270,14 @@ Color 类有 4 个字段表示颜色的各通道数值，他">
       
 
       
-        <span itemprop="articleBody"><p>有的时候我们有可能有需求将较暗的图像简单的提亮，这篇文章主要讲一种改变图片亮度的方式。我们从两个问题入手：</p>
+        <span itemprop="articleBody"><p>谢谢朋友们这一年多来对 ShaderlabVS 插件的支持。这里整理出一些朋友给我的留言或者邮件中提到的常见问题，希望对大家有帮助。</p>
+<h3 id="u5E38_u89C1_u95EE_u9898"><a href="#u5E38_u89C1_u95EE_u9898" class="headerlink" title="常见问题"></a>常见问题</h3><h4 id="u63D2_u4EF6_u5B89_u88C5_u78B0_u5230_u9519_u8BEF_3A__60_u6269_u5C55_u201CShaderlabVS_u201D_u9700_u8981_u7684_-NET_Framework__u7248_u672C_u6CA1_u6709_u5B89_u88C5_u3002"><a href="#u63D2_u4EF6_u5B89_u88C5_u78B0_u5230_u9519_u8BEF_3A__60_u6269_u5C55_u201CShaderlabVS_u201D_u9700_u8981_u7684_-NET_Framework__u7248_u672C_u6CA1_u6709_u5B89_u88C5_u3002" class="headerlink" title="插件安装碰到错误: `扩展“ShaderlabVS”需要的 .NET Framework 版本没有安装。"></a>插件安装碰到错误: `扩展“ShaderlabVS”需要的 .NET Framework 版本没有安装。</h4><p>尝试安装已移除 .Net Framework 依赖版本的 0.6.1。下载地址：<a href="http://pan.baidu.com/s/1qX3CNy0" target="_blank" rel="external">http://pan.baidu.com/s/1qX3CNy0</a></p>
+<h4 id="u63D2_u4EF6_u5B89_u88C5_u4E0A_u540E_u6CA1_u6709_u6548_u679C"><a href="#u63D2_u4EF6_u5B89_u88C5_u4E0A_u540E_u6CA1_u6709_u6548_u679C" class="headerlink" title="插件安装上后没有效果"></a>插件安装上后没有效果</h4><p>一般是由于 .shader 或者 .cginc 文件没有和 ShaderlabVS 插件没有关联上。原因可能是：</p>
 <ul>
-<li>为了提亮图片，我们操作的对象是什么？</li>
-<li>怎么操作对象能达到改变亮度的效果？</li>
+<li>安装了其他跟 .shader 和 .cginc 文件相关的其他插件</li>
+<li>如果是 VS2015, 在插件安装之后需要执行 <a href="https://github.com/wudixiaop/ShaderlabVS/tree/master/Tools" target="_blank" rel="external">vs2015-register.cmd</a><br>来关联插件</li>
 </ul>
-<h3 id="Unity__u4E2D_u7684_Color"><a href="#Unity__u4E2D_u7684_Color" class="headerlink" title="Unity 中的 Color"></a>Unity 中的 Color</h3><p>首先我们来回答第一个问题。聪明的你可能已经知道，我们要操作的对象是 <strong>像素</strong> 。Unity 中 Color<br>类的一个实例能表示一个像素点。</p>
-<p>Color 类有 4 个字段表示颜色的各通道数值，他们分别是：</p>
-<ul>
-<li><code>r</code> 红色通道</li>
-<li><code>g</code> 绿色通道</li>
-<li><code>b</code> 蓝色通道</li>
-<li><code>a</code> aplha通道</li>
-</ul>
-<p>各个通道的数值都是被标准化为 <code>0...1</code> 之间的值。</p>
-<h3 id="u6539_u53D8_u4EAE_u5EA6_u7684_u7B97_u6CD5"><a href="#u6539_u53D8_u4EAE_u5EA6_u7684_u7B97_u6CD5" class="headerlink" title="改变亮度的算法"></a>改变亮度的算法</h3><a id="more"></a>
-<p>上面 Color 各通道的数值都被标准化，这里我们也依葫芦画瓢来把我们要提高的亮度 brightness 一个数值，不过我们设定它的取值区间为<br><code>-1...1</code>。当 brightness 为负数的时候，图片减暗，正数时，图片变亮。</p>
-<p>算法, 假设 RGB 通道值为 c：</p>
-<ul>
-<li>当 brightness &lt; 0 时 c = c + c * brightness</li>
-<li>当 brightness &gt;= 0 时 c = c + c * ( 1 / (1 - brightness) - 1)</li>
-</ul>
-<h3 id="u4EE3_u7801_u5B9E_u73B0_uFF1A"><a href="#u4EE3_u7801_u5B9E_u73B0_uFF1A" class="headerlink" title="代码实现："></a>代码实现：</h3><p>结合上面两个点，我们可以写出类似下面示例代码实现。</p>
-<figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">using UnityEngine;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> class BrightenScript : MonoBehaviour &#123;</span><br><span class="line">    </span><br><span class="line">    [RangeAttribute(-<span class="number">1</span>, <span class="number">1</span>)]</span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">float</span> <span class="built_in">brightness</span> = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">public</span> Texture2D <span class="built_in">texture</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">void</span> Start () &#123;</span><br><span class="line">        Brighten(<span class="built_in">texture</span>, <span class="built_in">brightness</span>);</span><br><span class="line">        GetComponent&lt;Renderer&gt;().material.mainTexture = <span class="built_in">texture</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">void</span> Brighten(Texture2D <span class="built_in">texture</span>, <span class="built_in">float</span> <span class="built_in">brightness</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        Color[] colors = <span class="built_in">texture</span>.GetPixels();</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 对 RGB 通道都做处理</span></span><br><span class="line">        <span class="comment">//</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="built_in">int</span> i = <span class="number">0</span>; i &lt; colors.Length; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            colors[i].r = BrightenChannel(colors[i].r, <span class="built_in">brightness</span>);</span><br><span class="line">            colors[i].g = BrightenChannel(colors[i].g, <span class="built_in">brightness</span>);</span><br><span class="line">            colors[i].b = BrightenChannel(colors[i].b, <span class="built_in">brightness</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="built_in">texture</span>.SetPixels(colors);</span><br><span class="line">        <span class="built_in">texture</span>.Apply();</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    <span class="keyword">private</span> <span class="built_in">float</span> BrightenChannel(<span class="built_in">float</span> c, <span class="built_in">float</span> <span class="built_in">brightness</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(<span class="built_in">brightness</span> &lt; <span class="number">0</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span> c + c * <span class="built_in">brightness</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span> c + c * (<span class="number">1</span> / (<span class="number">1</span> - <span class="built_in">brightness</span>) - <span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>brightness 为 0.6 时效果如下：</p>
-<p><img src="/images/BrigthenImage/b1.png" alt="0.6"></p>
-<p>brightness 为 -0.5 时效果如下：</p>
-<p><img src="/images/BrigthenImage/b2.png" alt="-0.5"></p>
+<h4 id="u5176_u4ED6_u95EE_u9898"><a href="#u5176_u4ED6_u95EE_u9898" class="headerlink" title="其他问题"></a>其他问题</h4><p>发邮件到 rockylai@shuiguzi.com，我会尽量解答。</p>
 </span>
       
     </div>
@@ -319,7 +286,7 @@ Color 类有 4 个字段表示颜色的各通道数值，他">
       
         <div class="post-tags">
           
-            <a href="/tags/Graphic/" rel="tag">#Graphic</a>
+            <a href="/tags/Shader/" rel="tag">#Shader</a>
           
         </div>
       
@@ -328,17 +295,13 @@ Color 类有 4 个字段表示颜色的各通道数值，他">
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2015/08/23/UNet_6/" rel="next" title="UNet 0x06：Command">
-                <i class="fa fa-chevron-left"></i> UNet 0x06：Command
+              <a href="/2015/11/12/AssetBundleAndABManage_3/" rel="next" title="Unity 5：使用 Asset Bundle 和 Asset Bundle Manager (3)">
+                <i class="fa fa-chevron-left"></i> Unity 5：使用 Asset Bundle 和 Asset Bundle Manager (3)
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2015/09/23/Xcode download/" rel="prev" title="远离 XCodeGhost 影响，各种 XCode 版本下载">
-                远离 XCodeGhost 影响，各种 XCode 版本下载 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -363,8 +326,8 @@ Color 类有 4 个字段表示颜色的各通道数值，他">
         
           <div class="comments" id="comments">
             
-              <div class="ds-thread" data-thread-key="2015/09/15/BrightenTexture2D/"
-                   data-title="如何改变图片亮度" data-url="http://blog.shuiguzi.com/2015/09/15/BrightenTexture2D/">
+              <div class="ds-thread" data-thread-key="2015/12/27/ShaderlabVSFAQ/"
+                   data-title="ShaderlabVS 的一些常见问题" data-url="http://blog.shuiguzi.com/2015/12/27/ShaderlabVSFAQ/">
               </div>
             
           </div>
@@ -463,7 +426,7 @@ Color 类有 4 个字段表示颜色的各通道数值，他">
           <div class="post-toc">
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Unity__u4E2D_u7684_Color"><span class="nav-number">1.</span> <span class="nav-text">Unity 中的 Color</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u6539_u53D8_u4EAE_u5EA6_u7684_u7B97_u6CD5"><span class="nav-number">2.</span> <span class="nav-text">改变亮度的算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u4EE3_u7801_u5B9E_u73B0_uFF1A"><span class="nav-number">3.</span> <span class="nav-text">代码实现：</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#u5E38_u89C1_u95EE_u9898"><span class="nav-number">1.</span> <span class="nav-text">常见问题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#u63D2_u4EF6_u5B89_u88C5_u78B0_u5230_u9519_u8BEF_3A__60_u6269_u5C55_u201CShaderlabVS_u201D_u9700_u8981_u7684_-NET_Framework__u7248_u672C_u6CA1_u6709_u5B89_u88C5_u3002"><span class="nav-number">1.1.</span> <span class="nav-text">插件安装碰到错误: `扩展“ShaderlabVS”需要的 .NET Framework 版本没有安装。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#u63D2_u4EF6_u5B89_u88C5_u4E0A_u540E_u6CA1_u6709_u6548_u679C"><span class="nav-number">1.2.</span> <span class="nav-text">插件安装上后没有效果</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#u5176_u4ED6_u95EE_u9898"><span class="nav-number">1.3.</span> <span class="nav-text">其他问题</span></a></li></ol></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>

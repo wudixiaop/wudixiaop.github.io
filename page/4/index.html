@@ -210,6 +210,106 @@
             
             
               
+                <a class="post-title-link" href="/2015/04/15/cirleImageInUnity3D/" itemprop="url">
+                  在 Unity uGUI 中绘制圆形图片
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2015-04-15T23:30:00+08:00" content="2015-04-15">
+              2015-04-15
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Unity/" itemprop="url" rel="index">
+                    <span itemprop="name">Unity</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/04/15/cirleImageInUnity3D/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/04/15/cirleImageInUnity3D/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <p>最近项目需要在 Unity 的新 UI 系统中实现圆形头像的功能，之前想通过 Mask 控件的方式来实现，但是一番努力后毫无头绪，只能祭上shader了。</p>
+<p>大体的思路就是在一个空的 Object 上面挂上 RawImage 组件，组件的 Material 挂上本文中的 shader。截取的逻辑是选取图片正中心 (0.5, 0.5) 为圆的中心点，绘制图片在圆内的像素点为图片的像素，然后图片在圆外的像素点设置为 alpha 为 0 的点，<br>如 <code>(0, 0, 0, 0)</code>。逻辑是在 fragment shader 里面实现(shader 代码中的<code>frag</code>)。</p>
+<p>下面直接放出 shader:</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/04/15/cirleImageInUnity3D/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
                 <a class="post-title-link" href="/2015/03/26/ClosureInSwift/" itemprop="url">
                   一个例子学习Swift中的闭包用法
                 </a>
@@ -924,9 +1024,9 @@
 </ul>
 <p><strong>IMPROTANT :</strong> We have to execute <code>vs2015_register.cmd</code> after extension installed to linke .shader and .cginc files to ShaderlabVS plugin on VS2015. It’s not required on VS2013 / VS2012.</p>
 <blockquote>
-<p><strong>Download Address:</strong> <a href="http://pan.baidu.com/s/1jGAjzd8">http://pan.baidu.com/s/1jGAjzd8</a></p>
+<p><strong>Download Address:</strong> <a href="http://pan.baidu.com/s/1jGAjzd8">http://pan.baidu.com/s/1jGAjzd8</a>  </p>
 </blockquote>
-<p><hr><br><strong>A introduction of ShaderlabVS can be found at <a href="https://github.com/wudixiaop/ShaderlabVS/blob/master/README.md">here</a>. If you have feedbacks or questions, send email to me. My email is rockylai@shuiguzi.com.</strong>  </p>
+<p><hr><br>A introduction of ShaderlabVS can be found at <a href="https://github.com/wudixiaop/ShaderlabVS/blob/master/README.md">here</a>. <strong>If you have feedbacks or questions, reivew the <a href="/2015/12/27/ShaderlabVSFAQ/" title="[FAQ page]">[FAQ page]</a><br>send email to me. My email is rockylai@shuiguzi.com.</strong>  </p>
 <h3 id="Screenshot"><a href="#Screenshot" class="headerlink" title="Screenshot"></a><em>Screenshot</em></h3><p><img src="https://github.com/wudixiaop/ShaderlabVS/raw/master/img/Highlighting.PNG" alt="preview"></p>
           <div class="post-more-link text-center">
             <a class="btn" href="/2014/10/28/Release/#more" rel="contents">
@@ -951,110 +1051,11 @@
 
 
     
-      
-
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                <a class="post-title-link" href="/2014/08/31/Why I start ShaderlabVS/" itemprop="url">
-                  Why I start ShaderlabVS
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            发表于
-            <time itemprop="dateCreated" datetime="2014-08-31T20:35:00+08:00" content="2014-08-31">
-              2014-08-31
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp; 分类于
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Shader/" itemprop="url" rel="index">
-                    <span itemprop="name">Shader</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2014/08/31/Why I start ShaderlabVS/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2014/08/31/Why I start ShaderlabVS/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody">
-            
-              <p>Last month, <a href="http://unityvs.com/" target="_blank" rel="external">SyntaxTree</a>, the creator of UnityVS plugin for Visual Studio was acquired by Microsoft. Microsoft have published the UnityVS to Visual Studio users for free at the end of July.</p>
-<p>UnityVS is cool tool that make it’s possible to debug Unity scripts in VS. But the tool is not support the Unity shaderlab syntax. it’s pain for me to read/write shader in VS, So I created the ShaderlabVS to help myself and may would help someone who need it.</p>
-
-            
-          </span>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span>
+    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1092,7 +1093,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">32</span>
+              <span class="site-state-item-count">33</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
