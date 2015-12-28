@@ -18,7 +18,7 @@ tags: Shader
 
 <hr>
 A introduction of ShaderlabVS can be found at [here](https://github.com/wudixiaop/ShaderlabVS/blob/master/README.md). **If you have feedbacks or questions, reivew the {% post_link ShaderlabVSFAQ [FAQ page]  %}
-send email to me. My email is rockylai@shuiguzi.com.**  
+or send email to me. My email is rockylai@shuiguzi.com.**  
 
 
 ### _Screenshot_  
