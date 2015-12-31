@@ -210,6 +210,114 @@
             
             
               
+                <a class="post-title-link" href="/2015/08/15/UNet_5/" itemprop="url">
+                  UNet 0x05：SyncVar
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2015-08-15T12:01:00+08:00" content="2015-08-15">
+              2015-08-15
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Unity/" itemprop="url" rel="index">
+                    <span itemprop="name">Unity</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/08/15/UNet_5/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/08/15/UNet_5/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <p>开篇需要先介绍一个 UNet 系统里面提供的一个类，名字叫做 <strong>NetworkBehaviour</strong>。看到名字，不禁让人想起<br> MonoBehaviour。NetworkBehaviour 继承自 MonoBehaviour，所以基于 NetworkBehaviour 的脚本也是能挂在<br> GameObject 上面的。</p>
+<p>NetworkBehaviour 给我们提供了什么功能呢？大概是如下几点：</p>
+<ul>
+<li>Synchronized Variables</li>
+<li>Network callbacks</li>
+<li>Server and Client functions</li>
+<li>Sending Commands</li>
+<li>Client RPC Calls</li>
+<li>Networked Events</li>
+</ul>
+<p>为了让描述更准确，上面采用了 <a href="http://docs.unity3d.com/Manual/class-NetworkBehaviour.html">官方手册</a><br>中的英文描述。这篇的主角就是 Synchronized Variables。</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/08/15/UNet_5/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
                 <a class="post-title-link" href="/2015/08/12/UNet_4/" itemprop="url">
                   UNet 0x04： 做一个简单的 Network Manager 界面
                 </a>
@@ -951,109 +1059,6 @@
 
 
     
-      
-
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                <a class="post-title-link" href="/2015/05/08/Shader_9/" itemprop="url">
-                  瞎聊 Unity Shader 系列之九：用来包装变量的 Properties
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            发表于
-            <time itemprop="dateCreated" datetime="2015-05-08T14:03:00+08:00" content="2015-05-08">
-              2015-05-08
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp; 分类于
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Shader/" itemprop="url" rel="index">
-                    <span itemprop="name">Shader</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/05/08/Shader_9/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/05/08/Shader_9/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <p>为了像其他程序语言一样重用代码，Shaderlab 把可变部分提取出来，集中放到一个区域去。这个区域就是 <a href="/2015/05/05/Shader_6/" title="[初始 shaderlab]">[初始 shaderlab]</a> 这节中提到的的 <code>Properties</code><br>可选项。 在这个区域内每一个元素被叫做 Property。我们把他叫做属性吧。这些属性都包括在 <code>Properties { }</code> 语句块内。</p>
-<h3 id="Shaderlab__u7684_u5C5E_u6027"><a href="#Shaderlab__u7684_u5C5E_u6027" class="headerlink" title="Shaderlab 的属性"></a>Shaderlab 的属性</h3><p>属性的语法是:</p>
-<blockquote>
-<p>属性名 (“Inspector 显示的名字”, 类型) = 默认值</p>
-</blockquote>
-<p>Shaderlab 提供不同的数据类型（详情见下面）。如果把这些类型和默认值格式填充进上面的语法后，会变成下面的样子：</p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2015/05/08/Shader_9/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1096,7 +1101,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">33</span>
+              <span class="site-state-item-count">34</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1110,7 +1115,7 @@
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">9</span>
+              <span class="site-state-item-count">10</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>
