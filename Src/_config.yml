@@ -82,3 +82,6 @@ social:
 #plugins
 baidu_analytics: 3a8e2930fa3e4db2aa0fe1cb32188641
 duoshuo_shortname: rockylaigithubio
+
+baidusitemap:
+path: baidusitemap.xml
