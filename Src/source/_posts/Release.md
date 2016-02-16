@@ -14,7 +14,7 @@ tags: Shader
 **IMPROTANT :** We have to execute `vs2015_register.cmd` after extension installed to linke .shader and .cginc files to ShaderlabVS plugin on VS2015. It's not required on VS2013 / VS2012.
 
 > **VS2015:** <http://pan.baidu.com/s/1pK5GIU3>  
-> **VS2012 / VS2013:** <http://pan.baidu.com/s/1pK5GIU3>
+> **VS2012/VS2013:** <http://pan.baidu.com/s/1pK5GIU3>
 
 <hr>
 A introduction of ShaderlabVS can be found at [here](https://github.com/wudixiaop/ShaderlabVS/blob/master/README.md). **If you have feedbacks or questions, reivew the {% post_link ShaderlabVSFAQ [FAQ page]  %}
