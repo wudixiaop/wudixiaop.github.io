@@ -591,7 +591,7 @@
 <li>UNet HLAPI 中消息怎么表示？</li>
 <li>UNet HLAPI 中消息怎么发送和接收？</li>
 </ul>
-<h3 id="UNet_HLAPI__u4E2D_u7684_u6D88_u606F"><a href="#UNet_HLAPI__u4E2D_u7684_u6D88_u606F" class="headerlink" title="UNet HLAPI 中的消息"></a>UNet HLAPI 中的消息</h3><p>新的网路系统 UNet 提供了一个抽象类，叫做 <code>MessageBase</code>, 它的原型大概是下面这样:</p>
+<h3 id="UNet-HLAPI-中的消息"><a href="#UNet-HLAPI-中的消息" class="headerlink" title="UNet HLAPI 中的消息"></a>UNet HLAPI 中的消息</h3><p>新的网路系统 UNet 提供了一个抽象类，叫做 <code>MessageBase</code>, 它的原型大概是下面这样:</p>
           <div class="post-more-link text-center">
             <a class="btn" href="/2015/08/07/UNet_2/#more" rel="contents">
               阅读全文 &raquo;
@@ -696,7 +696,7 @@
 <li>高层次的 High Level API，也叫做 HLAPI，建立在 NetworkTransport 之上。适合开发多人游戏</li>
 </ul>
 <p>这篇文章将只涉及 High Level API。我们的目的是建立（Client 于 Server 间的）网络连接。</p>
-<h3 id="UNet__u7684_Server_/_Client_/_Host"><a href="#UNet__u7684_Server_/_Client_/_Host" class="headerlink" title="UNet 的 Server / Client / Host"></a>UNet 的 Server / Client / Host</h3><p>在 UNet 先系统中会出现 1 个 Server 和 n 个 Client (n &gt;= 0)。当没有专门的 Server 的时候，其中一个 Client 会充当 Server 的作用，这个即是 Client 又是 Server 的端在 UNet 中<br>被称为 Host。 Host 在同一个进程里面执行 Server 和 Client, 这个 Client　有个专门的名字叫做 Local Client。它跟 Local Server 之间是通过 <strong>消息队列</strong> 和 <strong>直接的函数调</strong> 用来通信的。 </p>
+<h3 id="UNet-的-Server-Client-Host"><a href="#UNet-的-Server-Client-Host" class="headerlink" title="UNet 的 Server / Client / Host"></a>UNet 的 Server / Client / Host</h3><p>在 UNet 先系统中会出现 1 个 Server 和 n 个 Client (n &gt;= 0)。当没有专门的 Server 的时候，其中一个 Client 会充当 Server 的作用，这个即是 Client 又是 Server 的端在 UNet 中<br>被称为 Host。 Host 在同一个进程里面执行 Server 和 Client, 这个 Client　有个专门的名字叫做 Local Client。它跟 Local Server 之间是通过 <strong>消息队列</strong> 和 <strong>直接的函数调</strong> 用来通信的。 </p>
           <div class="post-more-link text-center">
             <a class="btn" href="/2015/08/06/uNET_1/#more" rel="contents">
               阅读全文 &raquo;
@@ -911,9 +911,9 @@
 <li>有什么用处</li>
 </ol>
 </blockquote>
-<h3 id="u6DF1_u5EA6_u662F_u4EC0_u4E48"><a href="#u6DF1_u5EA6_u662F_u4EC0_u4E48" class="headerlink" title="深度是什么"></a>深度是什么</h3><p>第四节  中提到，要描述一个物体的位置，需要借助参照物。我们这里扩展一下， 要 <strong>用数值来表述一个物体的某种属性，要有这个数值参照的原点</strong>。 既然深度值是数值，那它的<br>参照原点是什么呢？ 答案是观察者的视角，换句话说就是 Camera。</p>
+<h3 id="深度是什么"><a href="#深度是什么" class="headerlink" title="深度是什么"></a>深度是什么</h3><p>第四节  中提到，要描述一个物体的位置，需要借助参照物。我们这里扩展一下， 要 <strong>用数值来表述一个物体的某种属性，要有这个数值参照的原点</strong>。 既然深度值是数值，那它的<br>参照原点是什么呢？ 答案是观察者的视角，换句话说就是 Camera。</p>
 <p>在 <a href="/2015/04/28/Shader_2/" title="[渲染管线]">[渲染管线]</a> 这节中提到， Vertex Shader 之后有一个插值过程，生成像素。这个像素的 X 和 Y 坐标为屏幕坐标， Z 坐标轴数值就是深度，存储在深度缓存里面。  </p>
-<h3 id="u6709_u4EC0_u4E48_u7528_u5904"><a href="#u6709_u4EC0_u4E48_u7528_u5904" class="headerlink" title="有什么用处"></a>有什么用处</h3><p>首先让我们来思考一个问题</p>
+<h3 id="有什么用处"><a href="#有什么用处" class="headerlink" title="有什么用处"></a>有什么用处</h3><p>首先让我们来思考一个问题</p>
 <blockquote>
 <p>假设有两个物体都经过渲染后的像素在屏幕坐标系中是同一个点，那哪个像素应该渲染？</p>
 </blockquote>
@@ -1025,7 +1025,7 @@
 <li>Shader 里面怎么体现？</li>
 </ol>
 <p>这节内容主要是讲上面三个问题</p>
-<h3 id="u6570_u636E_u7684_u79CD_u7C7B"><a href="#u6570_u636E_u7684_u79CD_u7C7B" class="headerlink" title="数据的种类"></a>数据的种类</h3><p>一般情况能利用的有如下几种：</p>
+<h3 id="数据的种类"><a href="#数据的种类" class="headerlink" title="数据的种类"></a>数据的种类</h3><p>一般情况能利用的有如下几种：</p>
 <ul>
 <li>坐标系中的位置 (position)</li>
 <li>法线 (normal)</li>
@@ -1033,8 +1033,8 @@
 <li>颜色 (color)</li>
 <li>纹理坐标 (texture coordinate)</li>
 </ul>
-<h3 id="u6570_u636E_u7684_u8F93_u5165_u8F93_u51FA"><a href="#u6570_u636E_u7684_u8F93_u5165_u8F93_u51FA" class="headerlink" title="数据的输入输出"></a>数据的输入输出</h3><p>数据存放在寄存器里面。输入的时候从寄存器读取数据，输出的时候将数据写到寄存器里面。</p>
-<h3 id="Shader__u4E2D_u7684_u4F53_u73B0"><a href="#Shader__u4E2D_u7684_u4F53_u73B0" class="headerlink" title="Shader 中的体现"></a>Shader 中的体现</h3><p>首先是数据的种类的表示。现实生活中，我们也喜欢物品分类，然后对分类取个名字或贴个标签，以后我们便可以从这一类中存取属于这类的物品。Shader 里面也有类似的做法，给 Shader 函数输入输出的数据结构打上标签。<br>这种标签叫做 <strong>语义（Semantic）</strong>， 打标签的行为叫做 <strong>语义绑定</strong> 。一般用一个冒号后面带上标签的名字来表示。长相大概是这个要样子 <code>:XXXXX</code> （XXXXX 表示语义）。</p>
+<h3 id="数据的输入输出"><a href="#数据的输入输出" class="headerlink" title="数据的输入输出"></a>数据的输入输出</h3><p>数据存放在寄存器里面。输入的时候从寄存器读取数据，输出的时候将数据写到寄存器里面。</p>
+<h3 id="Shader-中的体现"><a href="#Shader-中的体现" class="headerlink" title="Shader 中的体现"></a>Shader 中的体现</h3><p>首先是数据的种类的表示。现实生活中，我们也喜欢物品分类，然后对分类取个名字或贴个标签，以后我们便可以从这一类中存取属于这类的物品。Shader 里面也有类似的做法，给 Shader 函数输入输出的数据结构打上标签。<br>这种标签叫做 <strong>语义（Semantic）</strong>， 打标签的行为叫做 <strong>语义绑定</strong> 。一般用一个冒号后面带上标签的名字来表示。长相大概是这个要样子 <code>:XXXXX</code> （XXXXX 表示语义）。</p>
 <p>我们有了标签，那我们把它放在 shader 代码什么地方呢？ 之前提到我们是给函数输入输出的数据结构打上标签，而函数的输入就是参数。对于参数，我们可以使用<strong>结构体</strong>也可以直接使用<strong>基础数据类型</strong>，所以能出现如下两种位置：</p>
           <div class="post-more-link text-center">
             <a class="btn" href="/2015/05/14/Shader_10/#more" rel="contents">

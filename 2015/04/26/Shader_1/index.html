@@ -67,7 +67,7 @@
 文章定位：
 
 这是学习笔">
-<meta property="og:updated_time" content="2016-01-03T12:42:22.000Z">
+<meta property="og:updated_time" content="2016-01-12T05:15:54.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="瞎聊 Unity Shader 系列之一：GPU 与 Shader Model">
 <meta name="twitter:description" content="我想首先唠叨下我为什么打算写这一系列的文章及文章的定位。
@@ -304,11 +304,11 @@
 <li>主要基础概念为主，可能很零散。</li>
 </ul>
 <p>之前有前辈说过，学习一门知识前，了解其由来对入门很有好处。我比较赞同这个观点，所以开篇我们来说写历史。</p>
-<h3 id="CPU__u4E4B_u5916_u7684_u53E6_u5916_u4E00_u4E2A_PU_-_GPU"><a href="#CPU__u4E4B_u5916_u7684_u53E6_u5916_u4E00_u4E2A_PU_-_GPU" class="headerlink" title="CPU 之外的另外一个 PU - GPU"></a>CPU 之外的另外一个 PU - GPU</h3><p>随着计算机处理图形的计算量越来越来大，CPU难以满足计算速度上的需求, 为了将图形的计算单独拿出来执行，上世纪70年代开始出现了为加速图形绘制的硬件。<br>这些硬件跟大部分刚出来的新事物一样，功能有限，而且不太完善，当然那个时候也不叫 GPU。</p>
+<h3 id="CPU-之外的另外一个-PU-GPU"><a href="#CPU-之外的另外一个-PU-GPU" class="headerlink" title="CPU 之外的另外一个 PU - GPU"></a>CPU 之外的另外一个 PU - GPU</h3><p>随着计算机处理图形的计算量越来越来大，CPU难以满足计算速度上的需求, 为了将图形的计算单独拿出来执行，上世纪70年代开始出现了为加速图形绘制的硬件。<br>这些硬件跟大部分刚出来的新事物一样，功能有限，而且不太完善，当然那个时候也不叫 GPU。</p>
 <p>1999 年，NVIDIA 公司发布了 GeForce256, 并且提出一个 Graphics Process Unit (GPU) 概念。很多文章都提到这款显卡有划时代的意义，因为它使第一款<br>带有可编程顶点处理能力的显卡，这意味着显卡从<strong>之前的只可配置</strong>上升到了<strong>可编程</strong>的高度，开发者从此可以实现自己顶点处理算法。NVIDIA 也是提出 GPU 这个词<br>来对 GeForece256 与之前显卡做区分。</p>
 <p>2000 年以后， GPU 技术一直在不断的发展，处理和运算能力不断打变强变大。为了利用 GPU 强大的并行计算能力，出现了 CUDA 并行计算平台。有兴趣的同学可以关注下<br><a href="https://developer.nvidia.com/cuda-zone" target="_blank" rel="external">CUDA官网</a>.</p>
 <a id="more"></a>
-<h3 id="Shader_Model"><a href="#Shader_Model" class="headerlink" title="Shader Model"></a>Shader Model</h3><p>首先我们要提下当今跟 GPU 打交道的形API：<a href="http://en.wikipedia.org/wiki/DirectX" target="_blank" rel="external">Microsoft DirectX</a>、 <a href="https://www.opengl.org" target="_blank" rel="external">OPENGL</a> 和<br> 转为嵌入式设备设计的<a href="https://www.khronos.org/opengles/" target="_blank" rel="external">OPENGL GS</a>。Directx 是微软提供的图形 API, OPENGL 和 OPENGL ES 现在是由 <a href="http://baike.baidu.com/link?url=vW0PfmVKQC00WWRibyVSrnjRYVdVj1lk9HG6B4w9uc9lnlnWnYoDJd1puZu1CNf2_vacBBTFFbdMzZWCNkliSK" target="_blank" rel="external">Khronos Group</a> 团队维护开发的图形API。</p>
+<h3 id="Shader-Model"><a href="#Shader-Model" class="headerlink" title="Shader Model"></a>Shader Model</h3><p>首先我们要提下当今跟 GPU 打交道的形API：<a href="http://en.wikipedia.org/wiki/DirectX" target="_blank" rel="external">Microsoft DirectX</a>、 <a href="https://www.opengl.org" target="_blank" rel="external">OPENGL</a> 和<br> 转为嵌入式设备设计的<a href="https://www.khronos.org/opengles/" target="_blank" rel="external">OPENGL GS</a>。Directx 是微软提供的图形 API, OPENGL 和 OPENGL ES 现在是由 <a href="http://baike.baidu.com/link?url=vW0PfmVKQC00WWRibyVSrnjRYVdVj1lk9HG6B4w9uc9lnlnWnYoDJd1puZu1CNf2_vacBBTFFbdMzZWCNkliSK" target="_blank" rel="external">Khronos Group</a> 团队维护开发的图形API。</p>
 <p>这些图形 API 都提供对 GPU 编程的能力，这能力就是我们说的 Shader。图形 API 的更新会提供不同的 shader 的能力 (当然是越来越强大)。<br>微软提出了一个词叫 Shader Model, 并用不同的版本号来区分 Shader 的能力。通常我们也会称 Shader Model 为 SM。</p>
 <p>下面列出到现在为止 Shader Model 的各个版本与 DirectX 版本的对应关系：</p>
 <ul>
@@ -320,8 +320,8 @@
 <li>Shader Model 5.0（DirectX11）</li>
 </ul>
 <p>我们先不关注各个版本区别，只要知道版本号越高，提供的功能越来越强大。</p>
-<h3 id="u603B_u7ED3"><a href="#u603B_u7ED3" class="headerlink" title="总结"></a>总结</h3><p>GPU 为大量图形计算而生，而 Shader 是对 GPU 编程的技术。微软用 Shader Model 的不同版本号来区分不同 Shader 的能力。</p>
-<h3 id="u53C2_u8003"><a href="#u53C2_u8003" class="headerlink" title="参考"></a>参考</h3><ul>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>GPU 为大量图形计算而生，而 Shader 是对 GPU 编程的技术。微软用 Shader Model 的不同版本号来区分不同 Shader 的能力。</p>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><ul>
 <li><a href="http://en.wikipedia.org/wiki/Graphics_processing_unit" target="_blank" rel="external">Wikipidia: Graphics processing unit </a></li>
 <li><a href="http://www.amazon.com/gp/product/1568814240?tag=realtimerenderin&amp;pldnSite=1" target="_blank" rel="external"><em>Real-Time Rendering, Third Edition</em></a></li>
 <li><a href="http://baike.baidu.com/link?url=DDy0sTi56RE9TiVdj5MOCqwmV7ATJEkBHQp7V8eRzA_lyq1HPOLgmBULeSo-Khw2-mb7Wst75LJF3_I3SjZAZa" target="_blank" rel="external">Shader Model</a></li>
@@ -478,7 +478,7 @@
           <div class="post-toc">
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#CPU__u4E4B_u5916_u7684_u53E6_u5916_u4E00_u4E2A_PU_-_GPU"><span class="nav-number">1.</span> <span class="nav-text">CPU 之外的另外一个 PU - GPU</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Shader_Model"><span class="nav-number">2.</span> <span class="nav-text">Shader Model</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u603B_u7ED3"><span class="nav-number">3.</span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u53C2_u8003"><span class="nav-number">4.</span> <span class="nav-text">参考</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#CPU-之外的另外一个-PU-GPU"><span class="nav-number">1.</span> <span class="nav-text">CPU 之外的另外一个 PU - GPU</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Shader-Model"><span class="nav-number">2.</span> <span class="nav-text">Shader Model</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">3.</span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参考"><span class="nav-number">4.</span> <span class="nav-text">参考</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>

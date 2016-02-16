@@ -64,7 +64,7 @@
 
 深度是什么第四节  中提到，要描述一个物体的位置，需要借助参照物。我们这里扩">
 <meta property="og:image" content="http://blog.shuiguzi.com/images/Shader/11/PipelineCullDepth.png">
-<meta property="og:updated_time" content="2016-01-03T12:42:22.000Z">
+<meta property="og:updated_time" content="2016-01-12T05:15:54.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="瞎聊 Unity Shader 系列之十一：深度缓存">
 <meta name="twitter:description" content="第二节 [渲染管线] 中提到了 Frame Buffer, 这个是用来存储帧位图的数据存储区域。 这里在介绍另外一个缓存, 叫深度缓存 (Depth Buffer), 也叫作 Z-Buffer。从名字上来看这是一个存储深度（数据）的存储区。下面我们带着两个问题来解释这个深度缓存。
@@ -293,9 +293,9 @@
 <li>有什么用处</li>
 </ol>
 </blockquote>
-<h3 id="u6DF1_u5EA6_u662F_u4EC0_u4E48"><a href="#u6DF1_u5EA6_u662F_u4EC0_u4E48" class="headerlink" title="深度是什么"></a>深度是什么</h3><p>第四节  中提到，要描述一个物体的位置，需要借助参照物。我们这里扩展一下， 要 <strong>用数值来表述一个物体的某种属性，要有这个数值参照的原点</strong>。 既然深度值是数值，那它的<br>参照原点是什么呢？ 答案是观察者的视角，换句话说就是 Camera。</p>
+<h3 id="深度是什么"><a href="#深度是什么" class="headerlink" title="深度是什么"></a>深度是什么</h3><p>第四节  中提到，要描述一个物体的位置，需要借助参照物。我们这里扩展一下， 要 <strong>用数值来表述一个物体的某种属性，要有这个数值参照的原点</strong>。 既然深度值是数值，那它的<br>参照原点是什么呢？ 答案是观察者的视角，换句话说就是 Camera。</p>
 <p>在 <a href="/2015/04/28/Shader_2/" title="[渲染管线]">[渲染管线]</a> 这节中提到， Vertex Shader 之后有一个插值过程，生成像素。这个像素的 X 和 Y 坐标为屏幕坐标， Z 坐标轴数值就是深度，存储在深度缓存里面。  </p>
-<h3 id="u6709_u4EC0_u4E48_u7528_u5904"><a href="#u6709_u4EC0_u4E48_u7528_u5904" class="headerlink" title="有什么用处"></a>有什么用处</h3><p>首先让我们来思考一个问题</p>
+<h3 id="有什么用处"><a href="#有什么用处" class="headerlink" title="有什么用处"></a>有什么用处</h3><p>首先让我们来思考一个问题</p>
 <blockquote>
 <p>假设有两个物体都经过渲染后的像素在屏幕坐标系中是同一个点，那哪个像素应该渲染？</p>
 </blockquote>
@@ -308,7 +308,7 @@
 <p>Offset 根据一个插值公式来计算出新的深度值。有兴趣的可以 <a href="https://msdn.microsoft.com/en-us/library/windows/desktop/dd373973%28v=vs.85%29.aspx" target="_blank" rel="external">参考这里</a></p>
 <p>我们也可以打开和关闭深度写入功能，在 Shaderlab 中用 ZWrite 来控制，它的语法是:</p>
 <figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ZWrite</span> <span class="literal">On</span> | <span class="literal">Off</span></span><br></pre></td></tr></table></figure>
-<h3 id="u5728_Unity__u56FE_u50CF_u6E32_u67D3_u4E2D_u987A_u5E8F_u4E2D_u7684_u4F4D_u7F6E"><a href="#u5728_Unity__u56FE_u50CF_u6E32_u67D3_u4E2D_u987A_u5E8F_u4E2D_u7684_u4F4D_u7F6E" class="headerlink" title="在 Unity 图像渲染中顺序中的位置"></a>在 Unity 图像渲染中顺序中的位置</h3><p><img src="/images/Shader/11/PipelineCullDepth.png" alt="PipelineCullDepth"></p>
+<h3 id="在-Unity-图像渲染中顺序中的位置"><a href="#在-Unity-图像渲染中顺序中的位置" class="headerlink" title="在 Unity 图像渲染中顺序中的位置"></a>在 Unity 图像渲染中顺序中的位置</h3><p><img src="/images/Shader/11/PipelineCullDepth.png" alt="PipelineCullDepth"></p>
 <p>图片来自 Unity 官方手册 <a href="http://docs.unity3d.com/Manual/SL-CullAndDepth.html" target="_blank" rel="external">http://docs.unity3d.com/Manual/SL-CullAndDepth.html</a></p>
 <p><hr><br>鄙人才疏学浅，有出入的地方非常感谢能帮忙指正。:)</p>
 </span>
@@ -463,7 +463,7 @@
           <div class="post-toc">
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#u6DF1_u5EA6_u662F_u4EC0_u4E48"><span class="nav-number">1.</span> <span class="nav-text">深度是什么</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u6709_u4EC0_u4E48_u7528_u5904"><span class="nav-number">2.</span> <span class="nav-text">有什么用处</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u5728_Unity__u56FE_u50CF_u6E32_u67D3_u4E2D_u987A_u5E8F_u4E2D_u7684_u4F4D_u7F6E"><span class="nav-number">3.</span> <span class="nav-text">在 Unity 图像渲染中顺序中的位置</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#深度是什么"><span class="nav-number">1.</span> <span class="nav-text">深度是什么</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#有什么用处"><span class="nav-number">2.</span> <span class="nav-text">有什么用处</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#在-Unity-图像渲染中顺序中的位置"><span class="nav-number">3.</span> <span class="nav-text">在 Unity 图像渲染中顺序中的位置</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>
