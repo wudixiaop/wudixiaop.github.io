@@ -1,4 +1,4 @@
-title: 瞎聊 Unity Shader 系列之九：用来包装变量的 Properties
+title: Unity Tips - 关于 Untiy 一些需要知道的技巧
 date: 2016-02-16 22:03
 category: Unity
 tags: Tips
