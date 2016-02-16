@@ -4,17 +4,17 @@ category: Shader
 tags: Shader
 ---
 
-### _Latest Version - V0.6_  
+
+### _Latest Version - V0.6.1_  
 <hr>
-**[2015-10-17] V0.6 release note:**
+**[2016-2-16] V0.6.1 release note:**
 
-* Add VS2015 support
-* Improve code completion feature
-
+* Fixed .net framework cannot found issue
 
 **IMPROTANT :** We have to execute `vs2015_register.cmd` after extension installed to linke .shader and .cginc files to ShaderlabVS plugin on VS2015. It's not required on VS2013 / VS2012.
 
-> **Download Address:** <http://pan.baidu.com/s/1jGAjzd8>  
+> **VS2015:** <http://pan.baidu.com/s/1pK5GIU3>  
+> **VS2012 / VS2013:** <http://pan.baidu.com/s/1pK5GIU3>
 
 <hr>
 A introduction of ShaderlabVS can be found at [here](https://github.com/wudixiaop/ShaderlabVS/blob/master/README.md). **If you have feedbacks or questions, reivew the {% post_link ShaderlabVSFAQ [FAQ page]  %}
@@ -27,6 +27,11 @@ or send email to me. My email is rockylai@shuiguzi.com.**
 <!--more-->
 
 ### _History:_
+
+**[2015-10-17] V0.6 release note:**
+
+* Add VS2015 support
+* Improve code completion feature
 
 **[2014-10-28] V0.5 release note:**
 

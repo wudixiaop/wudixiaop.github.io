@@ -56,7 +56,7 @@ Shaderlab 的属性属性的语法是:
 
 属性名 (“Inspector 显示的名字”,">
 <meta property="og:image" content="http://blog.shuiguzi.com/images/Shader/9/properties.png">
-<meta property="og:updated_time" content="2016-01-03T12:42:22.000Z">
+<meta property="og:updated_time" content="2016-01-12T05:15:54.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="瞎聊 Unity Shader 系列之九：用来包装变量的 Properties">
 <meta name="twitter:description" content="为了像其他程序语言一样重用代码，Shaderlab 把可变部分提取出来，集中放到一个区域去。这个区域就是 [初始 shaderlab] 这节中提到的的 Properties可选项。 在这个区域内每一个元素被叫做 Property。我们把他叫做属性吧。这些属性都包括在 Properties { } 语句块内。
@@ -275,7 +275,7 @@ Shaderlab 的属性属性的语法是:
 
       
         <span itemprop="articleBody"><p>为了像其他程序语言一样重用代码，Shaderlab 把可变部分提取出来，集中放到一个区域去。这个区域就是 <a href="/2015/05/05/Shader_6/" title="[初始 shaderlab]">[初始 shaderlab]</a> 这节中提到的的 <code>Properties</code><br>可选项。 在这个区域内每一个元素被叫做 Property。我们把他叫做属性吧。这些属性都包括在 <code>Properties { }</code> 语句块内。</p>
-<h3 id="Shaderlab__u7684_u5C5E_u6027"><a href="#Shaderlab__u7684_u5C5E_u6027" class="headerlink" title="Shaderlab 的属性"></a>Shaderlab 的属性</h3><p>属性的语法是:</p>
+<h3 id="Shaderlab-的属性"><a href="#Shaderlab-的属性" class="headerlink" title="Shaderlab 的属性"></a>Shaderlab 的属性</h3><p>属性的语法是:</p>
 <blockquote>
 <p>属性名 (“Inspector 显示的名字”, 类型) = 默认值</p>
 </blockquote>
@@ -297,7 +297,7 @@ Shaderlab 的属性属性的语法是:
 <p>上面是默认样式，最后显示的样式还可以自己定制，详情可以参考 <a href="http://docs.unity3d.com/ScriptReference/MaterialPropertyDrawer.html" target="_blank" rel="external">这个页面</a>。</p>
 <p>需要说明下，还有个 Rect 类型，在官方手册介绍 <a href="http://docs.unity3d.com/Manual/SL-Properties.html" target="_blank" rel="external">Properties 的介绍页面</a> 中没有提到。估计是 Unity5 之后去掉了。</p>
 <p>注意，在 <code>Properites</code> 语句块里面声明完了，如果要被 CG 等语言关联上，<strong>还需要在 <code>CGPROGRAM ... ENDCG</code> 语句块内 再次声明同名字的变量 后属性才起作用</strong>。这个从逻辑上<br>好理解，因为要被 CG 等语言利用，所以应该跟 CG 等语言放在一起，而 CG 等语言程序就包括在 <code>CGPROGRAM ... ENDCG</code> 语句块内。</p>
-<h3 id="u4E0E_CG__u7B49_u8BED_u8A00_u53D8_u91CF_u7C7B_u578B_u6620_u5C04_u5173_u7CFB"><a href="#u4E0E_CG__u7B49_u8BED_u8A00_u53D8_u91CF_u7C7B_u578B_u6620_u5C04_u5173_u7CFB" class="headerlink" title="与 CG 等语言变量类型映射关系"></a>与 CG 等语言变量类型映射关系</h3><p>Shaderlab 提供的类型最终会映射成 CG 等语言变量类型，他们的映射关系为：</p>
+<h3 id="与-CG-等语言变量类型映射关系"><a href="#与-CG-等语言变量类型映射关系" class="headerlink" title="与 CG 等语言变量类型映射关系"></a>与 CG 等语言变量类型映射关系</h3><p>Shaderlab 提供的类型最终会映射成 CG 等语言变量类型，他们的映射关系为：</p>
 <ul>
 <li><strong>Color</strong> 和 <strong>Vector</strong> 对应为 float4, half4 或者 fixed4 类型</li>
 <li><strong>Range</strong> 和 <strong>Float</strong> 对应为 float, half, fixed 类型</li>
@@ -466,7 +466,7 @@ Shaderlab 的属性属性的语法是:
           <div class="post-toc">
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Shaderlab__u7684_u5C5E_u6027"><span class="nav-number">1.</span> <span class="nav-text">Shaderlab 的属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u4E0E_CG__u7B49_u8BED_u8A00_u53D8_u91CF_u7C7B_u578B_u6620_u5C04_u5173_u7CFB"><span class="nav-number">2.</span> <span class="nav-text">与 CG 等语言变量类型映射关系</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Shaderlab-的属性"><span class="nav-number">1.</span> <span class="nav-text">Shaderlab 的属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#与-CG-等语言变量类型映射关系"><span class="nav-number">2.</span> <span class="nav-text">与 CG 等语言变量类型映射关系</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>

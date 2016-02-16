@@ -58,7 +58,7 @@
 <meta property="og:image" content="http://unity3d.com/sites/default/files/meshmodelwmaterial.png">
 <meta property="og:image" content="http://unity3d.com/sites/default/files/dependencies2.png">
 <meta property="og:image" content="http://unity3d.com/sites/default/files/two_rock_columns.png">
-<meta property="og:updated_time" content="2016-01-03T12:42:22.000Z">
+<meta property="og:updated_time" content="2016-01-12T05:15:54.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Unity 5： Asset Bundle 和 Asset Bundle Manager (1)">
 <meta name="twitter:description" content="这篇是 Unity 官方教程 AssetBundles and the AssetBundle Manager 的翻译， 分两部分，这是第一部分。翻译不到之处请不吝指出。非常谢谢！
@@ -281,18 +281,18 @@
 
 <div style="display:none"><br>#~###INTRODUCTION<br><br>AssetBundles allow on demand streaming and loading of Assets from a local or remote location. With AssetBundles, Assets can be stored remotely and accessed as needed, increasing the flexibility of the project and reducing the initial application size.<br></div>
 
-<h3 id="u4ECB_u7ECD"><a href="#u4ECB_u7ECD" class="headerlink" title="介绍"></a>介绍</h3><p>AssetBundle 允许按需地从本地或者远程服务器上加载资源(Asset)。通过 AssetBundle 的方式，资源可以远程存储，有需要的时候访问，这样提升了项目的灵活性和降低初始程序的大小。</p>
+<h3 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h3><p>AssetBundle 允许按需地从本地或者远程服务器上加载资源(Asset)。通过 AssetBundle 的方式，资源可以远程存储，有需要的时候访问，这样提升了项目的灵活性和降低初始程序的大小。</p>
 <div style="display:none"><br>This lesson will introduce AssetBundles and discuss how to work with them, the steps and stages of the AssetBundle workflow, how to assign Assets to an AssetBundle, how and when to use AssetBundle Variants, how to build and test AssetBundles and Variants - all in the context of using the AssetBundle Manager to simplify creating, testing and deploying AssetBundles. The final section of the lesson will cover specific examples of loading and using AssetBundles and AssetBundle Variants with simple use-cases and simple example scripts.<br></div>
 
 <p>这篇教程将会介绍 AssetBundle 和及其应用，AssetBundle 流程的步骤和各阶段和怎么样编译和测试 AssetBundle 及其变体 - 所有的一切可以用 AssetBundle Manager 来简化创建，测试和部署 AssetBundle。教程的最后一部分将使用一些加载和使用 AssetBundle 变体的简单用例和脚本示例。</p>
 <div style="display:none"><br>###SAMPLE PROJECT<br></div>
 
-<h3 id="u6F14_u793A_u9879_u76EE"><a href="#u6F14_u793A_u9879_u76EE" class="headerlink" title="演示项目"></a>演示项目</h3><div style="display:none"><br>Before starting this Tutorial Article, it would be best to download the AssetBundle Manager with the AssetBundle Sample project here.<br></div>
+<h3 id="演示项目"><a href="#演示项目" class="headerlink" title="演示项目"></a>演示项目</h3><div style="display:none"><br>Before starting this Tutorial Article, it would be best to download the AssetBundle Manager with the AssetBundle Sample project here.<br></div>
 
 <p>在开始教程之前，最后先下载好 AssetBundle 和 AssetBundle Manager 的<a href="http://u3d.as/jyk" target="_blank" rel="external">示例程序</a>。</p>
 <div style="display:none"><br>###WHAT IS AN ASSETBUNDLE?<br><br>AssetBundles are files created in the Unity editor during edit-time, which can be used later by a build of a project at run-time. AssetBundles can contain asset files such as models, materials, textures and scenes. AssetBundles cannot contain scripts.<br></div>
 
-<h3 id="u4EC0_u4E48_u662F_AssetBundle"><a href="#u4EC0_u4E48_u662F_AssetBundle" class="headerlink" title="什么是 AssetBundle"></a>什么是 AssetBundle</h3><p>AssetBundle 是由 Unity 编辑器在编辑时期创建的，可以被编译出来的程序在运行期使用的文件。AssetBundle 可以包含模型，材质，纹理和场景文件等资源。但是 AssetBundle 不能包含脚本。</p>
+<h3 id="什么是-AssetBundle"><a href="#什么是-AssetBundle" class="headerlink" title="什么是 AssetBundle"></a>什么是 AssetBundle</h3><p>AssetBundle 是由 Unity 编辑器在编辑时期创建的，可以被编译出来的程序在运行期使用的文件。AssetBundle 可以包含模型，材质，纹理和场景文件等资源。但是 AssetBundle 不能包含脚本。</p>
 <div style="display:none"><br>Specifically, an AssetBundle is a collection of assets and/or scenes from a project saved in a compact file with the purpose of being loaded separately to the built executable application. AssetBundles can be loaded on demand by a game or application built in Unity. This allows streaming and asynchronous loading of content such as models, textures, audio clips, or even entire scenes. AssetBundles can be “pre-cached” and stored locally for immediate loading when first running an application. The primary purpose of AssetBundles, however, is to stream content on demand from a remote location, to be loaded into the application as necessary. AssetBundles can contain any kind of asset type recognized by Unity, including custom binary data. The only exception is that script assets are not allowed.<br></div>
 
 <p>明确一点说，一个 AssetBundle 就是存储项目资源和 / 或场景集合的文件，目的是为了之后在游戏或者程序中加载。<br>AssetBundle 可以被在 Unity 中编译出来的游戏或者程序按需加载。它允许传送和异步加载像模型，材质，声音剪辑，<br>甚至是整个场景。当在程序中初次运行时， AssetBundle 会被存储到本地 “预缓存” 以备以后被立即加载。Assetbundle 的主要目是为了需要的时候能从远程传送内容并加载进程序。AssetBundle 可以包含可以被 Unity 识别的任何资源类型，包括二进制文件。唯一的另外就是不允许是脚本资源。</p>
@@ -348,7 +348,7 @@
 <p>AssetBundle 的内容是根据当前的 Import Settings 和 平台来编译和优化的。所以，AssetBundle 需要为不同平台编译。</p>
 <div style="display:none"><br>###MANIFESTS AND DEPENDENCY MANAGEMENT<br><br>There are several important points to understand regarding dependencies and dependency management.<br></div>
 
-<h3 id="u6E05_u5355_u548C_u4F9D_u8D56_u7BA1_u7406"><a href="#u6E05_u5355_u548C_u4F9D_u8D56_u7BA1_u7406" class="headerlink" title="清单和依赖管理"></a>清单和依赖管理</h3><p>理解关于依赖和依赖管理，有几个重要的点。</p>
+<h3 id="清单和依赖管理"><a href="#清单和依赖管理" class="headerlink" title="清单和依赖管理"></a>清单和依赖管理</h3><p>理解关于依赖和依赖管理，有几个重要的点。</p>
 <div style="display:none"><br>Asset dependencies are never lost. Dependent Assets will be added to the AssetBundle automatically along with the selected Asset if that dependent Asset has not been assigned to any AssetBundle when the AssetBundles are built. This is very convenient and prevents the loss of dependent assets. However, this can also cause the duplication of Assets. For example, using the two rock columns above which share the same Material, if both rock columns are in separate AssetBundles and the Material is not explicitly assigned to an AssetBundle, that Material will be added to both AssetBundles containing the rock columns. It is worth noting that when this happens, both duplicate Assets are stored in their respective AssetBundles and the Asset dependencies are now split. Each model Asset will now depend upon the local copy of the Material Asset, removing any advantage of having shared Material Assets. To prevent this from happening, the Material needs to be explicitly assigned to an AssetBundle. This can be an AssetBundle of its own, or shared with other Assets. In either case, the AssetBundles with the rock columns will now be dependent upon the AssetBundle with the rocks’ Material.<br></div>
 
 <p>资源依赖永远不会丢失。当 AssetBundle 编译的时候，即便独立的资源没有指定到任何的 AssetBundle，也会跟着被选中的资源中被自动的加入 AssetBundle中。这样很便捷并且可以防止独立资源的丢失。尽管如此，这还是会引起资源的重复。比如，以上面使用同一个材质的两个岩石柱为例，如果两个岩石柱分开在不同的两个 AssetBundles 中并且这个材质没有显式的指定到一个 AssetBundle 上，这个材质就会被加入到这两个包含岩石柱的 AssetBndles 中。这个值得注意，两个重复的资源现在被存储到各自的 AssetBundle 中，资源的依赖性被分离了。每个模型资源现在依赖于各自的材质资源的本地拷贝，丢失了共享材质的优势。为了比避免这个发生，这个材质需要显式的指定到一个 AssetBundle 中。这样 AssetBundle 可以自己使用它也，也可以和其他资源一起共享。这种情况下，拥有岩石柱的 AssetBundles 依赖于拥有岩石材质的 AssetBundle 了。</p>
@@ -516,7 +516,7 @@
           <div class="post-toc">
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#u4ECB_u7ECD"><span class="nav-number">1.</span> <span class="nav-text">介绍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u6F14_u793A_u9879_u76EE"><span class="nav-number">2.</span> <span class="nav-text">演示项目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u4EC0_u4E48_u662F_AssetBundle"><span class="nav-number">3.</span> <span class="nav-text">什么是 AssetBundle</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u6E05_u5355_u548C_u4F9D_u8D56_u7BA1_u7406"><span class="nav-number">4.</span> <span class="nav-text">清单和依赖管理</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#介绍"><span class="nav-number">1.</span> <span class="nav-text">介绍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#演示项目"><span class="nav-number">2.</span> <span class="nav-text">演示项目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是-AssetBundle"><span class="nav-number">3.</span> <span class="nav-text">什么是 AssetBundle</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#清单和依赖管理"><span class="nav-number">4.</span> <span class="nav-text">清单和依赖管理</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>

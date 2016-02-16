@@ -71,7 +71,7 @@
 <meta property="og:image" content="http://unity3d.com/sites/default/files/assetbundle_menu_item.png">
 <meta property="og:image" content="http://unity3d.com/sites/default/files/assetbundles_folder.png">
 <meta property="og:image" content="http://unity3d.com/sites/default/files/grouped_by_target.png">
-<meta property="og:updated_time" content="2016-01-03T12:42:22.000Z">
+<meta property="og:updated_time" content="2016-01-12T05:15:54.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Unity 5：使用 Asset Bundle 和 Asset Bundle Manager (2)">
 <meta name="twitter:description" content="这篇是 Unity 官方教程 AssetBundles and the AssetBundle Manager 的翻译， 分三部分，这是第二部分。翻译不到之处请不吝指出。非常谢谢！
@@ -296,7 +296,7 @@
 
 <div style="display:none"><br>##WORKING WITH ASSETBUNDLES AND THE ASSETBUNDLE MANAGER<br>###INTRODUCTION<br></div>
 
-<h3 id="u4ECB_u7ECD"><a href="#u4ECB_u7ECD" class="headerlink" title="介绍"></a>介绍</h3><div style="display:none"><br>One of the key areas of effort in working with AssetBundles is the building and testing of bundles. Often, during development, the Assets themselves are changing regularly. Normally this would require regularly building AssetBundles, uploading them to a host and testing these remotely hosted AssetBundles through a network connection with the working project.<br></div>
+<h3 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h3><div style="display:none"><br>One of the key areas of effort in working with AssetBundles is the building and testing of bundles. Often, during development, the Assets themselves are changing regularly. Normally this would require regularly building AssetBundles, uploading them to a host and testing these remotely hosted AssetBundles through a network connection with the working project.<br></div>
 
 <p>使用 AssetBundle 中一个关键的地方是编译和测试 bundles。一般情况下，资源在开发过程中是会变的。正常地，可能需要要求有规律的编译 AssetBundle, 上传到服务器和然后通过网络连接在当前项目中测试远程的 AssetBundle.</p>
 <div style="display:none"><br>This section focuses on using the AssetBundle Manager when working with AssetBundles. The AssetBundle Manager provides a High-level API for a massively improved workflow compared to manipulating AssetBundles directly with the foundation Low-level API.<br></div>
@@ -304,7 +304,7 @@
 <p>这节主要关注 AssetBundle Manager 使用 AssetBundle。相对利用基础的低层 API 来操作 AssetBundle, AssetBundle Manager 为太幅改进的流程提供了高层的 API。</p>
 <div style="display:none"><br>###WORKING WITH ASSETBUNDLES<br><br>The steps of working with AssetBundles in the editor fall roughly into these steps: - Organizing &amp; Setting-up AssetBundles in the editor. - Building AssetBundles. - Uploading AssetBundles to external storage. - Downloading AssetBundles at run-time. - Loading objects from AssetBundles.<br></div>
 
-<h3 id="u4F7F_u7528_AssetBundle"><a href="#u4F7F_u7528_AssetBundle" class="headerlink" title="使用 AssetBundle"></a>使用 AssetBundle</h3><p>在编辑器中使用 AssetBundle 的大体步骤：- 在编辑器中组织 &amp; 设置 AssetBundle。 - 编译 AssetBundle。 - 上传 AssetBundle 到外部存储 - 运行期下载 AssetBundle - 从 AssetBundle 加载对象。  </p>
+<h3 id="使用-AssetBundle"><a href="#使用-AssetBundle" class="headerlink" title="使用 AssetBundle"></a>使用 AssetBundle</h3><p>在编辑器中使用 AssetBundle 的大体步骤：- 在编辑器中组织 &amp; 设置 AssetBundle。 - 编译 AssetBundle。 - 上传 AssetBundle 到外部存储 - 运行期下载 AssetBundle - 从 AssetBundle 加载对象。  </p>
 <div style="display:none"><br>It is worth noting that some AssetBundles can be stored locally for immediate loading as a default setup. This is useful to protect against an install where the application cannot reach remote external storage to download desired AssetBundles. For example, the application would load default language and localization data from a local AssetBundle when the application has no access to downloadable content.<br></div>
 
 <p>值得注意的一点，有些 AssetBundle 可以存储在本地作为即时加载的默认设置。这样对不能访问远程存储下载期望的资源的安装特别有用。比如，当不能访问可下载内容的时候，程序可以从本地的 AssetBundle 中加载默认的语言和本地化数据。</p>
@@ -354,7 +354,7 @@
 <p>注意 AssetBundle 的名字已经被自动纠正到了小写字母。</p>
 <div style="display:none"><br>###USING ASSETBUNDLE VARIANTS<br><br>Being able to load Assets on demand from AssetBundles allows for many creative solutions to difficult issues related to loading, storing and updating Assets. One specific case where AssetBundles can help is the need to load a different set of Assets into a project depending upon the device, location or user preference. This is done by using AssetBundle Variants.<br></div>
 
-<h3 id="u4F7F_u7528_AssetBundle__u53D8_u4F53"><a href="#u4F7F_u7528_AssetBundle__u53D8_u4F53" class="headerlink" title="使用 AssetBundle 变体"></a>使用 AssetBundle 变体</h3><p>从 AssetBundle 中按需加载资源的可能让很多困难问题有很多创意的解决方案，比如加载，存储和更新资源。一个典型的 AssetBunle 能有帮助的用例就是需要基于设备，位置或者用户习惯加载资源的项目。这个可以用 AssetBundle 变体来实现。</p>
+<h3 id="使用-AssetBundle-变体"><a href="#使用-AssetBundle-变体" class="headerlink" title="使用 AssetBundle 变体"></a>使用 AssetBundle 变体</h3><p>从 AssetBundle 中按需加载资源的可能让很多困难问题有很多创意的解决方案，比如加载，存储和更新资源。一个典型的 AssetBunle 能有帮助的用例就是需要基于设备，位置或者用户习惯加载资源的项目。这个可以用 AssetBundle 变体来实现。</p>
 <div style="display:none"><br>AssetBundle Variants deliver different versions of the same Asset to be assigned to an object in the scene. AssetBundle Variants completely remap different Assets to the same object. Only one Variant of an AssetBundle is ever loaded at any given time. Asset Variants can be created for many different situations. Asset Variants can be different resolutions of the same Asset: Standard Definition graphics vs High Definition graphics or models with different polycounts. Asset Variants can be created with different content for an object: text, images, textures and typefaces can be different for each supported language, region or theme. These Assets are saved in a series of identically constructed AssetBundles and identified by their Variant Name.<br></div>
 
 <p>AssetBundle 变体提供场景中指定到一个对象上同一个资源的不同版本。AssetBundle 变体完全是重新映射不同的资源到同一个对象上。在同一时间只能有一种 AssetBundle 被加载。我们可以为不同的方案创建资源变体。同一个资源可以有不同分辨率的资源变体：标准图形 VS 高清图形或者不同多边形数的模型。可以为一个对象创建不同内容的资源变体：为每个支持语言，区域或主题的文字，图片，纹理和字体。这些资源都可以存储到一系列统一构建的 AssetBundle 中并用名字来区分他们。</p>
@@ -388,7 +388,7 @@
 <p>一旦资源被指定到 AssetBundle, 这个 AssetBundle 将要被编译和测试。</p>
 <div style="display:none"><br>###USING THE ASSETBUNDLE MANAGER<br><br>Unity has a Low-level API to work with AssetBundles directly. This tutorial will not cover the Low-level API. For more information on the Low-level AssetBundle API, please see the information linked below.<br></div>
 
-<h3 id="u4F7F_u7528_AssetBundle_Manager"><a href="#u4F7F_u7528_AssetBundle_Manager" class="headerlink" title="使用 AssetBundle Manager"></a>使用 AssetBundle Manager</h3><p>Unity 提供了直接使用 AssetBundle 的底层 API. 但是这篇教程不会覆盖这些底层 API。关于底层 API 的更多信息，请阅读这个链接。</p>
+<h3 id="使用-AssetBundle-Manager"><a href="#使用-AssetBundle-Manager" class="headerlink" title="使用 AssetBundle Manager"></a>使用 AssetBundle Manager</h3><p>Unity 提供了直接使用 AssetBundle 的底层 API. 但是这篇教程不会覆盖这些底层 API。关于底层 API 的更多信息，请阅读这个链接。</p>
 <div style="display:none"><br>For building, testing and managing AssetBundles, this tutorial will concentrate on the AssetBundle Manger and its High-level API.<br></div>
 
 <p>关于编译，测试和管理 AssetBundle，这篇教程会专注到 AssetBundle Manager 和它的高层 API 上。</p>
@@ -446,7 +446,7 @@
 <p>AssetBundle 被编译后部署到远程服务器或者开始本地资源服务器，这些 AssetBundles 可以在运行期下载和插入到项目中。</p>
 <div style="display:none"><br>###USING ASSETBUNDLES IN PRACTICE<br><br>To use AssetBundles in practice, this lesson will be using the AssetBundle Manager. The AssetBundle Manager will take care of loading AssetBundles and their associated Asset Dependencies. To load Assets from AssetBundles using the AssetBundle Manager, a script needs to be written using the API provided by the AssetBundle Manager.<br></div>
 
-<h3 id="AssetBundle__u7EC3_u4E60"><a href="#AssetBundle__u7EC3_u4E60" class="headerlink" title="AssetBundle 练习"></a>AssetBundle 练习</h3><p>练习 AssetBundle, 这教程将会使用 AssetBundle Manager。AssetBundle Manager 会应付 AssetBundle 的加载和他们相关的资源依赖。利用 AssetBundle Manager 来从 AssetBundle 中加载资源，脚本需要使用 AssetBundle Manager 提供的 API。</p>
+<h3 id="AssetBundle-练习"><a href="#AssetBundle-练习" class="headerlink" title="AssetBundle 练习"></a>AssetBundle 练习</h3><p>练习 AssetBundle, 这教程将会使用 AssetBundle Manager。AssetBundle Manager 会应付 AssetBundle 的加载和他们相关的资源依赖。利用 AssetBundle Manager 来从 AssetBundle 中加载资源，脚本需要使用 AssetBundle Manager 提供的 API。</p>
 <div style="display:none"><br>The AssetBundle Manager’s API includes:<br><br><em> Initialize() Initializes the AssetBundle manifest object.
 </em> LoadAssetAsync() Loads a given asset from a given AssetBundle and handles all the dependencies.<br><em> LoadLevelAsync() Loads a given scene from a given AssetBundle and handles all the dependencies.
 </em> LoadDependencies() Loads all the dependent AssetBundles for a given AssetBundle.<br><em> BaseDownloadingURL Sets the base downloading url which is used for automatic downloading dependencies.
@@ -654,7 +654,7 @@
           <div class="post-toc">
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#u4ECB_u7ECD"><span class="nav-number">1.</span> <span class="nav-text">介绍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u4F7F_u7528_AssetBundle"><span class="nav-number">2.</span> <span class="nav-text">使用 AssetBundle</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u4F7F_u7528_AssetBundle__u53D8_u4F53"><span class="nav-number">3.</span> <span class="nav-text">使用 AssetBundle 变体</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u4F7F_u7528_AssetBundle_Manager"><span class="nav-number">4.</span> <span class="nav-text">使用 AssetBundle Manager</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#AssetBundle__u7EC3_u4E60"><span class="nav-number">5.</span> <span class="nav-text">AssetBundle 练习</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#介绍"><span class="nav-number">1.</span> <span class="nav-text">介绍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用-AssetBundle"><span class="nav-number">2.</span> <span class="nav-text">使用 AssetBundle</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用-AssetBundle-变体"><span class="nav-number">3.</span> <span class="nav-text">使用 AssetBundle 变体</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用-AssetBundle-Manager"><span class="nav-number">4.</span> <span class="nav-text">使用 AssetBundle Manager</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#AssetBundle-练习"><span class="nav-number">5.</span> <span class="nav-text">AssetBundle 练习</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>
