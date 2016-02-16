@@ -210,6 +210,113 @@
             
             
               
+                <a class="post-title-link" href="/2016/02/16/UnityTips/" itemprop="url">
+                  瞎聊 Unity Shader 系列之九：用来包装变量的 Properties
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2016-02-16T22:03:00+08:00" content="2016-02-16">
+              2016-02-16
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Unity/" itemprop="url" rel="index">
+                    <span itemprop="name">Unity</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/02/16/UnityTips/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/02/16/UnityTips/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+              <h2 id="Unity-Tips"><a href="#Unity-Tips" class="headerlink" title="Unity Tips"></a>Unity Tips</h2><ul>
+<li><code>List&lt;T&gt;</code> 或者数组序列化的时候默认生成的名字为 Element n，如果要改变这个，只需要把 T<br>的第一个序列化的字段的数据类型设置为 <code>string</code></li>
+<li>保存 Play 模式下调试出的数据：在组件的右上角点击右键，选择 <code>Copy Component</code>，然后关闭 Play<br>模式之在对应的组件右上角点击右键，选择 <code>Copy Component as Values</code></li>
+</ul>
+<h2 id="性能-Tips"><a href="#性能-Tips" class="headerlink" title="性能 Tips"></a>性能 Tips</h2><ul>
+<li>用 <code>for</code> 循环代替 <code>foreach</code> 循环</li>
+<li>禁止不动的物体可以用 lightmap 来烘焙阴影贴图</li>
+<li>移动端，清晰度可以接受的情况选尽量用低质量的贴图</li>
+<li>用原生的数组代替 <code>List&lt;T&gt;</code>能提高性能</li>
+</ul>
+
+            
+          </span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
                 <a class="post-title-link" href="/2015/12/31/Hello2016/" itemprop="url">
                   Hello 2016
                 </a>
@@ -988,107 +1095,6 @@
 
 
     
-      
-
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                <a class="post-title-link" href="/2015/08/23/UNet_6/" itemprop="url">
-                  UNet 0x06：Command
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            发表于
-            <time itemprop="dateCreated" datetime="2015-08-23T12:01:00+08:00" content="2015-08-23">
-              2015-08-23
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp; 分类于
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Unity/" itemprop="url" rel="index">
-                    <span itemprop="name">Unity</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/08/23/UNet_6/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/08/23/UNet_6/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <p>最开始我们来对上篇文章 <a href="/2015/08/15/UNet_5/" title="[UNet 0x05: SyncVar]">[UNet 0x05: SyncVar]</a> 中的程序做点修改。在这里也建议朋友们先阅读上篇，然后继续阅读下面内容。</p>
-<p>我们先把只在 Server 端绘制的按钮：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (isServer)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span> (GUI.Button(<span class="keyword">new</span> Rect(<span class="number">10</span>, <span class="number">56</span>, <span class="number">160</span>, <span class="number">24</span>), <span class="string">"ChangeState"</span>))</span><br><span class="line">    &#123;</span><br><span class="line">        ChangeState();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>改成在 Client 端绘制</p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2015/08/23/UNet_6/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1131,7 +1137,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">34</span>
+              <span class="site-state-item-count">35</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1145,7 +1151,7 @@
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">10</span>
+              <span class="site-state-item-count">11</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>
