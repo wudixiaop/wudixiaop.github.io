@@ -70,6 +70,7 @@ theme: next
 ## Docs: http://hexo.io/docs/deployment.html
 deploy:
   type: git
+  repo: https://gitcafe.com/RockyLai/RockyLai.git
   
 # hexo-next
 since: 2014

@@ -4,6 +4,7 @@
 
     
   <url>
+<<<<<<< HEAD
     <loc>http://blog.shuiguzi.com/2014/10/28/Release/</loc>
     <lastmod>2016-02-17T01:17:52.000Z</lastmod>
     <data>
@@ -12,11 +13,21 @@
         <pubTime>2014-10-28T13:20:00.000Z</pubTime>
         
         <tag>Shader</tag>
+=======
+    <loc>http://blog.shuiguzi.com/2016/02/16/UnityTips/</loc>
+    <lastmod>2016-02-16T14:09:21.000Z</lastmod>
+    <data>
+        <display>
+        <title>Unity Tips - 关于 Untiy 一些需要知道的技巧</title>
+        <pubTime>2016-02-16T14:03:00.000Z</pubTime>
+        
+        <tag>Tips</tag>
+>>>>>>> origin/master
          
          
            
              
-              <breadCrumb title="Shader" url="http://blog.shuiguzi.com/categories/Shader/"/>
+              <breadCrumb title="Unity" url="http://blog.shuiguzi.com/categories/Unity/"/>
           
         </display>
     </data>
@@ -24,12 +35,21 @@
 
     
   <url>
+<<<<<<< HEAD
     <loc>http://blog.shuiguzi.com/2015/05/05/Shader_6/</loc>
     <lastmod>2016-01-12T05:15:54.000Z</lastmod>
     <data>
         <display>
         <title>瞎聊 Unity Shader 系列之六：初识 Shaderlab</title>
         <pubTime>2015-05-05T09:55:00.000Z</pubTime>
+=======
+    <loc>http://blog.shuiguzi.com/2014/10/28/Release/</loc>
+    <lastmod>2016-02-16T13:34:47.000Z</lastmod>
+    <data>
+        <display>
+        <title>ShaderlabVS Release Page</title>
+        <pubTime>2014-10-28T13:20:00.000Z</pubTime>
+>>>>>>> origin/master
         
         <tag>Shader</tag>
          
@@ -44,19 +64,27 @@
 
     
   <url>
+<<<<<<< HEAD
     <loc>http://blog.shuiguzi.com/2015/07/21/rockstar/</loc>
+=======
+    <loc>http://blog.shuiguzi.com/2015/05/05/Shader_6/</loc>
+>>>>>>> origin/master
     <lastmod>2016-01-12T05:15:54.000Z</lastmod>
     <data>
         <display>
-        <title>好玩：如何把 Github Contributions 填充满</title>
-        <pubTime>2015-07-21T04:50:00.000Z</pubTime>
+        <title>瞎聊 Unity Shader 系列之六：初识 Shaderlab</title>
+        <pubTime>2015-05-05T09:55:00.000Z</pubTime>
         
+<<<<<<< HEAD
         <tag>Python</tag>
+=======
+        <tag>Shader</tag>
+>>>>>>> origin/master
          
          
            
              
-              <breadCrumb title="一点一滴" url="http://blog.shuiguzi.com/categories/%E4%B8%80%E7%82%B9%E4%B8%80%E6%BB%B4/"/>
+              <breadCrumb title="Shader" url="http://blog.shuiguzi.com/categories/Shader/"/>
           
         </display>
     </data>
@@ -177,6 +205,26 @@
            
              
               <breadCrumb title="一点一滴" url="http://blog.shuiguzi.com/categories/%E4%B8%80%E7%82%B9%E4%B8%80%E6%BB%B4/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://blog.shuiguzi.com/2015/11/10/AssetBundleAndABManage_1/</loc>
+    <lastmod>2016-01-12T05:15:54.000Z</lastmod>
+    <data>
+        <display>
+        <title>Unity 5： Asset Bundle 和 Asset Bundle Manager (1)</title>
+        <pubTime>2015-11-10T08:16:56.000Z</pubTime>
+        
+        <tag>AssetBundle</tag>
+         
+         
+           
+             
+              <breadCrumb title="Unity" url="http://blog.shuiguzi.com/categories/Unity/"/>
           
         </display>
     </data>
@@ -524,6 +572,7 @@
 
     
   <url>
+<<<<<<< HEAD
     <loc>http://blog.shuiguzi.com/2015/11/10/AssetBundleAndABManage_1/</loc>
     <lastmod>2016-01-12T05:15:54.000Z</lastmod>
     <data>
@@ -532,11 +581,25 @@
         <pubTime>2015-11-10T08:16:56.000Z</pubTime>
         
         <tag>AssetBundle</tag>
+=======
+    <loc>http://blog.shuiguzi.com/2015/07/21/rockstar/</loc>
+    <lastmod>2016-01-12T05:15:54.000Z</lastmod>
+    <data>
+        <display>
+        <title>好玩：如何把 Github Contributions 填充满</title>
+        <pubTime>2015-07-21T04:50:00.000Z</pubTime>
+        
+        <tag>Python</tag>
+>>>>>>> origin/master
          
          
            
              
+<<<<<<< HEAD
               <breadCrumb title="Unity" url="http://blog.shuiguzi.com/categories/Unity/"/>
+=======
+              <breadCrumb title="一点一滴" url="http://blog.shuiguzi.com/categories/%E4%B8%80%E7%82%B9%E4%B8%80%E6%BB%B4/"/>
+>>>>>>> origin/master
           
         </display>
     </data>

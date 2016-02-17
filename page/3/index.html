@@ -210,6 +210,122 @@
             
             
               
+                <a class="post-title-link" href="/2015/05/14/Shader_10/" itemprop="url">
+                  瞎聊 Unity Shader 系列之十：数据的标签：语义绑定
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2015-05-14T15:53:00+08:00" content="2015-05-14">
+              2015-05-14
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Shader/" itemprop="url" rel="index">
+                    <span itemprop="name">Shader</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/05/14/Shader_10/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/05/14/Shader_10/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <p>这节内容跟 <a href="/2015/04/28/Shader_2/" title="[渲染管线]">[渲染管线]</a> 内容关系比较紧密，建议先了解渲染管线的整个流程。</p>
+<p>我们知道渲染管线整个流水线都有数据的输入输出，这样就存在几个问题：</p>
+<ol>
+<li>这些数据都是什么？</li>
+<li>这些数据输入或输出到哪里？</li>
+<li>Shader 里面怎么体现？</li>
+</ol>
+<p>这节内容主要是讲上面三个问题</p>
+<h3 id="数据的种类"><a href="#数据的种类" class="headerlink" title="数据的种类"></a>数据的种类</h3><p>一般情况能利用的有如下几种：</p>
+<ul>
+<li>坐标系中的位置 (position)</li>
+<li>法线 (normal)</li>
+<li>切线 (tanent)</li>
+<li>颜色 (color)</li>
+<li>纹理坐标 (texture coordinate)</li>
+</ul>
+<h3 id="数据的输入输出"><a href="#数据的输入输出" class="headerlink" title="数据的输入输出"></a>数据的输入输出</h3><p>数据存放在寄存器里面。输入的时候从寄存器读取数据，输出的时候将数据写到寄存器里面。</p>
+<h3 id="Shader-中的体现"><a href="#Shader-中的体现" class="headerlink" title="Shader 中的体现"></a>Shader 中的体现</h3><p>首先是数据的种类的表示。现实生活中，我们也喜欢物品分类，然后对分类取个名字或贴个标签，以后我们便可以从这一类中存取属于这类的物品。Shader 里面也有类似的做法，给 Shader 函数输入输出的数据结构打上标签。<br>这种标签叫做 <strong>语义（Semantic）</strong>， 打标签的行为叫做 <strong>语义绑定</strong> 。一般用一个冒号后面带上标签的名字来表示。长相大概是这个要样子 <code>:XXXXX</code> （XXXXX 表示语义）。</p>
+<p>我们有了标签，那我们把它放在 shader 代码什么地方呢？ 之前提到我们是给函数输入输出的数据结构打上标签，而函数的输入就是参数。对于参数，我们可以使用<strong>结构体</strong>也可以直接使用<strong>基础数据类型</strong>，所以能出现如下两种位置：</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/05/14/Shader_10/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
                 <a class="post-title-link" href="/2015/05/08/Shader_9/" itemprop="url">
                   瞎聊 Unity Shader 系列之九：用来包装变量的 Properties
                 </a>
@@ -939,6 +1055,7 @@
 
 
     
+<<<<<<< HEAD
       
 
   
@@ -1053,6 +1170,8 @@
 
 
     
+=======
+>>>>>>> origin/master
   </section>
 
   
@@ -1095,7 +1214,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">34</span>
+              <span class="site-state-item-count">35</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
