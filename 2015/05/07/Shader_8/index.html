@@ -1,0 +1,738 @@
+<!doctype html>
+<html class="theme-next use-motion theme-next-mist">
+<head>
+  
+
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+  
+    <link href='//fonts.lug.ustc.edu.cn/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+  
+
+
+<link rel="stylesheet" type="text/css" href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" />
+
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.2"/>
+
+
+
+
+  <meta name="keywords" content="Shader," />
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
+
+
+<meta name="description" content="第三节 [Shader 土地上的语言们] 里面说到过 CG 和 HLSL 等语言被 GGPROGRAM ... ENDCG 语句块里面。这节的主角 #pragma 出现的位置就是在这个语句块里面，用来做编译指示的。就好比告诉 Shaderlab 的编译器，你应该这么干应该那么干。这里把 #pragma 叫做编译指令吧。
+CGPROGRAM ... ENDCG 语句块根据 Shaderlab 写作方">
+<meta property="og:type" content="article">
+<meta property="og:title" content="瞎聊 Unity Shader 系列之八：#pragma 指令">
+<meta property="og:url" content="http://blog.shuiguzi.com/2015/05/07/Shader_8/index.html">
+<meta property="og:site_name" content="心亡则忙，亡心则忘">
+<meta property="og:description" content="第三节 [Shader 土地上的语言们] 里面说到过 CG 和 HLSL 等语言被 GGPROGRAM ... ENDCG 语句块里面。这节的主角 #pragma 出现的位置就是在这个语句块里面，用来做编译指示的。就好比告诉 Shaderlab 的编译器，你应该这么干应该那么干。这里把 #pragma 叫做编译指令吧。
+CGPROGRAM ... ENDCG 语句块根据 Shaderlab 写作方">
+<meta property="og:image" content="http://blog.shuiguzi.com/images/Shader/8/surfaceshader.png">
+<meta property="og:updated_time" content="2016-02-17T01:32:42.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="瞎聊 Unity Shader 系列之八：#pragma 指令">
+<meta name="twitter:description" content="第三节 [Shader 土地上的语言们] 里面说到过 CG 和 HLSL 等语言被 GGPROGRAM ... ENDCG 语句块里面。这节的主角 #pragma 出现的位置就是在这个语句块里面，用来做编译指示的。就好比告诉 Shaderlab 的编译器，你应该这么干应该那么干。这里把 #pragma 叫做编译指令吧。
+CGPROGRAM ... ENDCG 语句块根据 Shaderlab 写作方">
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: 'always'
+  };
+</script>
+
+
+
+  <title> 瞎聊 Unity Shader 系列之八：#pragma 指令 | 心亡则忙，亡心则忘 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  <!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?3a8e2930fa3e4db2aa0fe1cb32188641";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <div class="container one-column page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">心亡则忙，亡心则忘</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">学习、思考、分享</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu ">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content"> 
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                瞎聊 Unity Shader 系列之八：#pragma 指令
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2015-05-07T16:13:00+08:00" content="2015-05-07">
+              2015-05-07
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Shader/" itemprop="url" rel="index">
+                    <span itemprop="name">Shader</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/05/07/Shader_8/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/05/07/Shader_8/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <span itemprop="articleBody"><p>第三节 <a href="/2015/04/29/Shader_3/" title="[Shader 土地上的语言们]">[Shader 土地上的语言们]</a> 里面说到过 CG 和 HLSL 等语言被 <code>GGPROGRAM ... ENDCG</code> 语句块里面。这节的主角 #pragma 出现的位置就是在这个语句块里面，用来做编译指示的。就好比告诉<br> Shaderlab 的编译器，你应该这么干应该那么干。这里把 #pragma 叫做编译指令吧。</p>
+<p><code>CGPROGRAM ... ENDCG</code> 语句块根据 Shaderlab 写作方式不同，它的位置也不同。</p>
+<ul>
+<li>如果是 <strong>surface shader</strong>, 它在 Subshader 语句块里面，不是在 Pass 语句块里面</li>
+<li>如果是 <strong>vertex&amp;&amp;framgment shader</strong>，它是 Pass 语句块里面</li>
+</ul>
+<p>其实 surface shader 最终会编译成 vertex&amp;&amp;framgment shader, 最终结果是一样的的。surface shader 会被编译成含多个 Pass 的 vertex&amp;&amp;fragment shader, 而这些都用相同的编译指令。我们可以从 Inspector 的 shader<br>属性信息里面去打开被编译为 vertex&amp;&amp;fragment shader 后的代码。</p>
+<p><img src="/images/Shader/8/surfaceshader.png" alt="surface shader"></p>
+<p>如果本身不是 surface shader 的话，上面那个 show generated code 按钮是不会出现的。上面提到 #pragma 是在 <code>CGPROGRAM ... ENDCG</code> 语句块里面的，所以它出现的位置也符合上面提到的特征。</p>
+<a id="more"></a>
+<h3 id="Surface-Shader-的编译指令"><a href="#Surface-Shader-的编译指令" class="headerlink" title="Surface Shader 的编译指令"></a>Surface Shader 的编译指令</h3><p>这类 shader 必须指明</p>
+<ul>
+<li>surfaceFuction 是什么</li>
+<li>关照模型是什么</li>
+</ul>
+<p>语法是</p>
+<blockquote>
+<p>  #pragma surface surfaceFunction lightModel [optionalparams]</p>
+</blockquote>
+<p>从上面语法能知道，它有一些可以选的参数。具体参考 <a href="http://docs.unity3d.com/Manual/SL-SurfaceShaders.html" target="_blank" rel="external">这个页面</a></p>
+<p>伪代码大概是这样：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">Shader <span class="string">"shader 的名字"</span> &#123;</span><br><span class="line"></span><br><span class="line">    Subshader &#123;</span><br><span class="line">        <span class="comment">// CGPROGRAM ... ENDCG 在 Subshader 里面</span></span><br><span class="line">        CGPROGRAM</span><br><span class="line"></span><br><span class="line">        <span class="comment">// surfaceFunction 是 surf,</span></span><br><span class="line">        <span class="comment">// 光照模型是 Standard</span></span><br><span class="line">        <span class="comment">// [...] 表示可选参数</span></span><br><span class="line">        <span class="preprocessor">#<span class="keyword">pragma</span> surface surf Standard [...]</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        <span class="comment">// surfaceFunction</span></span><br><span class="line">        <span class="function"><span class="keyword">void</span> <span class="title">surf</span> <span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        ENCG</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Vertex-amp-amp-Fragment-Shader-的编译指令"><a href="#Vertex-amp-amp-Fragment-Shader-的编译指令" class="headerlink" title="Vertex&amp;&amp;Fragment Shader 的编译指令"></a>Vertex&amp;&amp;Fragment Shader 的编译指令</h3><p>这里的指令集分三类:</p>
+<ul>
+<li>CG/HLSL 程序相关</li>
+<li>面向的 <a href="/2015/04/26/Shader_1/" title="[Shader Model]">[Shader Model]</a></li>
+<li>渲染的平台</li>
+</ul>
+<p>具体参考 <a href="http://docs.unity3d.com/Manual/SL-ShaderPrograms.html" target="_blank" rel="external">这个页面</a></p>
+<p>伪代码大概是这样：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">Shader <span class="string">"shader 的名字"</span> &#123;</span><br><span class="line"></span><br><span class="line">    Subshader &#123;</span><br><span class="line"></span><br><span class="line">        pass &#123;</span><br><span class="line">            <span class="comment">// CGPROGRAM ... ENDCG 在 Pass 里面</span></span><br><span class="line">            CGPROGRAM</span><br><span class="line"></span><br><span class="line">            <span class="comment">// vertex shader 的函数是 vert</span></span><br><span class="line">            <span class="preprocessor">#<span class="keyword">pragma</span> vertex vert</span></span><br><span class="line"></span><br><span class="line">            <span class="comment">// fragment shader 的函数是 fragment</span></span><br><span class="line">            <span class="preprocessor">#<span class="keyword">pragma</span> fragment frag</span></span><br><span class="line"></span><br><span class="line">            vert() &#123;</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            frag () &#123;</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            ENDCG</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>代码中的 vertex shader 和 fragment shader 在渲染管道中的位置请参考这系列文章第二节 <a href="/2015/04/28/Shader_2/" title="[渲染管道]">[渲染管道]</a>。</p>
+<p><hr><br>鄙人才疏学浅，有出入的地方非常感谢能帮忙指正。:)</p>
+</span>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Shader/" rel="tag">#Shader</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/05/06/Shader_7/" rel="next" title="瞎聊 Unity Shader 系列之七：究竟谁先被渲染？">
+                <i class="fa fa-chevron-left"></i> 瞎聊 Unity Shader 系列之七：究竟谁先被渲染？
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/05/08/Shader_9/" rel="prev" title="瞎聊 Unity Shader 系列之九：用来包装变量的 Properties">
+                瞎聊 Unity Shader 系列之九：用来包装变量的 Properties <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+ </div>
+
+        
+
+        
+          <div class="comments" id="comments">
+            
+              <div class="ds-thread" data-thread-key="2015/05/07/Shader_8/"
+                   data-title="瞎聊 Unity Shader 系列之八：#pragma 指令" data-url="http://blog.shuiguzi.com/2015/05/07/Shader_8/">
+              </div>
+            
+          </div>
+        
+      </div>
+
+      
+        
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" src="https://avatars1.githubusercontent.com/u/5707242?v=3&s=460" alt="RockyLai" itemprop="image"/>
+          <p class="site-author-name" itemprop="name">RockyLai</p>
+        </div>
+        <p class="site-description motion-element" itemprop="description"></p>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">35</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            <a href="/categories">
+              <span class="site-state-item-count">3</span>
+              <span class="site-state-item-name">分类</span>
+              </a>
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">11</span>
+              <span class="site-state-item-name">标签</span>
+              </a>
+          </div>
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/wudixiaop" target="_blank">
+                  <i class="fa fa-github"></i> Github
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:rockylai@shuiguzi.com" target="_blank">
+                  <i class="fa fa-email"></i> Email
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator"></div>
+          <div class="post-toc">
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Surface-Shader-的编译指令"><span class="nav-number">1.</span> <span class="nav-text">Surface Shader 的编译指令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Vertex-amp-amp-Fragment-Shader-的编译指令"><span class="nav-number">2.</span> <span class="nav-text">Vertex&&Fragment Shader 的编译指令</span></a></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator"></div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+      
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner"> <div class="copyright" >
+  
+  &copy;  2014 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="icon-next-heart fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">RockyLai</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+ </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+  
+    
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"rockylaigithubio"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+    
+     
+
+
+    
+  
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
+  
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.2" id="motion.global"></script>
+
+
+
+
+  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.2"></script>
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.2" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 0.4 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    var $tocContent = $('.post-toc-content');
+    if (isDesktop() && CONFIG.sidebar === 'post') {
+      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+        displaySidebar();
+      }
+    }
+  });
+</script>
+
+
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      if (CONFIG.sidebar === 'always') {
+        displaySidebar();
+      }
+      if (isMobile()) {
+        FastClick.attach(document.body);
+      }
+
+      motionIntegrator.bootstrap();
+    });
+  </script>
+
+  
+  
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/lazyload.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#posts").find('img').lazyload({
+        placeholder: "/images/loading.gif",
+        effect: "fadeIn"
+      });
+    });
+  </script>
+</body>
+</html>

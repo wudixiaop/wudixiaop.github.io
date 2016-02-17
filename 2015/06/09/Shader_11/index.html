@@ -1,0 +1,748 @@
+<!doctype html>
+<html class="theme-next use-motion theme-next-mist">
+<head>
+  
+
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+  
+    <link href='//fonts.lug.ustc.edu.cn/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+  
+
+
+<link rel="stylesheet" type="text/css" href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" />
+
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.2"/>
+
+
+
+
+  <meta name="keywords" content="Shader," />
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
+
+
+<meta name="description" content="第二节 [渲染管线] 中提到了 Frame Buffer, 这个是用来存储帧位图的数据存储区域。 这里在介绍另外一个缓存, 叫深度缓存 (Depth Buffer), 也叫作 Z-Buffer。从名字上来看这是一个存储深度（数据）的存储区。下面我们带着两个问题来解释这个深度缓存。
+
+
+存储的深度数据是什么
+有什么用处
+
+
+深度是什么第四节  中提到，要描述一个物体的位置，需要借助参照物。我们这里扩">
+<meta property="og:type" content="article">
+<meta property="og:title" content="瞎聊 Unity Shader 系列之十一：深度缓存">
+<meta property="og:url" content="http://blog.shuiguzi.com/2015/06/09/Shader_11/index.html">
+<meta property="og:site_name" content="心亡则忙，亡心则忘">
+<meta property="og:description" content="第二节 [渲染管线] 中提到了 Frame Buffer, 这个是用来存储帧位图的数据存储区域。 这里在介绍另外一个缓存, 叫深度缓存 (Depth Buffer), 也叫作 Z-Buffer。从名字上来看这是一个存储深度（数据）的存储区。下面我们带着两个问题来解释这个深度缓存。
+
+
+存储的深度数据是什么
+有什么用处
+
+
+深度是什么第四节  中提到，要描述一个物体的位置，需要借助参照物。我们这里扩">
+<meta property="og:image" content="http://blog.shuiguzi.com/images/Shader/11/PipelineCullDepth.png">
+<meta property="og:updated_time" content="2016-02-17T01:32:42.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="瞎聊 Unity Shader 系列之十一：深度缓存">
+<meta name="twitter:description" content="第二节 [渲染管线] 中提到了 Frame Buffer, 这个是用来存储帧位图的数据存储区域。 这里在介绍另外一个缓存, 叫深度缓存 (Depth Buffer), 也叫作 Z-Buffer。从名字上来看这是一个存储深度（数据）的存储区。下面我们带着两个问题来解释这个深度缓存。
+
+
+存储的深度数据是什么
+有什么用处
+
+
+深度是什么第四节  中提到，要描述一个物体的位置，需要借助参照物。我们这里扩">
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: 'always'
+  };
+</script>
+
+
+
+  <title> 瞎聊 Unity Shader 系列之十一：深度缓存 | 心亡则忙，亡心则忘 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  <!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?3a8e2930fa3e4db2aa0fe1cb32188641";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <div class="container one-column page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">心亡则忙，亡心则忘</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">学习、思考、分享</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu ">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content"> 
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                瞎聊 Unity Shader 系列之十一：深度缓存
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2015-06-09T15:17:00+08:00" content="2015-06-09">
+              2015-06-09
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Shader/" itemprop="url" rel="index">
+                    <span itemprop="name">Shader</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/06/09/Shader_11/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/06/09/Shader_11/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <span itemprop="articleBody"><p>第二节 <a href="/2015/04/28/Shader_2/" title="[渲染管线]">[渲染管线]</a> 中提到了 Frame Buffer, 这个是用来存储帧位图的数据存储区域。 这里在介绍另外一个缓存, 叫深度缓存 (Depth Buffer), 也叫作 Z-Buffer。从名字上来看这是一个<br>存储深度（数据）的存储区。下面我们带着两个问题来解释这个深度缓存。</p>
+<blockquote>
+<ol>
+<li>存储的深度数据是什么</li>
+<li>有什么用处</li>
+</ol>
+</blockquote>
+<h3 id="深度是什么"><a href="#深度是什么" class="headerlink" title="深度是什么"></a>深度是什么</h3><p>第四节  中提到，要描述一个物体的位置，需要借助参照物。我们这里扩展一下， 要 <strong>用数值来表述一个物体的某种属性，要有这个数值参照的原点</strong>。 既然深度值是数值，那它的<br>参照原点是什么呢？ 答案是观察者的视角，换句话说就是 Camera。</p>
+<p>在 <a href="/2015/04/28/Shader_2/" title="[渲染管线]">[渲染管线]</a> 这节中提到， Vertex Shader 之后有一个插值过程，生成像素。这个像素的 X 和 Y 坐标为屏幕坐标， Z 坐标轴数值就是深度，存储在深度缓存里面。  </p>
+<h3 id="有什么用处"><a href="#有什么用处" class="headerlink" title="有什么用处"></a>有什么用处</h3><p>首先让我们来思考一个问题</p>
+<blockquote>
+<p>假设有两个物体都经过渲染后的像素在屏幕坐标系中是同一个点，那哪个像素应该渲染？</p>
+</blockquote>
+<p>我想现在你应该会想到，当然是渲染里观察者更近的一个像素啦。这个一般来说是对的，但是也不全对。 因为远近是用深度数值来表示，但是渲染的逻辑在 Shaderlab 里面可以用 ZTest 设置，它的语法是</p>
+<figure class="highlight gherkin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ZTest Less |<span class="string"> Greater </span>|<span class="string"> LEqual </span>|<span class="string"> GEqual </span>|<span class="string"> Equal </span>|<span class="string"> NotEqual </span>|<span class="string"> Always</span></span><br></pre></td></tr></table></figure>    
+<p>ZTest 默认的值是 LEqual, 也就是渲染在物体在这个深度值同位置或者之前的物体，不渲染之后的物体。</p>
+<a id="more"></a>
+<p>你也许会想，那如果连个像素的深度值一样怎么办？ 深度值一样的情况也叫做 <strong>深度冲突</strong> (Z-fighting)。解决方法是给其中某一个物体设置偏移量。 Shaderlab 中语法是:</p>
+<figure class="highlight mathematica"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Offset</span> <span class="keyword">Factor</span>, Units</span><br></pre></td></tr></table></figure>
+<p>Offset 根据一个插值公式来计算出新的深度值。有兴趣的可以 <a href="https://msdn.microsoft.com/en-us/library/windows/desktop/dd373973%28v=vs.85%29.aspx" target="_blank" rel="external">参考这里</a></p>
+<p>我们也可以打开和关闭深度写入功能，在 Shaderlab 中用 ZWrite 来控制，它的语法是:</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ZWrite</span> <span class="literal">On</span> | <span class="literal">Off</span></span><br></pre></td></tr></table></figure>
+<h3 id="在-Unity-图像渲染中顺序中的位置"><a href="#在-Unity-图像渲染中顺序中的位置" class="headerlink" title="在 Unity 图像渲染中顺序中的位置"></a>在 Unity 图像渲染中顺序中的位置</h3><p><img src="/images/Shader/11/PipelineCullDepth.png" alt="PipelineCullDepth"></p>
+<p>图片来自 Unity 官方手册 <a href="http://docs.unity3d.com/Manual/SL-CullAndDepth.html" target="_blank" rel="external">http://docs.unity3d.com/Manual/SL-CullAndDepth.html</a></p>
+<p><hr><br>鄙人才疏学浅，有出入的地方非常感谢能帮忙指正。:)</p>
+</span>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Shader/" rel="tag">#Shader</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/05/14/Shader_10/" rel="next" title="瞎聊 Unity Shader 系列之十：数据的标签：语义绑定">
+                <i class="fa fa-chevron-left"></i> 瞎聊 Unity Shader 系列之十：数据的标签：语义绑定
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/07/21/rockstar/" rel="prev" title="好玩：如何把 Github Contributions 填充满">
+                好玩：如何把 Github Contributions 填充满 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+ </div>
+
+        
+
+        
+          <div class="comments" id="comments">
+            
+              <div class="ds-thread" data-thread-key="2015/06/09/Shader_11/"
+                   data-title="瞎聊 Unity Shader 系列之十一：深度缓存" data-url="http://blog.shuiguzi.com/2015/06/09/Shader_11/">
+              </div>
+            
+          </div>
+        
+      </div>
+
+      
+        
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" src="https://avatars1.githubusercontent.com/u/5707242?v=3&s=460" alt="RockyLai" itemprop="image"/>
+          <p class="site-author-name" itemprop="name">RockyLai</p>
+        </div>
+        <p class="site-description motion-element" itemprop="description"></p>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">35</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            <a href="/categories">
+              <span class="site-state-item-count">3</span>
+              <span class="site-state-item-name">分类</span>
+              </a>
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">11</span>
+              <span class="site-state-item-name">标签</span>
+              </a>
+          </div>
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/wudixiaop" target="_blank">
+                  <i class="fa fa-github"></i> Github
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:rockylai@shuiguzi.com" target="_blank">
+                  <i class="fa fa-email"></i> Email
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator"></div>
+          <div class="post-toc">
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#深度是什么"><span class="nav-number">1.</span> <span class="nav-text">深度是什么</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#有什么用处"><span class="nav-number">2.</span> <span class="nav-text">有什么用处</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#在-Unity-图像渲染中顺序中的位置"><span class="nav-number">3.</span> <span class="nav-text">在 Unity 图像渲染中顺序中的位置</span></a></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator"></div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+      
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner"> <div class="copyright" >
+  
+  &copy;  2014 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="icon-next-heart fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">RockyLai</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+ </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+  
+    
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"rockylaigithubio"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+    
+     
+
+
+    
+  
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
+  
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.2" id="motion.global"></script>
+
+
+
+
+  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.2"></script>
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.2" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 0.4 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    var $tocContent = $('.post-toc-content');
+    if (isDesktop() && CONFIG.sidebar === 'post') {
+      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+        displaySidebar();
+      }
+    }
+  });
+</script>
+
+
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      if (CONFIG.sidebar === 'always') {
+        displaySidebar();
+      }
+      if (isMobile()) {
+        FastClick.attach(document.body);
+      }
+
+      motionIntegrator.bootstrap();
+    });
+  </script>
+
+  
+  
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/lazyload.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#posts").find('img').lazyload({
+        placeholder: "/images/loading.gif",
+        effect: "fadeIn"
+      });
+    });
+  </script>
+</body>
+</html>
