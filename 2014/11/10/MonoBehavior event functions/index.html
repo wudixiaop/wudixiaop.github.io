@@ -50,7 +50,7 @@
 <meta property="og:site_name" content="心亡则忙，亡心则忘">
 <meta property="og:description" content="写在最前面或许对于大部分Unity3D程序员来说，第一次接触脚本编写的时候都是从MonoBehavior开始的。MonoBehavior是Uniy3d脚本编写核心的类之一， 它预先定义好了很多事件，并且这些事件按照预先定义好顺序执行。了解MonoBehavior提供的这些事件的执行顺序，是我们进一步提高脚步编程和了解Unity3D内部逻辑的必要一步。我们先从MonoBehavior提供的事件说起。">
 <meta property="og:image" content="http://blog.shuiguzi.com/images/monobehaviour_flowchart.svg">
-<meta property="og:updated_time" content="2016-01-03T12:42:22.000Z">
+<meta property="og:updated_time" content="2016-01-12T05:15:54.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="一起看看MonoBehavior内部事件执行顺序">
 <meta name="twitter:description" content="写在最前面或许对于大部分Unity3D程序员来说，第一次接触脚本编写的时候都是从MonoBehavior开始的。MonoBehavior是Uniy3d脚本编写核心的类之一， 它预先定义好了很多事件，并且这些事件按照预先定义好顺序执行。了解MonoBehavior提供的这些事件的执行顺序，是我们进一步提高脚步编程和了解Unity3D内部逻辑的必要一步。我们先从MonoBehavior提供的事件说起。">
@@ -265,9 +265,9 @@
       
 
       
-        <span itemprop="articleBody"><h3 id="u5199_u5728_u6700_u524D_u9762"><a href="#u5199_u5728_u6700_u524D_u9762" class="headerlink" title="写在最前面"></a>写在最前面</h3><p>或许对于大部分Unity3D程序员来说，第一次接触脚本编写的时候都是从MonoBehavior开始的。MonoBehavior是Uniy3d脚本编写核心的类之一， 它预先定义好了很多事件，并且这些事件按照预先定义好顺序执行。了解MonoBehavior提供的这些事件的执行顺序，是我们进一步提高脚步编程和了解Unity3D内部逻辑的必要一步。我们先从MonoBehavior提供的事件说起。</p>
-<h3 id="MonoBehavior_u90FD_u63D0_u4F9B_u4E86_u4EC0_u4E48_u4E8B_u4EF6"><a href="#MonoBehavior_u90FD_u63D0_u4F9B_u4E86_u4EC0_u4E48_u4E8B_u4EF6" class="headerlink" title="MonoBehavior都提供了什么事件"></a>MonoBehavior都提供了什么事件</h3><p>MonoBehavior提供的事件从编辑器到游戏结束都有涉及。下面列举一些常用的，更详列表可以参照 <a href="http://docs.unity3d.com/ScriptReference/MonoBehaviour.html" target="_blank" rel="external">这个页面</a>。</p>
-<h4 id="u4E0E_u7F16_u8F91_u76F8_u5173"><a href="#u4E0E_u7F16_u8F91_u76F8_u5173" class="headerlink" title="与编辑相关"></a>与编辑相关</h4><table>
+        <span itemprop="articleBody"><h3 id="写在最前面"><a href="#写在最前面" class="headerlink" title="写在最前面"></a>写在最前面</h3><p>或许对于大部分Unity3D程序员来说，第一次接触脚本编写的时候都是从MonoBehavior开始的。MonoBehavior是Uniy3d脚本编写核心的类之一， 它预先定义好了很多事件，并且这些事件按照预先定义好顺序执行。了解MonoBehavior提供的这些事件的执行顺序，是我们进一步提高脚步编程和了解Unity3D内部逻辑的必要一步。我们先从MonoBehavior提供的事件说起。</p>
+<h3 id="MonoBehavior都提供了什么事件"><a href="#MonoBehavior都提供了什么事件" class="headerlink" title="MonoBehavior都提供了什么事件"></a>MonoBehavior都提供了什么事件</h3><p>MonoBehavior提供的事件从编辑器到游戏结束都有涉及。下面列举一些常用的，更详列表可以参照 <a href="http://docs.unity3d.com/ScriptReference/MonoBehaviour.html" target="_blank" rel="external">这个页面</a>。</p>
+<h4 id="与编辑相关"><a href="#与编辑相关" class="headerlink" title="与编辑相关"></a>与编辑相关</h4><table>
 <thead>
 <tr>
 <th style="text-align:left">名称</th>
@@ -282,7 +282,7 @@
 </tbody>
 </table>
 <a id="more"></a>
-<h4 id="Update_u76F8_u5173"><a href="#Update_u76F8_u5173" class="headerlink" title="Update相关"></a>Update相关</h4><table>
+<h4 id="Update相关"><a href="#Update相关" class="headerlink" title="Update相关"></a>Update相关</h4><table>
 <thead>
 <tr>
 <th style="text-align:left">名称</th>
@@ -304,7 +304,7 @@
 </tr>
 </tbody>
 </table>
-<h4 id="u751F_u547D_u5468_u671F_u76F8_u5173"><a href="#u751F_u547D_u5468_u671F_u76F8_u5173" class="headerlink" title="生命周期相关"></a>生命周期相关</h4><table>
+<h4 id="生命周期相关"><a href="#生命周期相关" class="headerlink" title="生命周期相关"></a>生命周期相关</h4><table>
 <thead>
 <tr>
 <th style="text-align:left">名称</th>
@@ -346,7 +346,7 @@
 </tr>
 </tbody>
 </table>
-<h4 id="u7269_u7406_u7CFB_u7EDF_u76F8_u5173"><a href="#u7269_u7406_u7CFB_u7EDF_u76F8_u5173" class="headerlink" title="物理系统相关"></a>物理系统相关</h4><table>
+<h4 id="物理系统相关"><a href="#物理系统相关" class="headerlink" title="物理系统相关"></a>物理系统相关</h4><table>
 <thead>
 <tr>
 <th style="text-align:left">名称</th>
@@ -403,7 +403,7 @@
 </tr>
 </tbody>
 </table>
-<h4 id="u8F93_u5165_u7CFB_u7EDF_u76F8_u5173"><a href="#u8F93_u5165_u7CFB_u7EDF_u76F8_u5173" class="headerlink" title="输入系统相关"></a>输入系统相关</h4><table>
+<h4 id="输入系统相关"><a href="#输入系统相关" class="headerlink" title="输入系统相关"></a>输入系统相关</h4><table>
 <thead>
 <tr>
 <th style="text-align:left">名称</th>
@@ -441,7 +441,7 @@
 </tr>
 </tbody>
 </table>
-<h4 id="u6E32_u67D3_u76F8_u5173"><a href="#u6E32_u67D3_u76F8_u5173" class="headerlink" title="渲染相关"></a>渲染相关</h4><table>
+<h4 id="渲染相关"><a href="#渲染相关" class="headerlink" title="渲染相关"></a>渲染相关</h4><table>
 <thead>
 <tr>
 <th style="text-align:left">名称</th>
@@ -491,8 +491,8 @@
 </tr>
 </tbody>
 </table>
-<h3 id="u7528_u56FE_u6765_u8868_u793AMonoBehavior_u4E8B_u4EF6_u6267_u884C_u987A_u5E8F"><a href="#u7528_u56FE_u6765_u8868_u793AMonoBehavior_u4E8B_u4EF6_u6267_u884C_u987A_u5E8F" class="headerlink" title="用图来表示MonoBehavior事件执行顺序"></a>用图来表示MonoBehavior事件执行顺序</h3><p><img src="/images/monobehaviour_flowchart.svg" alt="monobehavior"></p>
-<h3 id="u603B_u7ED3_3A"><a href="#u603B_u7ED3_3A" class="headerlink" title="总结:"></a>总结:</h3><ul>
+<h3 id="用图来表示MonoBehavior事件执行顺序"><a href="#用图来表示MonoBehavior事件执行顺序" class="headerlink" title="用图来表示MonoBehavior事件执行顺序"></a>用图来表示MonoBehavior事件执行顺序</h3><p><img src="/images/monobehaviour_flowchart.svg" alt="monobehavior"></p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结:"></a>总结:</h3><ul>
 <li>首次加载场景时执行<strong>Awake()</strong></li>
 <li><strong>Start()</strong>只在第一帧才执行, <strong>Start()</strong>在<strong>Awake()</strong>之后执行</li>
 <li>Update的执行顺序是: <strong>FixedUpdate()</strong> -&gt; <strong>Update()</strong> -&gt; <strong>LateUpdate()</strong></li>
@@ -621,7 +621,7 @@
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">10</span>
+              <span class="site-state-item-count">11</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>
@@ -663,7 +663,7 @@
           <div class="post-toc">
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#u5199_u5728_u6700_u524D_u9762"><span class="nav-number">1.</span> <span class="nav-text">写在最前面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MonoBehavior_u90FD_u63D0_u4F9B_u4E86_u4EC0_u4E48_u4E8B_u4EF6"><span class="nav-number">2.</span> <span class="nav-text">MonoBehavior都提供了什么事件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#u4E0E_u7F16_u8F91_u76F8_u5173"><span class="nav-number">2.1.</span> <span class="nav-text">与编辑相关</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Update_u76F8_u5173"><span class="nav-number">2.2.</span> <span class="nav-text">Update相关</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#u751F_u547D_u5468_u671F_u76F8_u5173"><span class="nav-number">2.3.</span> <span class="nav-text">生命周期相关</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#u7269_u7406_u7CFB_u7EDF_u76F8_u5173"><span class="nav-number">2.4.</span> <span class="nav-text">物理系统相关</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#u8F93_u5165_u7CFB_u7EDF_u76F8_u5173"><span class="nav-number">2.5.</span> <span class="nav-text">输入系统相关</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#u6E32_u67D3_u76F8_u5173"><span class="nav-number">2.6.</span> <span class="nav-text">渲染相关</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u7528_u56FE_u6765_u8868_u793AMonoBehavior_u4E8B_u4EF6_u6267_u884C_u987A_u5E8F"><span class="nav-number">3.</span> <span class="nav-text">用图来表示MonoBehavior事件执行顺序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u603B_u7ED3_3A"><span class="nav-number">4.</span> <span class="nav-text">总结:</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#写在最前面"><span class="nav-number">1.</span> <span class="nav-text">写在最前面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MonoBehavior都提供了什么事件"><span class="nav-number">2.</span> <span class="nav-text">MonoBehavior都提供了什么事件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#与编辑相关"><span class="nav-number">2.1.</span> <span class="nav-text">与编辑相关</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Update相关"><span class="nav-number">2.2.</span> <span class="nav-text">Update相关</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#生命周期相关"><span class="nav-number">2.3.</span> <span class="nav-text">生命周期相关</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#物理系统相关"><span class="nav-number">2.4.</span> <span class="nav-text">物理系统相关</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#输入系统相关"><span class="nav-number">2.5.</span> <span class="nav-text">输入系统相关</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#渲染相关"><span class="nav-number">2.6.</span> <span class="nav-text">渲染相关</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#用图来表示MonoBehavior事件执行顺序"><span class="nav-number">3.</span> <span class="nav-text">用图来表示MonoBehavior事件执行顺序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">4.</span> <span class="nav-text">总结:</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>

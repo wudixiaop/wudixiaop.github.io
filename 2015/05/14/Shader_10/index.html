@@ -76,7 +76,7 @@ Shader 里面怎么体现？
 切线 (tanent)
 颜色 (colo">
 <meta property="og:image" content="http://blog.shuiguzi.com/images/Shader/10/rgb.png">
-<meta property="og:updated_time" content="2016-01-03T12:42:22.000Z">
+<meta property="og:updated_time" content="2016-01-12T05:15:54.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="瞎聊 Unity Shader 系列之十：数据的标签：语义绑定">
 <meta name="twitter:description" content="这节内容跟 [渲染管线] 内容关系比较紧密，建议先了解渲染管线的整个流程。
@@ -312,7 +312,7 @@ Shader 里面怎么体现？
 <li>Shader 里面怎么体现？</li>
 </ol>
 <p>这节内容主要是讲上面三个问题</p>
-<h3 id="u6570_u636E_u7684_u79CD_u7C7B"><a href="#u6570_u636E_u7684_u79CD_u7C7B" class="headerlink" title="数据的种类"></a>数据的种类</h3><p>一般情况能利用的有如下几种：</p>
+<h3 id="数据的种类"><a href="#数据的种类" class="headerlink" title="数据的种类"></a>数据的种类</h3><p>一般情况能利用的有如下几种：</p>
 <ul>
 <li>坐标系中的位置 (position)</li>
 <li>法线 (normal)</li>
@@ -320,8 +320,8 @@ Shader 里面怎么体现？
 <li>颜色 (color)</li>
 <li>纹理坐标 (texture coordinate)</li>
 </ul>
-<h3 id="u6570_u636E_u7684_u8F93_u5165_u8F93_u51FA"><a href="#u6570_u636E_u7684_u8F93_u5165_u8F93_u51FA" class="headerlink" title="数据的输入输出"></a>数据的输入输出</h3><p>数据存放在寄存器里面。输入的时候从寄存器读取数据，输出的时候将数据写到寄存器里面。</p>
-<h3 id="Shader__u4E2D_u7684_u4F53_u73B0"><a href="#Shader__u4E2D_u7684_u4F53_u73B0" class="headerlink" title="Shader 中的体现"></a>Shader 中的体现</h3><p>首先是数据的种类的表示。现实生活中，我们也喜欢物品分类，然后对分类取个名字或贴个标签，以后我们便可以从这一类中存取属于这类的物品。Shader 里面也有类似的做法，给 Shader 函数输入输出的数据结构打上标签。<br>这种标签叫做 <strong>语义（Semantic）</strong>， 打标签的行为叫做 <strong>语义绑定</strong> 。一般用一个冒号后面带上标签的名字来表示。长相大概是这个要样子 <code>:XXXXX</code> （XXXXX 表示语义）。</p>
+<h3 id="数据的输入输出"><a href="#数据的输入输出" class="headerlink" title="数据的输入输出"></a>数据的输入输出</h3><p>数据存放在寄存器里面。输入的时候从寄存器读取数据，输出的时候将数据写到寄存器里面。</p>
+<h3 id="Shader-中的体现"><a href="#Shader-中的体现" class="headerlink" title="Shader 中的体现"></a>Shader 中的体现</h3><p>首先是数据的种类的表示。现实生活中，我们也喜欢物品分类，然后对分类取个名字或贴个标签，以后我们便可以从这一类中存取属于这类的物品。Shader 里面也有类似的做法，给 Shader 函数输入输出的数据结构打上标签。<br>这种标签叫做 <strong>语义（Semantic）</strong>， 打标签的行为叫做 <strong>语义绑定</strong> 。一般用一个冒号后面带上标签的名字来表示。长相大概是这个要样子 <code>:XXXXX</code> （XXXXX 表示语义）。</p>
 <p>我们有了标签，那我们把它放在 shader 代码什么地方呢？ 之前提到我们是给函数输入输出的数据结构打上标签，而函数的输入就是参数。对于参数，我们可以使用<strong>结构体</strong>也可以直接使用<strong>基础数据类型</strong>，所以能出现如下两种位置：</p>
 <a id="more"></a>
 <p>使用基础数据类型做参数时，大概是这个样子：  </p>
@@ -351,11 +351,11 @@ Shader 里面怎么体现？
 </ul>
 <p>现在我们知道通过标签来表示数据的分类, 那怎么表示输入和输出呢？答案是用关键词 in, out, inout。 光从名字上来看我们就知道 in 表示输入， out 表示输出， inout 表示输入输出。<br>参数如果特别表明，默认为输入。可以参考下在 Unity 编辑器里面的创建的默认 shader， 里面就有这几个关键词的用法。</p>
 <p>最后要说明一点，上面所说的在 Shaderlab 中都应该包括在 <code>CGPROGRAM ... ENDCG</code> 语句块里面，因为这个是 CG 等语言的内容。</p>
-<h3 id="u4E3E_u4E2A_u4F8B_u5B50"><a href="#u4E3E_u4E2A_u4F8B_u5B50" class="headerlink" title="举个例子"></a>举个例子</h3><p>现在举个代码的例子来说明（如果对下面代码结构等不是很明白，强烈建议从头开始看本系列的文章）：</p>
+<h3 id="举个例子"><a href="#举个例子" class="headerlink" title="举个例子"></a>举个例子</h3><p>现在举个代码的例子来说明（如果对下面代码结构等不是很明白，强烈建议从头开始看本系列的文章）：</p>
 <figure class="highlight cs"><figcaption><span>语义定义示例代码</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">Shader <span class="string">"Custom/Shader10"</span> &#123;</span><br><span class="line">    SubShader &#123;</span><br><span class="line">        Tags &#123; <span class="string">"RenderType"</span>=<span class="string">"Opaque"</span> &#125;</span><br><span class="line"></span><br><span class="line">        pass &#123;</span><br><span class="line"></span><br><span class="line">            CGPROGRAM</span><br><span class="line"></span><br><span class="line">            <span class="preprocessor">#<span class="keyword">pragma</span> vertex vert</span></span><br><span class="line">            <span class="preprocessor">#<span class="keyword">pragma</span> fragment frag</span></span><br><span class="line"></span><br><span class="line">            <span class="comment">// 结构体中使用语义绑定</span></span><br><span class="line">            <span class="keyword">struct</span> VertexOutput &#123;</span><br><span class="line">                float4 pos :SV_POSITION;	   	<span class="comment">// 转换到投射空间后位置</span></span><br><span class="line">                float4 texcoord :TEXCOORD0;		<span class="comment">// 顶点颜色</span></span><br><span class="line">            &#125;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">            <span class="function">VertexOutput <span class="title">vert</span>(<span class="params"><span class="keyword">in</span> float4 pos :POSITION <span class="comment">/*参数中使用语义绑定*/</span></span>)</span><br><span class="line">            </span>&#123;</span><br><span class="line">                VertexOutput output;</span><br><span class="line">                output.pos = mul(UNITY_MATRIX_MVP, pos);</span><br><span class="line">                output.texcoord = pos + float4(<span class="number">0.5</span>, <span class="number">0.5</span>, <span class="number">0.5</span>, <span class="number">0</span>);</span><br><span class="line">                <span class="keyword">return</span> output;</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">            <span class="function">float4 <span class="title">frag</span>(<span class="params">VertexOutput input</span>) :COLOR <span class="comment">// 函数后面使用语义绑定</span></span><br><span class="line">            </span>&#123;</span><br><span class="line">                <span class="keyword">return</span> input.texcoord;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            ENDCG</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>上面的 shader 如果用在立方体上渲染出漂亮的 RGB 立方体，如下图：</p>
 <p><img src="/images/Shader/10/rgb.png" alt="rgb cube"></p>
-<h3 id="u603B_u7ED3"><a href="#u603B_u7ED3" class="headerlink" title="总结"></a>总结</h3><p>用语义和语义绑定来表示数据和数据的流向。</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>用语义和语义绑定来表示数据和数据的流向。</p>
 <p><hr><br>鄙人才疏学浅，有出入的地方非常感谢能帮忙指正。:)</p>
 </span>
       
@@ -467,7 +467,7 @@ Shader 里面怎么体现？
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">10</span>
+              <span class="site-state-item-count">11</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>
@@ -509,7 +509,7 @@ Shader 里面怎么体现？
           <div class="post-toc">
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#u6570_u636E_u7684_u79CD_u7C7B"><span class="nav-number">1.</span> <span class="nav-text">数据的种类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u6570_u636E_u7684_u8F93_u5165_u8F93_u51FA"><span class="nav-number">2.</span> <span class="nav-text">数据的输入输出</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Shader__u4E2D_u7684_u4F53_u73B0"><span class="nav-number">3.</span> <span class="nav-text">Shader 中的体现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u4E3E_u4E2A_u4F8B_u5B50"><span class="nav-number">4.</span> <span class="nav-text">举个例子</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u603B_u7ED3"><span class="nav-number">5.</span> <span class="nav-text">总结</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#数据的种类"><span class="nav-number">1.</span> <span class="nav-text">数据的种类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据的输入输出"><span class="nav-number">2.</span> <span class="nav-text">数据的输入输出</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Shader-中的体现"><span class="nav-number">3.</span> <span class="nav-text">Shader 中的体现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#举个例子"><span class="nav-number">4.</span> <span class="nav-text">举个例子</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">5.</span> <span class="nav-text">总结</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>

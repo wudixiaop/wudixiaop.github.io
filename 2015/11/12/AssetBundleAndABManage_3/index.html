@@ -63,7 +63,7 @@
 <meta property="og:image" content="http://unity3d.com/sites/default/files/build_assetbundles.png">
 <meta property="og:image" content="http://unity3d.com/sites/default/files/local_assetbundle_server.png">
 <meta property="og:image" content="http://unity3d.com/sites/default/files/assetbundle_serer_url.png">
-<meta property="og:updated_time" content="2016-01-03T12:42:22.000Z">
+<meta property="og:updated_time" content="2016-01-12T05:15:54.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Unity 5：使用 Asset Bundle 和 Asset Bundle Manager (3)">
 <meta name="twitter:description" content="这篇是 Unity 官方教程 AssetBundles and the AssetBundle Manager 的翻译， 分三部分，这是第三部分。翻译不到之处请不吝指出。非常谢谢！
@@ -292,7 +292,7 @@
 </em> Open the scene “AssetBundleSample/Scenes/AssetLoader”.<br><em> Note that the scene is essentially empty and only contains a Main Camera, Directional<br> Light and “Loader” GameObject.
 </em> Enter Playmode.<br>* Note that a cube has been loaded into the scene from an AssetBundle.<br><br>This scene is driven by the script “LoadAssets.cs”.<br></div>
 
-<h3 id="u793A_u4F8B_1_uFF1A_u52A0_u8F7D_u8D44_u6E90"><a href="#u793A_u4F8B_1_uFF1A_u52A0_u8F7D_u8D44_u6E90" class="headerlink" title="示例 1：加载资源"></a>示例 1：加载资源</h3><ul>
+<h3 id="示例-1：加载资源"><a href="#示例-1：加载资源" class="headerlink" title="示例 1：加载资源"></a>示例 1：加载资源</h3><ul>
 <li>使用 “Asset/AssetBundles/Simulation Mode” 菜单打开模拟模式</li>
 <li>打开 “AssetBundleSample/Scenes/AssetLoader” 场景</li>
 <li>注意场景是个空的只有一个主摄像机，方向光和游戏对象 “Loader”</li>
@@ -330,7 +330,7 @@
 </em> Open the scene “AssetBundleSample/Scenes/SceneLoader”.<br><em> Note that the scene is essentially empty and only contains a Main Camera, Directional Light and “Loader” GameObject.
 </em> Enter Playmode.<br>* Note that a cube and a plane have been loaded into the scene from an AssetBundle.<br><br>This scene is driven by the script “LoadScenes.cs”.<br></div>
 
-<h3 id="u793A_u4F8B_2_uFF1A_u52A0_u8F7D_u573A_u666F"><a href="#u793A_u4F8B_2_uFF1A_u52A0_u8F7D_u573A_u666F" class="headerlink" title="示例 2：加载场景"></a>示例 2：加载场景</h3><ul>
+<h3 id="示例-2：加载场景"><a href="#示例-2：加载场景" class="headerlink" title="示例 2：加载场景"></a>示例 2：加载场景</h3><ul>
 <li>使用 “Asset/AssetBundles/Simulation Mode” 菜单打开模拟模式</li>
 <li>开始 “AssetBundleSample/Scenes/SceneLoader” 场景</li>
 <li>注意场景是个空的只有一个主摄像机，方向光和游戏对象 “Loader”</li>
@@ -365,7 +365,7 @@
 <p>对 <code>DontDestoryOnLoad()</code> 作用的理解。虽然在这个非常简单的脚本中并不是绝对需要它，但是他的存在是假设这个脚本会作为一个更复杂的项目的 AssetBundle 加载器基础，它需要在场景变化的以后依然存在。</p>
 <div style="display:none"><br>###EXAMPLE 3: VARIANTS<br><br>To work with AssetBundle Variants, the AssetBundles will need to be built, as AssetBundle Variants do not work with Simulation Mode. To build AssetBundles and their Variants, make sure all of the Assets are properly assigned to an AssetBundle Name and, if being used as an AssetBundle Variant, an appropriate AssetBundle Variant Name needs to be assigned as well.<br></div>
 
-<h3 id="u793A_u4F8B_3_uFF1A_u53D8_u4F53"><a href="#u793A_u4F8B_3_uFF1A_u53D8_u4F53" class="headerlink" title="示例 3：变体"></a>示例 3：变体</h3><p>要使用 AssetBundle 变体，需要编译 AssetBundle, 因为模拟模式下不支持它。在编译 AssetBundle 和它的变体钱，确保所有的资源以及被正确地指定 AssetBundle 名字和如果要被 AssetBundle 变体利用到的话，AssetBundle 变体的名字也要指定。</p>
+<h3 id="示例-3：变体"><a href="#示例-3：变体" class="headerlink" title="示例 3：变体"></a>示例 3：变体</h3><p>要使用 AssetBundle 变体，需要编译 AssetBundle, 因为模拟模式下不支持它。在编译 AssetBundle 和它的变体钱，确保所有的资源以及被正确地指定 AssetBundle 名字和如果要被 AssetBundle 变体利用到的话，AssetBundle 变体的名字也要指定。</p>
 <p><img src="http://unity3d.com/sites/default/files/variant_name_hd.png" alt="variant name hd"></p>
 <div style="display:none"><br>descriptionAn Asset with both AssetBundle Name and AssetBundle Variant Name set.<br></div>
 
@@ -444,7 +444,7 @@
 <p>有些规则值得注意下。如果，因为一些因素，有一些指定了变体的 AssetBundle，但是在 <strong>ActiveVariants</strong> 属性里没有 “激活” 的变体名 - 比如当前例子中的 “sd” 或者 “hd” 不在 <strong>ActiveVraiants</strong> 属性中 - AssetBundle Manager 将会简单的选择第一个它发现的正确名字的 AssetBundle 而忽略变体名。再如果，又因为一些因素，在 <strong>ActiveVariants</strong> 属性里对同一个 AssetBundle 集合有多个 “激活” 的变体名 - 比如， 在当前的例子里，“sd” 和 “hd” 都在 <strong>ActiveVariants</strong> 属性里 - AssetBundle Manager 将选择在 <strong>ActiveVariants</strong> 属性中的第一个变体名。</p>
 <div style="display:none"><br>###EXAMPLE 4: TANKS EXAMPLE<br><br>This more complex example will sum up everything in this article, including loading a scene from an AssetBundle and loading AssetBundle Variants for resolution, content and localization.<br></div>
 
-<h3 id="u793A_u4F8B_4_uFF1A_u5766_u514B_u793A_u4F8B"><a href="#u793A_u4F8B_4_uFF1A_u5766_u514B_u793A_u4F8B" class="headerlink" title="示例 4：坦克示例"></a>示例 4：坦克示例</h3><p>这个更复杂的示例将包括这篇文章中的所有内容，包括从 AssetBundle 中加载场景和为分辨率，内容和位置加载 AssetBundle 变体。</p>
+<h3 id="示例-4：坦克示例"><a href="#示例-4：坦克示例" class="headerlink" title="示例 4：坦克示例"></a>示例 4：坦克示例</h3><p>这个更复杂的示例将包括这篇文章中的所有内容，包括从 AssetBundle 中加载场景和为分辨率，内容和位置加载 AssetBundle 变体。</p>
 <div style="display:none"><br><em> Make sure Simulation Mode is disabled by using the menu item “Assets/AssetBundles/Simulation Mode”.
 </em> Make sure the Local AssetBundle Server is enabled by using the menu item “Assets/AssetBundles/Local AssetBundle Server”.<br><em> Open the scene “AssetBundleSample/Scenes/TanksLoader”.
 </em> Note that the scene is essentially empty and only contains only the “Loader” GameObject.<br><em> Enter Playmode.
@@ -602,7 +602,7 @@
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">10</span>
+              <span class="site-state-item-count">11</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>
@@ -644,7 +644,7 @@
           <div class="post-toc">
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#u793A_u4F8B_1_uFF1A_u52A0_u8F7D_u8D44_u6E90"><span class="nav-number">1.</span> <span class="nav-text">示例 1：加载资源</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u793A_u4F8B_2_uFF1A_u52A0_u8F7D_u573A_u666F"><span class="nav-number">2.</span> <span class="nav-text">示例 2：加载场景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u793A_u4F8B_3_uFF1A_u53D8_u4F53"><span class="nav-number">3.</span> <span class="nav-text">示例 3：变体</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u793A_u4F8B_4_uFF1A_u5766_u514B_u793A_u4F8B"><span class="nav-number">4.</span> <span class="nav-text">示例 4：坦克示例</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#示例-1：加载资源"><span class="nav-number">1.</span> <span class="nav-text">示例 1：加载资源</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#示例-2：加载场景"><span class="nav-number">2.</span> <span class="nav-text">示例 2：加载场景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#示例-3：变体"><span class="nav-number">3.</span> <span class="nav-text">示例 3：变体</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#示例-4：坦克示例"><span class="nav-number">4.</span> <span class="nav-text">示例 4：坦克示例</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>
