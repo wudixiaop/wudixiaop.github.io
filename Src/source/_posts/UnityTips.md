@@ -9,7 +9,7 @@ Unity Tips
 * `List<T>` 或者数组序列化的时候默认生成的名字为 Element n，如果要改变这个，只需要把 T
 的第一个序列化的字段的数据类型设置为 `string`
 * 保存 Play 模式下调试出的数据：在组件的右上角点击右键，选择 `Copy Component`，然后关闭 Play
-模式之在对应的组件右上角点击右键，选择 `Copy Component as Values`。 跟多小技巧请看 [这个链接](https://mp.weixin.qq.com/s?__biz=MjM5NjM3NDA1Mg==&mid=401777518&idx=1&sn=aa995d6c44866fb0f5bcc096e75969bb&scene=0&key=710a5d99946419d912a29c647796b42ba9c71553d849b38d45c2b41608a344d5befb72dd9cb578c745cd931a0e330ad7&ascene=0&uin=MTQ0NjU3MzQyNw)。
+模式之在对应的组件右上角点击右键，选择 `Copy Component as Values`。 更多小技巧请看 [这个链接](https://mp.weixin.qq.com/s?__biz=MjM5NjM3NDA1Mg==&mid=401777518&idx=1&sn=aa995d6c44866fb0f5bcc096e75969bb&scene=0&key=710a5d99946419d912a29c647796b42ba9c71553d849b38d45c2b41608a344d5befb72dd9cb578c745cd931a0e330ad7&ascene=0&uin=MTQ0NjU3MzQyNw)。
 
 
 
