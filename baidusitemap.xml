@@ -4,6 +4,26 @@
 
     
   <url>
+    <loc>http://blog.shuiguzi.com/2016/02/16/UnityTips/</loc>
+    <lastmod>2016-02-19T09:37:24.000Z</lastmod>
+    <data>
+        <display>
+        <title>Unity Tips - 关于 Untiy 一些需要知道的技巧</title>
+        <pubTime>2016-02-16T14:03:00.000Z</pubTime>
+        
+        <tag>Tips</tag>
+         
+         
+           
+             
+              <breadCrumb title="Unity" url="http://blog.shuiguzi.com/categories/Unity/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://blog.shuiguzi.com/2015/05/05/Shader_6/</loc>
     <lastmod>2016-02-17T01:32:42.000Z</lastmod>
     <data>
@@ -17,26 +37,6 @@
            
              
               <breadCrumb title="Shader" url="http://blog.shuiguzi.com/categories/Shader/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://blog.shuiguzi.com/2015/11/10/AssetBundleAndABManage_1/</loc>
-    <lastmod>2016-02-17T01:32:42.000Z</lastmod>
-    <data>
-        <display>
-        <title>Unity 5： Asset Bundle 和 Asset Bundle Manager (1)</title>
-        <pubTime>2015-11-10T08:16:56.000Z</pubTime>
-        
-        <tag>AssetBundle</tag>
-         
-         
-           
-             
-              <breadCrumb title="Unity" url="http://blog.shuiguzi.com/categories/Unity/"/>
           
         </display>
     </data>
@@ -184,14 +184,14 @@
 
     
   <url>
-    <loc>http://blog.shuiguzi.com/2016/02/16/UnityTips/</loc>
+    <loc>http://blog.shuiguzi.com/2015/11/10/AssetBundleAndABManage_1/</loc>
     <lastmod>2016-02-17T01:32:42.000Z</lastmod>
     <data>
         <display>
-        <title>Unity Tips - 关于 Untiy 一些需要知道的技巧</title>
-        <pubTime>2016-02-16T14:03:00.000Z</pubTime>
+        <title>Unity 5： Asset Bundle 和 Asset Bundle Manager (1)</title>
+        <pubTime>2015-11-10T08:16:56.000Z</pubTime>
         
-        <tag>Tips</tag>
+        <tag>AssetBundle</tag>
          
          
            
