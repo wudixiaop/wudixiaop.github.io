@@ -46,8 +46,7 @@ category: Unity
 
 ### 与 Unity 结合
 
-这里，我们引入一个类叫做 [RSACryptoServiceProvider](https://msdn.microsoft.com/zh-cn/library/system.security.cryptography.rsacryptoserviceprovider%28v=VS.110%29.aspx),
-它是 .NET 提供的类。需要说明的是，它不能直接使用 openssl 生成的 pem 文件，我们需要转换 pem 到它能使用的格式，也就是 RSAParameters 类。
+这里，我们引入一个类叫做 [RSACryptoServiceProvider](https://msdn.microsoft.com/zh-cn/library/system.security.cryptography.rsacryptoserviceprovider%28v=VS.110%29.aspx), 它是 .NET 提供的类。需要说明的是，它不能直接使用 openssl 生成的 pem 文件，我们需要转换 pem 到它能使用的格式，也就是 RSAParameters 类。
 具体算法那如下代码所示：
 
 {% codeblock %}
