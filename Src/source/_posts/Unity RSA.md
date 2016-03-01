@@ -176,8 +176,7 @@ public class RSAHelper
 
 {% endcodeblock %}
 
-然后我们可以直接调用 `RSAHelper.Encript` 来加密数据，`RSAHelper.Decrypt` 解密数据。如下面代码，`Encode()` 加密 `Hello Rocky` 字符串，
-然后 `Decode()` 解决加密后的字符串。
+然后我们可以直接调用 `RSAHelper.Encript` 来加密数据，`RSAHelper.Decrypt` 解密数据。如下面代码，`Encode()` 加密 `Hello Rocky` 字符串，然后 `Decode()` 解决加密后的字符串。
 
 {% codeblock %}
 using UnityEngine;
