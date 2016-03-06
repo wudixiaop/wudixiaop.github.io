@@ -9,6 +9,8 @@ category: Unity
 ### RSA 介绍
 关于 RSA, 详细介绍 [请看这里](http://baike.baidu.com/view/10613.htm?fromtitle=RSA&fromid=210678&type=syn)。
 
+这里做个大白话来解释，RSA 是一个配有两把钥匙的“锁”。一般情况下使用公开的钥匙（public key）来把数据锁住，然后另外一个不公开的钥匙 （private key）开锁来得到数据。
+
 ### RSA 秘钥生成  
 
 上面提到RSA 是不对称算法，它有 public key 和 private key，下面我们用 openssl 来生成它们。下面使用 OSX 系统上自带的 openssl 来生成秘钥。
