@@ -26,7 +26,7 @@ tags: Shader
 这类 shader 必须指明
 
 - surfaceFuction 是什么
-- 关照模型是什么
+- 光照模型是什么
 
 语法是
 
@@ -55,7 +55,7 @@ Shader "shader 的名字" {
 
         }
 
-        ENCG
+        ENDCG
     }
 }
 {% endcodeblock %}
@@ -87,11 +87,11 @@ Shader "shader 的名字" {
             // fragment shader 的函数是 fragment
             #pragma fragment frag
 
-            vert() {
+            void vert() {
 
             }
 
-            frag () {
+            void frag () {
 
             }
 
