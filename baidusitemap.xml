@@ -4,6 +4,26 @@
 
     
   <url>
+    <loc>http://blog.shuiguzi.com/2014/10/28/Release/</loc>
+    <lastmod>2016-06-18T11:20:05.000Z</lastmod>
+    <data>
+        <display>
+        <title>ShaderlabVS Release Page</title>
+        <pubTime>2014-10-28T13:20:00.000Z</pubTime>
+        
+        <tag>Shader</tag>
+         
+         
+           
+             
+              <breadCrumb title="Shader" url="http://blog.shuiguzi.com/categories/Shader/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://blog.shuiguzi.com/2015/05/07/Shader_8/</loc>
     <lastmod>2016-04-05T13:23:32.000Z</lastmod>
     <data>
@@ -77,26 +97,6 @@
            
              
               <breadCrumb title="Shader" url="http://blog.shuiguzi.com/categories/Shader/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://blog.shuiguzi.com/2014/11/05/about%20Unity3D%20editor/</loc>
-    <lastmod>2016-02-17T01:32:42.000Z</lastmod>
-    <data>
-        <display>
-        <title>关于 Unity 编辑器一些事儿</title>
-        <pubTime>2014-11-05T14:30:00.000Z</pubTime>
-        
-        <tag>Unity</tag>
-         
-         
-           
-             
-              <breadCrumb title="Unity" url="http://blog.shuiguzi.com/categories/Unity/"/>
           
         </display>
     </data>
@@ -544,19 +544,19 @@
 
     
   <url>
-    <loc>http://blog.shuiguzi.com/2014/10/28/Release/</loc>
+    <loc>http://blog.shuiguzi.com/2015/04/15/cirleImageInUnity3D/</loc>
     <lastmod>2016-02-17T01:32:42.000Z</lastmod>
     <data>
         <display>
-        <title>ShaderlabVS Release Page</title>
-        <pubTime>2014-10-28T13:20:00.000Z</pubTime>
+        <title>在 Unity uGUI 中绘制圆形图片</title>
+        <pubTime>2015-04-15T15:30:00.000Z</pubTime>
         
-        <tag>Shader</tag>
+        <tag>Unity</tag>
          
          
            
              
-              <breadCrumb title="Shader" url="http://blog.shuiguzi.com/categories/Shader/"/>
+              <breadCrumb title="Unity" url="http://blog.shuiguzi.com/categories/Unity/"/>
           
         </display>
     </data>
@@ -704,12 +704,12 @@
 
     
   <url>
-    <loc>http://blog.shuiguzi.com/2015/04/15/cirleImageInUnity3D/</loc>
+    <loc>http://blog.shuiguzi.com/2014/11/05/about%20Unity3D%20editor/</loc>
     <lastmod>2016-02-17T01:32:42.000Z</lastmod>
     <data>
         <display>
-        <title>在 Unity uGUI 中绘制圆形图片</title>
-        <pubTime>2015-04-15T15:30:00.000Z</pubTime>
+        <title>关于 Unity 编辑器一些事儿</title>
+        <pubTime>2014-11-05T14:30:00.000Z</pubTime>
         
         <tag>Unity</tag>
          
