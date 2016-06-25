@@ -1,7 +1,7 @@
 ﻿title: 一起看看MonoBehavior内部事件执行顺序
 date: 2014-11-10 21:38
-category: Unity
-tags: Unity
+category: UnityKB
+tags: UnityKB
 ---
 
 ### 写在最前面

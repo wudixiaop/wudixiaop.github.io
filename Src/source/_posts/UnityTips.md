@@ -1,7 +1,7 @@
-title: Unity Tips - 关于 Untiy 一些需要知道的技巧
+title: 关于 Untiy 一些需要知道的技巧
 date: 2016-02-16 22:03
-category: Unity
-tags: Tips
+category: UnityKB
+tags: Unity Tips
 ---
 
 Unity Tips
