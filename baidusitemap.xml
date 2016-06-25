@@ -4,8 +4,188 @@
 
     
   <url>
+    <loc>http://blog.shuiguzi.com/2016/02/16/UnityTips/</loc>
+    <lastmod>2016-06-25T10:53:08.000Z</lastmod>
+    <data>
+        <display>
+        <title>关于 Untiy 一些需要知道的技巧</title>
+        <pubTime>2016-02-16T14:03:00.000Z</pubTime>
+        
+        <tag>Unity Tips</tag>
+         
+         
+           
+             
+              <breadCrumb title="UnityKB" url="http://blog.shuiguzi.com/categories/UnityKB/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://blog.shuiguzi.com/2016/06/25/RunOnDifferentPlatforms/</loc>
+    <lastmod>2016-06-25T10:52:51.000Z</lastmod>
+    <data>
+        <display>
+        <title>在不同平台运行不同代码的几种方式</title>
+        <pubTime>2016-06-25T09:11:52.000Z</pubTime>
+        
+        <tag>UnityKB</tag>
+         
+         
+           
+             
+              <breadCrumb title="UnityKB" url="http://blog.shuiguzi.com/categories/UnityKB/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://blog.shuiguzi.com/2014/11/10/MonoBehavior%20event%20functions/</loc>
+    <lastmod>2016-06-25T10:52:44.000Z</lastmod>
+    <data>
+        <display>
+        <title>一起看看MonoBehavior内部事件执行顺序</title>
+        <pubTime>2014-11-10T13:38:00.000Z</pubTime>
+        
+        <tag>UnityKB</tag>
+         
+         
+           
+             
+              <breadCrumb title="UnityKB" url="http://blog.shuiguzi.com/categories/UnityKB/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://blog.shuiguzi.com/2015/04/15/cirleImageInUnity3D/</loc>
+    <lastmod>2016-06-25T10:52:37.000Z</lastmod>
+    <data>
+        <display>
+        <title>在 Unity uGUI 中绘制圆形图片</title>
+        <pubTime>2015-04-15T15:30:00.000Z</pubTime>
+        
+        <tag>UnityKB</tag>
+         
+         
+           
+             
+              <breadCrumb title="UnityKB" url="http://blog.shuiguzi.com/categories/UnityKB/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://blog.shuiguzi.com/2015/09/15/BrightenTexture2D/</loc>
+    <lastmod>2016-06-25T10:52:33.000Z</lastmod>
+    <data>
+        <display>
+        <title>如何改变图片亮度</title>
+        <pubTime>2015-09-15T14:26:00.000Z</pubTime>
+        
+        <tag>UnityKB</tag>
+         
+         
+           
+             
+              <breadCrumb title="UnityKB" url="http://blog.shuiguzi.com/categories/UnityKB/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://blog.shuiguzi.com/2016/03/01/Unity%20RSA/</loc>
+    <lastmod>2016-06-25T09:56:28.000Z</lastmod>
+    <data>
+        <display>
+        <title>Unity + openssl 生成的 RSA 秘钥实现可靠的简单数据加密</title>
+        <pubTime>2016-03-01T07:56:56.000Z</pubTime>
+        
+        <tag>Security</tag>
+         
+         
+           
+             
+              <breadCrumb title="UnityKB" url="http://blog.shuiguzi.com/categories/UnityKB/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://blog.shuiguzi.com/2015/11/10/AssetBundleAndABManage_1/</loc>
+    <lastmod>2016-06-25T09:39:00.000Z</lastmod>
+    <data>
+        <display>
+        <title>Unity 5： Asset Bundle 和 Asset Bundle Manager (1)</title>
+        <pubTime>2015-11-10T08:16:56.000Z</pubTime>
+        
+        <tag>AssetBundle</tag>
+         
+         
+           
+             
+              <breadCrumb title="UnityKB" url="http://blog.shuiguzi.com/categories/UnityKB/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://blog.shuiguzi.com/2015/11/11/AssetBundleAndABManage_2/</loc>
+    <lastmod>2016-06-25T09:38:57.000Z</lastmod>
+    <data>
+        <display>
+        <title>Unity 5：使用 Asset Bundle 和 Asset Bundle Manager (2)</title>
+        <pubTime>2015-11-11T12:28:07.000Z</pubTime>
+        
+        <tag>AssetBundle</tag>
+         
+         
+           
+             
+              <breadCrumb title="UnityKB" url="http://blog.shuiguzi.com/categories/UnityKB/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://blog.shuiguzi.com/2015/11/12/AssetBundleAndABManage_3/</loc>
+    <lastmod>2016-06-25T09:38:53.000Z</lastmod>
+    <data>
+        <display>
+        <title>Unity 5：使用 Asset Bundle 和 Asset Bundle Manager (3)</title>
+        <pubTime>2015-11-12T08:08:22.000Z</pubTime>
+        
+        <tag>AssetBundle</tag>
+         
+         
+           
+             
+              <breadCrumb title="UnityKB" url="http://blog.shuiguzi.com/categories/UnityKB/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://blog.shuiguzi.com/2014/10/28/Release/</loc>
-    <lastmod>2016-06-18T11:20:05.000Z</lastmod>
+    <lastmod>2016-06-18T11:22:16.000Z</lastmod>
     <data>
         <display>
         <title>ShaderlabVS Release Page</title>
@@ -25,7 +205,7 @@
     
   <url>
     <loc>http://blog.shuiguzi.com/2015/05/07/Shader_8/</loc>
-    <lastmod>2016-04-05T13:23:32.000Z</lastmod>
+    <lastmod>2016-04-05T13:25:39.000Z</lastmod>
     <data>
         <display>
         <title>瞎聊 Unity Shader 系列之八：#pragma 指令</title>
@@ -37,186 +217,6 @@
            
              
               <breadCrumb title="Shader" url="http://blog.shuiguzi.com/categories/Shader/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://blog.shuiguzi.com/2016/03/01/Unity%20RSA/</loc>
-    <lastmod>2016-03-06T13:47:59.000Z</lastmod>
-    <data>
-        <display>
-        <title>Unity + openssl 生成的 RSA 秘钥实现可靠的简单数据加密</title>
-        <pubTime>2016-03-01T07:56:56.000Z</pubTime>
-        
-        <tag>Security</tag>
-         
-         
-           
-             
-              <breadCrumb title="Unity" url="http://blog.shuiguzi.com/categories/Unity/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://blog.shuiguzi.com/2016/02/16/UnityTips/</loc>
-    <lastmod>2016-02-19T09:38:30.000Z</lastmod>
-    <data>
-        <display>
-        <title>Unity Tips - 关于 Untiy 一些需要知道的技巧</title>
-        <pubTime>2016-02-16T14:03:00.000Z</pubTime>
-        
-        <tag>Tips</tag>
-         
-         
-           
-             
-              <breadCrumb title="Unity" url="http://blog.shuiguzi.com/categories/Unity/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://blog.shuiguzi.com/2015/05/05/Shader_6/</loc>
-    <lastmod>2016-02-17T01:32:42.000Z</lastmod>
-    <data>
-        <display>
-        <title>瞎聊 Unity Shader 系列之六：初识 Shaderlab</title>
-        <pubTime>2015-05-05T09:55:00.000Z</pubTime>
-        
-        <tag>Shader</tag>
-         
-         
-           
-             
-              <breadCrumb title="Shader" url="http://blog.shuiguzi.com/categories/Shader/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://blog.shuiguzi.com/2015/09/23/Xcode%20download/</loc>
-    <lastmod>2016-02-17T01:32:42.000Z</lastmod>
-    <data>
-        <display>
-        <title>远离 XCodeGhost 影响，各种 XCode 版本下载</title>
-        <pubTime>2015-09-23T08:33:00.000Z</pubTime>
-        
-        <tag>Unity</tag>
-         
-         
-           
-             
-              <breadCrumb title="Unity" url="http://blog.shuiguzi.com/categories/Unity/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://blog.shuiguzi.com/2014/08/31/Why%20I%20start%20ShaderlabVS/</loc>
-    <lastmod>2016-02-17T01:32:42.000Z</lastmod>
-    <data>
-        <display>
-        <title>Why I start ShaderlabVS</title>
-        <pubTime>2014-08-31T12:35:00.000Z</pubTime>
-        
-        <tag>Shader</tag>
-         
-         
-           
-             
-              <breadCrumb title="Shader" url="http://blog.shuiguzi.com/categories/Shader/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://blog.shuiguzi.com/2014/12/24/VSTips/</loc>
-    <lastmod>2016-02-17T01:32:42.000Z</lastmod>
-    <data>
-        <display>
-        <title>如何在Visual Studio中愉快的玩耍</title>
-        <pubTime>2014-12-24T06:50:00.000Z</pubTime>
-        
-        <tag>Visual Studio</tag>
-         
-         
-           
-             
-              <breadCrumb title="一点一滴" url="http://blog.shuiguzi.com/categories/%E4%B8%80%E7%82%B9%E4%B8%80%E6%BB%B4/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://blog.shuiguzi.com/2015/01/28/UserGithubClientForNonGithubRepos/</loc>
-    <lastmod>2016-02-17T01:32:42.000Z</lastmod>
-    <data>
-        <display>
-        <title>如何在Github for Mac/Windows上使用非Github的仓库</title>
-        <pubTime>2015-01-28T08:54:00.000Z</pubTime>
-        
-        <tag>Git</tag>
-         
-         
-           
-             
-              <breadCrumb title="一点一滴" url="http://blog.shuiguzi.com/categories/%E4%B8%80%E7%82%B9%E4%B8%80%E6%BB%B4/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://blog.shuiguzi.com/2015/11/10/AssetBundleAndABManage_1/</loc>
-    <lastmod>2016-02-17T01:32:42.000Z</lastmod>
-    <data>
-        <display>
-        <title>Unity 5： Asset Bundle 和 Asset Bundle Manager (1)</title>
-        <pubTime>2015-11-10T08:16:56.000Z</pubTime>
-        
-        <tag>AssetBundle</tag>
-         
-         
-           
-             
-              <breadCrumb title="Unity" url="http://blog.shuiguzi.com/categories/Unity/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://blog.shuiguzi.com/2015/08/23/UNet_6/</loc>
-    <lastmod>2016-02-17T01:32:42.000Z</lastmod>
-    <data>
-        <display>
-        <title>UNet 0x06：Command</title>
-        <pubTime>2015-08-23T04:01:00.000Z</pubTime>
-        
-        <tag>UNet</tag>
-         
-         
-           
-             
-              <breadCrumb title="Unity" url="http://blog.shuiguzi.com/categories/Unity/"/>
           
         </display>
     </data>
@@ -343,25 +343,6 @@
     </url>
 
     
-  <url>
-    <loc>http://blog.shuiguzi.com/2015/07/21/rockstar/</loc>
-    <lastmod>2016-02-17T01:32:42.000Z</lastmod>
-    <data>
-        <display>
-        <title>好玩：如何把 Github Contributions 填充满</title>
-        <pubTime>2015-07-21T04:50:00.000Z</pubTime>
-        
-        <tag>Python</tag>
-         
-         
-           
-             
-              <breadCrumb title="一点一滴" url="http://blog.shuiguzi.com/categories/%E4%B8%80%E7%82%B9%E4%B8%80%E6%BB%B4/"/>
-          
-        </display>
-    </data>
-    </url>
-
     
   <url>
     <loc>http://blog.shuiguzi.com/2015/05/06/Shader_7/</loc>
@@ -370,6 +351,26 @@
         <display>
         <title>瞎聊 Unity Shader 系列之七：究竟谁先被渲染？</title>
         <pubTime>2015-05-06T08:05:00.000Z</pubTime>
+        
+        <tag>Shader</tag>
+         
+         
+           
+             
+              <breadCrumb title="Shader" url="http://blog.shuiguzi.com/categories/Shader/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://blog.shuiguzi.com/2015/05/05/Shader_6/</loc>
+    <lastmod>2016-02-17T01:32:42.000Z</lastmod>
+    <data>
+        <display>
+        <title>瞎聊 Unity Shader 系列之六：初识 Shaderlab</title>
+        <pubTime>2015-05-05T09:55:00.000Z</pubTime>
         
         <tag>Shader</tag>
          
@@ -397,26 +398,6 @@
            
              
               <breadCrumb title="Unity" url="http://blog.shuiguzi.com/categories/Unity/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://blog.shuiguzi.com/2015/05/04/Shader_5/</loc>
-    <lastmod>2016-02-17T01:32:42.000Z</lastmod>
-    <data>
-        <display>
-        <title>瞎聊 Unity Shader 系列之五：RGBA 101</title>
-        <pubTime>2015-05-04T05:55:00.000Z</pubTime>
-        
-        <tag>Shader</tag>
-         
-         
-           
-             
-              <breadCrumb title="Shader" url="http://blog.shuiguzi.com/categories/Shader/"/>
           
         </display>
     </data>
@@ -544,12 +525,12 @@
 
     
   <url>
-    <loc>http://blog.shuiguzi.com/2015/04/15/cirleImageInUnity3D/</loc>
+    <loc>http://blog.shuiguzi.com/2014/11/05/about%20Unity3D%20editor/</loc>
     <lastmod>2016-02-17T01:32:42.000Z</lastmod>
     <data>
         <display>
-        <title>在 Unity uGUI 中绘制圆形图片</title>
-        <pubTime>2015-04-15T15:30:00.000Z</pubTime>
+        <title>关于 Unity 编辑器一些事儿</title>
+        <pubTime>2014-11-05T14:30:00.000Z</pubTime>
         
         <tag>Unity</tag>
          
@@ -564,12 +545,12 @@
 
     
   <url>
-    <loc>http://blog.shuiguzi.com/2014/11/10/MonoBehavior%20event%20functions/</loc>
+    <loc>http://blog.shuiguzi.com/2015/09/23/Xcode%20download/</loc>
     <lastmod>2016-02-17T01:32:42.000Z</lastmod>
     <data>
         <display>
-        <title>一起看看MonoBehavior内部事件执行顺序</title>
-        <pubTime>2014-11-10T13:38:00.000Z</pubTime>
+        <title>远离 XCodeGhost 影响，各种 XCode 版本下载</title>
+        <pubTime>2015-09-23T08:33:00.000Z</pubTime>
         
         <tag>Unity</tag>
          
@@ -644,19 +625,19 @@
 
     
   <url>
-    <loc>http://blog.shuiguzi.com/2015/09/15/BrightenTexture2D/</loc>
+    <loc>http://blog.shuiguzi.com/2014/08/31/Why%20I%20start%20ShaderlabVS/</loc>
     <lastmod>2016-02-17T01:32:42.000Z</lastmod>
     <data>
         <display>
-        <title>如何改变图片亮度</title>
-        <pubTime>2015-09-15T14:26:00.000Z</pubTime>
+        <title>Why I start ShaderlabVS</title>
+        <pubTime>2014-08-31T12:35:00.000Z</pubTime>
         
-        <tag>Graphic</tag>
+        <tag>Shader</tag>
          
          
            
              
-              <breadCrumb title="Unity" url="http://blog.shuiguzi.com/categories/Unity/"/>
+              <breadCrumb title="Shader" url="http://blog.shuiguzi.com/categories/Shader/"/>
           
         </display>
     </data>
@@ -664,19 +645,19 @@
 
     
   <url>
-    <loc>http://blog.shuiguzi.com/2015/11/12/AssetBundleAndABManage_3/</loc>
+    <loc>http://blog.shuiguzi.com/2014/12/24/VSTips/</loc>
     <lastmod>2016-02-17T01:32:42.000Z</lastmod>
     <data>
         <display>
-        <title>Unity 5：使用 Asset Bundle 和 Asset Bundle Manager (3)</title>
-        <pubTime>2015-11-12T08:08:22.000Z</pubTime>
+        <title>如何在Visual Studio中愉快的玩耍</title>
+        <pubTime>2014-12-24T06:50:00.000Z</pubTime>
         
-        <tag>AssetBundle</tag>
+        <tag>Visual Studio</tag>
          
          
            
              
-              <breadCrumb title="Unity" url="http://blog.shuiguzi.com/categories/Unity/"/>
+              <breadCrumb title="一点一滴" url="http://blog.shuiguzi.com/categories/%E4%B8%80%E7%82%B9%E4%B8%80%E6%BB%B4/"/>
           
         </display>
     </data>
@@ -684,19 +665,19 @@
 
     
   <url>
-    <loc>http://blog.shuiguzi.com/2015/11/11/AssetBundleAndABManage_2/</loc>
+    <loc>http://blog.shuiguzi.com/2015/01/28/UserGithubClientForNonGithubRepos/</loc>
     <lastmod>2016-02-17T01:32:42.000Z</lastmod>
     <data>
         <display>
-        <title>Unity 5：使用 Asset Bundle 和 Asset Bundle Manager (2)</title>
-        <pubTime>2015-11-11T12:28:07.000Z</pubTime>
+        <title>如何在Github for Mac/Windows上使用非Github的仓库</title>
+        <pubTime>2015-01-28T08:54:00.000Z</pubTime>
         
-        <tag>AssetBundle</tag>
+        <tag>Git</tag>
          
          
            
              
-              <breadCrumb title="Unity" url="http://blog.shuiguzi.com/categories/Unity/"/>
+              <breadCrumb title="一点一滴" url="http://blog.shuiguzi.com/categories/%E4%B8%80%E7%82%B9%E4%B8%80%E6%BB%B4/"/>
           
         </display>
     </data>
@@ -704,14 +685,34 @@
 
     
   <url>
-    <loc>http://blog.shuiguzi.com/2014/11/05/about%20Unity3D%20editor/</loc>
+    <loc>http://blog.shuiguzi.com/2015/07/21/rockstar/</loc>
     <lastmod>2016-02-17T01:32:42.000Z</lastmod>
     <data>
         <display>
-        <title>关于 Unity 编辑器一些事儿</title>
-        <pubTime>2014-11-05T14:30:00.000Z</pubTime>
+        <title>好玩：如何把 Github Contributions 填充满</title>
+        <pubTime>2015-07-21T04:50:00.000Z</pubTime>
         
-        <tag>Unity</tag>
+        <tag>Python</tag>
+         
+         
+           
+             
+              <breadCrumb title="一点一滴" url="http://blog.shuiguzi.com/categories/%E4%B8%80%E7%82%B9%E4%B8%80%E6%BB%B4/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://blog.shuiguzi.com/2015/08/23/UNet_6/</loc>
+    <lastmod>2016-02-17T01:32:42.000Z</lastmod>
+    <data>
+        <display>
+        <title>UNet 0x06：Command</title>
+        <pubTime>2015-08-23T04:01:00.000Z</pubTime>
+        
+        <tag>UNet</tag>
          
          
            
@@ -725,4 +726,23 @@
     
     
     
+  <url>
+    <loc>http://blog.shuiguzi.com/2015/05/04/Shader_5/</loc>
+    <lastmod>2016-02-17T01:32:42.000Z</lastmod>
+    <data>
+        <display>
+        <title>瞎聊 Unity Shader 系列之五：RGBA 101</title>
+        <pubTime>2015-05-04T05:55:00.000Z</pubTime>
+        
+        <tag>Shader</tag>
+         
+         
+           
+             
+              <breadCrumb title="Shader" url="http://blog.shuiguzi.com/categories/Shader/"/>
+          
+        </display>
+    </data>
+    </url>
+
 </urlset>
