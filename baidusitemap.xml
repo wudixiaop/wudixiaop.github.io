@@ -3,75 +3,16 @@
 
 
     
-  <url>
-    <loc>http://blog.shuiguzi.com/2015/05/04/Shader_5/</loc>
-    <lastmod>2016-06-28T08:54:46.000Z</lastmod>
-    <data>
-        <display>
-        <title>瞎聊 Unity Shader 系列之五：RGBA 101</title>
-        <pubTime>2015-05-04T05:55:00.000Z</pubTime>
-        
-        <tag>Shader</tag>
-         
-         
-           
-             
-              <breadCrumb title="Shader" url="http://blog.shuiguzi.com/categories/Shader/"/>
-          
-        </display>
-    </data>
-    </url>
-
     
   <url>
-    <loc>http://blog.shuiguzi.com/2014/10/28/HistoryofShaderlabVS/</loc>
-    <lastmod>2016-06-28T08:54:46.000Z</lastmod>
+    <loc>http://blog.shuiguzi.com/2016/06/28/RunOnDifferentPlatforms/</loc>
+    <lastmod>2016-06-28T12:45:36.000Z</lastmod>
     <data>
         <display>
-        <title>ShaderlabVS Release History Page</title>
-        <pubTime>2014-10-28T14:20:00.000Z</pubTime>
+        <title>在不同平台运行不同代码的几种方式</title>
+        <pubTime>2016-06-28T08:54:46.000Z</pubTime>
         
-        <tag>Shader</tag>
-         
-         
-           
-             
-              <breadCrumb title="Shader" url="http://blog.shuiguzi.com/categories/Shader/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://blog.shuiguzi.com/2016/03/01/Unity%20RSA/</loc>
-    <lastmod>2016-06-28T08:54:46.000Z</lastmod>
-    <data>
-        <display>
-        <title>Unity + openssl 生成的 RSA 秘钥实现可靠的简单数据加密</title>
-        <pubTime>2016-03-01T07:56:56.000Z</pubTime>
-        
-        <tag>Security</tag>
-         
-         
-           
-             
-              <breadCrumb title="UnityKB" url="http://blog.shuiguzi.com/categories/UnityKB/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://blog.shuiguzi.com/2016/02/16/UnityTips/</loc>
-    <lastmod>2016-06-28T08:54:46.000Z</lastmod>
-    <data>
-        <display>
-        <title>关于 Untiy 一些需要知道的技巧</title>
-        <pubTime>2016-02-16T14:03:00.000Z</pubTime>
-        
-        <tag>Unity Tips</tag>
+        <tag>UnityKB</tag>
          
          
            
@@ -104,19 +45,79 @@
 
     
   <url>
-    <loc>http://blog.shuiguzi.com/2016/06/28/RunOnDifferentPlatforms/</loc>
+    <loc>http://blog.shuiguzi.com/2015/05/04/Shader_5/</loc>
     <lastmod>2016-06-28T08:54:46.000Z</lastmod>
     <data>
         <display>
-        <title>在不同平台运行不同代码的几种方式</title>
-        <pubTime>2016-06-28T08:54:46.000Z</pubTime>
+        <title>瞎聊 Unity Shader 系列之五：RGBA 101</title>
+        <pubTime>2015-05-04T05:55:00.000Z</pubTime>
         
-        <tag>UnityKB</tag>
+        <tag>Shader</tag>
+         
+         
+           
+             
+              <breadCrumb title="Shader" url="http://blog.shuiguzi.com/categories/Shader/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://blog.shuiguzi.com/2016/02/16/UnityTips/</loc>
+    <lastmod>2016-06-28T08:54:46.000Z</lastmod>
+    <data>
+        <display>
+        <title>关于 Untiy 一些需要知道的技巧</title>
+        <pubTime>2016-02-16T14:03:00.000Z</pubTime>
+        
+        <tag>Unity Tips</tag>
          
          
            
              
               <breadCrumb title="UnityKB" url="http://blog.shuiguzi.com/categories/UnityKB/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://blog.shuiguzi.com/2016/03/01/Unity%20RSA/</loc>
+    <lastmod>2016-06-28T08:54:46.000Z</lastmod>
+    <data>
+        <display>
+        <title>Unity + openssl 生成的 RSA 秘钥实现可靠的简单数据加密</title>
+        <pubTime>2016-03-01T07:56:56.000Z</pubTime>
+        
+        <tag>Security</tag>
+         
+         
+           
+             
+              <breadCrumb title="UnityKB" url="http://blog.shuiguzi.com/categories/UnityKB/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://blog.shuiguzi.com/2014/10/28/HistoryofShaderlabVS/</loc>
+    <lastmod>2016-06-28T08:54:46.000Z</lastmod>
+    <data>
+        <display>
+        <title>ShaderlabVS Release History Page</title>
+        <pubTime>2014-10-28T14:20:00.000Z</pubTime>
+        
+        <tag>Shader</tag>
+         
+         
+           
+             
+              <breadCrumb title="Shader" url="http://blog.shuiguzi.com/categories/Shader/"/>
           
         </display>
     </data>
@@ -164,14 +165,14 @@
 
     
   <url>
-    <loc>http://blog.shuiguzi.com/2014/11/10/MonoBehavior%20event%20functions/</loc>
+    <loc>http://blog.shuiguzi.com/2015/11/10/AssetBundleAndABManage_1/</loc>
     <lastmod>2016-06-25T10:56:24.000Z</lastmod>
     <data>
         <display>
-        <title>一起看看MonoBehavior内部事件执行顺序</title>
-        <pubTime>2014-11-10T13:38:00.000Z</pubTime>
+        <title>Unity 5： Asset Bundle 和 Asset Bundle Manager (1)</title>
+        <pubTime>2015-11-10T08:16:56.000Z</pubTime>
         
-        <tag>UnityKB</tag>
+        <tag>AssetBundle</tag>
          
          
            
@@ -224,14 +225,14 @@
 
     
   <url>
-    <loc>http://blog.shuiguzi.com/2015/11/10/AssetBundleAndABManage_1/</loc>
+    <loc>http://blog.shuiguzi.com/2014/11/10/MonoBehavior%20event%20functions/</loc>
     <lastmod>2016-06-25T10:56:24.000Z</lastmod>
     <data>
         <display>
-        <title>Unity 5： Asset Bundle 和 Asset Bundle Manager (1)</title>
-        <pubTime>2015-11-10T08:16:56.000Z</pubTime>
+        <title>一起看看MonoBehavior内部事件执行顺序</title>
+        <pubTime>2014-11-10T13:38:00.000Z</pubTime>
         
-        <tag>AssetBundle</tag>
+        <tag>UnityKB</tag>
          
          
            
@@ -250,26 +251,6 @@
         <display>
         <title>瞎聊 Unity Shader 系列之八：#pragma 指令</title>
         <pubTime>2015-05-07T08:13:00.000Z</pubTime>
-        
-        <tag>Shader</tag>
-         
-         
-           
-             
-              <breadCrumb title="Shader" url="http://blog.shuiguzi.com/categories/Shader/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://blog.shuiguzi.com/2015/04/28/Shader_2/</loc>
-    <lastmod>2016-02-17T01:32:42.000Z</lastmod>
-    <data>
-        <display>
-        <title>瞎聊 Unity Shader 系列之二：渲染管线</title>
-        <pubTime>2015-04-28T03:07:00.000Z</pubTime>
         
         <tag>Shader</tag>
          
@@ -744,6 +725,25 @@
     </url>
 
     
+  <url>
+    <loc>http://blog.shuiguzi.com/2015/04/28/Shader_2/</loc>
+    <lastmod>2016-02-17T01:32:42.000Z</lastmod>
+    <data>
+        <display>
+        <title>瞎聊 Unity Shader 系列之二：渲染管线</title>
+        <pubTime>2015-04-28T03:07:00.000Z</pubTime>
+        
+        <tag>Shader</tag>
+         
+         
+           
+             
+              <breadCrumb title="Shader" url="http://blog.shuiguzi.com/categories/Shader/"/>
+          
+        </display>
+    </data>
+    </url>
+
     
     
   <url>
