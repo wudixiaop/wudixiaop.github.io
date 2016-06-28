@@ -29,6 +29,8 @@ private void CompilationDirectivesWay()
 
 {% endcodeblock %}
 
+<!-- more -->
+
 其中 `UNITY_IOS` 和 `UNITY_ANDROID` 是预编译宏。通过 `#if`， `#else`，`#elif` 等指令来做逻辑判断，记住末尾需要加上 `#endif` 来结束。
 
 除了 `UNITY_IOS` 和 `UNITY_ANDROID` 之外还有其他一些常用的预编译宏，比如：
