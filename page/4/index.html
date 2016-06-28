@@ -1,11 +1,14 @@
 <!doctype html>
-<html class="theme-next use-motion theme-next-mist">
-<head>
-  
 
-<meta charset="UTF-8"/>
+
+
+
+<html class="theme-next mist">
+<head>
+  <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
 
 
 <meta http-equiv="Cache-Control" content="no-transform" />
@@ -18,20 +21,45 @@
 
 
 
-  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+
 
 
 
   
-    <link href='//fonts.lug.ustc.edu.cn/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
   
 
 
-<link rel="stylesheet" type="text/css" href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" />
-
-<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.2"/>
 
 
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
   <meta name="keywords" content="Rocky Lai, ShaderlabVS, Unity, UNet, Shaderlab" />
@@ -40,7 +68,14 @@
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
 
 
 <meta name="description">
@@ -54,29 +89,26 @@
 <meta name="twitter:description">
 
 
+
 <script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
   var CONFIG = {
     scheme: 'Mist',
-    sidebar: 'always'
+    sidebar: {"position":"left","display":"always"},
+    fancybox: false,
+    motion: false,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
   };
 </script>
-
-
 
   <title> 心亡则忙，亡心则忘 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
-  <!--[if lte IE 8]>
-  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
-    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
-      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
-           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
-           style='margin-left:auto;margin-right:auto;display: block;'/>
-    </a>
-  </div>
-<![endif]-->
   
 
 
@@ -94,9 +126,18 @@
 
 
 
-  <div class="container one-column 
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left 
    page-home 
-">
+ ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -125,35 +166,15 @@
   
 
   
-    <ul id="menu" class="menu ">
+    <ul id="menu" class="menu">
       
         
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
             首页
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-categories">
-          <a href="/categories" rel="section">
-            
-              <i class="menu-item-icon fa fa-th"></i> <br />
-            
-            分类
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-about">
-          <a href="/about" rel="section">
-            
-              <i class="menu-item-icon fa fa-user"></i> <br />
-            
-            关于
           </a>
         </li>
       
@@ -161,9 +182,19 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
             归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
           </a>
         </li>
       
@@ -171,14 +202,23 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
             标签
           </a>
         </li>
       
-
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
       
+
       
     </ul>
   
@@ -191,7 +231,9 @@
 
     <main id="main" class="main">
       <div class="main-inner">
-        <div id="content" class="content"> 
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
   <section id="posts" class="posts-expand">
     
       
@@ -199,6 +241,10 @@
   
   
 
+  
+  
+  
+
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
 
     
@@ -210,8 +256,9 @@
             
             
               
-                <a class="post-title-link" href="/2015/04/30/Shader_4/" itemprop="url">
-                  瞎聊 Unity Shader 系列之四：坐标系
+                
+                <a class="post-title-link" href="/2015/05/14/Shader_10/" itemprop="url">
+                  瞎聊 Unity Shader 系列之十：数据的标签：语义绑定
                 </a>
               
             
@@ -220,15 +267,22 @@
 
         <div class="post-meta">
           <span class="post-time">
-            发表于
-            <time itemprop="dateCreated" datetime="2015-04-30T13:55:00+08:00" content="2015-04-30">
-              2015-04-30
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-05-14T15:53:00+08:00" content="2015-05-14">
+              2015-05-14
             </time>
           </span>
 
           
             <span class="post-category" >
-              &nbsp; | &nbsp; 分类于
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
                   <a href="/categories/Shader/" itemprop="url" rel="index">
@@ -247,8 +301,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2015/04/30/Shader_4/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/04/30/Shader_4/" itemprop="commentsCount"></span>
+                <a href="/2015/05/14/Shader_10/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/05/14/Shader_10/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -256,35 +310,55 @@
 
           
 
+          
+          
+
+          
         </div>
       </header>
     
 
 
-    <div class="post-body">
+    <div class="post-body" itemprop="articleBody">
 
       
       
 
       
         
-          <p>这节从很平常一段对话开始：</p>
-<blockquote>
-<p><strong>甲跟乙说：</strong> 喂，你看到那个人没有？<br><strong>乙：</strong> 你说的是哪个？<br><strong>甲：</strong> 就是那棵树旁边那个。  </p>
-</blockquote>
-<p>从对话里面我们知道：<strong>要描述一个物体的位置，我们需要借助参照物。</strong> 其实甲也可以这么说：</p>
-<blockquote>
-<p><strong>甲：</strong> 在那个个子很高的人左手边那位。</p>
-</blockquote>
-<p>所以说 <strong>参照物是可以选择的，可变的</strong>。</p>
-<p>我们把上面对话推广到坐标系上，来给坐标系下个山寨的定义：<strong>坐标系是为了描述物体位置而存在，我们借助的参照物是它的原点<br>。由于可以选择不同的参照物，所以我们可以选择不同的原点。</strong> 原点很重要，我们利用坐标系的时候首先要知道原点在哪里。</p>
-<p>既然原点可以任意选，那不是说会出现很多坐标系？ 是的，但是我们使用几种约定的坐标系就好了。</p>
+          <p>这节内容跟 <a href="/2015/04/28/Shader_2/" title="[渲染管线]">[渲染管线]</a> 内容关系比较紧密，建议先了解渲染管线的整个流程。</p>
+<p>我们知道渲染管线整个流水线都有数据的输入输出，这样就存在几个问题：</p>
+<ol>
+<li>这些数据都是什么？</li>
+<li>这些数据输入或输出到哪里？</li>
+<li>Shader 里面怎么体现？</li>
+</ol>
+<p>这节内容主要是讲上面三个问题</p>
+<h3 id="数据的种类"><a href="#数据的种类" class="headerlink" title="数据的种类"></a>数据的种类</h3><p>一般情况能利用的有如下几种：</p>
+<ul>
+<li>坐标系中的位置 (position)</li>
+<li>法线 (normal)</li>
+<li>切线 (tanent)</li>
+<li>颜色 (color)</li>
+<li>纹理坐标 (texture coordinate)</li>
+</ul>
+<h3 id="数据的输入输出"><a href="#数据的输入输出" class="headerlink" title="数据的输入输出"></a>数据的输入输出</h3><p>数据存放在寄存器里面。输入的时候从寄存器读取数据，输出的时候将数据写到寄存器里面。</p>
+<h3 id="Shader-中的体现"><a href="#Shader-中的体现" class="headerlink" title="Shader 中的体现"></a>Shader 中的体现</h3><p>首先是数据的种类的表示。现实生活中，我们也喜欢物品分类，然后对分类取个名字或贴个标签，以后我们便可以从这一类中存取属于这类的物品。Shader 里面也有类似的做法，给 Shader 函数输入输出的数据结构打上标签。<br>这种标签叫做 <strong>语义（Semantic）</strong>， 打标签的行为叫做 <strong>语义绑定</strong> 。一般用一个冒号后面带上标签的名字来表示。长相大概是这个要样子 <code>:XXXXX</code> （XXXXX 表示语义）。</p>
+<p>我们有了标签，那我们把它放在 shader 代码什么地方呢？ 之前提到我们是给函数输入输出的数据结构打上标签，而函数的输入就是参数。对于参数，我们可以使用<strong>结构体</strong>也可以直接使用<strong>基础数据类型</strong>，所以能出现如下两种位置：</p>
           <div class="post-more-link text-center">
-            <a class="btn" href="/2015/04/30/Shader_4/#more" rel="contents">
+            <a class="btn" href="/2015/05/14/Shader_10/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
         
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
       
     </div>
 
@@ -307,6 +381,10 @@
   
   
 
+  
+  
+  
+
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
 
     
@@ -318,8 +396,9 @@
             
             
               
-                <a class="post-title-link" href="/2015/04/29/Shader_3/" itemprop="url">
-                  瞎聊 Unity Shader 系列之三：Shader 土地上的语言们
+                
+                <a class="post-title-link" href="/2015/05/08/Shader_9/" itemprop="url">
+                  瞎聊 Unity Shader 系列之九：用来包装变量的 Properties
                 </a>
               
             
@@ -328,15 +407,22 @@
 
         <div class="post-meta">
           <span class="post-time">
-            发表于
-            <time itemprop="dateCreated" datetime="2015-04-29T14:33:00+08:00" content="2015-04-29">
-              2015-04-29
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-05-08T14:03:00+08:00" content="2015-05-08">
+              2015-05-08
             </time>
           </span>
 
           
             <span class="post-category" >
-              &nbsp; | &nbsp; 分类于
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
                   <a href="/categories/Shader/" itemprop="url" rel="index">
@@ -355,8 +441,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2015/04/29/Shader_3/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/04/29/Shader_3/" itemprop="commentsCount"></span>
+                <a href="/2015/05/08/Shader_9/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/05/08/Shader_9/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -364,33 +450,42 @@
 
           
 
+          
+          
+
+          
         </div>
       </header>
     
 
 
-    <div class="post-body">
+    <div class="post-body" itemprop="articleBody">
 
       
       
 
       
         
-          <p>这节是关于 Unity 平台上 shader 语言的选择。</p>
-<p>计算机行业的各公司（或者组织）似乎都遵循着某种规则。当他们在某个领域划出了一亩三分地，当上了地主后, 就要用方法圈住干活的农民。让他们觉得在我这里不会饿死，有饭吃，你要到别家<br>干活的话，需要重头再来，这是一个很亏本的买卖。这个方法就是制定自己体系（软硬件中的各种协议，接口，语言，框架），脱离这套体系，在别的地方玩不起来。开个玩笑来取名这个规矩叫做<strong>圈地规则</strong>吧。</p>
-<h3 id="Shader-语言们"><a href="#Shader-语言们" class="headerlink" title="Shader 语言们"></a>Shader 语言们</h3><p>根据上面提到的圈地规则，下面来隆重的介绍下 shader 这块地上地主们建立起来的体系：CG, HLSL 和 GLSL 语言</p>
-<ul>
-<li><strong>CG：</strong> C for Graphics 的简称，是 NVIDIA 公司开发的语言。从名字上来看的出它是 C 语言的亲戚，现实是它保留了 C 语言的大部分语义。</li>
-<li><strong>HLSL：</strong> High Level Shader Language 的简称，由微软开发的语言。语法跟 CG 非常的相似。</li>
-<li><strong>GLSL：</strong> OpenGL Shading Language 的简称，OPENGL 组件开发的，语法也是基于 C 语言的。</li>
-</ul>
-<p>那么问题来了，Shader 语言到底哪家强？这个也发生过强烈的讨论。</p>
+          <p>为了像其他程序语言一样重用代码，Shaderlab 把可变部分提取出来，集中放到一个区域去。这个区域就是 <a href="/2015/05/05/Shader_6/" title="[初始 shaderlab]">[初始 shaderlab]</a> 这节中提到的的 <code>Properties</code><br>可选项。 在这个区域内每一个元素被叫做 Property。我们把他叫做属性吧。这些属性都包括在 <code>Properties { }</code> 语句块内。</p>
+<h3 id="Shaderlab-的属性"><a href="#Shaderlab-的属性" class="headerlink" title="Shaderlab 的属性"></a>Shaderlab 的属性</h3><p>属性的语法是:</p>
+<blockquote>
+<p>属性名 (“Inspector 显示的名字”, 类型) = 默认值</p>
+</blockquote>
+<p>Shaderlab 提供不同的数据类型（详情见下面）。如果把这些类型和默认值格式填充进上面的语法后，会变成下面的样子：</p>
           <div class="post-more-link text-center">
-            <a class="btn" href="/2015/04/29/Shader_3/#more" rel="contents">
+            <a class="btn" href="/2015/05/08/Shader_9/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
         
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
       
     </div>
 
@@ -413,6 +508,10 @@
   
   
 
+  
+  
+  
+
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
 
     
@@ -424,8 +523,9 @@
             
             
               
-                <a class="post-title-link" href="/2015/04/28/Shader_2/" itemprop="url">
-                  瞎聊 Unity Shader 系列之二：渲染管线
+                
+                <a class="post-title-link" href="/2015/05/07/Shader_8/" itemprop="url">
+                  瞎聊 Unity Shader 系列之八：#pragma 指令
                 </a>
               
             
@@ -434,15 +534,22 @@
 
         <div class="post-meta">
           <span class="post-time">
-            发表于
-            <time itemprop="dateCreated" datetime="2015-04-28T11:07:00+08:00" content="2015-04-28">
-              2015-04-28
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-05-07T16:13:00+08:00" content="2015-05-07">
+              2015-05-07
             </time>
           </span>
 
           
             <span class="post-category" >
-              &nbsp; | &nbsp; 分类于
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
                   <a href="/categories/Shader/" itemprop="url" rel="index">
@@ -461,8 +568,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2015/04/28/Shader_2/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/04/28/Shader_2/" itemprop="commentsCount"></span>
+                <a href="/2015/05/07/Shader_8/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/05/07/Shader_8/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -470,41 +577,45 @@
 
           
 
+          
+          
+
+          
         </div>
       </header>
     
 
 
-    <div class="post-body">
+    <div class="post-body" itemprop="articleBody">
 
       
       
 
       
         
-          <p>这节描述的是图形渲染的大致过程。</p>
-<p>为了更好理解和记忆这节内容，先来学下面几个词。</p>
+          <p>第三节 <a href="/2015/04/29/Shader_3/" title="[Shader 土地上的语言们]">[Shader 土地上的语言们]</a> 里面说到过 CG 和 HLSL 等语言被 <code>GGPROGRAM ... ENDCG</code> 语句块里面。这节的主角 #pragma 出现的位置就是在这个语句块里面，用来做编译指示的。就好比告诉<br> Shaderlab 的编译器，你应该这么干应该那么干。这里把 #pragma 叫做编译指令吧。</p>
+<p><code>CGPROGRAM ... ENDCG</code> 语句块根据 Shaderlab 写作方式不同，它的位置也不同。</p>
 <ul>
-<li><strong>渲染管线(Rendering Pipeline)：</strong> 一提到管线，感觉很高大上的样子。说的俗一点就是可以理解为流水线。渲染管线我们可暂时理解为 <strong>从得到模型数据到绘制出图像</strong> 这一过程的称呼。</li>
-<li><strong>Vertex Shader：</strong> 对顶点数据编程的一段程序。 人类有懒惰的天性，习惯用简化的词汇来表达同一个东西。对 Vertex Shader 也不例外，一般称其为 VS ，但是在本系列文章中会保持全称。</li>
-<li><strong>Fragment Shader：</strong> 对像素数据编程的一段程序。这里 fragment 可以理解为带有信息（颜色，坐标等）的像素 (Pixel), 一般也简称其为 FS 或者 PS 。 在本系列文章中会保持其全称。</li>
-<li><strong>FrameBuffer：</strong> 缓存帧数据的存储区，它一般包含的是要显示到显示设备上的位图数据（也就是图片数据）。</li>
-<li><strong>Fixed Function：</strong> 由于一些硬件支持等历史原因，早期的图形 API  <strong>只支持对 GPU 做配置</strong>，这部分只可配置的功能就是 fixed fucntion。<br>这里注意下，fixed function 的功能只能配置，不像 Vertex Shader　和 fragment Shader 可以编程（写自己的算法）。</li>
+<li>如果是 <strong>surface shader</strong>, 它在 Subshader 语句块里面，不是在 Pass 语句块里面</li>
+<li>如果是 <strong>vertex&amp;&amp;framgment shader</strong>，它是 Pass 语句块里面</li>
 </ul>
-<h3 id="渲染管线-Rendering-Pipeline"><a href="#渲染管线-Rendering-Pipeline" class="headerlink" title="渲染管线 (Rendering Pipeline)"></a>渲染管线 (Rendering Pipeline)</h3><p>看图说话</p>
-<p><img src="/images/Shader/2/rendering-pipeline.jpg" alt="2.renderingpipeline.jpg"></p>
-<p>上面是可编程的渲染管线模型的示意。下面多说几点：</p>
-<ul>
-<li>输入阶段。Unity 使用 Mesh Renderer 等组件读取模型顶点数据，然后调用图形 API，将数据传递给 GPU。</li>
-<li>现实中同时会进行多条渲染管线，他们是<strong>并行的</strong>。 这点概念比较重要，以后还会提到它。我们记住 GPU 并行能力很强。</li>
-<li>最后输出的 FrameBuffer (可以理解为渲染出来的图片) 有几率被抛弃掉，也就是说不显示在显示设备上。这个以后单独说明原因。好比残酷的现实世界，努力了（整个渲染过程）也不一定会成功（被显示出来）。</li>
-</ul>
+<p>其实 surface shader 最终会编译成 vertex&amp;&amp;framgment shader, 最终结果是一样的的。surface shader 会被编译成含多个 Pass 的 vertex&amp;&amp;fragment shader, 而这些都用相同的编译指令。我们可以从 Inspector 的 shader<br>属性信息里面去打开被编译为 vertex&amp;&amp;fragment shader 后的代码。</p>
+<p><img src="/images/Shader/8/surfaceshader.png" alt="surface shader"></p>
+<p>如果本身不是 surface shader 的话，上面那个 show generated code 按钮是不会出现的。上面提到 #pragma 是在 <code>CGPROGRAM ... ENDCG</code> 语句块里面的，所以它出现的位置也符合上面提到的特征。</p>
           <div class="post-more-link text-center">
-            <a class="btn" href="/2015/04/28/Shader_2/#more" rel="contents">
+            <a class="btn" href="/2015/05/07/Shader_8/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
         
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
       
     </div>
 
@@ -527,6 +638,10 @@
   
   
 
+  
+  
+  
+
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
 
     
@@ -538,8 +653,9 @@
             
             
               
-                <a class="post-title-link" href="/2015/04/26/Shader_1/" itemprop="url">
-                  瞎聊 Unity Shader 系列之一：GPU 与 Shader Model
+                
+                <a class="post-title-link" href="/2015/05/06/Shader_7/" itemprop="url">
+                  瞎聊 Unity Shader 系列之七：究竟谁先被渲染？
                 </a>
               
             
@@ -548,15 +664,22 @@
 
         <div class="post-meta">
           <span class="post-time">
-            发表于
-            <time itemprop="dateCreated" datetime="2015-04-26T16:50:00+08:00" content="2015-04-26">
-              2015-04-26
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-05-06T16:05:00+08:00" content="2015-05-06">
+              2015-05-06
             </time>
           </span>
 
           
             <span class="post-category" >
-              &nbsp; | &nbsp; 分类于
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
                   <a href="/categories/Shader/" itemprop="url" rel="index">
@@ -575,8 +698,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2015/04/26/Shader_1/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/04/26/Shader_1/" itemprop="commentsCount"></span>
+                <a href="/2015/05/06/Shader_7/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/05/06/Shader_7/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -584,36 +707,290 @@
 
           
 
+          
+          
+
+          
         </div>
       </header>
     
 
 
-    <div class="post-body">
+    <div class="post-body" itemprop="articleBody">
 
       
       
 
       
         
-          <p>我想首先唠叨下我为什么打算写这一系列的文章及文章的定位。</p>
-<p>我写的动力主要来源于如下原因：</p>
+          <p>这节的问题: 假设有很多对象需要渲染，而你想自己指定这些对象被渲染的顺序的话应该怎么做？</p>
+<p>先上答案：使用 Subshader 的 Queue 标签指定。</p>
+<p>那 Queue 标签又是是那么？？ 我们继续往下看，先介绍 Subshader 的标签</p>
+<h3 id="Subshader-的标签"><a href="#Subshader-的标签" class="headerlink" title="Subshader 的标签"></a>Subshader 的标签</h3><p>在上一节 <a href="/2015/05/05/Shader_6/" title="[初识 Shaderlab]">[初识 Shaderlab]</a> 中我们知道 Subshader 语句块内有个 <code>[Tags]</code> 可选项，它的作用是是配置渲染引擎应该 <strong>什么时候 和 怎么样</strong> 去渲染。这就是 Subshader 的标签。</p>
+<p>它的语法是：</p>
+<blockquote>
+<p>Tags { “TagName1” = “Value1” “TagName2” = “Value2” … }</p>
+</blockquote>
+<p>就是 Tags 语法块内带有若干键值对项（理论上可有很多很多个这种键值对）。可以填写的些键值对可以参考 <a href="http://docs.unity3d.com/Manual/SL-SubshaderTags.html">这个页面</a></p>
+<p>需要注意一点 <strong>它只能写在 Subshader 语句块里面，不能写在 Pass 语句块里面</strong>。</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/05/06/Shader_7/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2015/05/05/Shader_6/" itemprop="url">
+                  瞎聊 Unity Shader 系列之六：初识 Shaderlab
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-05-05T17:55:00+08:00" content="2015-05-05">
+              2015-05-05
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Shader/" itemprop="url" rel="index">
+                    <span itemprop="name">Shader</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/05/05/Shader_6/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/05/05/Shader_6/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>好吧，其实这不算初识 Shaderlab 了，因为在 <a href="/2015/04/29/Shader_3/" title="[shaderlab 土地上的语言们]">[shaderlab 土地上的语言们]</a> 这节中已经说到在 shaderlab 中有三种方式来写 shader。<br>这节的内容主要是来认识下 shaderlab 语法写出来的 shader 长得什么样子。</p>
+<p>下面有段基于 shaderlab 的 shader 的大概框架的伪代码，在之前要解释下代码中带中括号的部分，如 <code>[Properties]</code>, 表示是可以选择的，也就是说可以不写。</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/05/05/Shader_6/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2015/05/04/Shader_5/" itemprop="url">
+                  瞎聊 Unity Shader 系列之五：RGBA 101
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-05-04T13:55:00+08:00" content="2015-05-04">
+              2015-05-04
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Shader/" itemprop="url" rel="index">
+                    <span itemprop="name">Shader</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/05/04/Shader_5/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/05/04/Shader_5/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>这节说说 fragment shader 最后输出的像素的颜色表示方法 RGBA。</p>
+<p>玩过 Photoshop 的同学可能知道，存在好几种颜色模式来表示颜色，<a href="http://baike.baidu.com/view/1139658.htm">比如 RGB 和 CMYK</a>. 由于显示器的发光物体，所以使用的 RGB 模式。<br>Unity 中也采用这种表示方法。</p>
+<h3 id="RGB模式"><a href="#RGB模式" class="headerlink" title="RGB模式"></a>RGB模式</h3><p>RGB是用红绿蓝混合来表示的颜色。R 是红色， G 表示绿色， B 是蓝色。一般用8为来表示一个颜色通道，每个通道有 256 个等级（0~255）。它有如下特性：</p>
 <ul>
-<li>对之前学习的一些总结、复习和提炼</li>
-<li>尽可能的填充一些概念上的空白。 有不少关于 Unity shader 的文章只讲 Shaderlab 语法，讲各种光照模型等, 这对于缺乏概念的新手来说是不太好理解的。</li>
-<li>之前信誓旦旦的跟朋友说以后学了 shader 会写点文章出来，算是允诺。。。</li>
+<li><code>(0, 0, 0)</code> 表示黑色</li>
+<li><code>(255, 255, 255)</code> 表示白色</li>
+<li>三个通道数值相同的时候是灰色，比如 <code>(128, 128, 128)</code></li>
+<li>数值越大颜色越亮，反之数值越小越暗</li>
 </ul>
-<p>文章定位：</p>
-<ul>
-<li>这是学习笔记，不是教程。如果内容会有出入，非常感谢和希望您能指正。</li>
-<li>主要基础概念为主，可能很零散。</li>
-</ul>
-<p>之前有前辈说过，学习一门知识前，了解其由来对入门很有好处。我比较赞同这个观点，所以开篇我们来说写历史。</p>
-<h3 id="CPU-之外的另外一个-PU-GPU"><a href="#CPU-之外的另外一个-PU-GPU" class="headerlink" title="CPU 之外的另外一个 PU - GPU"></a>CPU 之外的另外一个 PU - GPU</h3><p>随着计算机处理图形的计算量越来越来大，CPU难以满足计算速度上的需求, 为了将图形的计算单独拿出来执行，上世纪70年代开始出现了为加速图形绘制的硬件。<br>这些硬件跟大部分刚出来的新事物一样，功能有限，而且不太完善，当然那个时候也不叫 GPU。</p>
-<p>1999 年，NVIDIA 公司发布了 GeForce256, 并且提出一个 Graphics Process Unit (GPU) 概念。很多文章都提到这款显卡有划时代的意义，因为它使第一款<br>带有可编程顶点处理能力的显卡，这意味着显卡从<strong>之前的只可配置</strong>上升到了<strong>可编程</strong>的高度，开发者从此可以实现自己顶点处理算法。NVIDIA 也是提出 GPU 这个词<br>来对 GeForece256 与之前显卡做区分。</p>
-<p>2000 年以后， GPU 技术一直在不断的发展，处理和运算能力不断打变强变大。为了利用 GPU 强大的并行计算能力，出现了 CUDA 并行计算平台。有兴趣的同学可以关注下<br><a href="https://developer.nvidia.com/cuda-zone">CUDA官网</a>.</p>
+<p><img src="/images/Shader/5/rgb.png" alt="RGB"></p>
+<p>但是 Unity Shader 中并不用 256 个等级来表示颜色数值，而是用标准化（取值0~1）的数值来表示。换句话说就是所有通道都除以 255 得到标准化的结果。</p>
+<h3 id="RGBA-中的-A-是什么"><a href="#RGBA-中的-A-是什么" class="headerlink" title="RGBA 中的 A 是什么"></a>RGBA 中的 A 是什么</h3>
           <div class="post-more-link text-center">
-            <a class="btn" href="/2015/04/26/Shader_1/#more" rel="contents">
+            <a class="btn" href="/2015/05/04/Shader_5/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -621,415 +998,11 @@
       
     </div>
 
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                <a class="post-title-link" href="/2015/04/15/cirleImageInUnity3D/" itemprop="url">
-                  在 Unity uGUI 中绘制圆形图片
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            发表于
-            <time itemprop="dateCreated" datetime="2015-04-15T23:30:00+08:00" content="2015-04-15">
-              2015-04-15
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp; 分类于
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/UnityKB/" itemprop="url" rel="index">
-                    <span itemprop="name">UnityKB</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/04/15/cirleImageInUnity3D/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/04/15/cirleImageInUnity3D/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <p>最近项目需要在 Unity 的新 UI 系统中实现圆形头像的功能，之前想通过 Mask 控件的方式来实现，但是一番努力后毫无头绪，只能祭上shader了。</p>
-<p>大体的思路就是在一个空的 Object 上面挂上 RawImage 组件，组件的 Material 挂上本文中的 shader。截取的逻辑是选取图片正中心 (0.5, 0.5) 为圆的中心点，绘制图片在圆内的像素点为图片的像素，然后图片在圆外的像素点设置为 alpha 为 0 的点，<br>如 <code>(0, 0, 0, 0)</code>。逻辑是在 fragment shader 里面实现(shader 代码中的<code>frag</code>)。</p>
-<p>下面直接放出 shader:</p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2015/04/15/cirleImageInUnity3D/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
+    <div>
       
     </div>
 
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                <a class="post-title-link" href="/2015/03/26/ClosureInSwift/" itemprop="url">
-                  一个例子学习Swift中的闭包用法
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            发表于
-            <time itemprop="dateCreated" datetime="2015-03-26T15:37:00+08:00" content="2015-03-26">
-              2015-03-26
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp; 分类于
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/一点一滴/" itemprop="url" rel="index">
-                    <span itemprop="name">一点一滴</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/03/26/ClosureInSwift/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/03/26/ClosureInSwift/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <p>初学习Swift, 觉得Swift中的闭包用法比较灵活, 所以在学习的时候编了个小例子来把用法罗列了出来, 分享出来给大家。</p>
-<p>在讲例子之前我们来看下什么是闭包(Closure).《The Swift Programming Language》是这样定义的:</p>
-<blockquote>
-<p>Closures are self-contained blocks of functionality that can be passed around and used in your code</p>
-</blockquote>
-<p>中文版中这样翻译：</p>
-<blockquote>
-<p>闭包是自包含的函数代码块，可以在代码中被传递和使用。</p>
-</blockquote>
-<p>看解释我们知道，闭包是代码段，它能实现一些逻辑（函数），它可以被传递和使用（就像类型一样）。</p>
-<p>然后我们来看看闭包长的什么样子。下面是闭包的定义:</p>
-<blockquote>
-<p>{ (parameters) -&gt; returnType in<br>   statements<br>}</p>
-</blockquote>
-<p>上面定义中 <strong>parameters</strong> 是指参数， <strong>returnType</strong> 是返回类型，而 <strong>statements</strong> 指的是我们要实现的逻辑的代码, 闭包的代码都被 <strong>{}</strong> 包含着。<br>观察力强的同学们估计发现了，它怎么跟Swift的函数长的差不多，难道它们是亲戚? Swift中函数是一种特殊的闭包，记住函数是闭包，不是闭包是函数哦。</p>
-<p>接下来我们说说文章开头提到的那个栗子。</p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2015/03/26/ClosureInSwift/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                <a class="post-title-link" href="/2015/01/28/UserGithubClientForNonGithubRepos/" itemprop="url">
-                  如何在Github for Mac/Windows上使用非Github的仓库
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            发表于
-            <time itemprop="dateCreated" datetime="2015-01-28T16:54:00+08:00" content="2015-01-28">
-              2015-01-28
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp; 分类于
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/一点一滴/" itemprop="url" rel="index">
-                    <span itemprop="name">一点一滴</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/01/28/UserGithubClientForNonGithubRepos/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/01/28/UserGithubClientForNonGithubRepos/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <p><strong>[2015-08-14 更新]</strong> 之前的 Github for Windows 和 Github for Mac 已经合并成 Github Desktop 了。下载地址为 <a href="https://desktop.github.com">https://desktop.github.com</a></p>
-<p>你或许跟我一样，不想花太多时间去”精通”git的各种命令，想用简单明了的方法来玩git。而Github的客户端恰是这种良药。使用过的童鞋可能有过跟我一样困惑：Github客户端在界面上只能管理Github的代码仓库，怎么才能管理非Github的仓库呢？</p>
-<p>这个问题也就是本文要解决的内容。先讲Github for Mac, 然后是Github for Windows</p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2015/01/28/UserGithubClientForNonGithubRepos/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                <a class="post-title-link" href="/2015/01/07/CSharp to Python Tutorial/" itemprop="url">
-                  从C#到Python
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            发表于
-            <time itemprop="dateCreated" datetime="2015-01-07T20:13:00+08:00" content="2015-01-07">
-              2015-01-07
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp; 分类于
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/一点一滴/" itemprop="url" rel="index">
-                    <span itemprop="name">一点一滴</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/01/07/CSharp to Python Tutorial/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/01/07/CSharp to Python Tutorial/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <p>项目组最近可能要用Python写一插件，虽然自己只是会用，但是还是被要求给大家做个简单的Python入门培训。只能冲个胖子，硬着头皮上了。<br>由于项目组里大部分童鞋们都会C#，可能如果从C#做类比的角度来阐述Python语法会更好点，然后下面奇怪的Python教程出来了。大家可以在这里得到PPT和代码:  <a href="https://github.com/wudixiaop/Nana/tree/master/Python/Tutorial/Python%20Quick%20Start">https://github.com/wudixiaop/Nana/tree/master/Python/Tutorial/Python%20Quick%20Start</a>。</p>
-<p>下面是讲语法的代码，语法部分在注释中有描述。</p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2015/01/07/CSharp to Python Tutorial/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
+    <div>
       
     </div>
 
@@ -1051,19 +1024,20 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
- </div>
 
-        
+          </div>
+          
 
-        
-      </div>
 
-      
+          
+
+        </div>
         
+          
   
   <div class="sidebar-toggle">
     <div class="sidebar-toggle-line-wrap">
@@ -1082,31 +1056,37 @@
 
       <section class="site-overview sidebar-panel  sidebar-panel-active ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" src="https://avatars1.githubusercontent.com/u/5707242?v=3&s=460" alt="RockyLai" itemprop="image"/>
-          <p class="site-author-name" itemprop="name">RockyLai</p>
+          <img class="site-author-image" itemprop="image"
+               src="https://avatars1.githubusercontent.com/u/5707242?v=3&s=460"
+               alt="Rocky Lai" />
+          <p class="site-author-name" itemprop="name">Rocky Lai</p>
+          <p class="site-description motion-element" itemprop="description"></p>
         </div>
-        <p class="site-description motion-element" itemprop="description"></p>
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">37</span>
+              <span class="site-state-item-count">38</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
 
-          <div class="site-state-item site-state-categories">
-            <a href="/categories">
-              <span class="site-state-item-count">4</span>
-              <span class="site-state-item-name">分类</span>
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">分类</span>
               </a>
-          </div>
+            </div>
+          
 
-          <div class="site-state-item site-state-tags">
-            <a href="/tags">
-              <span class="site-state-item-count">14</span>
-              <span class="site-state-item-name">标签</span>
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-name">标签</span>
               </a>
-          </div>
+            </div>
+          
 
         </nav>
 
@@ -1116,14 +1096,20 @@
           
             
               <span class="links-of-author-item">
-                <a href="https://github.com/wudixiaop" target="_blank">
-                  <i class="fa fa-github"></i> Github
+                <a href="https://github.com/wudixiaop" target="_blank" title="Github">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Github
                 </a>
               </span>
             
               <span class="links-of-author-item">
-                <a href="mailto:rockylai@shuiguzi.com" target="_blank">
-                  <i class="fa fa-email"></i> Email
+                <a href="mailto:rockylai@shuiguzi.com" target="_blank" title="Email">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Email
                 </a>
               </span>
             
@@ -1133,9 +1119,8 @@
         
         
 
-        <div class="links-of-author motion-element">
-          
-        </div>
+        
+        
 
       </section>
 
@@ -1145,18 +1130,20 @@
   </aside>
 
 
-      
+        
+      </div>
     </main>
 
     <footer id="footer" class="footer">
-      <div class="footer-inner"> <div class="copyright" >
+      <div class="footer-inner">
+        <div class="copyright" >
   
   &copy;  2014 - 
   <span itemprop="copyrightYear">2016</span>
   <span class="with-love">
-    <i class="icon-next-heart fa fa-heart"></i>
+    <i class="fa fa-heart"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">RockyLai</span>
+  <span class="author" itemprop="copyrightHolder">Rocky Lai</span>
 </div>
 
 <div class="powered-by">
@@ -1170,19 +1157,73 @@
   </a>
 </div>
 
+        
 
- </div>
+        
+      </div>
     </footer>
 
-    <div class="back-to-top"></div>
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
   </div>
 
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+  
   <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
 
   
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
   
   
-    
+
+  
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
 
   
     
@@ -1200,61 +1241,25 @@
       || document.getElementsByTagName('body')[0]).appendChild(ds);
     })();
   </script>
-    
-     
 
-
+  
     
   
-  
-  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
-  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
-
-
-  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
-  
-
-  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
-  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
-
-  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.2" id="motion.global"></script>
 
 
 
 
-  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.2"></script>
-  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
 
   
-
-  <script type="text/javascript">
-    $(document).ready(function () {
-      if (CONFIG.sidebar === 'always') {
-        displaySidebar();
-      }
-      if (isMobile()) {
-        FastClick.attach(document.body);
-      }
-
-      motionIntegrator.bootstrap();
-    });
-  </script>
-
   
   
 
   
-  
 
   
-  <script type="text/javascript" src="/js/lazyload.js"></script>
-  <script type="text/javascript">
-    $(function () {
-      $("#posts").find('img').lazyload({
-        placeholder: "/images/loading.gif",
-        effect: "fadeIn"
-      });
-    });
-  </script>
+<script type="text/javascript" async src="//push.zhanzhang.baidu.com/push.js">
+</script>
+
+
 </body>
 </html>

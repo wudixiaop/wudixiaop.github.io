@@ -1,11 +1,14 @@
 <!doctype html>
-<html class="theme-next use-motion theme-next-mist">
-<head>
-  
 
-<meta charset="UTF-8"/>
+
+
+
+<html class="theme-next mist">
+<head>
+  <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
 
 
 <meta http-equiv="Cache-Control" content="no-transform" />
@@ -18,20 +21,45 @@
 
 
 
-  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+
 
 
 
   
-    <link href='//fonts.lug.ustc.edu.cn/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
   
 
 
-<link rel="stylesheet" type="text/css" href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" />
-
-<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.2"/>
 
 
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
   <meta name="keywords" content="Security," />
@@ -40,7 +68,14 @@
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
 
 
 <meta name="description" content="现实中会有很多需求，对数据加密是其中一种。我们对数据的加密方式有 对称加密 和 不对称加密。对称加密就是使用相同的秘钥和算法加密明文和解密密文。而不对称加密，就是有加密和解密使用不同秘钥的算法，其中对外公开的叫 公钥（public key），不公开的叫 密钥（private key）。本文中要提到的 RSA 算法就是一种不对称加密算法。
@@ -53,7 +88,7 @@ RSA 介绍关于 RSA, 详细介绍 请看这里。
 <meta property="og:description" content="现实中会有很多需求，对数据加密是其中一种。我们对数据的加密方式有 对称加密 和 不对称加密。对称加密就是使用相同的秘钥和算法加密明文和解密密文。而不对称加密，就是有加密和解密使用不同秘钥的算法，其中对外公开的叫 公钥（public key），不公开的叫 密钥（private key）。本文中要提到的 RSA 算法就是一种不对称加密算法。
 RSA 介绍关于 RSA, 详细介绍 请看这里。
 这里做个大">
-<meta property="og:updated_time" content="2016-06-25T09:56:28.000Z">
+<meta property="og:updated_time" content="2016-06-28T08:23:09.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Unity + openssl 生成的 RSA 秘钥实现可靠的简单数据加密">
 <meta name="twitter:description" content="现实中会有很多需求，对数据加密是其中一种。我们对数据的加密方式有 对称加密 和 不对称加密。对称加密就是使用相同的秘钥和算法加密明文和解密密文。而不对称加密，就是有加密和解密使用不同秘钥的算法，其中对外公开的叫 公钥（public key），不公开的叫 密钥（private key）。本文中要提到的 RSA 算法就是一种不对称加密算法。
@@ -61,29 +96,26 @@ RSA 介绍关于 RSA, 详细介绍 请看这里。
 这里做个大">
 
 
+
 <script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
   var CONFIG = {
     scheme: 'Mist',
-    sidebar: 'always'
+    sidebar: {"position":"left","display":"always"},
+    fancybox: false,
+    motion: false,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
   };
 </script>
-
-
 
   <title> Unity + openssl 生成的 RSA 秘钥实现可靠的简单数据加密 | 心亡则忙，亡心则忘 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
-  <!--[if lte IE 8]>
-  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
-    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
-      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
-           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
-           style='margin-left:auto;margin-right:auto;display: block;'/>
-    </a>
-  </div>
-<![endif]-->
   
 
 
@@ -101,7 +133,16 @@ RSA 介绍关于 RSA, 详细介绍 请看这里。
 
 
 
-  <div class="container one-column page-post-detail">
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -130,35 +171,15 @@ RSA 介绍关于 RSA, 详细介绍 请看这里。
   
 
   
-    <ul id="menu" class="menu ">
+    <ul id="menu" class="menu">
       
         
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
             首页
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-categories">
-          <a href="/categories" rel="section">
-            
-              <i class="menu-item-icon fa fa-th"></i> <br />
-            
-            分类
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-about">
-          <a href="/about" rel="section">
-            
-              <i class="menu-item-icon fa fa-user"></i> <br />
-            
-            关于
           </a>
         </li>
       
@@ -166,9 +187,19 @@ RSA 介绍关于 RSA, 详细介绍 请看这里。
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
             归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
           </a>
         </li>
       
@@ -176,14 +207,23 @@ RSA 介绍关于 RSA, 详细介绍 请看这里。
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
             标签
           </a>
         </li>
       
-
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
       
+
       
     </ul>
   
@@ -196,11 +236,17 @@ RSA 介绍关于 RSA, 详细介绍 请看这里。
 
     <main id="main" class="main">
       <div class="main-inner">
-        <div id="content" class="content"> 
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
 
   <div id="posts" class="posts-expand">
     
 
+  
+  
+
+  
   
   
 
@@ -223,7 +269,10 @@ RSA 介绍关于 RSA, 详细介绍 请看这里。
 
         <div class="post-meta">
           <span class="post-time">
-            发表于
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
             <time itemprop="dateCreated" datetime="2016-03-01T15:56:56+08:00" content="2016-03-01">
               2016-03-01
             </time>
@@ -231,7 +280,11 @@ RSA 介绍关于 RSA, 详细介绍 请看这里。
 
           
             <span class="post-category" >
-              &nbsp; | &nbsp; 分类于
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
                   <a href="/categories/UnityKB/" itemprop="url" rel="index">
@@ -259,18 +312,22 @@ RSA 介绍关于 RSA, 详细介绍 请看这里。
 
           
 
+          
+          
+
+          
         </div>
       </header>
     
 
 
-    <div class="post-body">
+    <div class="post-body" itemprop="articleBody">
 
       
       
 
       
-        <span itemprop="articleBody"><p>现实中会有很多需求，对数据加密是其中一种。我们对数据的加密方式有 <strong>对称加密</strong> 和 <strong>不对称加密</strong>。对称加密就是使用相同的秘钥和算法加密明文和解密密文。而不对称加密，就是有加密和解密使用不同秘钥的算法，其中对外公开的叫 <strong>公钥</strong>（public key），不公开的叫 <strong>密钥</strong>（private key）。本文中要提到的 RSA 算法就是一种不对称加密算法。</p>
+        <p>现实中会有很多需求，对数据加密是其中一种。我们对数据的加密方式有 <strong>对称加密</strong> 和 <strong>不对称加密</strong>。对称加密就是使用相同的秘钥和算法加密明文和解密密文。而不对称加密，就是有加密和解密使用不同秘钥的算法，其中对外公开的叫 <strong>公钥</strong>（public key），不公开的叫 <strong>密钥</strong>（private key）。本文中要提到的 RSA 算法就是一种不对称加密算法。</p>
 <h3 id="RSA-介绍"><a href="#RSA-介绍" class="headerlink" title="RSA 介绍"></a>RSA 介绍</h3><p>关于 RSA, 详细介绍 <a href="http://baike.baidu.com/view/10613.htm?fromtitle=RSA&amp;fromid=210678&amp;type=syn" target="_blank" rel="external">请看这里</a>。</p>
 <p>这里做个大白话来解释，RSA 是一个配有两把钥匙的“锁”。一般情况下使用公开的钥匙（public key）来把数据锁住，然后另外一个不公开的钥匙 （private key）开锁来得到数据。</p>
 <h3 id="RSA-秘钥生成"><a href="#RSA-秘钥生成" class="headerlink" title="RSA 秘钥生成"></a>RSA 秘钥生成</h3><p>上面提到RSA 是不对称算法，它有 public key 和 private key，下面我们用 openssl 来生成它们。下面使用 OSX 系统上自带的 openssl 来生成秘钥。</p>
@@ -278,13 +335,48 @@ RSA 介绍关于 RSA, 详细介绍 请看这里。
 <p><strong>➜  ~ openssl</strong><br><strong>OpenSSL&gt; genrsa -out rsa_private_key.pem 1024</strong><br>Generating RSA private key, 1024 bit long modulus<br>……….++++++<br>……………………++++++<br>e is 65537 (0x10001)<br><strong>OpenSSL&gt; pkcs8 -topk8 -inform PEM -in rsa_private_key.pem -outform PEM -nocrypt</strong><br>—–BEGIN PRIVATE KEY—–<br>MIICdgIBADANBgkqhkiG9w0BAQEFAASCAmAwggJcAgEAAoGBAKGhqNRI8ygdZcsW<br>FofWo0+ERSJSQDIjDCrkWlDkKmQP3miYs0ARb00ik95z3IIRp0NCSmDJMRS2Gjdj<br>jNXlHNLZOw05OtH+47Hi3IGmi+dFDzPgux4KzXfs5eOXkhLfSR7XQ2ju1A5q6lAw<br>mXFR8IqEMR73EbwXZM6GHmMC0yglAgMBAAECgYAffJ2mFTwBQZDV+kyTU9XmpK7P<br>G9TTr44sQOXzQi+b5JeAKtcokPzsuuKxgEKhuAyshpp0tlzwWvVKewMxm/t8LIEq<br>O7rwk4w/9Hx5CX+gOogOc6HnjEAucUqr9qxBIsKyvt7V+PlZmytnIamnV3GA7fVV<br>O0APf1DtkU30eGnlAQJBAM2UMpOBwvBchWiYymnRtCyCf7qPGrbNb748a12Ca9Fc<br>eEqdH3FQGBSAUX2xij6exhGAHVPCIfwe9p+A2UTFMGUCQQDJRhwjZ0gnec8pjECX<br>hzaulzsu96ypXZltYaOsArP3pnrD4VzNy8aaplgwMXPBl3/sDyAQkRiLg4ExUUk1<br>ajzBAkB9EZ8fbH9ree5T7zid3k2uEoqgtjU7Z4qHAv0Su6jai1ZHloWti1vLBTIO<br>tTd012WK+hVdgqroVvIVoe8MzqadAkEAnD0RMKZGy2Xx2uWlajqqxuJcLbxSynH+<br>3Hqzq525h98yYwV4ncO2GmxP/rEUk02AHoUrNdD8BaiCS/82XgFmwQJAdCbcdxFK<br>ZUVK3+OCGretEHdedWuVPXEhfiLDpguog994jdoCMCmGviKiOURNo3QsK5DfT0+A<br>Lw307ILOc1dqcg==<br>—–END PRIVATE KEY—–<br><strong>OpenSSL&gt; rsa -in rsa_private_key.pem -pubout -out rsa_public_key.pem</strong><br>writing RSA key<br><strong>OpenSSL&gt;</strong>   </p>
 </blockquote>
 <p>然后 openssl 会为我们生成两个文件，分别叫做 <strong>rsa_private_key.pem</strong> 和 <strong>rsa_public_key.pem</strong>。</p>
-<h3 id="与-Unity-结合"><a href="#与-Unity-结合" class="headerlink" title="与 Unity 结合"></a>与 Unity 结合</h3><p>这里，我们引入一个类叫做 <a href="https://msdn.microsoft.com/zh-cn/library/system.security.cryptography.rsacryptoserviceprovider%28v=VS.110%29.aspx" target="_blank" rel="external">RSACryptoServiceProvider</a>, 它是 .NET 提供的类。需要说明的是，它不能直接使用 openssl 生成的 pem 文件，我们需要转换 pem 到它能使用的格式，也就是 RSAParameters 类。具体算法那如下代码所示：</p>
+<h3 id="与-Unity-结合"><a href="#与-Unity-结合" class="headerlink" title="与 Unity 结合"></a>与 Unity 结合</h3><a id="more"></a>
+<p>这里，我们引入一个类叫做 <a href="https://msdn.microsoft.com/zh-cn/library/system.security.cryptography.rsacryptoserviceprovider%28v=VS.110%29.aspx" target="_blank" rel="external">RSACryptoServiceProvider</a>, 它是 .NET 提供的类。需要说明的是，它不能直接使用 openssl 生成的 pem 文件，我们需要转换 pem 到它能使用的格式，也就是 RSAParameters 类。具体算法那如下代码所示：</p>
 <figure class="highlight axapta"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br></pre></td><td class="code"><pre><span class="line">using System.Security.Cryptography;</span><br><span class="line">using System.Text;</span><br><span class="line">using System;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RSAHelper</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> string Encript(string value, string pemPublicKey)</span><br><span class="line">    &#123;</span><br><span class="line">        using(RSACryptoServiceProvider rsa = <span class="keyword">new</span> RSACryptoServiceProvider())</span><br><span class="line">        &#123;</span><br><span class="line">            rsa.ImportParameters(ConvertFromPemPublicKey(pemPublicKey));</span><br><span class="line">            var encryptedBytes = rsa.Encrypt(Encoding.UTF8.GetBytes(value), <span class="keyword">false</span>);</span><br><span class="line">            <span class="keyword">return</span> Convert.ToBase64String(encryptedBytes);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> string Decrypt(string encryptedData, string pemPrivateKey)</span><br><span class="line">    &#123;</span><br><span class="line">        using(RSACryptoServiceProvider rsa = <span class="keyword">new</span> RSACryptoServiceProvider())</span><br><span class="line">        &#123;</span><br><span class="line">            rsa.ImportParameters(ConvertFromPemPrivateKey(pemPrivateKey));</span><br><span class="line">            var data = rsa.Decrypt(Convert.FromBase64String(encryptedData), <span class="keyword">false</span>);</span><br><span class="line">            <span class="keyword">return</span> Encoding.UTF8.GetString(data, <span class="number">0</span>, data.Length);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// http://blog.csdn.net/liguo9860/article/details/40922919</span></span><br><span class="line">    <span class="comment">//</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> RSAParameters ConvertFromPemPublicKey(string pemFileConent)  </span><br><span class="line">    &#123;  </span><br><span class="line">        pemFileConent = pemFileConent.Replace(<span class="string">"-----BEGIN PUBLIC KEY-----"</span>, <span class="string">""</span>).Replace(<span class="string">"-----END PUBLIC KEY-----"</span>, <span class="string">""</span>).Replace(<span class="string">"\n"</span>, <span class="string">""</span>).Replace(<span class="string">"\r"</span>, <span class="string">""</span>);  </span><br><span class="line">        <span class="keyword">byte</span>[] keyData = Convert.FromBase64String(pemFileConent);  </span><br><span class="line">        bool keySize1024 = (keyData.Length == <span class="number">162</span>);  </span><br><span class="line">        bool keySize2048 = (keyData.Length == <span class="number">294</span>);  </span><br><span class="line">        <span class="keyword">if</span> (!(keySize1024 || keySize2048))  </span><br><span class="line">        &#123;  </span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> ArgumentException(<span class="string">"pem file content is incorrect, Only support the key size is 1024 or 2048"</span>);  </span><br><span class="line">        &#125;  </span><br><span class="line">        <span class="keyword">byte</span>[] pemModulus = (keySize1024 ? <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">128</span>] : <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">256</span>]);  </span><br><span class="line">        var pemPublicExponent = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">3</span>];  </span><br><span class="line">        Array.Copy(keyData, (keySize1024 ? <span class="number">29</span> : <span class="number">33</span>), pemModulus, <span class="number">0</span>, (keySize1024 ? <span class="number">128</span> : <span class="number">256</span>));  </span><br><span class="line">        Array.Copy(keyData, (keySize1024 ? <span class="number">159</span> : <span class="number">291</span>), pemPublicExponent, <span class="number">0</span>, <span class="number">3</span>);  </span><br><span class="line">        var para = <span class="keyword">new</span> RSAParameters &#123; Modulus = pemModulus, Exponent = pemPublicExponent &#125;;  </span><br><span class="line">        <span class="keyword">return</span> para;  </span><br><span class="line">    &#125;  </span><br><span class="line">    </span><br><span class="line">    <span class="comment">// http://blog.csdn.net/liguo9860/article/details/40922919</span></span><br><span class="line">    <span class="comment">//</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> RSAParameters ConvertFromPemPrivateKey(string pemFileConent)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (string.IsNullOrEmpty(pemFileConent))</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> ArgumentNullException(<span class="string">"pemFileConent"</span>, <span class="string">"This arg cann't be empty."</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        pemFileConent = pemFileConent.Replace(<span class="string">"-----BEGIN RSA PRIVATE KEY-----"</span>, <span class="string">""</span>).Replace(<span class="string">"-----END RSA PRIVATE KEY-----"</span>, <span class="string">""</span>).Replace(<span class="string">"\n"</span>, <span class="string">""</span>).Replace(<span class="string">"\r"</span>, <span class="string">""</span>);</span><br><span class="line">        <span class="keyword">byte</span>[] keyData = Convert.FromBase64String(pemFileConent);</span><br><span class="line">        bool keySize1024 = (keyData.Length == <span class="number">609</span> || keyData.Length == <span class="number">610</span>);</span><br><span class="line">        bool keySize2048 = (keyData.Length == <span class="number">1190</span> || keyData.Length == <span class="number">1192</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (!(keySize1024 || keySize2048))</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> ArgumentException(<span class="string">"pem file content is incorrect, Only support the key size is 1024 or 2048"</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> <span class="keyword">index</span> = (keySize1024 ? <span class="number">11</span> : <span class="number">12</span>);</span><br><span class="line">        <span class="keyword">byte</span>[] pemModulus = (keySize1024 ? <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">128</span>] : <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">256</span>]);</span><br><span class="line">        Array.Copy(keyData, <span class="keyword">index</span>, pemModulus, <span class="number">0</span>, pemModulus.Length);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">index</span> += pemModulus.Length;</span><br><span class="line">        <span class="keyword">index</span> += <span class="number">2</span>;</span><br><span class="line">        var pemPublicExponent = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">3</span>];</span><br><span class="line">        Array.Copy(keyData, <span class="keyword">index</span>, pemPublicExponent, <span class="number">0</span>, <span class="number">3</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">index</span> += <span class="number">3</span>;</span><br><span class="line">        <span class="keyword">index</span> += <span class="number">4</span>;</span><br><span class="line">        <span class="keyword">if</span> (keyData[<span class="keyword">index</span>] == <span class="number">0</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">index</span>++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">byte</span>[] pemPrivateExponent = (keySize1024 ? <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">128</span>] : <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">256</span>]);</span><br><span class="line">        Array.Copy(keyData, <span class="keyword">index</span>, pemPrivateExponent, <span class="number">0</span>, pemPrivateExponent.Length);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">index</span> += pemPrivateExponent.Length;</span><br><span class="line">        <span class="keyword">index</span> += (keySize1024 ? ((<span class="keyword">int</span>)keyData[<span class="keyword">index</span> + <span class="number">1</span>] == <span class="number">64</span> ? <span class="number">2</span> : <span class="number">3</span>) : ((<span class="keyword">int</span>)keyData[<span class="keyword">index</span> + <span class="number">2</span>] == <span class="number">128</span> ? <span class="number">3</span> : <span class="number">4</span>));</span><br><span class="line">        <span class="keyword">byte</span>[] pemPrime1 = (keySize1024 ? <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">64</span>] : <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">128</span>]);</span><br><span class="line">        Array.Copy(keyData, <span class="keyword">index</span>, pemPrime1, <span class="number">0</span>, pemPrime1.Length);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">index</span> += pemPrime1.Length;</span><br><span class="line">        <span class="keyword">index</span> += (keySize1024 ? ((<span class="keyword">int</span>)keyData[<span class="keyword">index</span> + <span class="number">1</span>] == <span class="number">64</span> ? <span class="number">2</span> : <span class="number">3</span>) : ((<span class="keyword">int</span>)keyData[<span class="keyword">index</span> + <span class="number">2</span>] == <span class="number">128</span> ? <span class="number">3</span> : <span class="number">4</span>));</span><br><span class="line">        <span class="keyword">byte</span>[] pemPrime2 = (keySize1024 ? <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">64</span>] : <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">128</span>]);</span><br><span class="line">        Array.Copy(keyData, <span class="keyword">index</span>, pemPrime2, <span class="number">0</span>, pemPrime2.Length);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">index</span> += pemPrime2.Length;</span><br><span class="line">        <span class="keyword">index</span> += (keySize1024 ? ((<span class="keyword">int</span>)keyData[<span class="keyword">index</span> + <span class="number">1</span>] == <span class="number">64</span> ? <span class="number">2</span> : <span class="number">3</span>) : ((<span class="keyword">int</span>)keyData[<span class="keyword">index</span> + <span class="number">2</span>] == <span class="number">128</span> ? <span class="number">3</span> : <span class="number">4</span>));</span><br><span class="line">        <span class="keyword">byte</span>[] pemExponent1 = (keySize1024 ? <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">64</span>] : <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">128</span>]);</span><br><span class="line">        Array.Copy(keyData, <span class="keyword">index</span>, pemExponent1, <span class="number">0</span>, pemExponent1.Length);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">index</span> += pemExponent1.Length;</span><br><span class="line">        <span class="keyword">index</span> += (keySize1024 ? ((<span class="keyword">int</span>)keyData[<span class="keyword">index</span> + <span class="number">1</span>] == <span class="number">64</span> ? <span class="number">2</span> : <span class="number">3</span>) : ((<span class="keyword">int</span>)keyData[<span class="keyword">index</span> + <span class="number">2</span>] == <span class="number">128</span> ? <span class="number">3</span> : <span class="number">4</span>));</span><br><span class="line">        <span class="keyword">byte</span>[] pemExponent2 = (keySize1024 ? <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">64</span>] : <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">128</span>]);</span><br><span class="line">        Array.Copy(keyData, <span class="keyword">index</span>, pemExponent2, <span class="number">0</span>, pemExponent2.Length);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">index</span> += pemExponent2.Length;</span><br><span class="line">        <span class="keyword">index</span> += (keySize1024 ? ((<span class="keyword">int</span>)keyData[<span class="keyword">index</span> + <span class="number">1</span>] == <span class="number">64</span> ? <span class="number">2</span> : <span class="number">3</span>) : ((<span class="keyword">int</span>)keyData[<span class="keyword">index</span> + <span class="number">2</span>] == <span class="number">128</span> ? <span class="number">3</span> : <span class="number">4</span>));</span><br><span class="line">        <span class="keyword">byte</span>[] pemCoefficient = (keySize1024 ? <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">64</span>] : <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">128</span>]);</span><br><span class="line">        Array.Copy(keyData, <span class="keyword">index</span>, pemCoefficient, <span class="number">0</span>, pemCoefficient.Length);</span><br><span class="line"></span><br><span class="line">        var para = <span class="keyword">new</span> RSAParameters</span><br><span class="line">            &#123;</span><br><span class="line">                Modulus = pemModulus,</span><br><span class="line">                Exponent = pemPublicExponent,</span><br><span class="line">                D = pemPrivateExponent,</span><br><span class="line">                P = pemPrime1,</span><br><span class="line">                Q = pemPrime2,</span><br><span class="line">                DP = pemExponent1,</span><br><span class="line">                DQ = pemExponent2,</span><br><span class="line">                InverseQ = pemCoefficient</span><br><span class="line">            &#125;;</span><br><span class="line">        <span class="keyword">return</span> para;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <p>然后我们可以直接调用 <code>RSAHelper.Encript</code> 来加密数据，<code>RSAHelper.Decrypt</code> 解密数据。如下面代码，<code>Encode()</code> 加密 <code>Hello Rocky</code> 字符串，然后 <code>Decode()</code> 解决加密后的字符串。</p>
 <figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> UnityEngine;</span><br><span class="line"><span class="keyword">using</span> UnityEngine.UI;</span><br><span class="line"><span class="keyword">using</span> System;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Sample</span> : <span class="title">MonoBehaviour</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> Text output;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">string</span> publicKey = <span class="string">@"-----BEGIN PUBLIC KEY-----</span><br><span class="line">MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCzVBO/HUhgU4cIRS2UE255r2uG</span><br><span class="line">EaVuPAxrANab5z7rv/hUm1t1TW9G6qaLvXraUS2c6m4PW+VVY8j/fViIy9XLhd2I</span><br><span class="line">dYsbuTNyV6gQVnA4tdMdnJdrvfzaXiIoPzP3u9Ll8LEQSW2iiludxwBlVz/VdCiA</span><br><span class="line">EYBMuYmrmSHsan5ObQIDAQAB</span><br><span class="line">-----END PUBLIC KEY-----"</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">string</span> privateKey = <span class="string">@"-----BEGIN RSA PRIVATE KEY-----</span><br><span class="line">MIICXQIBAAKBgQCzVBO/HUhgU4cIRS2UE255r2uGEaVuPAxrANab5z7rv/hUm1t1</span><br><span class="line">TW9G6qaLvXraUS2c6m4PW+VVY8j/fViIy9XLhd2IdYsbuTNyV6gQVnA4tdMdnJdr</span><br><span class="line">vfzaXiIoPzP3u9Ll8LEQSW2iiludxwBlVz/VdCiAEYBMuYmrmSHsan5ObQIDAQAB</span><br><span class="line">AoGBAIHSy1zfQSdjMO2ez0lU6/SyN0BfBAmS9VZ9y+AgACBB4PC3a/W28mk/tQST</span><br><span class="line">Tx5ACKqB2N3LpHI2BCxaPT8DeilfjaUibpOqXJ918+oXmOEpEBpEz2FzkzZWeUOo</span><br><span class="line">8bkDiuEE1RyzQEQExxCbiLQFCpX0NNIpccrTYJ3wRZfroojNAkEA4Pd9xxscmxQM</span><br><span class="line">s4aQgE+/paQWR//B2JQjhsxvYfLhrMUKgWMWpfm5EfhG3AlIE/N7iZADPLZ+2JMG</span><br><span class="line">2ljnE3VdzwJBAMwQ6DJpueg2Yj5+ufTVhFBIkJZXWGIZv5FWmzaycfJOafg/ToRB</span><br><span class="line">QWjU7Dr7buxQ4jgFI6eZcN8uM5pcer/ouwMCQDRCSb2O1r5PkgPCJp8n52UbEPH4</span><br><span class="line">v5cIEpiltNoUCciQnTghRImZ0RwTiKJkpZG85d22zomz+xNkVBs0u7kRcpECQAfH</span><br><span class="line">NTKGuSFSwVfkeK4OXWa5/Vjdp27F0Hl3tZ7WGmXD+2IM968u1ZFrXD27S7USOC0u</span><br><span class="line">dPd0b8rx9eGSWNNryYUCQQCWbiNhKEDQ1+yauWhZwamsc2Zl/Gde0eQYrWlmoZRE</span><br><span class="line">r4w8Xlt8XVBTNBf5ljALeVtXOs0LNuWqnmy1v7wMPvnN</span><br><span class="line">-----END RSA PRIVATE KEY-----"</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">Start</span>(<span class="params"></span>)</span><br><span class="line">    </span>&#123;</span><br><span class="line">        output.text = <span class="string">"Hello Rocky"</span>;</span><br><span class="line">    &#125;    </span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Encode</span>(<span class="params"></span>)</span><br><span class="line">    </span>&#123;</span><br><span class="line">        output.text = RSAHelper.Encript(<span class="string">"Hello Rocky"</span>, publicKey);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Decode</span>(<span class="params"></span>)</span><br><span class="line">    </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> data = RSAHelper.Decrypt(output.text.Trim(), privateKey);</span><br><span class="line">        Debug.Log(data);</span><br><span class="line">        output.text = data;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <p>本文的代码也可以在这里找到： <a href="https://github.com/wudixiaop/UnityRSA" target="_blank" rel="external">https://github.com/wudixiaop/UnityRSA</a>。</p>
 <p>Enjoy!</p>
-</span>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>文章很有用？打赏一下，给作者买糖吃！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/images/pay/wechat.png" alt="Rocky Lai WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/images/pay/alipay.png" alt="Rocky Lai Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
       
     </div>
 
@@ -329,23 +421,24 @@ RSA 介绍关于 RSA, 详细介绍 请看这里。
     </div>
   </div>
 
- </div>
 
-        
-
-        
-          <div class="comments" id="comments">
-            
-              <div class="ds-thread" data-thread-key="2016/03/01/Unity RSA/"
-                   data-title="Unity + openssl 生成的 RSA 秘钥实现可靠的简单数据加密" data-url="http://blog.shuiguzi.com/2016/03/01/Unity RSA/">
-              </div>
-            
           </div>
-        
-      </div>
+          
 
-      
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/03/01/Unity RSA/"
+           data-title="Unity + openssl 生成的 RSA 秘钥实现可靠的简单数据加密" data-url="http://blog.shuiguzi.com/2016/03/01/Unity RSA/">
+      </div>
+    
+  </div>
+
+
+        </div>
         
+          
   
   <div class="sidebar-toggle">
     <div class="sidebar-toggle-line-wrap">
@@ -373,31 +466,37 @@ RSA 介绍关于 RSA, 详细介绍 请看这里。
 
       <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" src="https://avatars1.githubusercontent.com/u/5707242?v=3&s=460" alt="RockyLai" itemprop="image"/>
-          <p class="site-author-name" itemprop="name">RockyLai</p>
+          <img class="site-author-image" itemprop="image"
+               src="https://avatars1.githubusercontent.com/u/5707242?v=3&s=460"
+               alt="Rocky Lai" />
+          <p class="site-author-name" itemprop="name">Rocky Lai</p>
+          <p class="site-description motion-element" itemprop="description"></p>
         </div>
-        <p class="site-description motion-element" itemprop="description"></p>
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">37</span>
+              <span class="site-state-item-count">38</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
 
-          <div class="site-state-item site-state-categories">
-            <a href="/categories">
-              <span class="site-state-item-count">4</span>
-              <span class="site-state-item-name">分类</span>
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">分类</span>
               </a>
-          </div>
+            </div>
+          
 
-          <div class="site-state-item site-state-tags">
-            <a href="/tags">
-              <span class="site-state-item-count">14</span>
-              <span class="site-state-item-name">标签</span>
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-name">标签</span>
               </a>
-          </div>
+            </div>
+          
 
         </nav>
 
@@ -407,14 +506,20 @@ RSA 介绍关于 RSA, 详细介绍 请看这里。
           
             
               <span class="links-of-author-item">
-                <a href="https://github.com/wudixiaop" target="_blank">
-                  <i class="fa fa-github"></i> Github
+                <a href="https://github.com/wudixiaop" target="_blank" title="Github">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Github
                 </a>
               </span>
             
               <span class="links-of-author-item">
-                <a href="mailto:rockylai@shuiguzi.com" target="_blank">
-                  <i class="fa fa-email"></i> Email
+                <a href="mailto:rockylai@shuiguzi.com" target="_blank" title="Email">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Email
                 </a>
               </span>
             
@@ -424,22 +529,21 @@ RSA 介绍关于 RSA, 详细介绍 请看这里。
         
         
 
-        <div class="links-of-author motion-element">
-          
-        </div>
+        
+        
 
       </section>
 
       
         <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc-indicator-top post-toc-indicator"></div>
           <div class="post-toc">
+            
+              
             
             
               <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#RSA-介绍"><span class="nav-number">1.</span> <span class="nav-text">RSA 介绍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RSA-秘钥生成"><span class="nav-number">2.</span> <span class="nav-text">RSA 秘钥生成</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#与-Unity-结合"><span class="nav-number">3.</span> <span class="nav-text">与 Unity 结合</span></a></li></ol></div>
             
           </div>
-          <div class="post-toc-indicator-bottom post-toc-indicator"></div>
         </section>
       
 
@@ -447,18 +551,20 @@ RSA 介绍关于 RSA, 详细介绍 请看这里。
   </aside>
 
 
-      
+        
+      </div>
     </main>
 
     <footer id="footer" class="footer">
-      <div class="footer-inner"> <div class="copyright" >
+      <div class="footer-inner">
+        <div class="copyright" >
   
   &copy;  2014 - 
   <span itemprop="copyrightYear">2016</span>
   <span class="with-love">
-    <i class="icon-next-heart fa fa-heart"></i>
+    <i class="fa fa-heart"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">RockyLai</span>
+  <span class="author" itemprop="copyrightHolder">Rocky Lai</span>
 </div>
 
 <div class="powered-by">
@@ -472,19 +578,77 @@ RSA 介绍关于 RSA, 详细介绍 请看这里。
   </a>
 </div>
 
+        
 
- </div>
+        
+      </div>
     </footer>
 
-    <div class="back-to-top"></div>
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
   </div>
 
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+  
   <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
 
   
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
   
   
-    
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
 
   
     
@@ -502,220 +666,25 @@ RSA 介绍关于 RSA, 详细介绍 请看这里。
       || document.getElementsByTagName('body')[0]).appendChild(ds);
     })();
   </script>
-    
-     
 
-
+  
     
   
-  
-  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
-  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
-
-
-  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
-  
-
-  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
-  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
-
-  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.2" id="motion.global"></script>
 
 
 
 
-  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.2"></script>
-  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
 
   
   
-<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.2" id="bootstrap.scrollspy.custom"></script>
+  
 
+  
 
-<script type="text/javascript" id="sidebar.toc.highlight">
-  $(document).ready(function () {
-    var tocSelector = '.post-toc';
-    var $tocSelector = $(tocSelector);
-    var activeCurrentSelector = '.active-current';
-
-    $tocSelector
-      .on('activate.bs.scrollspy', function () {
-        var $currentActiveElement = $(tocSelector + ' .active').last();
-
-        removeCurrentActiveClass();
-        $currentActiveElement.addClass('active-current');
-
-        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
-      })
-      .on('clear.bs.scrollspy', function () {
-        removeCurrentActiveClass();
-      });
-
-    function removeCurrentActiveClass () {
-      $(tocSelector + ' ' + activeCurrentSelector)
-        .removeClass(activeCurrentSelector.substring(1));
-    }
-
-    function processTOC () {
-      getTOCMaxHeight();
-      toggleTOCOverflowIndicators();
-    }
-
-    function getTOCMaxHeight () {
-      var height = $('.sidebar').height() -
-                   $tocSelector.position().top -
-                   $('.post-toc-indicator-bottom').height();
-
-      $tocSelector.css('height', height);
-
-      return height;
-    }
-
-    function toggleTOCOverflowIndicators () {
-      tocOverflowIndicator(
-        '.post-toc-indicator-top',
-        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
-      );
-
-      tocOverflowIndicator(
-        '.post-toc-indicator-bottom',
-        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
-      )
-    }
-
-    $(document).on('sidebar.motion.complete', function () {
-      processTOC();
-    });
-
-    $('body').scrollspy({ target: tocSelector });
-    $(window).on('resize', function () {
-      if ( $('.sidebar').hasClass('sidebar-active') ) {
-        processTOC();
-      }
-    });
-
-    onScroll($tocSelector);
-
-    function onScroll (element) {
-      element.on('mousewheel DOMMouseScroll', function (event) {
-          var oe = event.originalEvent;
-          var delta = oe.wheelDelta || -oe.detail;
-
-          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
-          event.preventDefault();
-
-          toggleTOCOverflowIndicators();
-      });
-    }
-
-    function tocOverflowIndicator (indicator, action) {
-      var $indicator = $(indicator);
-      var opacity = action === 'show' ? 0.4 : 0;
-      $indicator.velocity ?
-        $indicator.velocity('stop').velocity({
-          opacity: opacity
-        }, { duration: 100 }) :
-        $indicator.stop().animate({
-          opacity: opacity
-        }, 100);
-    }
-
-  });
-</script>
-
-<script type="text/javascript" id="sidebar.nav">
-  $(document).ready(function () {
-    var html = $('html');
-    var TAB_ANIMATE_DURATION = 200;
-    var hasVelocity = $.isFunction(html.velocity);
-
-    $('.sidebar-nav li').on('click', function () {
-      var item = $(this);
-      var activeTabClassName = 'sidebar-nav-active';
-      var activePanelClassName = 'sidebar-panel-active';
-      if (item.hasClass(activeTabClassName)) {
-        return;
-      }
-
-      var currentTarget = $('.' + activePanelClassName);
-      var target = $('.' + item.data('target'));
-
-      hasVelocity ?
-        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
-          target
-            .velocity('stop')
-            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
-            .addClass(activePanelClassName);
-        }) :
-        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
-          currentTarget.hide();
-          target
-            .stop()
-            .css({'opacity': 0, 'display': 'block'})
-            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
-              currentTarget.removeClass(activePanelClassName);
-              target.addClass(activePanelClassName);
-            });
-        });
-
-      item.siblings().removeClass(activeTabClassName);
-      item.addClass(activeTabClassName);
-    });
-
-    $('.post-toc a').on('click', function (e) {
-      e.preventDefault();
-      var targetSelector = escapeSelector(this.getAttribute('href'));
-      var offset = $(targetSelector).offset().top;
-      hasVelocity ?
-        html.velocity('stop').velocity('scroll', {
-          offset: offset  + 'px',
-          mobileHA: false
-        }) :
-        $('html, body').stop().animate({
-          scrollTop: offset
-        }, 500);
-    });
-
-    // Expand sidebar on post detail page by default, when post has a toc.
-    var $tocContent = $('.post-toc-content');
-    if (isDesktop() && CONFIG.sidebar === 'post') {
-      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
-        displaySidebar();
-      }
-    }
-  });
+  
+<script type="text/javascript" async src="//push.zhanzhang.baidu.com/push.js">
 </script>
 
 
-
-  <script type="text/javascript">
-    $(document).ready(function () {
-      if (CONFIG.sidebar === 'always') {
-        displaySidebar();
-      }
-      if (isMobile()) {
-        FastClick.attach(document.body);
-      }
-
-      motionIntegrator.bootstrap();
-    });
-  </script>
-
-  
-  
-
-  
-  
-
-  
-  <script type="text/javascript" src="/js/lazyload.js"></script>
-  <script type="text/javascript">
-    $(function () {
-      $("#posts").find('img').lazyload({
-        placeholder: "/images/loading.gif",
-        effect: "fadeIn"
-      });
-    });
-  </script>
 </body>
 </html>

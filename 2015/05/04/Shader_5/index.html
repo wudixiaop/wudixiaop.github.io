@@ -1,11 +1,14 @@
 <!doctype html>
-<html class="theme-next use-motion theme-next-mist">
-<head>
-  
 
-<meta charset="UTF-8"/>
+
+
+
+<html class="theme-next mist">
+<head>
+  <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
 
 
 <meta http-equiv="Cache-Control" content="no-transform" />
@@ -18,20 +21,45 @@
 
 
 
-  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+
 
 
 
   
-    <link href='//fonts.lug.ustc.edu.cn/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
   
 
 
-<link rel="stylesheet" type="text/css" href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" />
-
-<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.2"/>
 
 
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
   <meta name="keywords" content="Shader," />
@@ -40,7 +68,14 @@
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
 
 
 <meta name="description" content="这节说说 fragment shader 最后输出的像素的颜色表示方法 RGBA。
@@ -54,7 +89,7 @@ RGB模式RGB是用红绿蓝混合来表示的颜色。R 是红色， G 表示绿
 玩过 Photoshop 的同学可能知道，存在好几种颜色模式来表示颜色，比如 RGB 和 CMYK. 由于显示器的发光物体，所以使用的 RGB 模式。Unity 中也采用这种表示方法。
 RGB模式RGB是用红绿蓝混合来表示的颜色。R 是红色， G 表示绿色， B 是蓝色。一般用8为来表示一个颜色通道，每个通道有 2">
 <meta property="og:image" content="http://blog.shuiguzi.com/images/Shader/5/rgb.png">
-<meta property="og:updated_time" content="2016-02-17T01:32:42.000Z">
+<meta property="og:updated_time" content="2016-06-28T08:24:59.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="瞎聊 Unity Shader 系列之五：RGBA 101">
 <meta name="twitter:description" content="这节说说 fragment shader 最后输出的像素的颜色表示方法 RGBA。
@@ -63,29 +98,26 @@ RGB模式RGB是用红绿蓝混合来表示的颜色。R 是红色， G 表示绿
 <meta name="twitter:image" content="http://blog.shuiguzi.com/images/Shader/5/rgb.png">
 
 
+
 <script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
   var CONFIG = {
     scheme: 'Mist',
-    sidebar: 'always'
+    sidebar: {"position":"left","display":"always"},
+    fancybox: false,
+    motion: false,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
   };
 </script>
-
-
 
   <title> 瞎聊 Unity Shader 系列之五：RGBA 101 | 心亡则忙，亡心则忘 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
-  <!--[if lte IE 8]>
-  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
-    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
-      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
-           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
-           style='margin-left:auto;margin-right:auto;display: block;'/>
-    </a>
-  </div>
-<![endif]-->
   
 
 
@@ -103,7 +135,16 @@ RGB模式RGB是用红绿蓝混合来表示的颜色。R 是红色， G 表示绿
 
 
 
-  <div class="container one-column page-post-detail">
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -132,35 +173,15 @@ RGB模式RGB是用红绿蓝混合来表示的颜色。R 是红色， G 表示绿
   
 
   
-    <ul id="menu" class="menu ">
+    <ul id="menu" class="menu">
       
         
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
             首页
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-categories">
-          <a href="/categories" rel="section">
-            
-              <i class="menu-item-icon fa fa-th"></i> <br />
-            
-            分类
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-about">
-          <a href="/about" rel="section">
-            
-              <i class="menu-item-icon fa fa-user"></i> <br />
-            
-            关于
           </a>
         </li>
       
@@ -168,9 +189,19 @@ RGB模式RGB是用红绿蓝混合来表示的颜色。R 是红色， G 表示绿
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
             归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
           </a>
         </li>
       
@@ -178,14 +209,23 @@ RGB模式RGB是用红绿蓝混合来表示的颜色。R 是红色， G 表示绿
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
             标签
           </a>
         </li>
       
-
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
       
+
       
     </ul>
   
@@ -198,11 +238,17 @@ RGB模式RGB是用红绿蓝混合来表示的颜色。R 是红色， G 表示绿
 
     <main id="main" class="main">
       <div class="main-inner">
-        <div id="content" class="content"> 
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
 
   <div id="posts" class="posts-expand">
     
 
+  
+  
+
+  
   
   
 
@@ -225,7 +271,10 @@ RGB模式RGB是用红绿蓝混合来表示的颜色。R 是红色， G 表示绿
 
         <div class="post-meta">
           <span class="post-time">
-            发表于
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
             <time itemprop="dateCreated" datetime="2015-05-04T13:55:00+08:00" content="2015-05-04">
               2015-05-04
             </time>
@@ -233,7 +282,11 @@ RGB模式RGB是用红绿蓝混合来表示的颜色。R 是红色， G 表示绿
 
           
             <span class="post-category" >
-              &nbsp; | &nbsp; 分类于
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
                   <a href="/categories/Shader/" itemprop="url" rel="index">
@@ -261,18 +314,22 @@ RGB模式RGB是用红绿蓝混合来表示的颜色。R 是红色， G 表示绿
 
           
 
+          
+          
+
+          
         </div>
       </header>
     
 
 
-    <div class="post-body">
+    <div class="post-body" itemprop="articleBody">
 
       
       
 
       
-        <span itemprop="articleBody"><p>这节说说 fragment shader 最后输出的像素的颜色表示方法 RGBA。</p>
+        <p>这节说说 fragment shader 最后输出的像素的颜色表示方法 RGBA。</p>
 <p>玩过 Photoshop 的同学可能知道，存在好几种颜色模式来表示颜色，<a href="http://baike.baidu.com/view/1139658.htm" target="_blank" rel="external">比如 RGB 和 CMYK</a>. 由于显示器的发光物体，所以使用的 RGB 模式。<br>Unity 中也采用这种表示方法。</p>
 <h3 id="RGB模式"><a href="#RGB模式" class="headerlink" title="RGB模式"></a>RGB模式</h3><p>RGB是用红绿蓝混合来表示的颜色。R 是红色， G 表示绿色， B 是蓝色。一般用8为来表示一个颜色通道，每个通道有 256 个等级（0~255）。它有如下特性：</p>
 <ul>
@@ -283,7 +340,8 @@ RGB模式RGB是用红绿蓝混合来表示的颜色。R 是红色， G 表示绿
 </ul>
 <p><img src="/images/Shader/5/rgb.png" alt="RGB"></p>
 <p>但是 Unity Shader 中并不用 256 个等级来表示颜色数值，而是用标准化（取值0~1）的数值来表示。换句话说就是所有通道都除以 255 得到标准化的结果。</p>
-<h3 id="RGBA-中的-A-是什么"><a href="#RGBA-中的-A-是什么" class="headerlink" title="RGBA 中的 A 是什么"></a>RGBA 中的 A 是什么</h3><p>A 叫做 alpha，其数值表示不透明度。 据说提出者用 alpha 来命名源于经典的线性插值方程 αA + (1-α)B 所用的希腊字母 α。Unity 中的 aplha blending 基于这个线性方程。</p>
+<h3 id="RGBA-中的-A-是什么"><a href="#RGBA-中的-A-是什么" class="headerlink" title="RGBA 中的 A 是什么"></a>RGBA 中的 A 是什么</h3><a id="more"></a>
+<p>A 叫做 alpha，其数值表示不透明度。 据说提出者用 alpha 来命名源于经典的线性插值方程 αA + (1-α)B 所用的希腊字母 α。Unity 中的 aplha blending 基于这个线性方程。</p>
 <h3 id="混合模式"><a href="#混合模式" class="headerlink" title="混合模式"></a>混合模式</h3><p>抽象一下就是对两个颜色做运算后得到结果颜色的过程。这个过程其实就是个运算公式。下面列举两个 Photoshop 中常见的正片叠底和滤色两个混合模式的计算公式。C为结果色，A 和 B 是需要混合的颜色。</p>
 <ul>
 <li><strong>正片叠底(Multiply):</strong> C=A*B</li>
@@ -291,7 +349,41 @@ RGB模式RGB是用红绿蓝混合来表示的颜色。R 是红色， G 表示绿
 </ul>
 <p>我们要叠加模型多个贴图（比如法线贴图和模型贴图）的时候就可以利用到混合模式。更多混合模式公式参考<a href="http://wenku.baidu.com/view/da9d22d9ad51f01dc281f1f9.html" target="_blank" rel="external">这个文档</a>。</p>
 <p><hr><br>鄙人才疏学浅，有出入的地方非常感谢能帮忙指正。:)</p>
-</span>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>文章很有用？打赏一下，给作者买糖吃！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/images/pay/wechat.png" alt="Rocky Lai WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/images/pay/alipay.png" alt="Rocky Lai Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
       
     </div>
 
@@ -336,23 +428,24 @@ RGB模式RGB是用红绿蓝混合来表示的颜色。R 是红色， G 表示绿
     </div>
   </div>
 
- </div>
 
-        
-
-        
-          <div class="comments" id="comments">
-            
-              <div class="ds-thread" data-thread-key="2015/05/04/Shader_5/"
-                   data-title="瞎聊 Unity Shader 系列之五：RGBA 101" data-url="http://blog.shuiguzi.com/2015/05/04/Shader_5/">
-              </div>
-            
           </div>
-        
-      </div>
+          
 
-      
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2015/05/04/Shader_5/"
+           data-title="瞎聊 Unity Shader 系列之五：RGBA 101" data-url="http://blog.shuiguzi.com/2015/05/04/Shader_5/">
+      </div>
+    
+  </div>
+
+
+        </div>
         
+          
   
   <div class="sidebar-toggle">
     <div class="sidebar-toggle-line-wrap">
@@ -380,31 +473,37 @@ RGB模式RGB是用红绿蓝混合来表示的颜色。R 是红色， G 表示绿
 
       <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" src="https://avatars1.githubusercontent.com/u/5707242?v=3&s=460" alt="RockyLai" itemprop="image"/>
-          <p class="site-author-name" itemprop="name">RockyLai</p>
+          <img class="site-author-image" itemprop="image"
+               src="https://avatars1.githubusercontent.com/u/5707242?v=3&s=460"
+               alt="Rocky Lai" />
+          <p class="site-author-name" itemprop="name">Rocky Lai</p>
+          <p class="site-description motion-element" itemprop="description"></p>
         </div>
-        <p class="site-description motion-element" itemprop="description"></p>
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">37</span>
+              <span class="site-state-item-count">38</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
 
-          <div class="site-state-item site-state-categories">
-            <a href="/categories">
-              <span class="site-state-item-count">4</span>
-              <span class="site-state-item-name">分类</span>
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">分类</span>
               </a>
-          </div>
+            </div>
+          
 
-          <div class="site-state-item site-state-tags">
-            <a href="/tags">
-              <span class="site-state-item-count">14</span>
-              <span class="site-state-item-name">标签</span>
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-name">标签</span>
               </a>
-          </div>
+            </div>
+          
 
         </nav>
 
@@ -414,14 +513,20 @@ RGB模式RGB是用红绿蓝混合来表示的颜色。R 是红色， G 表示绿
           
             
               <span class="links-of-author-item">
-                <a href="https://github.com/wudixiaop" target="_blank">
-                  <i class="fa fa-github"></i> Github
+                <a href="https://github.com/wudixiaop" target="_blank" title="Github">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Github
                 </a>
               </span>
             
               <span class="links-of-author-item">
-                <a href="mailto:rockylai@shuiguzi.com" target="_blank">
-                  <i class="fa fa-email"></i> Email
+                <a href="mailto:rockylai@shuiguzi.com" target="_blank" title="Email">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Email
                 </a>
               </span>
             
@@ -431,22 +536,21 @@ RGB模式RGB是用红绿蓝混合来表示的颜色。R 是红色， G 表示绿
         
         
 
-        <div class="links-of-author motion-element">
-          
-        </div>
+        
+        
 
       </section>
 
       
         <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc-indicator-top post-toc-indicator"></div>
           <div class="post-toc">
+            
+              
             
             
               <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#RGB模式"><span class="nav-number">1.</span> <span class="nav-text">RGB模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RGBA-中的-A-是什么"><span class="nav-number">2.</span> <span class="nav-text">RGBA 中的 A 是什么</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#混合模式"><span class="nav-number">3.</span> <span class="nav-text">混合模式</span></a></li></ol></div>
             
           </div>
-          <div class="post-toc-indicator-bottom post-toc-indicator"></div>
         </section>
       
 
@@ -454,18 +558,20 @@ RGB模式RGB是用红绿蓝混合来表示的颜色。R 是红色， G 表示绿
   </aside>
 
 
-      
+        
+      </div>
     </main>
 
     <footer id="footer" class="footer">
-      <div class="footer-inner"> <div class="copyright" >
+      <div class="footer-inner">
+        <div class="copyright" >
   
   &copy;  2014 - 
   <span itemprop="copyrightYear">2016</span>
   <span class="with-love">
-    <i class="icon-next-heart fa fa-heart"></i>
+    <i class="fa fa-heart"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">RockyLai</span>
+  <span class="author" itemprop="copyrightHolder">Rocky Lai</span>
 </div>
 
 <div class="powered-by">
@@ -479,19 +585,77 @@ RGB模式RGB是用红绿蓝混合来表示的颜色。R 是红色， G 表示绿
   </a>
 </div>
 
+        
 
- </div>
+        
+      </div>
     </footer>
 
-    <div class="back-to-top"></div>
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
   </div>
 
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+  
   <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
 
   
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
   
   
-    
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
 
   
     
@@ -509,220 +673,25 @@ RGB模式RGB是用红绿蓝混合来表示的颜色。R 是红色， G 表示绿
       || document.getElementsByTagName('body')[0]).appendChild(ds);
     })();
   </script>
-    
-     
 
-
+  
     
   
-  
-  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
-  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
-
-
-  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
-  
-
-  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
-  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
-
-  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.2" id="motion.global"></script>
 
 
 
 
-  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.2"></script>
-  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
 
   
   
-<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.2" id="bootstrap.scrollspy.custom"></script>
+  
 
+  
 
-<script type="text/javascript" id="sidebar.toc.highlight">
-  $(document).ready(function () {
-    var tocSelector = '.post-toc';
-    var $tocSelector = $(tocSelector);
-    var activeCurrentSelector = '.active-current';
-
-    $tocSelector
-      .on('activate.bs.scrollspy', function () {
-        var $currentActiveElement = $(tocSelector + ' .active').last();
-
-        removeCurrentActiveClass();
-        $currentActiveElement.addClass('active-current');
-
-        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
-      })
-      .on('clear.bs.scrollspy', function () {
-        removeCurrentActiveClass();
-      });
-
-    function removeCurrentActiveClass () {
-      $(tocSelector + ' ' + activeCurrentSelector)
-        .removeClass(activeCurrentSelector.substring(1));
-    }
-
-    function processTOC () {
-      getTOCMaxHeight();
-      toggleTOCOverflowIndicators();
-    }
-
-    function getTOCMaxHeight () {
-      var height = $('.sidebar').height() -
-                   $tocSelector.position().top -
-                   $('.post-toc-indicator-bottom').height();
-
-      $tocSelector.css('height', height);
-
-      return height;
-    }
-
-    function toggleTOCOverflowIndicators () {
-      tocOverflowIndicator(
-        '.post-toc-indicator-top',
-        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
-      );
-
-      tocOverflowIndicator(
-        '.post-toc-indicator-bottom',
-        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
-      )
-    }
-
-    $(document).on('sidebar.motion.complete', function () {
-      processTOC();
-    });
-
-    $('body').scrollspy({ target: tocSelector });
-    $(window).on('resize', function () {
-      if ( $('.sidebar').hasClass('sidebar-active') ) {
-        processTOC();
-      }
-    });
-
-    onScroll($tocSelector);
-
-    function onScroll (element) {
-      element.on('mousewheel DOMMouseScroll', function (event) {
-          var oe = event.originalEvent;
-          var delta = oe.wheelDelta || -oe.detail;
-
-          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
-          event.preventDefault();
-
-          toggleTOCOverflowIndicators();
-      });
-    }
-
-    function tocOverflowIndicator (indicator, action) {
-      var $indicator = $(indicator);
-      var opacity = action === 'show' ? 0.4 : 0;
-      $indicator.velocity ?
-        $indicator.velocity('stop').velocity({
-          opacity: opacity
-        }, { duration: 100 }) :
-        $indicator.stop().animate({
-          opacity: opacity
-        }, 100);
-    }
-
-  });
-</script>
-
-<script type="text/javascript" id="sidebar.nav">
-  $(document).ready(function () {
-    var html = $('html');
-    var TAB_ANIMATE_DURATION = 200;
-    var hasVelocity = $.isFunction(html.velocity);
-
-    $('.sidebar-nav li').on('click', function () {
-      var item = $(this);
-      var activeTabClassName = 'sidebar-nav-active';
-      var activePanelClassName = 'sidebar-panel-active';
-      if (item.hasClass(activeTabClassName)) {
-        return;
-      }
-
-      var currentTarget = $('.' + activePanelClassName);
-      var target = $('.' + item.data('target'));
-
-      hasVelocity ?
-        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
-          target
-            .velocity('stop')
-            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
-            .addClass(activePanelClassName);
-        }) :
-        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
-          currentTarget.hide();
-          target
-            .stop()
-            .css({'opacity': 0, 'display': 'block'})
-            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
-              currentTarget.removeClass(activePanelClassName);
-              target.addClass(activePanelClassName);
-            });
-        });
-
-      item.siblings().removeClass(activeTabClassName);
-      item.addClass(activeTabClassName);
-    });
-
-    $('.post-toc a').on('click', function (e) {
-      e.preventDefault();
-      var targetSelector = escapeSelector(this.getAttribute('href'));
-      var offset = $(targetSelector).offset().top;
-      hasVelocity ?
-        html.velocity('stop').velocity('scroll', {
-          offset: offset  + 'px',
-          mobileHA: false
-        }) :
-        $('html, body').stop().animate({
-          scrollTop: offset
-        }, 500);
-    });
-
-    // Expand sidebar on post detail page by default, when post has a toc.
-    var $tocContent = $('.post-toc-content');
-    if (isDesktop() && CONFIG.sidebar === 'post') {
-      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
-        displaySidebar();
-      }
-    }
-  });
+  
+<script type="text/javascript" async src="//push.zhanzhang.baidu.com/push.js">
 </script>
 
 
-
-  <script type="text/javascript">
-    $(document).ready(function () {
-      if (CONFIG.sidebar === 'always') {
-        displaySidebar();
-      }
-      if (isMobile()) {
-        FastClick.attach(document.body);
-      }
-
-      motionIntegrator.bootstrap();
-    });
-  </script>
-
-  
-  
-
-  
-  
-
-  
-  <script type="text/javascript" src="/js/lazyload.js"></script>
-  <script type="text/javascript">
-    $(function () {
-      $("#posts").find('img').lazyload({
-        placeholder: "/images/loading.gif",
-        effect: "fadeIn"
-      });
-    });
-  </script>
 </body>
 </html>
