@@ -4,8 +4,7 @@ category: Shader
 tags: Shader
 ---
 
-好吧，其实这不算初识 Shaderlab 了，因为在 {% post_link Shader_3 [shaderlab 土地上的语言们] %} 这节中已经说到在 shaderlab 中有三种方式来写 shader。
-这节的内容主要是来认识下 shaderlab 语法写出来的 shader 长得什么样子。
+好吧，其实这不算初识 Shaderlab 了，因为在 {% post_link Shader_3 [shaderlab 土地上的语言们] %} 这节中已经说到在 shaderlab 中有三种方式来写 shader。这节的内容主要是来认识下 shaderlab 语法写出来的 shader 长得什么样子。
 
 下面有段基于 shaderlab 的 shader 的大概框架的伪代码，在之前要解释下代码中带中括号的部分，如 `[Properties]`, 表示是可以选择的，也就是说可以不写。
 

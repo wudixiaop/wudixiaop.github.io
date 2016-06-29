@@ -99,7 +99,7 @@
 
 深度是什么第四节  中提到，要描述一个物体的位置，需要借助参照物。我们这里扩">
 <meta property="og:image" content="http://blog.shuiguzi.com/images/Shader/11/PipelineCullDepth.png">
-<meta property="og:updated_time" content="2016-02-17T01:32:42.000Z">
+<meta property="og:updated_time" content="2016-06-29T02:19:30.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="瞎聊 Unity Shader 系列之十一：深度缓存">
 <meta name="twitter:description" content="第二节 [渲染管线] 中提到了 Frame Buffer, 这个是用来存储帧位图的数据存储区域。 这里在介绍另外一个缓存, 叫深度缓存 (Depth Buffer), 也叫作 Z-Buffer。从名字上来看这是一个存储深度（数据）的存储区。下面我们带着两个问题来解释这个深度缓存。
@@ -344,14 +344,14 @@
       
 
       
-        <p>第二节 <a href="/2015/04/28/Shader_2/" title="[渲染管线]">[渲染管线]</a> 中提到了 Frame Buffer, 这个是用来存储帧位图的数据存储区域。 这里在介绍另外一个缓存, 叫深度缓存 (Depth Buffer), 也叫作 Z-Buffer。从名字上来看这是一个<br>存储深度（数据）的存储区。下面我们带着两个问题来解释这个深度缓存。</p>
+        <p>第二节 <a href="/2015/04/28/Shader_2/" title="[渲染管线]">[渲染管线]</a> 中提到了 Frame Buffer, 这个是用来存储帧位图的数据存储区域。 这里在介绍另外一个缓存, 叫深度缓存 (Depth Buffer), 也叫作 Z-Buffer。从名字上来看这是一个存储深度（数据）的存储区。下面我们带着两个问题来解释这个深度缓存。</p>
 <blockquote>
 <ol>
 <li>存储的深度数据是什么</li>
 <li>有什么用处</li>
 </ol>
 </blockquote>
-<h3 id="深度是什么"><a href="#深度是什么" class="headerlink" title="深度是什么"></a>深度是什么</h3><p>第四节  中提到，要描述一个物体的位置，需要借助参照物。我们这里扩展一下， 要 <strong>用数值来表述一个物体的某种属性，要有这个数值参照的原点</strong>。 既然深度值是数值，那它的<br>参照原点是什么呢？ 答案是观察者的视角，换句话说就是 Camera。</p>
+<h3 id="深度是什么"><a href="#深度是什么" class="headerlink" title="深度是什么"></a>深度是什么</h3><p>第四节  中提到，要描述一个物体的位置，需要借助参照物。我们这里扩展一下， 要 <strong>用数值来表述一个物体的某种属性，要有这个数值参照的原点</strong>。 既然深度值是数值，那它的参照原点是什么呢？ 答案是观察者的视角，换句话说就是 Camera。</p>
 <p>在 <a href="/2015/04/28/Shader_2/" title="[渲染管线]">[渲染管线]</a> 这节中提到， Vertex Shader 之后有一个插值过程，生成像素。这个像素的 X 和 Y 坐标为屏幕坐标， Z 坐标轴数值就是深度，存储在深度缓存里面。  </p>
 <h3 id="有什么用处"><a href="#有什么用处" class="headerlink" title="有什么用处"></a>有什么用处</h3><p>首先让我们来思考一个问题</p>
 <blockquote>

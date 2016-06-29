@@ -4,8 +4,7 @@ category: Shader
 tags: Shader
 ---
 
-为了像其他程序语言一样重用代码，Shaderlab 把可变部分提取出来，集中放到一个区域去。这个区域就是 {% post_link Shader_6 [初始 shaderlab]%} 这节中提到的的 `Properties`
-可选项。 在这个区域内每一个元素被叫做 Property。我们把他叫做属性吧。这些属性都包括在 `Properties { }` 语句块内。
+为了像其他程序语言一样重用代码，Shaderlab 把可变部分提取出来，集中放到一个区域去。这个区域就是 {% post_link Shader_6 [初始 shaderlab]%} 这节中提到的的 `Properties` 可选项。 在这个区域内每一个元素被叫做 Property。我们把他叫做属性吧。这些属性都包括在 `Properties { }` 语句块内。
 
 ### Shaderlab 的属性
 
@@ -39,8 +38,7 @@ Shaderlab 提供不同的数据类型（详情见下面）。如果把这些类�
 
 需要说明下，还有个 Rect 类型，在官方手册介绍 [Properties 的介绍页面](http://docs.unity3d.com/Manual/SL-Properties.html) 中没有提到。估计是 Unity5 之后去掉了。
 
-注意，在 `Properites` 语句块里面声明完了，如果要被 CG 等语言关联上，**还需要在 `CGPROGRAM ... ENDCG` 语句块内 再次声明同名字的变量 后属性才起作用**。这个从逻辑上
-好理解，因为要被 CG 等语言利用，所以应该跟 CG 等语言放在一起，而 CG 等语言程序就包括在 `CGPROGRAM ... ENDCG` 语句块内。
+注意，在 `Properites` 语句块里面声明完了，如果要被 CG 等语言关联上，**还需要在 `CGPROGRAM ... ENDCG` 语句块内 再次声明同名字的变量 后属性才起作用**。这个从逻辑上好理解，因为要被 CG 等语言利用，所以应该跟 CG 等语言放在一起，而 CG 等语言程序就包括在 `CGPROGRAM ... ENDCG` 语句块内。
 
 ### 与 CG 等语言变量类型映射关系
 
@@ -53,8 +51,7 @@ Shaderlab 提供的类型最终会映射成 CG 等语言变量类型，他们的
 - **Cube** 对应为 samplerCUBE 类型
 - **3D** 对应为 sampler3D 类型
 
-上面可以看到，有些属性是可以对应成好几类类型。Float 是 32 位高精度浮点数, half 是 16 位中等精度浮点数, Fixed 一般是 11 低位浮点数。为了性能建议使用的数据选择合适的类型。
-下面有两个建议（在移动设备上尤其重要）：
+上面可以看到，有些属性是可以对应成好几类类型。Float 是 32 位高精度浮点数, half 是 16 位中等精度浮点数, Fixed 一般是 11 低位浮点数。为了性能建议使用的数据选择合适的类型。下面有两个建议（在移动设备上尤其重要）：
 
 - 对于 Color 和 单位向量，使用 fixed 类型
 - 对于其他的类型，如果范围和精度都适合的话选择 half, 否则选择 float

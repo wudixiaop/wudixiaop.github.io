@@ -4,8 +4,7 @@ category: UnityKB
 tags: UNet
 ---
 
-上一篇中我们引入了 NetworkManager 组件，然后在代码里面通过它来建立了网络连接。这篇让我们来把连接部分的代码独立出来，并提供 GUI 来达到管理 Server / Client 的开启和停止的目的。
-这样我们以后就可以重复利用代码了。
+上一篇中我们引入了 NetworkManager 组件，然后在代码里面通过它来建立了网络连接。这篇让我们来把连接部分的代码独立出来，并提供 GUI 来达到管理 Server / Client 的开启和停止的目的。这样我们以后就可以重复利用代码了。
 
 下面是我们这个简单的 NetworkManger 界面提供的功能：
 
@@ -23,8 +22,7 @@ tags: UNet
 
 ### 代码
 
-我们通过 NetworkManager 的 `StartServer()` / `StopServer()` 方法来开启 / 停止 Server, `StartClient()` / `StopClient()` 方法来启动 / 停止 Client。我们可以新建一个 GameObject，
-然后把下面脚本挂在它上面。脚本代码如下:
+我们通过 NetworkManager 的 `StartServer()` / `StopServer()` 方法来开启 / 停止 Server, `StartClient()` / `StopClient()` 方法来启动 / 停止 Client。我们可以新建一个 GameObject，然后把下面脚本挂在它上面。脚本代码如下:
 
 {% codeblock %}
 using UnityEngine;
@@ -76,8 +74,7 @@ public class SimpleNetworkGUI : MonoBehaviour
 ### 关于 Demo 其他一些需要知道的
 
 * 首先，代码中利用了 NetworkManager 组件。我们可以把这个组件挂到挂有上面 UI 脚本的 GameObject 之上。
-* 为了演示效果，Demo 里面创建了一个Prefab， 这个 Prefab 会传递给上面的 NetworkManager 组件（Spawn Info 下的 Player Prefab）。当 Client 连接已经启动的 Server 的时候，Server 端会创建这个 Perfab 的实例。
-这个 Prefab 比较特殊，它上面需要添加 __NetworkIndentity__ 组件，这样才能传递过去给 NetworkManager。
+* 为了演示效果，Demo 里面创建了一个Prefab， 这个 Prefab 会传递给上面的 NetworkManager 组件（Spawn Info 下的 Player Prefab）。当 Client 连接已经启动的 Server 的时候，Server 端会创建这个 Perfab 的实例。这个 Prefab 比较特殊，它上面需要添加 __NetworkIndentity__ 组件，这样才能传递过去给 NetworkManager。
 
 到这里，可能有的朋友有疑问。什么 Spawn？ NetworkIndentity 又是什么鬼？
 
@@ -99,7 +96,6 @@ UNet 是个以 Server 为主导的系统，所有的 Spawn 行为都要在 Serve
 
 ### NetworkManagerHUD 组件
 
-为什么要提到这个组件呢。因为它也是一个 NetworkManager 管理的界面。它是 Unity 提供给我们的，提供比我们这篇文章所给的更加丰富的功能。平时开发调试的时候，建议使用这个控件。
-引出 NetworkManagerHUD 组件也是这篇文章的目的。
+为什么要提到这个组件呢。因为它也是一个 NetworkManager 管理的界面。它是 Unity 提供给我们的，提供比我们这篇文章所给的更加丰富的功能。平时开发调试的时候，建议使用这个控件。引出 NetworkManagerHUD 组件也是这篇文章的目的。
 
 好了，这篇就到这里。Enjoy!

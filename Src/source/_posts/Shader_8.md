@@ -4,16 +4,14 @@ category: Shader
 tags: Shader
 ---
 
-第三节 {% post_link Shader_3 [Shader 土地上的语言们] %} 里面说到过 CG 和 HLSL 等语言被 `GGPROGRAM ... ENDCG` 语句块里面。这节的主角 #pragma 出现的位置就是在这个语句块里面，用来做编译指示的。就好比告诉
- Shaderlab 的编译器，你应该这么干应该那么干。这里把 #pragma 叫做编译指令吧。
+第三节 {% post_link Shader_3 [Shader 土地上的语言们] %} 里面说到过 CG 和 HLSL 等语言被 `GGPROGRAM ... ENDCG` 语句块里面。这节的主角 #pragma 出现的位置就是在这个语句块里面，用来做编译指示的。就好比告诉 Shaderlab 的编译器，你应该这么干应该那么干。这里把 #pragma 叫做编译指令吧。
 
 `CGPROGRAM ... ENDCG` 语句块根据 Shaderlab 写作方式不同，它的位置也不同。
 
 - 如果是 **surface shader**, 它在 Subshader 语句块里面，不是在 Pass 语句块里面
 - 如果是 **vertex&&framgment shader**，它是 Pass 语句块里面
 
-其实 surface shader 最终会编译成 vertex&&framgment shader, 最终结果是一样的的。surface shader 会被编译成含多个 Pass 的 vertex&&fragment shader, 而这些都用相同的编译指令。我们可以从 Inspector 的 shader
-属性信息里面去打开被编译为 vertex&&fragment shader 后的代码。
+其实 surface shader 最终会编译成 vertex&&framgment shader, 最终结果是一样的的。surface shader 会被编译成含多个 Pass 的 vertex&&fragment shader, 而这些都用相同的编译指令。我们可以从 Inspector 的 shader 属性信息里面去打开被编译为 vertex&&fragment shader 后的代码。
 
 ![surface shader](/images/Shader/8/surfaceshader.png)
 
