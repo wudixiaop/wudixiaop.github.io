@@ -1,7 +1,7 @@
 title: 如何改变图片亮度
 date: 2015-09-15 22:26
-category: UnityKB
-tags: UnityKB
+category: Unity
+tags: Unity
 ---
 
 有的时候我们有可能有需求将较暗的图像简单的提亮，这篇文章主要讲一种改变图片亮度的方式。我们从两个问题入手：
