@@ -1,7 +1,7 @@
 ﻿title: 关于 Unity 编辑器一些事儿
 date: 2014-11-05 22:30
-category: Unity
-tags: Unity
+category: UnityKB
+tags: Editor
 ---
 
 ** 本文只适合Unty 4.x**

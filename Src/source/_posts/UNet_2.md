@@ -1,8 +1,7 @@
 title: UNet 0x02：发送消息
 date: 2015-08-07 16:04
-category: Unity
-tags: 
-- UNet 
+category: UnityKB
+tags: UNet 
 ---
 
 在 {% post_link uNET_1 [上一篇文章] %} 中介绍了如何在 UNet 中建立网络连接，接下来我们在这篇文章中说说建立连接之后怎么在 Client / Server 间发送消息。

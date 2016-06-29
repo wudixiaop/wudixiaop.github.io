@@ -52,7 +52,7 @@ MonoBehavior提供的事件从编辑器到游戏结束都有涉及。下面列�
 |OnTriggerEnter|OnTriggerEnter is called when the Collider other enters the trigger.|
 |OnTriggerStay|OnTriggerStay is called once per frame for every Collider other that is touching the trigger.|
 |OnTriggerExit|OnTriggerExit is called when the Collider other has stopped touching the trigger.|
-|OnTriggerEnter2DSent when another object enters a trigger collider attached to this object (2D physics only).|
+|OnTriggerEnter2D|Sent when another object enters a trigger collider attached to this object (2D physics only).|
 |OnTriggerStay2D|Sent each frame where another object is within a trigger collider attached to this object (2D physics only).|
 |OnTriggerExit2D|Sent when another object leaves a trigger collider attached to this object (2D physics only).|
 

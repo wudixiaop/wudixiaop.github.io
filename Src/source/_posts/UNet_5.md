@@ -1,6 +1,6 @@
 title: UNet 0x05：SyncVar
 date: 2015-08-15 12:01
-category: Unity
+category: UnityKB
 tags: UNet
 ---
 
