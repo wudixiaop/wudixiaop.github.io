@@ -103,7 +103,7 @@
 所以说 参照物是可以选择的，可变的。
 我们把上面对话推广到坐标系上，来给坐标系下个山寨的定义：坐标系是为了描述物体位置而存在，我们借助的参照物是它的原点。">
 <meta property="og:image" content="http://blog.shuiguzi.com/images/Shader/4/leftandRightHandCoordinate.png">
-<meta property="og:updated_time" content="2016-02-17T01:32:42.000Z">
+<meta property="og:updated_time" content="2016-06-29T11:38:20.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="瞎聊 Unity Shader 系列之四：坐标系">
 <meta name="twitter:description" content="这节从很平常一段对话开始：
@@ -359,7 +359,7 @@
 <p><strong>甲：</strong> 在那个个子很高的人左手边那位。</p>
 </blockquote>
 <p>所以说 <strong>参照物是可以选择的，可变的</strong>。</p>
-<p>我们把上面对话推广到坐标系上，来给坐标系下个山寨的定义：<strong>坐标系是为了描述物体位置而存在，我们借助的参照物是它的原点<br>。由于可以选择不同的参照物，所以我们可以选择不同的原点。</strong> 原点很重要，我们利用坐标系的时候首先要知道原点在哪里。</p>
+<p>我们把上面对话推广到坐标系上，来给坐标系下个山寨的定义：<strong>坐标系是为了描述物体位置而存在，我们借助的参照物是它的原点。由于可以选择不同的参照物，所以我们可以选择不同的原点。</strong> 原点很重要，我们利用坐标系的时候首先要知道原点在哪里。</p>
 <p>既然原点可以任意选，那不是说会出现很多坐标系？ 是的，但是我们使用几种约定的坐标系就好了。</p>
 <a id="more"></a>
 <h3 id="那些坐标系们"><a href="#那些坐标系们" class="headerlink" title="那些坐标系们"></a>那些坐标系们</h3><p>下面是我们平时会碰到的一些坐标系。按规定，原点的各个轴是数值都是 0 来表示。</p>
@@ -370,14 +370,14 @@
 <li><strong>屏幕坐标系 (Screen Space)：</strong> 原点 <code>(0, 0)</code> 在屏幕的左下角，右上角为 <code>(Screen.width，Screen.height)</code>。</li>
 </ul>
 <p>那问题来了。这些坐标系们有什么关系？</p>
-<p>我们以立方体为例。我们从 <a href="/2015/04/28/Shader_2/" title="[渲染管线]">[渲染管线]</a> 小节中知道，Mesh Renderer 组件得到模型数据之后它会执行 vertex shader（Unity 默认的 Shader 给我提供了）。<br>vertex shader 里面做了下面这些事：</p>
+<p>我们以立方体为例。我们从 <a href="/2015/04/28/Shader_2/" title="[渲染管线]">[渲染管线]</a> 小节中知道，Mesh Renderer 组件得到模型数据之后它会执行 vertex shader（Unity 默认的 Shader 给我提供了）。vertex shader 里面做了下面这些事：</p>
 <ol>
 <li>先把立方体从模型的物体坐标系转换成世界坐标系，<strong>从 物体 到 世界</strong>。这样子，它和摄像机（世界坐标）的位置就用同一个坐标系描述了。</li>
 <li>再把立方体从世界坐标转换成视口坐标系，也就是摄像机因为原点的坐标系，<strong>从 世界 到 视口</strong>。这样它是在摄像机的正面，还是在反面了。</li>
 <li>最后在投射到屏幕坐标系上， <strong>从 视口 到 屏幕</strong>。这样知道哪些区域需要绘制在屏幕上，哪些不需要。</li>
 </ol>
-<p>总结上面一系列变换关系就是： <strong>物体 到 世界 再到 视口 再到 屏幕</strong>。中间经过了三次变换 (transform)。这些变换在数学上通过 <strong>矩阵</strong> 来描述的。这里有个知识点：<br>矩阵可以表示变换。在这里推荐关于 3D 数学的一本经典好书 <a href="http://pan.baidu.com/s/1eQ8eSYQ" target="_blank" rel="external">《3D数学基础图形与游戏开发》</a>。</p>
-<p>到现在是不是有种跃跃欲试，但是想想又头大的感觉，在 Unity 里面这些矩阵具体的数值是什么？要是自己去运算那多复杂啊。别急，Unity 给我们已经提供了这些矩阵当作 Shader<br>的内置变量（<a href="http://docs.unity3d.com/Manual/SL-UnityShaderVariables.html" target="_blank" rel="external">详情参考这个链接</a>），可以在编程的时候直接使用。在这里只是说一下，我们利用 <code>UNITY_MATRIX_MVP</code><br> 这个矩阵就可以达到变换到屏幕坐标系的目的。至于怎么做，会在以后的文章中会提到。</p>
+<p>总结上面一系列变换关系就是： <strong>物体 到 世界 再到 视口 再到 屏幕</strong>。中间经过了三次变换 (transform)。这些变换在数学上通过 <strong>矩阵</strong> 来描述的。这里有个知识点：矩阵可以表示变换。在这里推荐关于 3D 数学的一本经典好书 <a href="http://pan.baidu.com/s/1eQ8eSYQ" target="_blank" rel="external">《3D数学基础图形与游戏开发》</a>。</p>
+<p>到现在是不是有种跃跃欲试，但是想想又头大的感觉，在 Unity 里面这些矩阵具体的数值是什么？要是自己去运算那多复杂啊。别急，Unity 给我们已经提供了这些矩阵当作 Shader 的内置变量（<a href="http://docs.unity3d.com/Manual/SL-UnityShaderVariables.html" target="_blank" rel="external">详情参考这个链接</a>），可以在编程的时候直接使用。在这里只是说一下，我们利用 <code>UNITY_MATRIX_MVP</code> 这个矩阵就可以达到变换到屏幕坐标系的目的。至于怎么做，会在以后的文章中会提到。</p>
 <h3 id="左手和右手坐标系"><a href="#左手和右手坐标系" class="headerlink" title="左手和右手坐标系"></a>左手和右手坐标系</h3><p>这两不是新坐标系，是建立三维坐标系的两种选择。换句话说对于处于同一个物体，可以用基于左手坐标系规则来建立三维坐标系，也可以用基于右手坐标系规则来建立三维空间，他们的区别是坐标轴的数值会有差异。</p>
 <p>为什么叫做左手和右手，看看下面的图就知道了。</p>
 <p><img src="/images/Shader/4/leftandRightHandCoordinate.png" alt="leftAndright"></p>

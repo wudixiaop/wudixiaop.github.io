@@ -16,8 +16,7 @@ tags: UNet
 
 ### UNet 的 Server / Client / Host
 
-在 UNet 先系统中会出现 1 个 Server 和 n 个 Client (n >= 0)。当没有专门的 Server 的时候，其中一个 Client 会充当 Server 的作用，这个即是 Client 又是 Server 的端在 UNet 中
-被称为 Host。 Host 在同一个进程里面执行 Server 和 Client, 这个 Client　有个专门的名字叫做 Local Client。它跟 Local Server 之间是通过 __消息队列__ 和 __直接的函数调__ 用来通信的。 
+在 UNet 先系统中会出现 1 个 Server 和 n 个 Client (n >= 0)。当没有专门的 Server 的时候，其中一个 Client 会充当 Server 的作用，这个即是 Client 又是 Server 的端在 UNet 中被称为 Host。 Host 在同一个进程里面执行 Server 和 Client, 这个 Client　有个专门的名字叫做 Local Client。它跟 Local Server 之间是通过 __消息队列__ 和 __直接的函数调__ 用来通信的。 
 
 <!--more-->
 
@@ -54,14 +53,10 @@ NetworkClient client = ClientScene.ConnectLocalServer();
 	
 ### 事件注册 RegisterHandler
 
-其实现在添加这节内容处在只是为了接下来代码答应的调试信息。NetworkServer 和 NetworkClient 类都有 `RegisterHandler(short msgType, Networking.NetworkMessageDelegate handler);` 
-方法，这个方法用来来注册对应消息的处理函数。它有两个参数：
+其实现在添加这节内容处在只是为了接下来代码答应的调试信息。NetworkServer 和 NetworkClient 类都有 `RegisterHandler(short msgType, Networking.NetworkMessageDelegate handler);` 方法，这个方法用来来注册对应消息的处理函数。它有两个参数：
 
-* 第一个参数 msgType 是个 short 类型，Unity 提供 [MsgType](http://docs.unity3d.com/ScriptReference/Networking.MsgType.html) 类来得到所有内置的数值。
-当然我们也可以自定义数值哦~~
-* 第二个参数 handler 是 NetworkMessageDelegate 类型，类型的原型是 __delegate void NetworkMessageDelegate( Networking.NetworkMessage netMsg )__。
-这是 C# 中的 delegate, 我们要提供的消息响应函数。
-
+* 第一个参数 msgType 是个 short 类型，Unity 提供 [MsgType](http://docs.unity3d.com/ScriptReference/Networking.MsgType.html) 类来得到所有内置的数值。当然我们也可以自定义数值哦~~
+* 第二个参数 handler 是 NetworkMessageDelegate 类型，类型的原型是 __delegate void NetworkMessageDelegate(Networking.NetworkMessage netMsg )__。这是 C# 中的 delegate, 我们要提供的消息响应函数。
 
 在本节例子中，我们在 Server 和 Client 端都注册 `MsgType.Connect` 消息，然后其响应函数为 `OnConnected(NetworkMessage msg)`。
 

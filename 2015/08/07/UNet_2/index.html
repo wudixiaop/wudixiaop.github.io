@@ -96,7 +96,7 @@ UNet HLAPI 中消息怎么表示？
 UNet HLAPI 中消息怎么发送和接收？">
 <meta property="og:image" content="http://blog.shuiguzi.com/images/UNet/sendMessageUI.PNG">
 <meta property="og:image" content="http://blog.shuiguzi.com/images/UNet/sendMessageOutput.PNG">
-<meta property="og:updated_time" content="2016-06-29T01:49:26.000Z">
+<meta property="og:updated_time" content="2016-06-29T11:41:51.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="UNet 0x02：发送消息">
 <meta name="twitter:description" content="在 [上一篇文章] 中介绍了如何在 UNet 中建立网络连接，接下来我们在这篇文章中说说建立连接之后怎么在 Client / Server 间发送消息。
@@ -380,7 +380,7 @@ UNet HLAPI 中消息怎么发送和接收？">
 <p>各个方法用各自的用途，具体可以参照 <a href="http://docs.unity3d.com/ScriptReference/Networking.NetworkClient.html" target="_blank" rel="external">NetworkClient</a>、<br><a href="http://docs.unity3d.com/ScriptReference/Networking.NetworkConnection.html" target="_blank" rel="external">NetworkConnection</a> 和<br><a href="http://docs.unity3d.com/ScriptReference/Networking.NetworkServer.html" target="_blank" rel="external">NetworkServer</a> 官方 API 文档。</p>
 <p>本文章中将使用 <code>NetworkClient.Send(short msgType, MessageBase msg)</code> 方法，在 Client 端给 Server 端发送消息。发送的代码示意：</p>
 <figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">MessageX mx = new MessageX()<span class="comment">;</span></span><br><span class="line">mx.Message = messageInput<span class="meta">.text</span><span class="comment">;</span></span><br><span class="line">mx.From = fromInput<span class="meta">.text</span><span class="comment">;</span></span><br><span class="line"></span><br><span class="line">client.Send(MessageX.MsgType, mx)<span class="comment">;</span></span><br></pre></td></tr></table></figure>
-<p><code>Send</code> 方法中第二个参数是消息的实例，这个很明显，不需要特别解释。那第一个参数 msgType 又是什么的？ 看过上一篇文章 <a href="/2015/08/06/uNET_1/" title="[UNet 0x01: 网络连接的建立]">[UNet 0x01: 网络连接的建立]</a><br>的朋友们可能马上就想起来在 <strong>事件注册 RegisterHandler</strong> 小节中也有 msgType。对的，就是这个。消息接收就是通过事件注册的方式来处理。接收的示意代码如下：</p>
+<p><code>Send</code> 方法中第二个参数是消息的实例，这个很明显，不需要特别解释。那第一个参数 msgType 又是什么的？ 看过上一篇文章 <a href="/2015/08/06/uNET_1/" title="[UNet 0x01: 网络连接的建立]">[UNet 0x01: 网络连接的建立]</a> 的朋友们可能马上就想起来在 <strong>事件注册 RegisterHandler</strong> 小节中也有 msgType。对的，就是这个。消息接收就是通过事件注册的方式来处理。接收的示意代码如下：</p>
 <pre><code>:::C#
 // 注册消息处理事件
 NetworkServer.RegisterHandler(MessageX.MsgType, OnMessageXReceived);

@@ -29,8 +29,7 @@ NetworkManager 组件提供了很多功能，但是这篇文章只引入 Network
 
 ### 得到 NetworkManager 实例
 
-NetworkManager 组件挂上 GameObject 之后我们可以像其他组件一同通过 `GetComponent<T>()` 这个方法来得到其实例，但是这推荐使用 `NetworkManager.singleton` 
-来得到其实例。
+NetworkManager 组件挂上 GameObject 之后我们可以像其他组件一同通过 `GetComponent<T>()` 这个方法来得到其实例，但是这推荐使用  `NetworkManager.singleton` 来得到其实例。
 
 ### 为什么要使用 NetworkManager
 

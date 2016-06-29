@@ -343,7 +343,7 @@
 <li>纹理坐标 (texture coordinate)</li>
 </ul>
 <h3 id="数据的输入输出"><a href="#数据的输入输出" class="headerlink" title="数据的输入输出"></a>数据的输入输出</h3><p>数据存放在寄存器里面。输入的时候从寄存器读取数据，输出的时候将数据写到寄存器里面。</p>
-<h3 id="Shader-中的体现"><a href="#Shader-中的体现" class="headerlink" title="Shader 中的体现"></a>Shader 中的体现</h3><p>首先是数据的种类的表示。现实生活中，我们也喜欢物品分类，然后对分类取个名字或贴个标签，以后我们便可以从这一类中存取属于这类的物品。Shader 里面也有类似的做法，给 Shader 函数输入输出的数据结构打上标签。<br>这种标签叫做 <strong>语义（Semantic）</strong>， 打标签的行为叫做 <strong>语义绑定</strong> 。一般用一个冒号后面带上标签的名字来表示。长相大概是这个要样子 <code>:XXXXX</code> （XXXXX 表示语义）。</p>
+<h3 id="Shader-中的体现"><a href="#Shader-中的体现" class="headerlink" title="Shader 中的体现"></a>Shader 中的体现</h3><p>首先是数据的种类的表示。现实生活中，我们也喜欢物品分类，然后对分类取个名字或贴个标签，以后我们便可以从这一类中存取属于这类的物品。Shader 里面也有类似的做法，给 Shader 函数输入输出的数据结构打上标签。这种标签叫做 <strong>语义（Semantic）</strong>， 打标签的行为叫做 <strong>语义绑定</strong> 。一般用一个冒号后面带上标签的名字来表示。长相大概是这个要样子 <code>:XXXXX</code> （XXXXX 表示语义）。</p>
 <p>我们有了标签，那我们把它放在 shader 代码什么地方呢？ 之前提到我们是给函数输入输出的数据结构打上标签，而函数的输入就是参数。对于参数，我们可以使用<strong>结构体</strong>也可以直接使用<strong>基础数据类型</strong>，所以能出现如下两种位置：</p>
           <div class="post-more-link text-center">
             <a class="btn" href="/2015/05/14/Shader_10/#more" rel="contents">
@@ -466,7 +466,7 @@
 
       
         
-          <p>为了像其他程序语言一样重用代码，Shaderlab 把可变部分提取出来，集中放到一个区域去。这个区域就是 <a href="/2015/05/05/Shader_6/" title="[初始 shaderlab]">[初始 shaderlab]</a> 这节中提到的的 <code>Properties</code><br>可选项。 在这个区域内每一个元素被叫做 Property。我们把他叫做属性吧。这些属性都包括在 <code>Properties { }</code> 语句块内。</p>
+          <p>为了像其他程序语言一样重用代码，Shaderlab 把可变部分提取出来，集中放到一个区域去。这个区域就是 <a href="/2015/05/05/Shader_6/" title="[初始 shaderlab]">[初始 shaderlab]</a> 这节中提到的的 <code>Properties</code> 可选项。 在这个区域内每一个元素被叫做 Property。我们把他叫做属性吧。这些属性都包括在 <code>Properties { }</code> 语句块内。</p>
 <h3 id="Shaderlab-的属性"><a href="#Shaderlab-的属性" class="headerlink" title="Shaderlab 的属性"></a>Shaderlab 的属性</h3><p>属性的语法是:</p>
 <blockquote>
 <p>属性名 (“Inspector 显示的名字”, 类型) = 默认值</p>
@@ -593,13 +593,13 @@
 
       
         
-          <p>第三节 <a href="/2015/04/29/Shader_3/" title="[Shader 土地上的语言们]">[Shader 土地上的语言们]</a> 里面说到过 CG 和 HLSL 等语言被 <code>GGPROGRAM ... ENDCG</code> 语句块里面。这节的主角 #pragma 出现的位置就是在这个语句块里面，用来做编译指示的。就好比告诉<br> Shaderlab 的编译器，你应该这么干应该那么干。这里把 #pragma 叫做编译指令吧。</p>
+          <p>第三节 <a href="/2015/04/29/Shader_3/" title="[Shader 土地上的语言们]">[Shader 土地上的语言们]</a> 里面说到过 CG 和 HLSL 等语言被 <code>GGPROGRAM ... ENDCG</code> 语句块里面。这节的主角 #pragma 出现的位置就是在这个语句块里面，用来做编译指示的。就好比告诉 Shaderlab 的编译器，你应该这么干应该那么干。这里把 #pragma 叫做编译指令吧。</p>
 <p><code>CGPROGRAM ... ENDCG</code> 语句块根据 Shaderlab 写作方式不同，它的位置也不同。</p>
 <ul>
 <li>如果是 <strong>surface shader</strong>, 它在 Subshader 语句块里面，不是在 Pass 语句块里面</li>
 <li>如果是 <strong>vertex&amp;&amp;framgment shader</strong>，它是 Pass 语句块里面</li>
 </ul>
-<p>其实 surface shader 最终会编译成 vertex&amp;&amp;framgment shader, 最终结果是一样的的。surface shader 会被编译成含多个 Pass 的 vertex&amp;&amp;fragment shader, 而这些都用相同的编译指令。我们可以从 Inspector 的 shader<br>属性信息里面去打开被编译为 vertex&amp;&amp;fragment shader 后的代码。</p>
+<p>其实 surface shader 最终会编译成 vertex&amp;&amp;framgment shader, 最终结果是一样的的。surface shader 会被编译成含多个 Pass 的 vertex&amp;&amp;fragment shader, 而这些都用相同的编译指令。我们可以从 Inspector 的 shader 属性信息里面去打开被编译为 vertex&amp;&amp;fragment shader 后的代码。</p>
 <p><img src="/images/Shader/8/surfaceshader.png" alt="surface shader"></p>
 <p>如果本身不是 surface shader 的话，上面那个 show generated code 按钮是不会出现的。上面提到 #pragma 是在 <code>CGPROGRAM ... ENDCG</code> 语句块里面的，所以它出现的位置也符合上面提到的特征。</p>
           <div class="post-more-link text-center">
@@ -854,7 +854,7 @@
 
       
         
-          <p>好吧，其实这不算初识 Shaderlab 了，因为在 <a href="/2015/04/29/Shader_3/" title="[shaderlab 土地上的语言们]">[shaderlab 土地上的语言们]</a> 这节中已经说到在 shaderlab 中有三种方式来写 shader。<br>这节的内容主要是来认识下 shaderlab 语法写出来的 shader 长得什么样子。</p>
+          <p>好吧，其实这不算初识 Shaderlab 了，因为在 <a href="/2015/04/29/Shader_3/" title="[shaderlab 土地上的语言们]">[shaderlab 土地上的语言们]</a> 这节中已经说到在 shaderlab 中有三种方式来写 shader。这节的内容主要是来认识下 shaderlab 语法写出来的 shader 长得什么样子。</p>
 <p>下面有段基于 shaderlab 的 shader 的大概框架的伪代码，在之前要解释下代码中带中括号的部分，如 <code>[Properties]</code>, 表示是可以选择的，也就是说可以不写。</p>
           <div class="post-more-link text-center">
             <a class="btn" href="/2015/05/05/Shader_6/#more" rel="contents">
@@ -978,7 +978,7 @@
       
         
           <p>这节说说 fragment shader 最后输出的像素的颜色表示方法 RGBA。</p>
-<p>玩过 Photoshop 的同学可能知道，存在好几种颜色模式来表示颜色，<a href="http://baike.baidu.com/view/1139658.htm">比如 RGB 和 CMYK</a>. 由于显示器的发光物体，所以使用的 RGB 模式。<br>Unity 中也采用这种表示方法。</p>
+<p>玩过 Photoshop 的同学可能知道，存在好几种颜色模式来表示颜色，<a href="http://baike.baidu.com/view/1139658.htm">比如 RGB 和 CMYK</a>. 由于显示器的发光物体，所以使用的 RGB 模式。Unity 中也采用这种表示方法。</p>
 <h3 id="RGB模式"><a href="#RGB模式" class="headerlink" title="RGB模式"></a>RGB模式</h3><p>RGB是用红绿蓝混合来表示的颜色。R 是红色， G 表示绿色， B 是蓝色。一般用8为来表示一个颜色通道，每个通道有 256 个等级（0~255）。它有如下特性：</p>
 <ul>
 <li><code>(0, 0, 0)</code> 表示黑色</li>

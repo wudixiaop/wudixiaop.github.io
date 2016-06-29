@@ -114,8 +114,7 @@ mx.From = fromInput.text;
 client.Send(MessageX.MsgType, mx);
 {% endcodeblock %}
 
-`Send` 方法中第二个参数是消息的实例，这个很明显，不需要特别解释。那第一个参数 msgType 又是什么的？ 看过上一篇文章 {% post_link uNET_1 [UNet 0x01: 网络连接的建立] %}
-的朋友们可能马上就想起来在 __事件注册 RegisterHandler__ 小节中也有 msgType。对的，就是这个。消息接收就是通过事件注册的方式来处理。接收的示意代码如下：
+`Send` 方法中第二个参数是消息的实例，这个很明显，不需要特别解释。那第一个参数 msgType 又是什么的？ 看过上一篇文章 {% post_link uNET_1 [UNet 0x01: 网络连接的建立] %} 的朋友们可能马上就想起来在 __事件注册 RegisterHandler__ 小节中也有 msgType。对的，就是这个。消息接收就是通过事件注册的方式来处理。接收的示意代码如下：
 
 	:::C#
 	// 注册消息处理事件

@@ -94,7 +94,7 @@
 高层次的 High Level">
 <meta property="og:image" content="http://blog.shuiguzi.com/images/UNet/NetworkHost.png">
 <meta property="og:image" content="http://blog.shuiguzi.com/images/UNet/outputResult.PNG">
-<meta property="og:updated_time" content="2016-06-29T01:49:31.000Z">
+<meta property="og:updated_time" content="2016-06-29T11:41:25.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="UNet 0x01：网络连接的建立">
 <meta name="twitter:description" content="看到标题后，没接触过的朋友脑中可能会闪现出这样一个问题： UNet 是什么 ? 其实它是 Unity 5.1 版本新引入的网络系统。官方论坛里面称这个系统为 UNet, 那我们按照官方的习惯来。
@@ -343,7 +343,7 @@
 <li>高层次的 High Level API，也叫做 HLAPI，建立在 NetworkTransport 之上。适合开发多人游戏</li>
 </ul>
 <p>这篇文章将只涉及 High Level API。我们的目的是建立（Client 于 Server 间的）网络连接。</p>
-<h3 id="UNet-的-Server-Client-Host"><a href="#UNet-的-Server-Client-Host" class="headerlink" title="UNet 的 Server / Client / Host"></a>UNet 的 Server / Client / Host</h3><p>在 UNet 先系统中会出现 1 个 Server 和 n 个 Client (n &gt;= 0)。当没有专门的 Server 的时候，其中一个 Client 会充当 Server 的作用，这个即是 Client 又是 Server 的端在 UNet 中<br>被称为 Host。 Host 在同一个进程里面执行 Server 和 Client, 这个 Client　有个专门的名字叫做 Local Client。它跟 Local Server 之间是通过 <strong>消息队列</strong> 和 <strong>直接的函数调</strong> 用来通信的。 </p>
+<h3 id="UNet-的-Server-Client-Host"><a href="#UNet-的-Server-Client-Host" class="headerlink" title="UNet 的 Server / Client / Host"></a>UNet 的 Server / Client / Host</h3><p>在 UNet 先系统中会出现 1 个 Server 和 n 个 Client (n &gt;= 0)。当没有专门的 Server 的时候，其中一个 Client 会充当 Server 的作用，这个即是 Client 又是 Server 的端在 UNet 中被称为 Host。 Host 在同一个进程里面执行 Server 和 Client, 这个 Client　有个专门的名字叫做 Local Client。它跟 Local Server 之间是通过 <strong>消息队列</strong> 和 <strong>直接的函数调</strong> 用来通信的。 </p>
 <a id="more"></a>
 <p>Unity3d 网站上有张图能比较明显的表达 Server / Client / Local Client / Host 直接的关系，让我们把它偷过来。:)</p>
 <p><img src="/images/UNet/NetworkHost.png" alt="NetworkHost"></p>
@@ -357,10 +357,10 @@
 </ul>
 <p>示例代码如下：</p>
 <figure class="highlight axapta"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Remote Client</span></span><br><span class="line">NetworkClient <span class="keyword">client</span> = <span class="keyword">new</span> NetworkClient(); </span><br><span class="line"></span><br><span class="line"><span class="comment">// Local Client</span></span><br><span class="line">NetworkClient <span class="keyword">client</span> = ClientScene.ConnectLocalServer();</span><br></pre></td></tr></table></figure>
-<h3 id="事件注册-RegisterHandler"><a href="#事件注册-RegisterHandler" class="headerlink" title="事件注册 RegisterHandler"></a>事件注册 RegisterHandler</h3><p>其实现在添加这节内容处在只是为了接下来代码答应的调试信息。NetworkServer 和 NetworkClient 类都有 <code>RegisterHandler(short msgType, Networking.NetworkMessageDelegate handler);</code><br>方法，这个方法用来来注册对应消息的处理函数。它有两个参数：</p>
+<h3 id="事件注册-RegisterHandler"><a href="#事件注册-RegisterHandler" class="headerlink" title="事件注册 RegisterHandler"></a>事件注册 RegisterHandler</h3><p>其实现在添加这节内容处在只是为了接下来代码答应的调试信息。NetworkServer 和 NetworkClient 类都有 <code>RegisterHandler(short msgType, Networking.NetworkMessageDelegate handler);</code> 方法，这个方法用来来注册对应消息的处理函数。它有两个参数：</p>
 <ul>
-<li>第一个参数 msgType 是个 short 类型，Unity 提供 <a href="http://docs.unity3d.com/ScriptReference/Networking.MsgType.html" target="_blank" rel="external">MsgType</a> 类来得到所有内置的数值。<br>当然我们也可以自定义数值哦~~</li>
-<li>第二个参数 handler 是 NetworkMessageDelegate 类型，类型的原型是 <strong>delegate void NetworkMessageDelegate( Networking.NetworkMessage netMsg )</strong>。<br>这是 C# 中的 delegate, 我们要提供的消息响应函数。</li>
+<li>第一个参数 msgType 是个 short 类型，Unity 提供 <a href="http://docs.unity3d.com/ScriptReference/Networking.MsgType.html" target="_blank" rel="external">MsgType</a> 类来得到所有内置的数值。当然我们也可以自定义数值哦~~</li>
+<li>第二个参数 handler 是 NetworkMessageDelegate 类型，类型的原型是 <strong>delegate void NetworkMessageDelegate(Networking.NetworkMessage netMsg )</strong>。这是 C# 中的 delegate, 我们要提供的消息响应函数。</li>
 </ul>
 <p>在本节例子中，我们在 Server 和 Client 端都注册 <code>MsgType.Connect</code> 消息，然后其响应函数为 <code>OnConnected(NetworkMessage msg)</code>。</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">OnConnected</span><span class="params">(NetworkMessage msg)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="comment">// Do someting</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>    

@@ -87,7 +87,7 @@ CGPROGRAM ... ENDCG 语句块根据 Shaderlab 写作方">
 <meta property="og:description" content="第三节 [Shader 土地上的语言们] 里面说到过 CG 和 HLSL 等语言被 GGPROGRAM ... ENDCG 语句块里面。这节的主角 #pragma 出现的位置就是在这个语句块里面，用来做编译指示的。就好比告诉 Shaderlab 的编译器，你应该这么干应该那么干。这里把 #pragma 叫做编译指令吧。
 CGPROGRAM ... ENDCG 语句块根据 Shaderlab 写作方">
 <meta property="og:image" content="http://blog.shuiguzi.com/images/Shader/8/surfaceshader.png">
-<meta property="og:updated_time" content="2016-04-05T13:25:39.000Z">
+<meta property="og:updated_time" content="2016-06-29T11:39:15.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="瞎聊 Unity Shader 系列之八：#pragma 指令">
 <meta name="twitter:description" content="第三节 [Shader 土地上的语言们] 里面说到过 CG 和 HLSL 等语言被 GGPROGRAM ... ENDCG 语句块里面。这节的主角 #pragma 出现的位置就是在这个语句块里面，用来做编译指示的。就好比告诉 Shaderlab 的编译器，你应该这么干应该那么干。这里把 #pragma 叫做编译指令吧。
@@ -326,13 +326,13 @@ CGPROGRAM ... ENDCG 语句块根据 Shaderlab 写作方">
       
 
       
-        <p>第三节 <a href="/2015/04/29/Shader_3/" title="[Shader 土地上的语言们]">[Shader 土地上的语言们]</a> 里面说到过 CG 和 HLSL 等语言被 <code>GGPROGRAM ... ENDCG</code> 语句块里面。这节的主角 #pragma 出现的位置就是在这个语句块里面，用来做编译指示的。就好比告诉<br> Shaderlab 的编译器，你应该这么干应该那么干。这里把 #pragma 叫做编译指令吧。</p>
+        <p>第三节 <a href="/2015/04/29/Shader_3/" title="[Shader 土地上的语言们]">[Shader 土地上的语言们]</a> 里面说到过 CG 和 HLSL 等语言被 <code>GGPROGRAM ... ENDCG</code> 语句块里面。这节的主角 #pragma 出现的位置就是在这个语句块里面，用来做编译指示的。就好比告诉 Shaderlab 的编译器，你应该这么干应该那么干。这里把 #pragma 叫做编译指令吧。</p>
 <p><code>CGPROGRAM ... ENDCG</code> 语句块根据 Shaderlab 写作方式不同，它的位置也不同。</p>
 <ul>
 <li>如果是 <strong>surface shader</strong>, 它在 Subshader 语句块里面，不是在 Pass 语句块里面</li>
 <li>如果是 <strong>vertex&amp;&amp;framgment shader</strong>，它是 Pass 语句块里面</li>
 </ul>
-<p>其实 surface shader 最终会编译成 vertex&amp;&amp;framgment shader, 最终结果是一样的的。surface shader 会被编译成含多个 Pass 的 vertex&amp;&amp;fragment shader, 而这些都用相同的编译指令。我们可以从 Inspector 的 shader<br>属性信息里面去打开被编译为 vertex&amp;&amp;fragment shader 后的代码。</p>
+<p>其实 surface shader 最终会编译成 vertex&amp;&amp;framgment shader, 最终结果是一样的的。surface shader 会被编译成含多个 Pass 的 vertex&amp;&amp;fragment shader, 而这些都用相同的编译指令。我们可以从 Inspector 的 shader 属性信息里面去打开被编译为 vertex&amp;&amp;fragment shader 后的代码。</p>
 <p><img src="/images/Shader/8/surfaceshader.png" alt="surface shader"></p>
 <p>如果本身不是 surface shader 的话，上面那个 show generated code 按钮是不会出现的。上面提到 #pragma 是在 <code>CGPROGRAM ... ENDCG</code> 语句块里面的，所以它出现的位置也符合上面提到的特征。</p>
 <a id="more"></a>
