@@ -257,6 +257,139 @@
             
               
                 
+                <a class="post-title-link" href="/2015/05/04/Shader_5/" itemprop="url">
+                  瞎聊 Unity Shader 系列之五：RGBA 101
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-05-04T13:55:00+08:00" content="2015-05-04">
+              2015-05-04
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Shader/" itemprop="url" rel="index">
+                    <span itemprop="name">Shader</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/05/04/Shader_5/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/05/04/Shader_5/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>这节说说 fragment shader 最后输出的像素的颜色表示方法 RGBA。</p>
+<p>玩过 Photoshop 的同学可能知道，存在好几种颜色模式来表示颜色，<a href="http://baike.baidu.com/view/1139658.htm">比如 RGB 和 CMYK</a>. 由于显示器的发光物体，所以使用的 RGB 模式。Unity 中也采用这种表示方法。</p>
+<h3 id="RGB模式"><a href="#RGB模式" class="headerlink" title="RGB模式"></a>RGB模式</h3><p>RGB是用红绿蓝混合来表示的颜色。R 是红色， G 表示绿色， B 是蓝色。一般用8为来表示一个颜色通道，每个通道有 256 个等级（0~255）。它有如下特性：</p>
+<ul>
+<li><code>(0, 0, 0)</code> 表示黑色</li>
+<li><code>(255, 255, 255)</code> 表示白色</li>
+<li>三个通道数值相同的时候是灰色，比如 <code>(128, 128, 128)</code></li>
+<li>数值越大颜色越亮，反之数值越小越暗</li>
+</ul>
+<p><img src="/images/Shader/5/rgb.png" alt="RGB"></p>
+<p>但是 Unity Shader 中并不用 256 个等级来表示颜色数值，而是用标准化（取值0~1）的数值来表示。换句话说就是所有通道都除以 255 得到标准化的结果。</p>
+<h3 id="RGBA-中的-A-是什么"><a href="#RGBA-中的-A-是什么" class="headerlink" title="RGBA 中的 A 是什么"></a>RGBA 中的 A 是什么</h3>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/05/04/Shader_5/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2015/04/30/Shader_4/" itemprop="url">
                   瞎聊 Unity Shader 系列之四：坐标系
                 </a>
@@ -897,143 +1030,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/03/26/ClosureInSwift/" itemprop="url">
-                  一个例子学习Swift中的闭包用法
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2015-03-26T15:37:00+08:00" content="2015-03-26">
-              2015-03-26
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/一点一滴/" itemprop="url" rel="index">
-                    <span itemprop="name">一点一滴</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/03/26/ClosureInSwift/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/03/26/ClosureInSwift/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>初学习Swift, 觉得Swift中的闭包用法比较灵活, 所以在学习的时候编了个小例子来把用法罗列了出来, 分享出来给大家。</p>
-<p>在讲例子之前我们来看下什么是闭包(Closure).《The Swift Programming Language》是这样定义的:</p>
-<blockquote>
-<p>Closures are self-contained blocks of functionality that can be passed around and used in your code</p>
-</blockquote>
-<p>中文版中这样翻译：</p>
-<blockquote>
-<p>闭包是自包含的函数代码块，可以在代码中被传递和使用。</p>
-</blockquote>
-<p>看解释我们知道，闭包是代码段，它能实现一些逻辑（函数），它可以被传递和使用（就像类型一样）。</p>
-<p>然后我们来看看闭包长的什么样子。下面是闭包的定义:</p>
-<blockquote>
-<p>{ (parameters) -&gt; returnType in<br>   statements<br>}</p>
-</blockquote>
-<p>上面定义中 <strong>parameters</strong> 是指参数， <strong>returnType</strong> 是返回类型，而 <strong>statements</strong> 指的是我们要实现的逻辑的代码, 闭包的代码都被 <strong>{}</strong> 包含着。<br>观察力强的同学们估计发现了，它怎么跟Swift的函数长的差不多，难道它们是亲戚? Swift中函数是一种特殊的闭包，记住函数是闭包，不是闭包是函数哦。</p>
-<p>接下来我们说说文章开头提到的那个栗子。</p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2015/03/26/ClosureInSwift/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1079,7 +1075,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">38</span>
+              <span class="site-state-item-count">39</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

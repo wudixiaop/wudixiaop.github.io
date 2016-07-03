@@ -1,0 +1,722 @@
+<!doctype html>
+
+
+
+
+<html class="theme-next mist">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.lug.ustc.edu.cn/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Shader," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="相信做过 Unity 开发的同学都在 Inspector 里面见过 Tiling 和 Offset。一般情况下它们两总是形影相随，不分不离，你中有我，我中有你。。。咳咳，我们回归正题。正常情况下它们都是成对出现的，如下图。
+
+讲 Tiling 和 Offset 之前我们先讲些其他相关的零散的知识。
+纹理的 UVUV 是一种标准化了的 2D 坐标系统，等同于 XY 坐标系统，为了不和 XY 混淆，用">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Tiling 和 Offset 是什么鬼？">
+<meta property="og:url" content="http://blog.shuiguzi.com/2016/07/03/TilingAndOffset/index.html">
+<meta property="og:site_name" content="Rocky Lai 的技术博客">
+<meta property="og:description" content="相信做过 Unity 开发的同学都在 Inspector 里面见过 Tiling 和 Offset。一般情况下它们两总是形影相随，不分不离，你中有我，我中有你。。。咳咳，我们回归正题。正常情况下它们都是成对出现的，如下图。
+
+讲 Tiling 和 Offset 之前我们先讲些其他相关的零散的知识。
+纹理的 UVUV 是一种标准化了的 2D 坐标系统，等同于 XY 坐标系统，为了不和 XY 混淆，用">
+<meta property="og:image" content="http://blog.shuiguzi.com/images/TilingOffset/Inspector.jpg">
+<meta property="og:image" content="http://blog.shuiguzi.com/images/TilingOffset/textureWrapMode.jpg">
+<meta property="og:image" content="http://blog.shuiguzi.com/images/TilingOffset/clamp.jpg">
+<meta property="og:image" content="http://blog.shuiguzi.com/images/TilingOffset/repeat.jpg">
+<meta property="og:image" content="http://blog.shuiguzi.com/images/TilingOffset/InInspector.jpg">
+<meta property="og:image" content="http://blog.shuiguzi.com/images/TilingOffset/33repeat.jpg">
+<meta property="og:image" content="http://blog.shuiguzi.com/images/TilingOffset/33clamp.jpg">
+<meta property="og:updated_time" content="2016-07-03T14:08:31.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Tiling 和 Offset 是什么鬼？">
+<meta name="twitter:description" content="相信做过 Unity 开发的同学都在 Inspector 里面见过 Tiling 和 Offset。一般情况下它们两总是形影相随，不分不离，你中有我，我中有你。。。咳咳，我们回归正题。正常情况下它们都是成对出现的，如下图。
+
+讲 Tiling 和 Offset 之前我们先讲些其他相关的零散的知识。
+纹理的 UVUV 是一种标准化了的 2D 坐标系统，等同于 XY 坐标系统，为了不和 XY 混淆，用">
+<meta name="twitter:image" content="http://blog.shuiguzi.com/images/TilingOffset/Inspector.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: false,
+    motion: false,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> Tiling 和 Offset 是什么鬼？ | Rocky Lai 的技术博客 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?3a8e2930fa3e4db2aa0fe1cb32188641";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Rocky Lai 的技术博客</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">学习、思考、分享</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Tiling 和 Offset 是什么鬼？
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-07-03T16:47:42+08:00" content="2016-07-03">
+              2016-07-03
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/UnityKB/" itemprop="url" rel="index">
+                    <span itemprop="name">UnityKB</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/07/03/TilingAndOffset/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/03/TilingAndOffset/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>相信做过 Unity 开发的同学都在 Inspector 里面见过 Tiling 和 Offset。一般情况下它们两总是形影相随，不分不离，你中有我，我中有你。。。咳咳，我们回归正题。正常情况下它们都是成对出现的，如下图。</p>
+<p><img src="/images/TilingOffset/Inspector.jpg" alt="inspector"></p>
+<p>讲 Tiling 和 Offset 之前我们先讲些其他相关的零散的知识。</p>
+<h3 id="纹理的-UV"><a href="#纹理的-UV" class="headerlink" title="纹理的 UV"></a>纹理的 UV</h3><p>UV 是一种标准化了的 2D 坐标系统，等同于 XY 坐标系统，为了不和 XY 混淆，用 U 和 V 分别表示对应的 X 和 Y。UV 系统中， <code>(0, 0)</code> 表示左纹理的下角，<code>(1, 1)</code> 表示纹理的右上角。</p>
+<a id="more"></a>
+<h3 id="纹理的-Wrap-Mode"><a href="#纹理的-Wrap-Mode" class="headerlink" title="纹理的 Wrap Mode"></a>纹理的 Wrap Mode</h3><p>Unity 中纹理的 Wrap Mode 可以设置值有：Repeat 和 Clamp。</p>
+<p><img src="/images/TilingOffset/textureWrapMode.jpg" alt="warpMode"></p>
+<p><strong>Clamp</strong> 模式中 UV 都将被限制在 <code>0-1</code> 的范围内，如下图 U 轴（图来自<a href="http://www.manew.com/thread-4363-1-1.html" target="_blank" rel="external">这里</a>），左右两侧不相连：</p>
+<p><img src="/images/TilingOffset/clamp.jpg" alt="clamp"></p>
+<p><strong>Repeat</strong> 中 U 轴是相连的：</p>
+<p><img src="/images/TilingOffset/repeat.jpg" alt="repeast"></p>
+<p>同学们现在是否有一种看到 <strong>Repeat</strong> 模式像是在地板上贴瓷砖的感觉。如果能有这种感觉，我这里给你点个赞。</p>
+<h3 id="纹理的-ST"><a href="#纹理的-ST" class="headerlink" title="纹理的 _ST"></a>纹理的 _ST</h3><p>Shaderlab 中纹理都会分配一个对应属性名后加 _ST 的变量来表示纹理的缩放（Scale =&gt; S）和偏移（Translation =&gt; T)。比如属性 <code>_MainTex</code> 其对应的变量为 <code>_MainTex_ST</code>。关于 Shaderlab 属性，可以参照 <a href="/2015/05/08/Shader_9/" title="[瞎聊 Unity Shader 系列之九：用来包装变量的 Properties]">[瞎聊 Unity Shader 系列之九：用来包装变量的 Properties]</a> </p>
+<h3 id="Shaderlab-中-TRANSFORM-TEX"><a href="#Shaderlab-中-TRANSFORM-TEX" class="headerlink" title="Shaderlab 中 TRANSFORM_TEX"></a>Shaderlab 中 TRANSFORM_TEX</h3><p>Unity Shaderlab 中的 UnityCG.cginc 有 <code>TRANSFORM_TEX</code> 的定义：</p>
+<blockquote>
+<p>#define TRANSFORM_TEX(tex,name) (tex.xy * name##_ST.xy + name##_ST.zw)</p>
+</blockquote>
+<p>其中 name 为纹理对应属性名，<strong>其中 <code>name##_ST.xy</code> 表示缩放，<code>name##_ST.wz</code> 表示偏移。</strong> </p>
+<p>下面我们先贴 <a href="http://docs.unity3d.com/Manual/SL-VertexFragmentShaderExamples.html" target="_blank" rel="external">Unity 手册</a> 中一段代码看看 <code>TRANSFORM_TEX</code> 是如何在 Shaderlab 编程中使用的。</p>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line">Shader <span class="string">"Unlit/NewUnlitShader"</span></span><br><span class="line">&#123;</span><br><span class="line">    Properties</span><br><span class="line">    &#123;</span><br><span class="line">        _MainTex (<span class="string">"Texture"</span>, <span class="number">2</span>D) = <span class="string">"white"</span> &#123;&#125;</span><br><span class="line">    &#125;</span><br><span class="line">    SubShader</span><br><span class="line">    &#123;</span><br><span class="line">        Tags &#123; <span class="string">"RenderType"</span>=<span class="string">"Opaque"</span> &#125;</span><br><span class="line">        LOD <span class="number">100</span></span><br><span class="line"></span><br><span class="line">        Pass</span><br><span class="line">        &#123;</span><br><span class="line">            CGPROGRAM</span><br><span class="line">            <span class="meta">#<span class="meta-keyword">pragma</span> vertex vert</span></span><br><span class="line">            <span class="meta">#<span class="meta-keyword">pragma</span> fragment frag</span></span><br><span class="line">            <span class="comment">// make fog work</span></span><br><span class="line">            <span class="meta">#<span class="meta-keyword">pragma</span> multi_compile_fog</span></span><br><span class="line">            </span><br><span class="line">            <span class="meta">#<span class="meta-keyword">include</span> <span class="string">"UnityCG.cginc"</span></span></span><br><span class="line"></span><br><span class="line">            <span class="keyword">struct</span> appdata</span><br><span class="line">            &#123;</span><br><span class="line">                float4 vertex : POSITION;</span><br><span class="line">                float2 uv : TEXCOORD0;</span><br><span class="line">            &#125;;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">struct</span> v2f</span><br><span class="line">            &#123;</span><br><span class="line">                float2 uv : TEXCOORD0;</span><br><span class="line">                UNITY_FOG_COORDS(<span class="number">1</span>)</span><br><span class="line">                float4 vertex : SV_POSITION;</span><br><span class="line">            &#125;;</span><br><span class="line"></span><br><span class="line">            sampler2D _MainTex;</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 这里是 Shaderlab 分配的</span></span><br><span class="line">            <span class="comment">//</span></span><br><span class="line">            float4 _MainTex_ST; </span><br><span class="line">            </span><br><span class="line">            v2f vert (appdata v)</span><br><span class="line">            &#123;</span><br><span class="line">                v2f o;</span><br><span class="line">                o.vertex = mul(UNITY_MATRIX_MVP, v.vertex);</span><br><span class="line"></span><br><span class="line">                <span class="comment">// TRANSFORM_TEX 确保材质球里的缩放和偏移设置是正确的</span></span><br><span class="line">                <span class="comment">//</span></span><br><span class="line">                o.uv = TRANSFORM_TEX(v.uv, _MainTex);  </span><br><span class="line">                UNITY_TRANSFER_FOG(o,o.vertex);</span><br><span class="line">                <span class="built_in">return</span> o;</span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">            fixed4 frag (v2f i) : SV_Target</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="comment">// sample the texture</span></span><br><span class="line">                fixed4 col = tex2D(_MainTex, i.uv);</span><br><span class="line">                <span class="comment">// apply fog</span></span><br><span class="line">                UNITY_APPLY_FOG(i.fogCoord, col);</span><br><span class="line">                <span class="built_in">return</span> col;</span><br><span class="line">            &#125;</span><br><span class="line">            ENDCG</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Tiling-和-Offset"><a href="#Tiling-和-Offset" class="headerlink" title="Tiling 和 Offset"></a>Tiling 和 Offset</h3><p>在 Unity 编辑器中创建一个新的 Shader 和材质, 然后将新的 Shader 拖到新建的材质上，在 Inspector 中得到下图：</p>
+<p><img src="/images/TilingOffset/InInspector.jpg" alt="inspector"></p>
+<p>我们看到纹理材质的 Inspector UI 中  <code>_MainTex</code> 出现了 <code>Tiling</code> 和 <code>Offset</code>。通过阅读反编译过来的 <a href="https://github.com/MattRix/UnityDecompiled/blob/cc432a3de42b53920d5d5dae85968ff993f4ec0e/UnityEditor/UnityEditor/MaterialEditor.cs" target="_blank" rel="external">MaterialEditor</a> 的源码，我们可以得到 ScaleOffset 属性就是 Tilling 和 Offset， <strong>也就是说 _MainText_ST.xy 就是 Tiling, _MainTex<em>ST</em>.wz 是 Offset</strong>。</p>
+<h3 id="Tiling-和-Offset-与纹理-Wrap-Mode"><a href="#Tiling-和-Offset-与纹理-Wrap-Mode" class="headerlink" title="Tiling 和 Offset 与纹理 Wrap Mode"></a>Tiling 和 Offset 与纹理 Wrap Mode</h3><p>当 Tiling 的 XY 在 <code>[-1, -1]</code> 区间的时候，纹理的 Wrap Mode 无论是 Repeat 还是 Clamp 对现实效果都没有影响，但是在 [-1, 1] 范围之外就有影响了。</p>
+<p>例如，假设 Tiling 为 (3, 3) Offset 为 (0, 0), 在 Repeat 模式下显示为：</p>
+<p><img src="/images/TilingOffset/33repeat.jpg" alt="33repeat"></p>
+<p>而 Clamp 模式下为：</p>
+<p><img src="/images/TilingOffset/33clamp.jpg" alt="33clamp"></p>
+<p>为什么会这样？还记得吗？clamp 模式下 UV 是不连续的，而 repeat 模式下 UV 是连续的。</p>
+<h3 id="Tiling-和-Offset-能用来做什么？"><a href="#Tiling-和-Offset-能用来做什么？" class="headerlink" title="Tiling 和 Offset 能用来做什么？"></a>Tiling 和 Offset 能用来做什么？</h3><p>还记得吗，上面提到的贴往地板上贴瓷砖，我们可以把纹理的 Wrap Mode 设置成 Repeat， 然后加大 Tiling 的值就“可以贴好多个瓷砖了”。抽象一下就是可以得到：</p>
+<ul>
+<li>使用在需要重复很多相同纹理的情景。</li>
+</ul>
+<p>除此之外，还可以</p>
+<ul>
+<li>通过修改 Tiling 和 Offset 对纹理做裁剪。 </li>
+<li>对 Offset 做动画来改变 UV 实现水流效果等特效</li>
+<li>实现精灵动画</li>
+</ul>
+<p>还有很多其他情况大家可以自己去发掘。好了这篇就啰嗦到这里。Enjoy!</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>打赏一下，给作者买糖吃！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/images/pay/wechat.png" alt="Rocky Lai WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/images/pay/alipay.png" alt="Rocky Lai Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Shader/" rel="tag">#Shader</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/06/28/RunOnDifferentPlatforms/" rel="next" title="在不同平台运行不同代码的几种方式">
+                <i class="fa fa-chevron-left"></i> 在不同平台运行不同代码的几种方式
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/07/03/TilingAndOffset/"
+           data-title="Tiling 和 Offset 是什么鬼？" data-url="http://blog.shuiguzi.com/2016/07/03/TilingAndOffset/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="https://avatars1.githubusercontent.com/u/5707242?v=3&s=460"
+               alt="Rocky Lai" />
+          <p class="site-author-name" itemprop="name">Rocky Lai</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">39</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/wudixiaop" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:rockylai@shuiguzi.com" target="_blank" title="邮件">
+                  
+                    <i class="fa fa-fw fa-envelope-o"></i>
+                  
+                  邮件
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#纹理的-UV"><span class="nav-number">1.</span> <span class="nav-text">纹理的 UV</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#纹理的-Wrap-Mode"><span class="nav-number">2.</span> <span class="nav-text">纹理的 Wrap Mode</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#纹理的-ST"><span class="nav-number">3.</span> <span class="nav-text">纹理的 _ST</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Shaderlab-中-TRANSFORM-TEX"><span class="nav-number">4.</span> <span class="nav-text">Shaderlab 中 TRANSFORM_TEX</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Tiling-和-Offset"><span class="nav-number">5.</span> <span class="nav-text">Tiling 和 Offset</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Tiling-和-Offset-与纹理-Wrap-Mode"><span class="nav-number">6.</span> <span class="nav-text">Tiling 和 Offset 与纹理 Wrap Mode</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Tiling-和-Offset-能用来做什么？"><span class="nav-number">7.</span> <span class="nav-text">Tiling 和 Offset 能用来做什么？</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2014 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Rocky Lai</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"rockylaigithubio"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+<script type="text/javascript" async src="//push.zhanzhang.baidu.com/push.js">
+</script>
+
+
+</body>
+</html>
