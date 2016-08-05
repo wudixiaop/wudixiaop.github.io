@@ -29,7 +29,7 @@ category: Shader
 一般是由于 .shader 或者 .cginc 文件没有和 ShaderlabVS 插件没有关联上。原因可能是：
 
 - 安装了其他跟 .shader 和 .cginc 文件相关的其他插件
-- 关闭 VS, 安装插件，然后执行 [vs2015_2013_2012-register.cmd](https://github.com/wudixiaop/ShaderlabVS/tree/master/Tools) 
+- 关闭 VS, 然后执行 [vs2015_2013_2012-register.cmd](https://github.com/wudixiaop/ShaderlabVS/tree/master/Tools) 
 来关联插件, 执行之后重启 VS
 
 #### 其他问题

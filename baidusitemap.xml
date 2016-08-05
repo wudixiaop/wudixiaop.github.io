@@ -4,8 +4,28 @@
 
     
   <url>
+    <loc>http://blog.shuiguzi.com/2014/10/28/Release/</loc>
+    <lastmod>2016-08-05T11:24:20.000Z</lastmod>
+    <data>
+        <display>
+        <title>ShaderlabVS Release Page</title>
+        <pubTime>2014-10-28T13:20:00.000Z</pubTime>
+        
+        <tag>Shader</tag>
+         
+         
+           
+             
+              <breadCrumb title="Shader" url="http://blog.shuiguzi.com/categories/Shader/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://blog.shuiguzi.com/2015/12/27/ShaderlabVSFAQ/</loc>
-    <lastmod>2016-08-04T14:41:54.000Z</lastmod>
+    <lastmod>2016-08-05T11:22:57.000Z</lastmod>
     <data>
         <display>
         <title>ShaderlabVS 的一些常见问题</title>
@@ -77,26 +97,6 @@
            
              
               <breadCrumb title="一点一滴" url="http://blog.shuiguzi.com/categories/%E4%B8%80%E7%82%B9%E4%B8%80%E6%BB%B4/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://blog.shuiguzi.com/2015/08/15/UNet_5/</loc>
-    <lastmod>2016-06-29T11:44:32.000Z</lastmod>
-    <data>
-        <display>
-        <title>UNet 0x05：SyncVar</title>
-        <pubTime>2015-08-15T04:01:00.000Z</pubTime>
-        
-        <tag>UNet</tag>
-         
-         
-           
-             
-              <breadCrumb title="UnityKB" url="http://blog.shuiguzi.com/categories/UnityKB/"/>
           
         </display>
     </data>
@@ -204,19 +204,19 @@
 
     
   <url>
-    <loc>http://blog.shuiguzi.com/2015/05/08/Shader_9/</loc>
+    <loc>http://blog.shuiguzi.com/2015/08/23/UNet_6/</loc>
     <lastmod>2016-06-29T11:44:32.000Z</lastmod>
     <data>
         <display>
-        <title>瞎聊 Unity Shader 系列之九：用来包装变量的 Properties</title>
-        <pubTime>2015-05-08T06:03:00.000Z</pubTime>
+        <title>UNet 0x06：Command</title>
+        <pubTime>2015-08-23T04:01:00.000Z</pubTime>
         
-        <tag>Shader</tag>
+        <tag>UNet</tag>
          
          
            
              
-              <breadCrumb title="Shader" url="http://blog.shuiguzi.com/categories/Shader/"/>
+              <breadCrumb title="UnityKB" url="http://blog.shuiguzi.com/categories/UnityKB/"/>
           
         </display>
     </data>
@@ -364,12 +364,12 @@
 
     
   <url>
-    <loc>http://blog.shuiguzi.com/2015/08/23/UNet_6/</loc>
+    <loc>http://blog.shuiguzi.com/2015/08/15/UNet_5/</loc>
     <lastmod>2016-06-29T11:44:32.000Z</lastmod>
     <data>
         <display>
-        <title>UNet 0x06：Command</title>
-        <pubTime>2015-08-23T04:01:00.000Z</pubTime>
+        <title>UNet 0x05：SyncVar</title>
+        <pubTime>2015-08-15T04:01:00.000Z</pubTime>
         
         <tag>UNet</tag>
          
@@ -390,6 +390,26 @@
         <display>
         <title>瞎聊 Unity Shader 系列之六：初识 Shaderlab</title>
         <pubTime>2015-05-05T09:55:00.000Z</pubTime>
+        
+        <tag>Shader</tag>
+         
+         
+           
+             
+              <breadCrumb title="Shader" url="http://blog.shuiguzi.com/categories/Shader/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://blog.shuiguzi.com/2015/05/08/Shader_9/</loc>
+    <lastmod>2016-06-29T11:44:32.000Z</lastmod>
+    <data>
+        <display>
+        <title>瞎聊 Unity Shader 系列之九：用来包装变量的 Properties</title>
+        <pubTime>2015-05-08T06:03:00.000Z</pubTime>
         
         <tag>Shader</tag>
          
@@ -464,26 +484,6 @@
 
     
   <url>
-    <loc>http://blog.shuiguzi.com/2015/04/15/cirleImageInUnity3D/</loc>
-    <lastmod>2016-06-29T01:58:00.000Z</lastmod>
-    <data>
-        <display>
-        <title>在 Unity uGUI 中绘制圆形图片</title>
-        <pubTime>2015-04-15T15:30:00.000Z</pubTime>
-        
-        <tag>Unity</tag>
-         
-         
-           
-             
-              <breadCrumb title="Unity" url="http://blog.shuiguzi.com/categories/Unity/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://blog.shuiguzi.com/2015/09/15/BrightenTexture2D/</loc>
     <lastmod>2016-06-29T01:58:00.000Z</lastmod>
     <data>
@@ -524,6 +524,26 @@
 
     
   <url>
+    <loc>http://blog.shuiguzi.com/2014/11/05/about%20Unity3D%20editor/</loc>
+    <lastmod>2016-06-29T01:58:00.000Z</lastmod>
+    <data>
+        <display>
+        <title>关于 Unity 编辑器一些事儿</title>
+        <pubTime>2014-11-05T14:30:00.000Z</pubTime>
+        
+        <tag>Editor</tag>
+         
+         
+           
+             
+              <breadCrumb title="UnityKB" url="http://blog.shuiguzi.com/categories/UnityKB/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://blog.shuiguzi.com/2015/09/23/Xcode%20download/</loc>
     <lastmod>2016-06-29T01:58:00.000Z</lastmod>
     <data>
@@ -544,19 +564,19 @@
 
     
   <url>
-    <loc>http://blog.shuiguzi.com/2014/11/05/about%20Unity3D%20editor/</loc>
+    <loc>http://blog.shuiguzi.com/2015/04/15/cirleImageInUnity3D/</loc>
     <lastmod>2016-06-29T01:58:00.000Z</lastmod>
     <data>
         <display>
-        <title>关于 Unity 编辑器一些事儿</title>
-        <pubTime>2014-11-05T14:30:00.000Z</pubTime>
+        <title>在 Unity uGUI 中绘制圆形图片</title>
+        <pubTime>2015-04-15T15:30:00.000Z</pubTime>
         
-        <tag>Editor</tag>
+        <tag>Unity</tag>
          
          
            
              
-              <breadCrumb title="UnityKB" url="http://blog.shuiguzi.com/categories/UnityKB/"/>
+              <breadCrumb title="Unity" url="http://blog.shuiguzi.com/categories/Unity/"/>
           
         </display>
     </data>
@@ -585,46 +605,6 @@
 
     
   <url>
-    <loc>http://blog.shuiguzi.com/2014/10/28/HistoryofShaderlabVS/</loc>
-    <lastmod>2016-06-28T08:54:46.000Z</lastmod>
-    <data>
-        <display>
-        <title>ShaderlabVS Release History Page</title>
-        <pubTime>2014-10-28T14:20:00.000Z</pubTime>
-        
-        <tag>Shader</tag>
-         
-         
-           
-             
-              <breadCrumb title="Shader" url="http://blog.shuiguzi.com/categories/Shader/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://blog.shuiguzi.com/2014/10/28/Release/</loc>
-    <lastmod>2016-06-28T08:54:46.000Z</lastmod>
-    <data>
-        <display>
-        <title>ShaderlabVS Release Page</title>
-        <pubTime>2014-10-28T13:20:00.000Z</pubTime>
-        
-        <tag>Shader</tag>
-         
-         
-           
-             
-              <breadCrumb title="Shader" url="http://blog.shuiguzi.com/categories/Shader/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://blog.shuiguzi.com/2016/02/16/UnityTips/</loc>
     <lastmod>2016-06-28T08:54:46.000Z</lastmod>
     <data>
@@ -638,6 +618,26 @@
            
              
               <breadCrumb title="UnityKB" url="http://blog.shuiguzi.com/categories/UnityKB/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://blog.shuiguzi.com/2014/10/28/HistoryofShaderlabVS/</loc>
+    <lastmod>2016-06-28T08:54:46.000Z</lastmod>
+    <data>
+        <display>
+        <title>ShaderlabVS Release History Page</title>
+        <pubTime>2014-10-28T14:20:00.000Z</pubTime>
+        
+        <tag>Shader</tag>
+         
+         
+           
+             
+              <breadCrumb title="Shader" url="http://blog.shuiguzi.com/categories/Shader/"/>
           
         </display>
     </data>
