@@ -15,8 +15,6 @@ tags: Shader
 
 * Fixed .net framework cannot found issue
 
-**IMPROTANT :** We have to execute `vs2015_register.cmd` after extension installed to linke .shader and .cginc files to ShaderlabVS plugin on VS2015. It's not required on VS2013 / VS2012.
-
 > **VS2015:** <https://pan.baidu.com/s/1mio6K9y>  
 > **VS2012/VS2013:** <https://pan.baidu.com/s/1kVNKDTX>
 
