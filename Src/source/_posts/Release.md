@@ -11,9 +11,10 @@ tags: Shader
 
 ### Version - v0.7 beta
 <hr>
-v0.7 beta: Fix VS2015 not work for some machine.
+v0.7 beta: Fix plugin not work for some machine.
 
 > **VS2015:** <http://pan.baidu.com/s/1pLvS52F> 
+> **VS2013:** <https://pan.baidu.com/s/1dE6gg3f>
 
 ### Version - V0.6.1_  
 <hr>

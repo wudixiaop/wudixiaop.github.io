@@ -12,3 +12,8 @@ db.json
 src/node_modules/
 public/
 .deploy*/
+*.db-wal
+
+*.db-shm
+
+*.db-wal
