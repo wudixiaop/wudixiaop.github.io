@@ -4,7 +4,7 @@ tags: 招聘
 category: 一点一滴
 ---
 
-非凡部落招聘 Unity 工程师咯~~，欢迎喜欢 AR/VR 技术的同学发简历至 <a herf='mailto:dev@vivabro.com'>dev@vivabro.com</a>。
+非凡部落招聘 Unity 工程师咯~~，欢迎喜欢 AR/VR 技术的同学发简历至 <a herf='mailto:dev@vivabro.com'>dev@vivabro.com</a>。工作地点是北京。
 
 关于非凡部落，请访问非凡部落的官网： <http://www.vivabro.com/joinus.html>。
 
