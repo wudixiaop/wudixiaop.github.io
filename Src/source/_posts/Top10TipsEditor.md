@@ -30,7 +30,7 @@ tags: Unity Tips
 
 {% iframe //blog.shuiguzi.com/images/Tips/Rect%20Tools.mp4 640 480 %}
 
-#### 7. CTRL + ALT + 数字键 保持当前 Hierarchy 选中方案，CTRL + SHIFT + 数字键恢复保持的 Hierarchy 选中方案
+#### 7. CTRL + ALT + 数字键 保存当前 Hierarchy 选中方案，CTRL + SHIFT + 数字键恢复保存的 Hierarchy 选中方案
 
 {% iframe //blog.shuiguzi.com/images/Tips/selection.mp4 644 272 %}
 
