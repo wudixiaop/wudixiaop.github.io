@@ -4,11 +4,11 @@ category: UnityKB
 tags: Unity Tips
 ---
 
-#### 1. ALT + 鼠标左键点击 Hierarchy 内折叠的对象可以展开和收起对象的所有子对象
+#### 1. ALT + 鼠标左键点击 Hierarchy 对象可以展开和收起对象的所有子对象
 
 ![](/images/Tips/alt_left.png)
 
-#### 2. 在当前编辑器窗口中摁下 SHIFT + 空格键 可以最大化/最小化当前窗口
+#### 2. 在当前编辑器窗口中摁下 `SHIFT + 空格键` 可以最大化/最小化当前窗口
 
  {% iframe //blog.shuiguzi.com/images/Tips/max.mp4 576 360 %}
 
