@@ -8,11 +8,11 @@ tags: Unity Tips
 
 ![](/images/Tips/alt_left.png)
 
+<!-- more -->
+
 #### 2. 在当前编辑器窗口中摁下 `SHIFT + 空格键` 可以最大化/最小化当前窗口
 
  {% iframe //blog.shuiguzi.com/images/Tips/max.mp4 576 360 %}
-
-<!-- more -->
 
 #### 3. 编辑器中大部分数值类型的输入框都可以输入数值运算，拾色器内的输入框也不例外
 

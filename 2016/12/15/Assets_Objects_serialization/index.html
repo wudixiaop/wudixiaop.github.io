@@ -1,0 +1,915 @@
+<!doctype html>
+
+
+
+
+<html class="theme-next mist">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.lug.ustc.edu.cn/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="AssetBundle," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="This is the second chapter in a series of articles covering Assets, Resources and resource management in Unity 5.
+
+这是 Unity 5 [资产, 资源和资源管理系列文章]的第二篇。
+This chapter covers the deep internals of Unity’s s">
+<meta property="og:type" content="article">
+<meta property="og:title" content="资产, 对象和序列化">
+<meta property="og:url" content="http://blog.shuiguzi.com/2016/12/15/Assets_Objects_serialization/index.html">
+<meta property="og:site_name" content="Rocky Lai 的技术博客">
+<meta property="og:description" content="This is the second chapter in a series of articles covering Assets, Resources and resource management in Unity 5.
+
+这是 Unity 5 [资产, 资源和资源管理系列文章]的第二篇。
+This chapter covers the deep internals of Unity’s s">
+<meta property="og:updated_time" content="2016-12-16T03:51:04.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="资产, 对象和序列化">
+<meta name="twitter:description" content="This is the second chapter in a series of articles covering Assets, Resources and resource management in Unity 5.
+
+这是 Unity 5 [资产, 资源和资源管理系列文章]的第二篇。
+This chapter covers the deep internals of Unity’s s">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: false,
+    motion: false,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> 资产, 对象和序列化 | Rocky Lai 的技术博客 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?3a8e2930fa3e4db2aa0fe1cb32188641";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Rocky Lai 的技术博客</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">学习、思考、分享</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                资产, 对象和序列化
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-12-15T17:40:00+08:00" content="2016-12-15">
+              2016-12-15
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/UnityKB/" itemprop="url" rel="index">
+                    <span itemprop="name">UnityKB</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/12/15/Assets_Objects_serialization/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/12/15/Assets_Objects_serialization/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <div style="display:none"><br>This is the second chapter in a <a href="https://unity3d.com/learn/tutorials/topics/best-practices/guide-asset-bundles-and-resources/" target="_blank" rel="external">series of articles covering Assets, Resources and resource management</a> in Unity 5.<br></div>
+
+<p>这是 Unity 5 <a href="/2016/12/15/GuideToABAndRes/" title="[资产, 资源和资源管理系列文章]">[资产, 资源和资源管理系列文章]</a>的第二篇。</p>
+<div style="display:none"><br>This chapter covers the deep internals of Unity’s serialization system and how Unity maintains robust references between different Objects, both in the Unity Editor and at runtime. It also discusses the technical distinctions between Objects and Assets. The topics covered here are fundamental to understanding how to efficiently load and unload Assets in Unity. Proper Asset management is crucial to keeping loading times short and memory usage low.<br></div>
+
+<p>这篇文章涵盖了 Unity 序列化系统的底层知识和 Unity  怎么在它的编辑器及运行时维持不同对象的稳定的引用，理解怎么样在 Unity 中高效的加载和卸载资产。正确的资产管理是保持低内存和快速加载的关键。</p>
+<div style="display:none"><br>### 1. Inside Assets and Objects<br></div>
+
+<h3 id="资产和对象的内部"><a href="#资产和对象的内部" class="headerlink" title="资产和对象的内部"></a>资产和对象的内部</h3><div style="display:none"><br>To understand how to properly manage data in Unity, it is important to understand how Unity identifies and serializes data. The first key point is the distinction between Assets and <strong>UnityEngine.Objects</strong>.<br></div>
+
+<p>要理解怎么样正确的管理数据，Unity 怎么鉴别和序列化数据很重要。其中首先的关键点是理解 <strong>资产</strong> 和 <strong>对象（UnityEngine.Objects）</strong> 的区别。</p>
+<div style="display:none"><br>An Asset is a file on disk, stored in the Assets folder of a Unity project. For example, texture files, material files and FBX files are all Assets. Some Assets contain data in formats native to Unity, such as materials. Other Assets need to be processed into native formats, such as FBX files.<br></div>
+
+<p>一个资产是存储在 Unity Project 中资产文件夹下的文件。比如纹理文件，材质文件和 FBX 文件都是资产。有些资产包含 Unity 原生数据格式，比如材质。而有些资产需要转换成 Unity 原生数据格式，比如 FBX 文件。</p>
+<div style="display:none"><br>A <strong>UnityEngine.Object</strong>, or <strong>Object</strong> with a capitalized ‘O’, is a set of serialized data collectively describing a specific instance of a resource. This can be any type of resource which the Unity Engine uses, such as a mesh, a sprite, an AudioClip or an AnimationClip. All Objects are subclasses of the <a href="http://docs.unity3d.com/ScriptReference/Object.html" target="_blank" rel="external">UnityEngine.Object</a> base class.<br></div>
+
+<p>一个 <strong>UnityEngine.Object</strong> 或者大写字母 O 的 <strong>Object</strong>，是个序列化数据集合，用来表述某个资源的具体实例。它可以是任何 Unity 引擎使用的资源，比如一个网格，一个精灵，一个音频剪辑和一个动画片段。所有的对象都是 <a href="http://docs.unity3d.com/ScriptReference/Object.html" target="_blank" rel="external">UnityEngine.Object</a> 的子类。</p>
+<div style="display:none"><br>While most Object types are built-in, there are two special types.<br></div>
+
+<p>在 Unity 中基本所有的对象类型都是内置的，除了两种特殊的类型。<br><a id="more"></a></p>
+<div style="display:none"><br>1. A <a href="http://docs.unity3d.com/ScriptReference/ScriptableObject.html" target="_blank" rel="external">ScriptableObject</a> provides a convenient system for developers to define their own data types. These types can be natively serialized and deserialized by Unity, and manipulated in the Unity Editor’s Inspector window.<br>2. A <a href="http://docs.unity3d.com/ScriptReference/MonoBehaviour.html" target="_blank" rel="external">MonoBehaviour</a> provides a wrapper that links to a <a href="http://docs.unity3d.com/ScriptReference/MonoScript.html" target="_blank" rel="external">MonoScript</a>. A MonoScript is an internal data type that Unity uses to hold a reference to a specific scripting class within a specific assembly and namespace. The MonoScript does not contain any actual executable code.<br></div>
+
+<ol>
+<li><a href="http://docs.unity3d.com/ScriptReference/ScriptableObject.html" target="_blank" rel="external">ScriptableObject</a> 给开发者提供了一个便捷的，可以定义自己数据类型的系统。这些类型能被 Unity 序列化和反序列化和在 Unity 编辑器的 Inspector Window 中使用。</li>
+<li>A <a href="http://docs.unity3d.com/ScriptReference/MonoBehaviour.html" target="_blank" rel="external">MonoBehaviour</a> 提供了一个链接到 <a href="http://docs.unity3d.com/ScriptReference/MonoScript.html" target="_blank" rel="external">MonoScript</a> 的封装。MonoScript 是一个内置的数据类型，在 Unity 中用来保持程序集或者命名空间中一个脚本的引用。MonoSript 不包含任何可以执行的代码。</li>
+</ol>
+<div style="display:none"><br>#### 1.2. Inter-Object references<br></div>
+
+<h3 id="内置对象的引用"><a href="#内置对象的引用" class="headerlink" title="内置对象的引用"></a>内置对象的引用</h3><div style="display:none"><br>All UnityEngine.Objects can have references to other UnityEngine.Objects. These other Objects may reside within the same Asset file, or may be imported from other Asset files. For example, a material Object usually has one or more references to texture Objects. These texture Objects are generally imported from one or more texture Asset files (such as PNGs or JPGs).<br></div>
+
+<p>所有的 UnityEngine.Objects 都能拥有其他 UnityEngine.Objects 的引用。而这些其他的 UnityEngine.Objects 可能同一个资产文件，或者从其他资产文件中导入。比如，一个材质对象通常拥有一个或者多个纹理对象的引用。这些纹理对象一般都是从一个或者多个纹理资产文件中导入的（比如 PNG 和 JPG 文件）。</p>
+<div style="display:none"><br>When serialized, these references consist of two separate pieces of data: a <strong>File GUID</strong> and a <strong>Local ID</strong>. The File GUID identifies the Asset file where the target resource is stored. A locally unique Local ID identifies each Object within an Asset file because an Asset file may contain multiple Objects.<br></div>
+
+<p>当被序列化之后，由两部分数据组成了这些引用：一个是 <strong>文件 GUID</strong> 另外一个是 <strong>本地 ID</strong>。文件 GUID 用来 标识目标资源存储位置下的资产文件。本地ID（唯一的 <a href="#f1">[1]</a>）用来标识一个资产文件中的每个对象，因为一个资产文件可能包含多个对象。</p>
+<div style="display:none"><br>File GUIDs are stored in .meta files. These .meta files are generated when Unity first imports an Asset, and are stored in the same directory as the Asset.<br></div>
+
+<p>文件 GUID 存储在 .meta 文件中。这些 .meata 文件在 Unity 导入资产的时候创建，存储在和资产文件同一个目录中。</p>
+<div style="display:none"><br>The above identification and referencing system can be seen in a text editor: create a fresh Unity project and change its Editor Settings to expose Visible Meta Files and to serialize Assets as text. Create a material and import a texture into the project. Assign the material to a cube in the scene and save the scene.<br></div>
+
+<p>上面提到的鉴别和引用系统可以在文本编辑器中看到：创建一个新 Unity 项目，然后将 <strong>编辑器</strong> 设置为 <strong>Visible Meta Files</strong> 和 <strong>序列化为文本</strong>。然后创建一个材质和导入一个纹理到项目中。将新创建的材质指定到场景中的一个立方体上面，然后保存场景。</p>
+<div style="display:none"><br>Using a text editor, open the .meta file associated with the material. A line labeled “guid” will appear near the top of the file. This line defines the material Asset’s File GUID. To find the Local ID, open the material file in a text editor. The material Object’s definition will look like this:<br></div>
+
+<p>我们用文本编辑器打开和材质关联的 .meta 文件。在文件头部会有标识了 “guid” 的行。这行定义了材质的文件 GUID。查找本地 ID, 我们可以在文本编辑器中打开材质文件。我们会看到类似于如下所示的材质对象的定义：</p>
+<blockquote>
+<p>— !u!21 &amp;2100000<br>Material:<br> serializedVersion: 3<br> … more data …  </p>
+</blockquote>
+<div style="display:none"><br>In the above example, the number preceded by an ampersand is the material’s Local ID. If this material Object were located inside an Asset identified by the File GUID “abcdefg”, then the material Object could be uniquely identified as the combination of the File GUID “abcdefg” and the Local ID “2100000”.<br></div>
+
+
+<p>在上面的例子中，前面带 &amp; 符号的数字就是材质的本地 ID。如果一个材质对象在一个文件 GUID 为 <code>abcdefg</code> 的资产里面，这个材质对象就可以用文件 GUID <code>abcdefg</code> 和本地 ID <code>2100000</code> 组合唯一地标识。</p>
+<div style="display:none"><br>### 1.3. Why File GUIDs and Local IDs?<br></div>
+
+<h3 id="为什么要文件-GUID-和本地-ID"><a href="#为什么要文件-GUID-和本地-ID" class="headerlink" title="为什么要文件 GUID 和本地 ID"></a>为什么要文件 GUID 和本地 ID</h3><div style="display:none"><br>Why is Unity’s File GUID and Local ID system necessary? The answer is robustness and to provide a flexible, platform-independent workflow.<br></div>
+
+<p>为什么需要 Unity 的文件 GUID 和本地 ID 系统？答案是为了健壮性和提供一个灵活和平台独立的工作流。</p>
+<div style="display:none"><br>The File GUID provides an abstraction of a file’s specific location. As long as a specific File GUID can be associated with a specific file, that file’s location on disk becomes irrelevant. The file can be freely moved without having to update all Objects referring to the file.<br></div>
+
+<p>文件 GUID 提供了文件位置的抽象。只要文件 GUID 和一个文件关联上，那文件在磁盘上的位置就变得无关紧要了。这个文件可以随意移动，而不必更新所有引用了该文件的对象。</p>
+<div style="display:none"><br>As any given Asset file may contain (or produce via import) multiple UnityEngine.Object resources, a Local ID is required to unambiguously distinguish each distinct Object.<br></div>
+
+<p>一个资产文件可能包含多个 UnityEngine.Object，为了清楚的区分它们，需要本地 ID。</p>
+<div style="display:none"><br>If the File GUID associated with an Asset file is lost, then references to all Objects in that Asset file will also be lost. This is why it is important that the .meta files must remain stored with the same filenames and in the same folders as their associated Asset files. Note that Unity will regenerate deleted or misplaced .meta files.<br></div>
+
+<p>如果和资产文件相关的文件 GUID 丢失了，所有对象对这个文件的引用就会丢失。这就是为什么 .meta 文件必须和它们相关联的资产文件存储在同一个位置，并且拥有相同的文件名很重要。注意 Unity 会重新生成被删除的或者被乱放的 .meta 文件。</p>
+<div style="display:none"><br>The Unity Editor has a map of specific file paths to known File GUIDs. A map entry is recorded whenever an Asset is loaded or imported. The map entry links the Asset’s specific path to the Asset’s File GUID. If the Unity Editor is open when a .meta file goes missing and the Asset’s path does not change, the Editor can ensure that the Asset retains the same File GUID.<br></div>
+
+<p>Unity 编辑器拥有已知文件 GUID 到文件路径的映射。这个映射实体会把资产的文件路径和文件 GUID 关联起来。如果 Unity 编辑器打开时，一个 .meta 文件丢失而资产的路径并没有改变的资产，编辑器会确保这个资产得到相同的文件 GUID。</p>
+<div style="display:none"><br>If the .meta file is lost while the Unity Editor is closed, or the Asset’s path changes without the .meta file moving along with the Asset, then all references to Objects within that Asset will be broken.<br></div>
+
+<p>如果 .meta 文件在 Unity Editor 关闭时丢失，或者资产的路径变化时没有把 .meta 文件一起跟资产文件移动，所有对资产内对象的引用都会丢失。</p>
+<div style="display:none"><br>### 1.4. Composite Assets and importers<br></div>
+
+<h3 id="组合资产和-Importers"><a href="#组合资产和-Importers" class="headerlink" title="组合资产和 Importers"></a>组合资产和 Importers</h3><div style="display:none"><br>As mentioned in the <a href="https://unity3d.com/cn/learn/tutorials/topics/best-practices/assets-objects-and-serialization#Inside_Assets_and_Objects" target="_blank" rel="external">Inside Assets and Objects</a> section, non-native Asset types must be imported into Unity. This is done via an asset importer. While these importers are usually invoked automatically, they are also exposed to scripts via the <a href="http://docs.unity3d.com/ScriptReference/AssetImporter.html" target="_blank" rel="external">AssetImporter</a> API, and its subclasses. For example, the TextureImporter API provides access to the settings used when importing individual texture Assets, such as PNGs and JPGs.<br></div>
+
+<p>在 <a href="https://unity3d.com/cn/learn/tutorials/topics/best-practices/assets-objects-and-serialization#Inside_Assets_and_Objects" target="_blank" rel="external">资产和对象的内部</a> 章节中提到，非原生的资产类型需要导入到 Unity 中。这是靠 Assets Importer 完成的。这些 Importers 都是自动调用的，他们靠 <a href="http://docs.unity3d.com/ScriptReference/AssetImporter.html" target="_blank" rel="external">AssetImporter</a> API 和它的子类来暴露给脚本。比如，TextureImporter API 提供了导入 PNG 和 JPG 等纹理资产时的设置访问。</p>
+<div style="display:none"><br>The result of the import process is one or more UnityEngine.Objects. These are visible in the Unity Editor as multiple sub-assets within the parent Asset, such as multiple sprites nested beneath a texture Asset that has been imported as a sprite atlas. Each of these Objects will share a File GUID as their source data is stored within the same Asset file. They will be distinguished within the imported texture Asset by a Local ID.<br></div>
+
+<p>导入过程的结果是一个或者多个 UnityEngine.Objects。这些对象在 Unity 编辑器中显示为一个资产的子资产。比如设置成精灵图集方式导入纹理资产，会有多个精灵嵌套在这个资产下。这些精灵对象会共享一个文件 UIID 作为他们的源资产文件。而在导入的纹理资产中靠本地 ID 来区分他们。</p>
+<div style="display:none"><br>The import process converts source Assets into formats suitable for the target platform selected in the Unity Editor. The import process can include a number of heavyweight operations, such as texture compression. It would be extremely inefficient to run the import process every time the Unity Editor was opened.<br></div>
+
+<p>导入过程会将源资产文件转换成在 Unity 编辑器中选中的目标平台合适的格式。导入过程也可能会带有比较重的操作，比如纹理压缩。如果每次 Unity 编辑器打开的时候都要执行导入过程的话会是 Unity 编辑器变得特别没有效率。</p>
+<div style="display:none"><br>Instead, the results of Asset importing are cached in the Library folder. Specifically, the results of the import process are stored in a folder named for the first two digits of the Asset’s File GUID. This folder is stored inside the Library/metadata/ folder. The individual Objects are serialized into a single binary file that has a name identical to the Asset’s File GUID.<br></div>
+
+<p>作为解决方案，Unity 会讲资产导入后的结果缓存到 Libraray 文件夹。导入后的结果会缓存到以资产的文件 GUID 前两个字母命名的文件夹中。这个文件夹在 Library/metadat/ 文件夹内。每个独立的对象都会被序列化为单独的以它们资产文件 GUID 命名的二进制文件。</p>
+<div style="display:none"><br>This is actually true for all Assets, not just non-native Assets. However, native assets do not require lengthy conversion processes or re-serialization.<br></div>
+
+<p>这对所有的资产都适用，而不仅仅是非原生的资产。但是原生的资产不需要做长时间的转换或者重新序列化。</p>
+<div style="display:none"><br>### 1.5. Serialization and instances<br></div>
+
+<h3 id="序列化和实例"><a href="#序列化和实例" class="headerlink" title="序列化和实例"></a>序列化和实例</h3><div style="display:none"><br>While File GUIDs and Local IDs are robust, GUID comparisons are slow and a more performant system is needed at runtime. Unity internally maintains a cache(2) that translates File GUIDs and Local IDs into simple integers that are unique only during a single session. These are called Instance IDs, and are assigned in a simple, monotonically-increasing order when new Objects are registered with the cache.<br></div>
+
+<p>文件 GUID 和本地 ID 系统健壮的同时，GUID 的比较是比较慢的，这就需要一个在运行期时更高效的系统。Unity 内部维持了一个能把文件 GUID 和本地 ID 换成在独立会话内唯一的，简单的数字的缓存<a href="#f2">[2]</a>。这个数字叫做实例 ID。当新的对象注册到缓存时，会给它分配一个严格递增的值。</p>
+<div style="display:none"><br>The cache maintains mappings between a given Instance ID, the File GUID and Local ID defining the location of the Object’s source data, and the instance of the Object in memory (if any). This allows UnityEngine.Objects to robustly maintain references to each other. Resolving an Instance ID reference can quickly return the loaded Object represented by the Instance ID. If the target Object is not yet loaded, the File GUID and Local ID can be resolved to the Object’s source data and Unity can then load the object just-in-time.<br></div>
+
+<p>这个缓存维护了给定的实例 ID、对象源文件中定义的文件 GUID 和本地 ID 和内存中对象（如果有的话）的映射关系。它让 UnityEngine.Objects 稳定的维护各个对象间的引用成为可能。通过一个实例 ID 的引用可以快速的返回这个 ID 对应的对象。如果这个对象没有加载，Unity 就可以根据 FileID 和本地  ID 来实时的加载对象。</p>
+<div style="display:none"><br>At startup, the Instance ID cache is initialized with data for all Objects that are built-in to the project (i.e. referenced in Scenes), as well as all Objects contained in the Resources folder. Additional entries are added to the cache when new assets are imported at runtime(3) and when Objects are loaded from AssetBundles. Instance ID entries are only removed from the cache when they become stale. This happens when an AssetBundle providing access to a specific File GUID and Local ID is unloaded.<br></div>
+
+<p>在启动的时候，实例 ID 缓存会初始化所有被场景引用的的对象和 Resources 文件夹下的所有对象数据。运行时导入的新资产<a href="#f3">[3]</a>和从 AssetBundles 里面加载的对象会被额外的添加到缓存中。当实例 ID 不在有用的时候他们会从缓存中移除。当一个 AssetBunld 访问未加载的文件 GUID 和本地 ID 时会生这种情况。</p>
+<div style="display:none"><br>When the unloading of an AssetBundle causes an Instance ID to become stale, the mapping between the Instance ID and its File GUID and Local ID is deleted to conserve memory. If the AssetBundle is re-loaded, a new Instance ID will be created for each Object loaded from the re-loaded AssetBundle.<br></div>
+
+<p>卸载 AssetBundle 时引起实例 ID 无效时，为了节省内存，实例 ID 和文件 GUID 及 本地 ID 间的映射将会被移除。当 AssetBundle 重新被加载时，将会给从 AssetBundle 中重新加载的对象分配一个新的实例 ID。</p>
+<div style="display:none"><br>For a deeper discussion of the implications of unloading AssetBundles, see the <a href="https://unity3d.com/ru/learn/tutorials/topics/best-practices/asset-bundle-usage-patterns#Managing_Loaded_Assets" target="_blank" rel="external">Managing Loaded Assets</a> section in the <a href="https://unity3d.com/ru/learn/tutorials/topics/best-practices/asset-bundle-usage-patterns" target="_blank" rel="external">AssetBundle Usage Patterns</a> article.<br></div>
+
+<p>更深入的探讨卸载 AssetBundles 带来的问题，可以参照 <a href="https://unity3d.com/ru/learn/tutorials/topics/best-practices/asset-bundle-usage-patterns" target="_blank" rel="external">AssetBundle 使用模式</a> 中的  <a href="https://unity3d.com/ru/learn/tutorials/topics/best-practices/asset-bundle-usage-patterns#Managing_Loaded_Assets" target="_blank" rel="external">管理加载的资产</a> 这一节。</p>
+<div style="display:none"><br>Note that certain events on specific platforms can force Objects out of memory. For example, graphical Assets can be unloaded from graphics memory on iOS when an app is suspended. If these Objects originated in an AssetBundle that has been unloaded, Unity will be unable to reload the source data for the Objects. Any extant references to these Objects will also be invalid. In the preceding example, this would appear as invisible (missing) meshes or models rendering with magenta (missing) textures &amp; materials.<br></div>
+
+<p>注意，在某些平台上的特定的事件会强制从内存中删除对象。比如，在 iOS平台，当程序挂起的时候，可以从图形内存里面卸载图形资产。如果这些对象是从已卸载的 AssetBundle 里加载的，Unity 将会无法从对象的源数据重新加载对象了。所有对这些对象的引用也会变成无效。在这个例子中可能会出现看不见的网格或者模型带有洋红色的纹理和材质的现象。</p>
+<div style="display:none"><br>Implementation note: At runtime, the above control flow is not literally accurate. Comparing File GUIDs and Local IDs at runtime would not be sufficiently performant during heavy loading operations. When building a Unity project, the File GUIDs and Local IDs are deterministically mapped into a simpler format. However, the concept remains identical, and thinking in terms of File GUIDs and Local IDs remains a useful analogy during runtime.<br></div>
+
+<p><strong>提示：</strong> 在运行时，上述控制流程不是特别精确。对于重度加载操作，比较文件 GUID 和本地 ID 是非常不高效的。当构建一个 Unity 项目时，文件 GUID 和本地 ID 都被映射到了一个简单的格式上。但是概念依然一样，运行时考虑使用文件 GUID 和本地 ID 来做对比依然很有用。</p>
+<div style="display:none"><br>This is also the reason why Asset File GUIDs cannot be queried at runtime.<br></div>
+
+<p>这也是为什么资产的文件 GUID 不能再运行时查询的一个原因。（因为被转换成了其他简单格式。）</p>
+<div style="display:none"><br>### 1.6. MonoScripts<br></div>
+
+<h3 id="MonoScripts"><a href="#MonoScripts" class="headerlink" title="MonoScripts"></a>MonoScripts</h3><div style="display:none"><br>It is important to understand that a MonoBehaviour has a reference to a MonoScript, and MonoScripts simply contain the information needed to locate a specific script class. Neither type of Object contains the executable code of script class.<br></div>
+
+<p>理解 MonoBehaviour 拥有一个 MonoScript 的引用和 MonoScript 仅包含简单的用来定位特定脚本的信息是比较重要的。MonoScript  并不包括脚本的执行代码。</p>
+<div style="display:none"><br>A MonoScript contains three strings: an assembly name, a class name, and a namespace.<br></div>
+
+<p>MonoScript 包含 3 个字符串：程序集的名字， 一个类名和一个命名空间。</p>
+<div style="display:none"><br>While building a project, Unity collects all the loose script files in the Assets folder and compiles them into Mono assemblies. Specifically, Unity builds an assembly for each distinct language used in the Assets folder, as well as separate assemblies for the scripts contained in the Assets/Plugins folder. C# scripts outside of the Plugins subfolder are placed into Assembly-CSharp.dll. Scripts within the Plugins subfolder are placed into Assembly-CSharp-firstpass.dll, and so on.<br></div>
+
+<p>当构建项目的时候，Unity 收集所有 Assets 文件下零散放置的脚本，然后将他们编译成 Mono 程序集。Unity 会为 Assets 文件夹下的不同语言和 Assets/Plugins 文件夹下的脚本构建单独的程序集。在 Plugins 子文件夹外的 C# 脚本会编译到 Assembly-CSharp.dll 中，而 Plugins 子文件夹内的脚本会编译到 Assembly-CSharp-firstpass.dll 中。</p>
+<div style="display:none"><br>These assemblies (plus prebuilt assembly DLLs) are included in the final build of a Unity application. They are also the assemblies to which a MonoScript refers. Unlike other resources, all assemblies included in a Unity application are loaded when the application first starts.<br></div>
+
+<p>这些程序集（包括预先编译好的程序集的 DLL）会被包含到 Unity 应用的最终构建里面。他么也是 MonoScript 引用的程序集。与其他资源不同，所有 Unity 程序内的程序集会在程序第一次启动时加载。</p>
+<div style="display:none"><br>This MonoScript Object is the reason why an AssetBundle (or a Scene or a prefab) does not actually contain executable code in any of the MonoBehaviour Components in the AssetBundle, Scene or prefab. This allows different MonoBehaviours to refer to specific shared classes, even if the MonoBehaviours are in different AssetBundles.<br></div>
+
+<p>因为有 MonoScript 对象，AssetBundle（或者是场景文件，或者是预设）中 MonoBehaviour 组件可以不包含实际运行代码。这使得不同的 MonoBehaviour 可以指向特定的共享的类，即使这些不同的 MonoBehaviour 在不同的 AssetBundle 中。</p>
+<div style="display:none"><br>### 1.7. Resource lifecycle<br></div>
+
+<h3 id="Resouce-的生命周期"><a href="#Resouce-的生命周期" class="headerlink" title="Resouce 的生命周期"></a>Resouce 的生命周期</h3><div style="display:none"><br>UnityEngine.Objects are loaded into/unloaded from memory at specific and defined times. To reduce loading times and manage an application’s memory footprint, it’s important to understand the resource lifecycle of UnityEngine.Objects.<br></div>
+
+<p>UnityEingine.Objects 会在具体或者特定的时间从内存中加载/卸载。为了减少加载时间和管理应用的内存，理解 UnityEngine.Objects 的生命周期是比较重要的。</p>
+<div style="display:none"><br>There are two ways to load UnityEngine.Objects: automatically or explicitly. An Object is loaded automatically whenever the Instance ID mapped to that Object is dereferenced, the Object is currently not loaded into memory, and the Object’s source data can be located. Objects can also be explicitly loaded in scripts, either by creating them or by calling a resource-loading API (e.g. <a href="http://docs.unity3d.com/ScriptReference/AssetBundle.LoadAsset.html" target="_blank" rel="external">AssetBundle.LoadAsset</a>).<br></div>
+
+<p>有两种方式可以加载 UnityEngine.Objects: 自动的和显式的。当一个实例 ID 映射到一个源数据存在，但是没有加载进内存并被间接引用的对象时，对象会被自动创建。对象可以在脚本中显式的加载。显式加载方式要可以是直接创建他们，也可以是通过资源加载的 API, 例如 <a href="http://docs.unity3d.com/ScriptReference/AssetBundle.LoadAsset.html" target="_blank" rel="external">AssetBundle.LoadAsset</a>。</p>
+<div style="display:none"><br>When an Object is loaded, Unity tries to resolve any references by translating each reference’s File GUID and Local ID into an Instance ID.<br></div>
+
+<p>当一个对象被加载，Unity 会尝试将所有引用从文件 GUID 和本地 ID 转换成实例 ID。</p>
+<div style="display:none"><br>An Object will be loaded on-demand the first time its Instance ID is dereferenced if two criteria are true:<br></div>
+
+<p>当满足下面两个条件时，一个对象在它的实例 ID 被第一次引用时按需加载：</p>
+<div style="display:none"><br>1. The Instance ID references an Object that is not currently loaded<br>2. The Instance ID has a valid File GUID and Local ID registered in the cache<br></div>
+
+<ol>
+<li>实例 ID 引用了没有加载的对象</li>
+<li>实例 ID 在缓存中有有效的、对应文件 GUID 和本地 ID</li>
+</ol>
+<div style="display:none"><br>This generally occurs very shortly after the reference itself is loaded and resolved.<br></div>
+
+<p>这通常发生在引用被加载和处理后的非常短的时间里。</p>
+<div style="display:none"><br>If a File GUID and Local ID do not have an Instance ID, or if an Instance ID with an unloaded Object references an invalid File GUID and Local ID, then the reference is preserved but the actual Object will not be loaded. This appears as a “(Missing)” reference in the Unity Editor. In a running application, or in the Scene View, “(Missing)” Objects will be visible in different ways, depending on their types: meshes remain invisible, textures will appear magenta, etc.<br></div>
+
+<p>如果一个文件 GUID 和本地 ID 不包含实例 ID, 或者一个实例 ID 关联一个引用无效的文件 GUID 和本地 ID 的未加载的对象，实例 ID 引用将会保留但是实际对象缺不能加载。这个在 Unity 编辑器里面显示为 <code>(Missing)</code>。在程序运行时或者场景视图里， 基于 <code>(Missing)</code> 对象的类型，会有下面几种显示：比如网格不可见，纹理显示成洋红色。</p>
+<div style="display:none"><br>Objects are unloaded in three specific scenarios:<br></div>
+
+<p>对象会在下面 3 种情况下被卸载：</p>
+<div style="display:none"><br>1. Objects are automatically unloaded when unused Asset cleanup occurs. This process is triggered automatically when scenes are changed destructively (i.e. when invoking a non-additive Application.LoadLevel API), or when a script invokes the Resources.UnloadUnusedAssets API. This process only unloads unreferenced Objects: an Object will only be unloaded if no Mono variable holds a reference to the Object, and there are no other live Objects holding references to the Object.<br><br>2. Objects sourced from the Resources folder can be explicitly unloaded by invoking the Resources.UnloadAsset API. The Instance ID for these Objects remains valid and will still contain a valid File GUID and LocalID entry. If any Mono variable or other Object holds a reference to an Object that is unloaded with Resources.UnloadAsset, then that Object will be reloaded as soon as any of the live references are dereferenced.<br><br>3. Objects sourced from Asset Bundles are automatically and immediately unloaded when invoking the AssetBundle.Unload(true) API. This invalidates the Object’s InstanceID’s File GUID and Local ID reference, and any live references to the unloaded Objects will become “(Missing)” references. From C# scripts, attempting to access methods or properties on an unloaded object will produce a NullReferenceException.<br></div>
+
+<ol>
+<li>对象会在未使用的资产被清理时卸载。这个过程当场景破坏性的改变时（例如使用非增量的 Application.LoadLevel API）或者在代码里面调用 Resources.UnloadUnusedAssets API 时自动发生。这个过程只能卸载未被引用的对象：一个对象仅当没有 Mono 变量引用它，和没有其他对象保持其引用时才会卸载。</li>
+<li>从 Resources 文件夹内加载的对象可以用 Resources.UnloadAsset API 来卸载。它们的实例 ID 会保持有效，依然对应着有效的文件 GUID 和本地 ID。如果任何 Mono 变量或者对象保留着被 Resources.UnloadAsset 卸载的对象的引用，这些对象则会被重新加载。</li>
+<li>当我们调用 <a href="http://docs.unity3d.com/ScriptReference/AssetBundle.Unload.html" target="_blank" rel="external">AssetBundle.Unload(true)</a> API 时，从 AssetBundle 加载的对象会被立即自动的卸载。这会使对象的实例 ID 的文件 GUID 和本地 ID 引用无效，并且任何引用的已卸载的对象的引用将会变成 <code>(Missing)</code>。从 C# 脚本中尝试访问已卸载的对象的方法和属性会抛出 NullReferenceException 异常。</li>
+</ol>
+<div style="display:none"><br>If <a href="http://docs.unity3d.com/ScriptReference/AssetBundle.Unload.html" target="_blank" rel="external">AssetBundle.Unload</a>(false) is called, live Objects sourced from the unloaded AssetBundle will not be destroyed, but Unity will invalidate the File GUID and Local ID references of their Instance IDs. It will be impossible for Unity to reload these Objects if they are later unloaded from memory and live references to the unloaded Objects remain. (4)<br></div>
+
+<p>如果调用 <a href="http://docs.unity3d.com/ScriptReference/AssetBundle.Unload.html" target="_blank" rel="external">AssetBundle.Unload(false)</a>，从已卸载的 AssetBundle 中得到的活动的对象将不会被销毁，但是 Unity 会使这些对象的实例 ID 对其文件 GUID 和本地 ID 引用无效。如果这些对象从内存中卸载并且对这些已卸载的对象的引用依然保持着，Unity 将无法重新加载对象。 </p>
+<div style="display:none"><br>### 1.8. Loading large hierarchies<br></div>
+
+<h3 id="加载大层次结构"><a href="#加载大层次结构" class="headerlink" title="加载大层次结构"></a>加载大层次结构</h3><div style="display:none"><br>When serializing hierarchies of Unity GameObjects (such as when serializing prefabs), it is important to remember that the entire hierarchy will be fully serialized. That is, every GameObject and Component in the hierarchy will be individually represented in the serialized data. This has interesting impacts on the time required to load and instantiate hierarchies of GameObjects.<br></div>
+
+<p>当序列化有大层次结构的 Unity 游戏对象（比如序列化预设）时，重要的是要记住整个层次结构都会被序列化。也就是说层次结构中的每个游戏对象和组件都会被单独的序列化到序列化后的数据里面。这对加载和实例化对象层次需索的时间有影响。</p>
+<div style="display:none"><br>When creating any GameObject hierarchy, CPU time is spent in several different ways:<br><br><em> Time to read the source data (from storage, from another GameObject, etc.)
+</em> Time to set up the parent-child relationships between the new Transforms<br><em> Time to instantiate the new GameObjects and Components
+</em> Time to awaken the new GameObjects and Components<br></div>
+
+<p>当创建游戏对象层次结构时，CPU 时间会花费在下面几种方面上</p>
+<ul>
+<li>从存储，别的游戏对象等读取源数据的时间</li>
+<li>构建新 Transform 间父-子关系的时间</li>
+<li>实例化新游戏对象和组件的时间</li>
+<li>激活新游戏对象和组件的时间</li>
+</ul>
+<div style="display:none"><br>The latter three time costs are generally invariant regardless of whether the hierarchy is being cloned from an existing hierarchy or is being loaded from storage (such as an AssetBundle). However, the time to read the source data increases linearly with the number of Components and GameObjects serialized into the hierarchy, and is also multiplied by the speed of the data source.<br></div>
+
+<p>后面三种时间花费一般是不变的，无论是从现成的层次结构中拷贝或者从存储中加载（比如 AssetBundle)。但是读取源数据的时间与层次结构中的组件和游戏对象成线性增加的关系，当然还要乘以读取源数据的速度。</p>
+<div style="display:none"><br>On all current platforms, it is considerably faster to read data from elsewhere in memory rather than loading it from a storage device. Further, the performance characteristics of the available storage media vary widely between different platforms – desktop PCs load data from disk much faster than a mobile device.<br></div>
+
+<p>在当前支持的所有平台中，从内存中读取数据会比从设备存储中读取明显快不少。而且不同平台上的存储媒介在性能上有很大差别–比如从 PC 上加载数据的数据会比移动设备快很多。</p>
+<div style="display:none"><br>Therefore, when loading prefabs on platforms with slow storage, the time spent reading the prefab’s serialized data from storage can rapidly exceed the time spent instantiating the prefab. That is, the cost of the loading operation is dominated by storage I/O time.<br></div>
+
+<p>所以在低速存储设备的平台上加载预设，读取从存储上读取预设的实际会快速的超过实例化预设所花费的实际。也就是说，设备 I/O 的时间主导了加载操作所消耗的时间。</p>
+<div style="display:none"><br>As mentioned before, when serializing a monolithic prefab, each and every GameObject and component’s data is serialized separately - even if that data is duplicated. A UI screen with 30 identical elements will serialize the identical element 30 times. This produces a very large blob of binary data. At load time, the data for all of the GameObjects and Components on each one of those thirty duplicate elements must be read from disk before being transferred to the newly-instantiated Object. It is this file reading time that dominates the cost of instantiating large prefabs.<br></div>
+
+<p>前面提到过，序列化大预设的时候，每个游戏对象和组件的数据都会单独的被序列化，即使这些数据是重复的。一个拥有 30 个一样的元素的 UI，这 30 一样的元素都会被序列化。这将会产生大量的数据。当在加载时期，这些重复数据元素必须从磁盘中读取，然后传递给新实例化的对象。文件读取时间主导了大预设实例化花费的时间。</p>
+<div style="display:none"><br>Until such time as Unity supports nested prefabs, projects which instantiate extremely large hierarchies of GameObjects may be able to significantly reduce the loading times of their large prefabs by moving reused elements to separate prefabs and instantiating them at runtime, instead of relying entirely on Unity’s serialization and prefab system.<br></div>
+
+<p>直到 Unity 支持可嵌套预设之前，对于加载大层次游戏对象预设的项目，可以通过将冗余的元素拆分出来，然后在运行时加载它们的，而不依赖于 Unity 的序列化和预设系统来加载整个大对象的方式来大幅减少加载时间</p>
+<div style="display:none"><br>Further, once a prefab or GameObject hierarchy has been constructed, it is faster to clone the existing hierarchy than to load a new copy from storage.<br></div>
+
+<p>一旦预设或者对象已经构建了，从拷贝已存在的对象会比从存储中加载快一个新拷贝快很多。</p>
+<div style="display:none"><br>Unity 5.4 note: Unity 5.4 altered the representation of transforms in memory. Each root transform’s entire child hierarchy is stored in compact, contiguous regions of memory. When instantiating new GameObjects that will be instantly reparented into another hierarchy, consider using the new GameObject.Instantiate overloads which accept a parent argument.<br></div>
+
+<p><strong>Unity 5.4:</strong> Unity 5.4 修改了内存中 tranform 的呈现方式。每个根 tranform 的所有子物体都存在内存中一段紧凑的，连续的区域中。实例化会重指定父级的新游戏对象时，考虑用 <strong>GameObject.Instantiate</strong> 的接受父物体为参数的新重载。</p>
+<div style="display:none"><br>Using this overload avoids the allocation of a root transform hierarchy for the new GameObject. In tests, this speeds up the time required for an instantiate operation by about 5-10%.<br></div>
+
+<p>使用这个重载可以避免给新物体新分配根 tranform 层次。测试结果中，这个可以提高 5 - 10 % 的实例化时间。</p>
+<div style="display:none"><br>### Footnotes<br></div>
+
+<h3 id="脚记"><a href="#脚记" class="headerlink" title="脚记"></a>脚记</h3><div style="display:none"><br>[1] A Local ID is unique within its own file. That is, it will be different from all the other Local ID for the same Asset file. ↩<br></div>
+
+<ul>
+<li><div id="f1">[1] 本地 ID 在包含它文件中是唯一的。也就是说在同一个资产文件中一个本地 ID 会区别于其他本地 ID。</div> 
+
+</li>
+</ul>
+<div style="display:none"><br>[2] Internally, this cache is called the PersistentManager. The actual translation takes place within Unity’s C++ Remapper class. The Remapper class is not exposed via any C# APIs. ↩<br></div>
+
+<ul>
+<li><div id="f2">[2] 在 Unity 内部，这个缓存叫做 <strong>PresistenManager</strong>。这个转换过程在 Unity 的 C++ Remapper 类中发生。Remapper 类当前不能被任何 C# API 访问。</div>
+
+</li>
+</ul>
+<div style="display:none"><br>An example of an Asset created at runtime would be a Texture2D Object created in script, like so:<br><br>&gt;   var myTexture = new Texture2D(1024, 768);<br><br></div>
+
+<ul>
+<li><div id="f3">[3] 一个在运行时创建资产的例子就是在脚本中创建 Texture2D 对象，例如 </div> 
+
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var myTexture = new Texture2D(<span class="number">1024</span>, <span class="number">768</span>); </span><br></pre></td></tr></table></figure>
+<div style="display:none"><br>[4] The most common case where Objects are removed from memory at runtime without being unloaded occurs when Unity loses control of its graphics context. For example, this can occur when a mobile app is suspended and the app is forced into the background. In this case, the mobile OS usually evicts all graphical resources from GPU memory. When the app returns to the foreground, Unity must re-upload all needed Textures, Shaders and Meshes to the GPU before it can resume rendering the scene. ↩<br></div>
+
+<ul>
+<li><div id="f4">[4] 最常见的是，当 Unity 丢失了对已在运行时从内存中移除的对象的 图形上下文的控制的时候，对象不会被 Unity 卸载。例如，这会发生在一个移动端应用被强制切到后台并挂起的时候，移动端系统通常会将从 GPU 显存中删除所有图形资源。当应用切回到前台，Unity 在恢复渲染当前场景之前， 必须重新上次所有需要的纹理，着色器和网格到 GPU 中。</div>
+
+</li>
+</ul>
+<p>原文地址：<a href="https://unity3d.com/learn/tutorials/topics/best-practices/assets-objects-and-serialization" target="_blank" rel="external">https://unity3d.com/learn/tutorials/topics/best-practices/assets-objects-and-serialization</a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>打赏一下，给作者买糖吃！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/images/pay/wechat.png" alt="Rocky Lai WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/images/pay/alipay.png" alt="Rocky Lai Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/AssetBundle/" rel="tag">#AssetBundle</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/12/15/GuideToABAndRes/" rel="next" title="资源和 AssetBundle 指导">
+                <i class="fa fa-chevron-left"></i> 资源和 AssetBundle 指导
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/12/15/Assets_Objects_serialization/"
+           data-title="资产, 对象和序列化" data-url="http://blog.shuiguzi.com/2016/12/15/Assets_Objects_serialization/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="https://avatars1.githubusercontent.com/u/5707242?v=3&s=460"
+               alt="Rocky Lai" />
+          <p class="site-author-name" itemprop="name">Rocky Lai</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">43</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/wudixiaop" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:rockylai@shuiguzi.com" target="_blank" title="邮件">
+                  
+                    <i class="fa fa-fw fa-envelope-o"></i>
+                  
+                  邮件
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#资产和对象的内部"><span class="nav-number">1.</span> <span class="nav-text">资产和对象的内部</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#内置对象的引用"><span class="nav-number">2.</span> <span class="nav-text">内置对象的引用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#为什么要文件-GUID-和本地-ID"><span class="nav-number">3.</span> <span class="nav-text">为什么要文件 GUID 和本地 ID</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#组合资产和-Importers"><span class="nav-number">4.</span> <span class="nav-text">组合资产和 Importers</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#序列化和实例"><span class="nav-number">5.</span> <span class="nav-text">序列化和实例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MonoScripts"><span class="nav-number">6.</span> <span class="nav-text">MonoScripts</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Resouce-的生命周期"><span class="nav-number">7.</span> <span class="nav-text">Resouce 的生命周期</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#加载大层次结构"><span class="nav-number">8.</span> <span class="nav-text">加载大层次结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#脚记"><span class="nav-number">9.</span> <span class="nav-text">脚记</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2014 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Rocky Lai</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"rockylaigithubio"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+<script type="text/javascript" async src="//push.zhanzhang.baidu.com/push.js">
+</script>
+
+
+</body>
+</html>

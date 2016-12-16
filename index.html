@@ -257,6 +257,283 @@
             
               
                 
+                <a class="post-title-link" href="/2016/12/15/Assets_Objects_serialization/" itemprop="url">
+                  资产, 对象和序列化
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-12-15T17:40:00+08:00" content="2016-12-15">
+              2016-12-15
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/UnityKB/" itemprop="url" rel="index">
+                    <span itemprop="name">UnityKB</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/12/15/Assets_Objects_serialization/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/12/15/Assets_Objects_serialization/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <div style='display:none'><br>This is the second chapter in a <a href="https://unity3d.com/learn/tutorials/topics/best-practices/guide-asset-bundles-and-resources/">series of articles covering Assets, Resources and resource management</a> in Unity 5.<br></div>
+
+<p>这是 Unity 5 <a href="/2016/12/15/GuideToABAndRes/" title="[资产, 资源和资源管理系列文章]">[资产, 资源和资源管理系列文章]</a>的第二篇。</p>
+<div style='display:none'><br>This chapter covers the deep internals of Unity’s serialization system and how Unity maintains robust references between different Objects, both in the Unity Editor and at runtime. It also discusses the technical distinctions between Objects and Assets. The topics covered here are fundamental to understanding how to efficiently load and unload Assets in Unity. Proper Asset management is crucial to keeping loading times short and memory usage low.<br></div>
+
+<p>这篇文章涵盖了 Unity 序列化系统的底层知识和 Unity  怎么在它的编辑器及运行时维持不同对象的稳定的引用，理解怎么样在 Unity 中高效的加载和卸载资产。正确的资产管理是保持低内存和快速加载的关键。</p>
+<div style='display:none'><br>### 1. Inside Assets and Objects<br></div>
+
+<h3 id="资产和对象的内部"><a href="#资产和对象的内部" class="headerlink" title="资产和对象的内部"></a>资产和对象的内部</h3><div style='display:none'><br>To understand how to properly manage data in Unity, it is important to understand how Unity identifies and serializes data. The first key point is the distinction between Assets and <strong>UnityEngine.Objects</strong>.<br></div>
+
+<p>要理解怎么样正确的管理数据，Unity 怎么鉴别和序列化数据很重要。其中首先的关键点是理解 <strong>资产</strong> 和 <strong>对象（UnityEngine.Objects）</strong> 的区别。</p>
+<div style='display:none'><br>An Asset is a file on disk, stored in the Assets folder of a Unity project. For example, texture files, material files and FBX files are all Assets. Some Assets contain data in formats native to Unity, such as materials. Other Assets need to be processed into native formats, such as FBX files.<br></div>
+
+<p>一个资产是存储在 Unity Project 中资产文件夹下的文件。比如纹理文件，材质文件和 FBX 文件都是资产。有些资产包含 Unity 原生数据格式，比如材质。而有些资产需要转换成 Unity 原生数据格式，比如 FBX 文件。</p>
+<div style='display:none'><br>A <strong>UnityEngine.Object</strong>, or <strong>Object</strong> with a capitalized ‘O’, is a set of serialized data collectively describing a specific instance of a resource. This can be any type of resource which the Unity Engine uses, such as a mesh, a sprite, an AudioClip or an AnimationClip. All Objects are subclasses of the <a href="http://docs.unity3d.com/ScriptReference/Object.html">UnityEngine.Object</a> base class.<br></div>
+
+<p>一个 <strong>UnityEngine.Object</strong> 或者大写字母 O 的 <strong>Object</strong>，是个序列化数据集合，用来表述某个资源的具体实例。它可以是任何 Unity 引擎使用的资源，比如一个网格，一个精灵，一个音频剪辑和一个动画片段。所有的对象都是 <a href="http://docs.unity3d.com/ScriptReference/Object.html">UnityEngine.Object</a> 的子类。</p>
+<div style='display:none'><br>While most Object types are built-in, there are two special types.<br></div>
+
+<p>在 Unity 中基本所有的对象类型都是内置的，除了两种特殊的类型。<br>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/12/15/Assets_Objects_serialization/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/12/15/GuideToABAndRes/" itemprop="url">
+                  资源和 AssetBundle 指导
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-12-15T17:40:00+08:00" content="2016-12-15">
+              2016-12-15
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/UnityKB/" itemprop="url" rel="index">
+                    <span itemprop="name">UnityKB</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/12/15/GuideToABAndRes/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/12/15/GuideToABAndRes/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <div style='display:none'> This is a series of articles that provides an in-depth discussion of Assets and resource management in the Unity engine. It seeks to provide expert developers with deep, source-level knowledge of Unity’s Asset and serialization systems. It examines both the technical underpinnings of Unity’s AssetBundle system and the current best practices for employing them.<br></div>
+
+<p>这是深度探讨 Unity 引擎中资源（Resource）和资产（Asset） 管理的系列文章。文章试图给高级开发者提供 Unity 资产和序列化系统的底层、代码级的知识，并且审视 Unity 的 AssetBundle 系统技术基础和当前使用它们的最佳实践。</p>
+<div style='display:none'><br>The guide is broken down into four chapteros:<br><br>1. <a href="https://unity3d.com/learn/tutorials/topics/best-practices/assets-objects-and-serialization">Assets, Objects and serialization</a> discusses the low-level details of how Unity serializes Assets and handles references between Assets. It is strongly recommended that readers begin with this chapter as it defines terminology used throughout the guide.<br>2. <a href="https://unity3d.com/learn/tutorials/topics/best-practices/resources-folder">The Resources folder</a> discusses the built-in Resources API.<br>3. <a href="https://unity3d.com/learn/tutorials/topics/best-practices/asset-bundle-fundamentals">AssetBundle fundamentals</a> builds on the information in chapter 1 to describe how AssetBundles operate, and discusses both the loading of AssetBundles and the loading of Assets from AssetBundles.<br>4. <a href="https://unity3d.com/learn/tutorials/topics/best-practices/asset-bundle-usage-patterns">AssetBundle usage patterns</a> is a long article discussing many of the topics surrounding the practical uses of AssetBundles. It includes sections on assigning Assets to AssetBundles and on managing loaded Assets, and describes many common pitfalls encountered by developers using AssetBundles.<br></div>
+
+<p>系列文章将会拆分为四个章节：</p>
+<ol>
+<li><a href="/2016/12/15/Assets_Objects_serialization/" title="[资产，对象和序列化]">[资产，对象和序列化]</a> 章节探讨 Unity 如何序列化资产和处理它们之间的引用的底层细节。<strong>强烈推荐从读者从这章开始阅读，因为它定义了贯穿这系列文章的术语</strong>。</li>
+<li><a href="https://unity3d.com/learn/tutorials/topics/best-practices/resources-folder">Resources 文件夹</a> 探讨内置的 Resources API.</li>
+<li><a href="https://unity3d.com/learn/tutorials/topics/best-practices/asset-bundle-fundamentals">AssetBundle 基本原理</a> 在第一章的基础上描述 AssetBundles 怎么运转和加载 AssetBundles 及从 AssetBundles 加载资产。</li>
+<li><a href="https://unity3d.com/learn/tutorials/topics/best-practices/asset-bundle-usage-patterns">AssetBundle 使用模式</a> 是一篇探讨很多 AssetBundle 的实际用途。它包括了给 AssetBundles 添加资产 和管理加载后的资产并描述了开发者使用 AssetBundles 时经常碰到的陷阱。</li>
+</ol>
+<div style='display:none'><br>Note: This guide’s terms for Objects and Assets differ from Unity’s public API naming conventions.<br></div>
+
+<p>注意：这系列文章中的对象和资产有别与 Unity API 命名约定中的对象和资产。</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/12/15/GuideToABAndRes/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/09/01/Top10TipsEditor/" itemprop="url">
                   10 个鲜为人知的 Unity 技巧 - 编辑器篇
                 </a>
@@ -327,7 +604,6 @@
       
         
           <h4 id="1-ALT-鼠标左键点击-Hierarchy-对象可以展开和收起对象的所有子对象"><a href="#1-ALT-鼠标左键点击-Hierarchy-对象可以展开和收起对象的所有子对象" class="headerlink" title="1. ALT + 鼠标左键点击 Hierarchy 对象可以展开和收起对象的所有子对象"></a>1. ALT + 鼠标左键点击 Hierarchy 对象可以展开和收起对象的所有子对象</h4><p><img src="/images/Tips/alt_left.png" alt=""></p>
-<h4 id="2-在当前编辑器窗口中摁下-SHIFT-空格键-可以最大化-最小化当前窗口"><a href="#2-在当前编辑器窗口中摁下-SHIFT-空格键-可以最大化-最小化当前窗口" class="headerlink" title="2. 在当前编辑器窗口中摁下 SHIFT + 空格键 可以最大化/最小化当前窗口"></a>2. 在当前编辑器窗口中摁下 <code>SHIFT + 空格键</code> 可以最大化/最小化当前窗口</h4> <iframe src="//blog.shuiguzi.com/images/Tips/max.mp4" width="576" height="360" frameborder="0" allowfullscreen></iframe>
           <div class="post-more-link text-center">
             <a class="btn" href="/2016/09/01/Top10TipsEditor/#more" rel="contents">
               阅读全文 &raquo;
@@ -752,266 +1028,11 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/03/01/Unity RSA/" itemprop="url">
-                  Unity + openssl 生成的 RSA 秘钥实现可靠的简单数据加密
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-03-01T15:56:56+08:00" content="2016-03-01">
-              2016-03-01
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Unity/" itemprop="url" rel="index">
-                    <span itemprop="name">Unity</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/03/01/Unity RSA/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/01/Unity RSA/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>现实中会有很多需求，对数据加密是其中一种。我们对数据的加密方式有 <strong>对称加密</strong> 和 <strong>不对称加密</strong>。对称加密就是使用相同的秘钥和算法加密明文和解密密文。而不对称加密，就是有加密和解密使用不同秘钥的算法，其中对外公开的叫 <strong>公钥</strong>（public key），不公开的叫 <strong>密钥</strong>（private key）。本文中要提到的 RSA 算法就是一种不对称加密算法。</p>
-<h3 id="RSA-介绍"><a href="#RSA-介绍" class="headerlink" title="RSA 介绍"></a>RSA 介绍</h3><p>关于 RSA, 详细介绍 <a href="http://baike.baidu.com/view/10613.htm?fromtitle=RSA&amp;fromid=210678&amp;type=syn">请看这里</a>。</p>
-<p>这里做个大白话来解释，RSA 是一个配有两把钥匙的“锁”。一般情况下使用公开的钥匙（public key）来把数据锁住，然后另外一个不公开的钥匙 （private key）开锁来得到数据。</p>
-<h3 id="RSA-秘钥生成"><a href="#RSA-秘钥生成" class="headerlink" title="RSA 秘钥生成"></a>RSA 秘钥生成</h3><p>上面提到RSA 是不对称算法，它有 public key 和 private key，下面我们用 openssl 来生成它们。下面使用 OSX 系统上自带的 openssl 来生成秘钥。</p>
-<blockquote>
-<p><strong>➜  ~ openssl</strong><br><strong>OpenSSL&gt; genrsa -out rsa_private_key.pem 1024</strong><br>Generating RSA private key, 1024 bit long modulus<br>……….++++++<br>……………………++++++<br>e is 65537 (0x10001)<br><strong>OpenSSL&gt; pkcs8 -topk8 -inform PEM -in rsa_private_key.pem -outform PEM -nocrypt</strong><br>—–BEGIN PRIVATE KEY—–<br>MIICdgIBADANBgkqhkiG9w0BAQEFAASCAmAwggJcAgEAAoGBAKGhqNRI8ygdZcsW<br>FofWo0+ERSJSQDIjDCrkWlDkKmQP3miYs0ARb00ik95z3IIRp0NCSmDJMRS2Gjdj<br>jNXlHNLZOw05OtH+47Hi3IGmi+dFDzPgux4KzXfs5eOXkhLfSR7XQ2ju1A5q6lAw<br>mXFR8IqEMR73EbwXZM6GHmMC0yglAgMBAAECgYAffJ2mFTwBQZDV+kyTU9XmpK7P<br>G9TTr44sQOXzQi+b5JeAKtcokPzsuuKxgEKhuAyshpp0tlzwWvVKewMxm/t8LIEq<br>O7rwk4w/9Hx5CX+gOogOc6HnjEAucUqr9qxBIsKyvt7V+PlZmytnIamnV3GA7fVV<br>O0APf1DtkU30eGnlAQJBAM2UMpOBwvBchWiYymnRtCyCf7qPGrbNb748a12Ca9Fc<br>eEqdH3FQGBSAUX2xij6exhGAHVPCIfwe9p+A2UTFMGUCQQDJRhwjZ0gnec8pjECX<br>hzaulzsu96ypXZltYaOsArP3pnrD4VzNy8aaplgwMXPBl3/sDyAQkRiLg4ExUUk1<br>ajzBAkB9EZ8fbH9ree5T7zid3k2uEoqgtjU7Z4qHAv0Su6jai1ZHloWti1vLBTIO<br>tTd012WK+hVdgqroVvIVoe8MzqadAkEAnD0RMKZGy2Xx2uWlajqqxuJcLbxSynH+<br>3Hqzq525h98yYwV4ncO2GmxP/rEUk02AHoUrNdD8BaiCS/82XgFmwQJAdCbcdxFK<br>ZUVK3+OCGretEHdedWuVPXEhfiLDpguog994jdoCMCmGviKiOURNo3QsK5DfT0+A<br>Lw307ILOc1dqcg==<br>—–END PRIVATE KEY—–<br><strong>OpenSSL&gt; rsa -in rsa_private_key.pem -pubout -out rsa_public_key.pem</strong><br>writing RSA key<br><strong>OpenSSL&gt;</strong>   </p>
-</blockquote>
-<p>然后 openssl 会为我们生成两个文件，分别叫做 <strong>rsa_private_key.pem</strong> 和 <strong>rsa_public_key.pem</strong>。</p>
-<h3 id="与-Unity-结合"><a href="#与-Unity-结合" class="headerlink" title="与 Unity 结合"></a>与 Unity 结合</h3>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/03/01/Unity RSA/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/02/16/UnityTips/" itemprop="url">
-                  关于 Untiy 一些需要知道的技巧
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-02-16T22:03:00+08:00" content="2016-02-16">
-              2016-02-16
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/UnityKB/" itemprop="url" rel="index">
-                    <span itemprop="name">UnityKB</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/02/16/UnityTips/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/02/16/UnityTips/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="Unity-Tips"><a href="#Unity-Tips" class="headerlink" title="Unity Tips"></a>Unity Tips</h2><ul>
-<li><code>List&lt;T&gt;</code> 或者数组序列化的时候默认生成的名字为 Element n，如果要改变这个，只需要把 T<br>的第一个序列化的字段的数据类型设置为 <code>string</code></li>
-<li>保存 Play 模式下调试出的数据：在组件的右上角点击右键，选择 <code>Copy Component</code>，然后关闭 Play<br>模式之在对应的组件右上角点击右键，选择 <code>Copy Component as Values</code>。 更多小技巧请看 <a href="https://mp.weixin.qq.com/s?__biz=MjM5NjM3NDA1Mg==&amp;mid=401777518&amp;idx=1&amp;sn=aa995d6c44866fb0f5bcc096e75969bb&amp;scene=0&amp;key=710a5d99946419d912a29c647796b42ba9c71553d849b38d45c2b41608a344d5befb72dd9cb578c745cd931a0e330ad7&amp;ascene=0&amp;uin=MTQ0NjU3MzQyNw">这个链接</a>。</li>
-</ul>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/02/16/UnityTips/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1052,7 +1073,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">41</span>
+              <span class="site-state-item-count">43</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
