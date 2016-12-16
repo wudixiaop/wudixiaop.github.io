@@ -257,6 +257,281 @@
             
               
                 
+                <a class="post-title-link" href="/2015/11/10/AssetBundleAndABManage_1/" itemprop="url">
+                  Unity 5： Asset Bundle 和 Asset Bundle Manager (1)
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-11-10T16:16:56+08:00" content="2015-11-10">
+              2015-11-10
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/UnityKB/" itemprop="url" rel="index">
+                    <span itemprop="name">UnityKB</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/11/10/AssetBundleAndABManage_1/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/11/10/AssetBundleAndABManage_1/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>这篇是 Unity 官方教程 <a href="http://unity3d.com/cn/learn/tutorials/topics/scripting/assetbundles-and-assetbundle-manager?playlist=17117">AssetBundles and the AssetBundle Manager</a> 的翻译， 分三部分，这是第一部分。翻译不到之处请不吝指出。非常谢谢！</p>
+<hr>
+
+<div style="display:none"><br>#~###INTRODUCTION<br><br>AssetBundles allow on demand streaming and loading of Assets from a local or remote location. With AssetBundles, Assets can be stored remotely and accessed as needed, increasing the flexibility of the project and reducing the initial application size.<br></div>
+
+<h3 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h3><p>AssetBundle 允许按需地从本地或者远程服务器上加载资源(Asset)。通过 AssetBundle 的方式，资源可以远程存储，有需要的时候访问，这样提升了项目的灵活性和降低初始程序的大小。</p>
+<div style="display:none"><br>This lesson will introduce AssetBundles and discuss how to work with them, the steps and stages of the AssetBundle workflow, how to assign Assets to an AssetBundle, how and when to use AssetBundle Variants, how to build and test AssetBundles and Variants - all in the context of using the AssetBundle Manager to simplify creating, testing and deploying AssetBundles. The final section of the lesson will cover specific examples of loading and using AssetBundles and AssetBundle Variants with simple use-cases and simple example scripts.<br></div>
+
+<p>这篇教程将会介绍 AssetBundle 和及其应用，AssetBundle 流程的步骤和各阶段和怎么样编译和测试 AssetBundle 及其变体 - 所有的一切可以用 AssetBundle Manager 来简化创建，测试和部署 AssetBundle。教程的最后一部分将使用一些加载和使用 AssetBundle 变体的简单用例和脚本示例。</p>
+<div style='display:none'><br>###SAMPLE PROJECT<br></div>
+
+<h3 id="演示项目"><a href="#演示项目" class="headerlink" title="演示项目"></a>演示项目</h3><div style='display:none'><br>Before starting this Tutorial Article, it would be best to download the AssetBundle Manager with the AssetBundle Sample project here.<br></div>
+
+<p>在开始教程之前，最后先下载好 AssetBundle 和 AssetBundle Manager 的<a href="http://u3d.as/jyk">示例程序</a>。</p>
+<div style='display:none'><br>###WHAT IS AN ASSETBUNDLE?<br><br>AssetBundles are files created in the Unity editor during edit-time, which can be used later by a build of a project at run-time. AssetBundles can contain asset files such as models, materials, textures and scenes. AssetBundles cannot contain scripts.<br></div>
+
+<h3 id="什么是-AssetBundle"><a href="#什么是-AssetBundle" class="headerlink" title="什么是 AssetBundle"></a>什么是 AssetBundle</h3><p>AssetBundle 是由 Unity 编辑器在编辑时期创建的，可以被编译出来的程序在运行期使用的文件。AssetBundle 可以包含模型，材质，纹理和场景文件等资源。但是 AssetBundle 不能包含脚本。</p>
+<div style='display:none'><br>Specifically, an AssetBundle is a collection of assets and/or scenes from a project saved in a compact file with the purpose of being loaded separately to the built executable application. AssetBundles can be loaded on demand by a game or application built in Unity. This allows streaming and asynchronous loading of content such as models, textures, audio clips, or even entire scenes. AssetBundles can be “pre-cached” and stored locally for immediate loading when first running an application. The primary purpose of AssetBundles, however, is to stream content on demand from a remote location, to be loaded into the application as necessary. AssetBundles can contain any kind of asset type recognized by Unity, including custom binary data. The only exception is that script assets are not allowed.<br></div>
+
+<p>明确一点说，一个 AssetBundle 就是存储项目资源和 / 或场景集合的文件，目的是为了之后在游戏或者程序中加载。<br>AssetBundle 可以被在 Unity 中编译出来的游戏或者程序按需加载。它允许传送和异步加载像模型，材质，声音剪辑，<br>甚至是整个场景。当在程序中初次运行时， AssetBundle 会被存储到本地 “预缓存” 以备以后被立即加载。Assetbundle 的主要目是为了需要的时候能从远程传送内容并加载进程序。AssetBundle 可以包含可以被 Unity 识别的任何资源类型，包括二进制文件。唯一的另外就是不允许是脚本资源。</p>
+<div style='display:none'><br>There are many use-cases for AssetBundles. New content can be dynamically loaded and unloaded from an application. Post-release DLC can easily be implemented. An application’s disk footprint or size can be reduced when first deployed, with assets being loaded after installation of the application and only as the assets are needed. Platform and device specific assets can be loaded without having to download or store redundant assets for other platforms or resolutions. Localization of applications becomes easy by downloading and installing only the assets needed based on the user’s location, language or preferences. Applications can be fixed, changed or updated with new content without having to resubmit the application for approval.<br></div>
+
+<p>AssetsBundle 有很多用处。比如新的内容可以动态地在程序中加载和释放。可以很简单实现发布后的可下载内容(DLC, Downloadable Content)。<br>程序第一次安装的的时候的大小或者磁盘占用空间会减少，资源只有安装的程序需要的时候才会被加载。平台或者设备相关的资源加载时可以不必要下载或冗余存储其他平台和方案中的资源。本地化的程序可以更容易来下载和安装基于用户位置，语言和偏好的资源。新的内容可以下修复，改变或更新，而不需要重新发布程序。</p>
+<div style='display:none'><br>The detailed organization of any project’s assets into AssetBundles will be heavily dependent upon the needs of that particular project. There are, however, some basic tenets to understand about AssetBundles.<br></div>
+
+<p>AssetBundle 内项目资源的组织严重依赖于项目的需求。但是，也有一些可以更好的理解 AssetBundle 的原则。</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/11/10/AssetBundleAndABManage_1/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2015/09/23/Xcode download/" itemprop="url">
+                  远离 XCodeGhost 影响，各种 XCode 版本下载
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-09-23T16:33:00+08:00" content="2015-09-23">
+              2015-09-23
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Unity/" itemprop="url" rel="index">
+                    <span itemprop="name">Unity</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/09/23/Xcode download/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/09/23/Xcode download/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>最近 <a href="http://baike.baidu.com/link?url=2582FqWOjsj0CU1shau0JPU--sgJ-moKqnYCcDy87QwZd5jPUwyxiFRbfjmrb8tpZcN8jfSu2Iw-Vokfjn8tJK">XCodeGhost</a> 病毒闹的沸沸扬扬,<br>多款 app 受其影响。就个人觉得之所以会出现这么多从第三方下载 XCode 的情况，可能有如下几个原因引起：</p>
+<ul>
+<li>下载 XCode 太慢</li>
+<li>需要老版本的 XCode，但是苹果官网找不到 XCode 老版本</li>
+<li>习惯性从网盘等第三方下软件</li>
+</ul>
+<p>速度太慢的问题怎么解决相信网络上有一大推方法，这里就不多说了，下面主要列出 XCode 各个版本的下载地址（<strong>需要 apple id</strong>）:</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/09/23/Xcode download/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2015/09/15/BrightenTexture2D/" itemprop="url">
                   如何改变图片亮度
                 </a>
@@ -758,267 +1033,11 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/08/10/UNet_3/" itemprop="url">
-                  UNet 0x03：NetworkManager 初见
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2015-08-10T14:04:00+08:00" content="2015-08-10">
-              2015-08-10
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/UnityKB/" itemprop="url" rel="index">
-                    <span itemprop="name">UnityKB</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/08/10/UNet_3/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/08/10/UNet_3/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>阅读本章之前, 建议先阅读 <a href="/2015/08/06/uNET_1/" title="[UNet 0x01: 网络连接的建立]">[UNet 0x01: 网络连接的建立]</a> 和 <a href="/2015/08/07/UNet_2/" title="[UNet 0x02: 发送消息]">[UNet 0x02: 发送消息]</a> 这两篇文章。</p>
-<p>前两篇文章我们建立 Client / Server 间的连接的时候，手动配置了 Server 的端口和 Client 要连接的目标 Server 及其端口。这些都是在代码里面实现<br>的。这篇文章我们引入 UNet 提供的一个网络管理组件来达到同样的效果。这个组件的名字叫做 NetworkManager。</p>
-<p>NetworkManager 组件提供了很多功能，但是这篇文章只引入 NetworkManager 组件，不打算深入讲这个组件。下面是 NetworkManager 在 Inspector 里面的长相：</p>
-<p><img src="/images/UNet/NetworkManagerInspector.PNG" alt="networkmanager"></p>
-<p>上图中 Network Info 部分就是就是配置 Server 地址及其端口的地方。</p>
-<p>接下来看看 NetworkManager 如何启动一个 Server / Client / Host。</p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2015/08/10/UNet_3/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/08/07/UNet_2/" itemprop="url">
-                  UNet 0x02：发送消息
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2015-08-07T16:04:00+08:00" content="2015-08-07">
-              2015-08-07
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/UnityKB/" itemprop="url" rel="index">
-                    <span itemprop="name">UnityKB</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/08/07/UNet_2/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/08/07/UNet_2/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>在 <a href="/2015/08/06/uNET_1/" title="[上一篇文章]">[上一篇文章]</a> 中介绍了如何在 UNet 中建立网络连接，接下来我们在这篇文章中说说建立连接之后怎么在 Client / Server 间发送消息。</p>
-<p>这篇文章涉及的是 UNet HLAPI 部分消息发送所涉及到一些概念，最后会给出一个示例代码。按之前的风格，我们继续来抱着问题讲述今天的主题。</p>
-<p>有两个问题：</p>
-<ul>
-<li>UNet HLAPI 中消息怎么表示？</li>
-<li>UNet HLAPI 中消息怎么发送和接收？</li>
-</ul>
-<h3 id="UNet-HLAPI-中的消息"><a href="#UNet-HLAPI-中的消息" class="headerlink" title="UNet HLAPI 中的消息"></a>UNet HLAPI 中的消息</h3><p>新的网路系统 UNet 提供了一个抽象类，叫做 <code>MessageBase</code>, 它的原型大概是下面这样:</p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2015/08/07/UNet_2/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1059,7 +1078,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">41</span>
+              <span class="site-state-item-count">43</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
