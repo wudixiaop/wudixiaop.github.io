@@ -4,12 +4,12 @@
 
     
   <url>
-    <loc>http://blog.shuiguzi.com/2016/12/15/Assets_Objects_serialization/</loc>
-    <lastmod>2016-12-16T03:51:04.000Z</lastmod>
+    <loc>http://blog.shuiguzi.com/2016/12/28/resources_folder/</loc>
+    <lastmod>2016-12-28T03:11:42.000Z</lastmod>
     <data>
         <display>
-        <title>资产, 对象和序列化</title>
-        <pubTime>2016-12-15T09:40:00.000Z</pubTime>
+        <title>Resources 文件夹</title>
+        <pubTime>2016-12-28T04:40:00.000Z</pubTime>
         
         <tag>AssetBundle</tag>
          
@@ -25,10 +25,30 @@
     
   <url>
     <loc>http://blog.shuiguzi.com/2016/12/15/GuideToABAndRes/</loc>
-    <lastmod>2016-12-15T10:02:24.000Z</lastmod>
+    <lastmod>2016-12-28T03:06:33.000Z</lastmod>
     <data>
         <display>
         <title>资源和 AssetBundle 指导</title>
+        <pubTime>2016-12-15T09:40:00.000Z</pubTime>
+        
+        <tag>AssetBundle</tag>
+         
+         
+           
+             
+              <breadCrumb title="UnityKB" url="http://blog.shuiguzi.com/categories/UnityKB/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://blog.shuiguzi.com/2016/12/15/Assets_Objects_serialization/</loc>
+    <lastmod>2016-12-16T03:51:04.000Z</lastmod>
+    <data>
+        <display>
+        <title>资产, 对象和序列化</title>
         <pubTime>2016-12-15T09:40:00.000Z</pubTime>
         
         <tag>AssetBundle</tag>
@@ -185,19 +205,19 @@
 
     
   <url>
-    <loc>http://blog.shuiguzi.com/2015/04/26/Shader_1/</loc>
+    <loc>http://blog.shuiguzi.com/2015/08/15/UNet_5/</loc>
     <lastmod>2016-06-29T11:44:32.000Z</lastmod>
     <data>
         <display>
-        <title>瞎聊 Unity Shader 系列之一：GPU 与 Shader Model</title>
-        <pubTime>2015-04-26T08:50:00.000Z</pubTime>
+        <title>UNet 0x05：SyncVar</title>
+        <pubTime>2015-08-15T04:01:00.000Z</pubTime>
         
-        <tag>Shader</tag>
+        <tag>UNet</tag>
          
          
            
              
-              <breadCrumb title="Shader" url="http://blog.shuiguzi.com/categories/Shader/"/>
+              <breadCrumb title="UnityKB" url="http://blog.shuiguzi.com/categories/UnityKB/"/>
           
         </display>
     </data>
@@ -345,12 +365,12 @@
 
     
   <url>
-    <loc>http://blog.shuiguzi.com/2015/08/15/UNet_5/</loc>
+    <loc>http://blog.shuiguzi.com/2015/08/06/uNET_1/</loc>
     <lastmod>2016-06-29T11:44:32.000Z</lastmod>
     <data>
         <display>
-        <title>UNet 0x05：SyncVar</title>
-        <pubTime>2015-08-15T04:01:00.000Z</pubTime>
+        <title>UNet 0x01：网络连接的建立</title>
+        <pubTime>2015-08-06T08:43:00.000Z</pubTime>
         
         <tag>UNet</tag>
          
@@ -405,12 +425,12 @@
 
     
   <url>
-    <loc>http://blog.shuiguzi.com/2015/08/06/uNET_1/</loc>
+    <loc>http://blog.shuiguzi.com/2015/08/23/UNet_6/</loc>
     <lastmod>2016-06-29T11:44:32.000Z</lastmod>
     <data>
         <display>
-        <title>UNet 0x01：网络连接的建立</title>
-        <pubTime>2015-08-06T08:43:00.000Z</pubTime>
+        <title>UNet 0x06：Command</title>
+        <pubTime>2015-08-23T04:01:00.000Z</pubTime>
         
         <tag>UNet</tag>
          
@@ -445,6 +465,26 @@
 
     
   <url>
+    <loc>http://blog.shuiguzi.com/2015/04/26/Shader_1/</loc>
+    <lastmod>2016-06-29T11:44:32.000Z</lastmod>
+    <data>
+        <display>
+        <title>瞎聊 Unity Shader 系列之一：GPU 与 Shader Model</title>
+        <pubTime>2015-04-26T08:50:00.000Z</pubTime>
+        
+        <tag>Shader</tag>
+         
+         
+           
+             
+              <breadCrumb title="Shader" url="http://blog.shuiguzi.com/categories/Shader/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://blog.shuiguzi.com/2015/08/10/UNet_3/</loc>
     <lastmod>2016-06-29T11:44:32.000Z</lastmod>
     <data>
@@ -471,26 +511,6 @@
         <display>
         <title>UNet 0x04： 做一个简单的 Network Manager 界面</title>
         <pubTime>2015-08-12T06:01:00.000Z</pubTime>
-        
-        <tag>UNet</tag>
-         
-         
-           
-             
-              <breadCrumb title="UnityKB" url="http://blog.shuiguzi.com/categories/UnityKB/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://blog.shuiguzi.com/2015/08/23/UNet_6/</loc>
-    <lastmod>2016-06-29T11:44:32.000Z</lastmod>
-    <data>
-        <display>
-        <title>UNet 0x06：Command</title>
-        <pubTime>2015-08-23T04:01:00.000Z</pubTime>
         
         <tag>UNet</tag>
          
@@ -585,46 +605,6 @@
 
     
   <url>
-    <loc>http://blog.shuiguzi.com/2014/11/05/about%20Unity3D%20editor/</loc>
-    <lastmod>2016-06-29T01:58:00.000Z</lastmod>
-    <data>
-        <display>
-        <title>关于 Unity 编辑器一些事儿</title>
-        <pubTime>2014-11-05T14:30:00.000Z</pubTime>
-        
-        <tag>Editor</tag>
-         
-         
-           
-             
-              <breadCrumb title="UnityKB" url="http://blog.shuiguzi.com/categories/UnityKB/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://blog.shuiguzi.com/2015/09/23/Xcode%20download/</loc>
-    <lastmod>2016-06-29T01:58:00.000Z</lastmod>
-    <data>
-        <display>
-        <title>远离 XCodeGhost 影响，各种 XCode 版本下载</title>
-        <pubTime>2015-09-23T08:33:00.000Z</pubTime>
-        
-        <tag>Unity</tag>
-         
-         
-           
-             
-              <breadCrumb title="Unity" url="http://blog.shuiguzi.com/categories/Unity/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://blog.shuiguzi.com/2014/11/10/MonoBehavior%20event%20functions/</loc>
     <lastmod>2016-06-29T01:58:00.000Z</lastmod>
     <data>
@@ -658,6 +638,46 @@
            
              
               <breadCrumb title="Unity" url="http://blog.shuiguzi.com/categories/Unity/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://blog.shuiguzi.com/2015/09/23/Xcode%20download/</loc>
+    <lastmod>2016-06-29T01:58:00.000Z</lastmod>
+    <data>
+        <display>
+        <title>远离 XCodeGhost 影响，各种 XCode 版本下载</title>
+        <pubTime>2015-09-23T08:33:00.000Z</pubTime>
+        
+        <tag>Unity</tag>
+         
+         
+           
+             
+              <breadCrumb title="Unity" url="http://blog.shuiguzi.com/categories/Unity/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://blog.shuiguzi.com/2014/11/05/about%20Unity3D%20editor/</loc>
+    <lastmod>2016-06-29T01:58:00.000Z</lastmod>
+    <data>
+        <display>
+        <title>关于 Unity 编辑器一些事儿</title>
+        <pubTime>2014-11-05T14:30:00.000Z</pubTime>
+        
+        <tag>Editor</tag>
+         
+         
+           
+             
+              <breadCrumb title="UnityKB" url="http://blog.shuiguzi.com/categories/UnityKB/"/>
           
         </display>
     </data>
@@ -746,46 +766,6 @@
 
     
   <url>
-    <loc>http://blog.shuiguzi.com/2015/01/07/CSharp%20to%20Python%20Tutorial/</loc>
-    <lastmod>2016-02-17T01:32:42.000Z</lastmod>
-    <data>
-        <display>
-        <title>从C#到Python</title>
-        <pubTime>2015-01-07T12:13:00.000Z</pubTime>
-        
-        <tag>Python</tag>
-         
-         
-           
-             
-              <breadCrumb title="一点一滴" url="http://blog.shuiguzi.com/categories/%E4%B8%80%E7%82%B9%E4%B8%80%E6%BB%B4/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://blog.shuiguzi.com/2015/01/28/UserGithubClientForNonGithubRepos/</loc>
-    <lastmod>2016-02-17T01:32:42.000Z</lastmod>
-    <data>
-        <display>
-        <title>如何在Github for Mac/Windows上使用非Github的仓库</title>
-        <pubTime>2015-01-28T08:54:00.000Z</pubTime>
-        
-        <tag>Git</tag>
-         
-         
-           
-             
-              <breadCrumb title="一点一滴" url="http://blog.shuiguzi.com/categories/%E4%B8%80%E7%82%B9%E4%B8%80%E6%BB%B4/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://blog.shuiguzi.com/2014/08/31/Why%20I%20start%20ShaderlabVS/</loc>
     <lastmod>2016-02-17T01:32:42.000Z</lastmod>
     <data>
@@ -799,6 +779,46 @@
            
              
               <breadCrumb title="Shader" url="http://blog.shuiguzi.com/categories/Shader/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://blog.shuiguzi.com/2015/03/26/ClosureInSwift/</loc>
+    <lastmod>2016-02-17T01:32:42.000Z</lastmod>
+    <data>
+        <display>
+        <title>一个例子学习Swift中的闭包用法</title>
+        <pubTime>2015-03-26T07:37:00.000Z</pubTime>
+        
+        <tag>Swift</tag>
+         
+         
+           
+             
+              <breadCrumb title="一点一滴" url="http://blog.shuiguzi.com/categories/%E4%B8%80%E7%82%B9%E4%B8%80%E6%BB%B4/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://blog.shuiguzi.com/2015/01/07/CSharp%20to%20Python%20Tutorial/</loc>
+    <lastmod>2016-02-17T01:32:42.000Z</lastmod>
+    <data>
+        <display>
+        <title>从C#到Python</title>
+        <pubTime>2015-01-07T12:13:00.000Z</pubTime>
+        
+        <tag>Python</tag>
+         
+         
+           
+             
+              <breadCrumb title="一点一滴" url="http://blog.shuiguzi.com/categories/%E4%B8%80%E7%82%B9%E4%B8%80%E6%BB%B4/"/>
           
         </display>
     </data>
@@ -848,14 +868,14 @@
     
     
   <url>
-    <loc>http://blog.shuiguzi.com/2015/03/26/ClosureInSwift/</loc>
+    <loc>http://blog.shuiguzi.com/2015/01/28/UserGithubClientForNonGithubRepos/</loc>
     <lastmod>2016-02-17T01:32:42.000Z</lastmod>
     <data>
         <display>
-        <title>一个例子学习Swift中的闭包用法</title>
-        <pubTime>2015-03-26T07:37:00.000Z</pubTime>
+        <title>如何在Github for Mac/Windows上使用非Github的仓库</title>
+        <pubTime>2015-01-28T08:54:00.000Z</pubTime>
         
-        <tag>Swift</tag>
+        <tag>Git</tag>
          
          
            

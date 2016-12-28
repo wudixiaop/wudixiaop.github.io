@@ -257,6 +257,136 @@
             
               
                 
+                <a class="post-title-link" href="/2016/06/28/RunOnDifferentPlatforms/" itemprop="url">
+                  在不同平台运行不同代码的几种方式
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-06-28T16:54:46+08:00" content="2016-06-28">
+              2016-06-28
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/UnityKB/" itemprop="url" rel="index">
+                    <span itemprop="name">UnityKB</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/06/28/RunOnDifferentPlatforms/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/06/28/RunOnDifferentPlatforms/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>由于 Unity 支持多平台，所以写代码时，我们总会碰到一些需要在不同的平台实现不同的逻辑的情况。那在 Unity 中怎么实现呢？</p>
+<p>总体来说有这么几种方法：</p>
+<ul>
+<li>最常见的就是使用预编译宏</li>
+<li>第二种方法是使用 C# 的 ConditionalAttribute 属性（Attribute)</li>
+<li>第三种运行期读取 Application.platform 字段的值判断当前是哪个平台</li>
+</ul>
+<h3 id="预编译宏"><a href="#预编译宏" class="headerlink" title="预编译宏"></a>预编译宏</h3><p>下面是一段简单的示范：</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="selector-tag">private</span> <span class="selector-tag">void</span> <span class="selector-tag">CompilationDirectivesWay</span>()</span><br><span class="line">&#123;</span><br><span class="line"><span class="selector-id">#if</span> <span class="selector-tag">UNITY_IOS</span></span><br><span class="line">    <span class="selector-tag">Debug</span><span class="selector-class">.Log</span>(<span class="string">"在 iOS 上运行，使用预编译宏方式"</span>);</span><br><span class="line"><span class="selector-id">#elif</span> <span class="selector-tag">UNITY_ANDROID</span></span><br><span class="line">    <span class="selector-tag">Debug</span><span class="selector-class">.Log</span>(<span class="string">"在 Android 上运行，使用预编译宏方式"</span>);</span><br><span class="line"><span class="selector-id">#endif</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/06/28/RunOnDifferentPlatforms/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/03/01/Unity RSA/" itemprop="url">
                   Unity + openssl 生成的 RSA 秘钥实现可靠的简单数据加密
                 </a>
@@ -892,150 +1022,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/11/11/AssetBundleAndABManage_2/" itemprop="url">
-                  Unity 5：使用 Asset Bundle 和 Asset Bundle Manager (2)
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2015-11-11T20:28:07+08:00" content="2015-11-11">
-              2015-11-11
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/UnityKB/" itemprop="url" rel="index">
-                    <span itemprop="name">UnityKB</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/11/11/AssetBundleAndABManage_2/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/11/11/AssetBundleAndABManage_2/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>这篇是 Unity 官方教程 <a href="http://unity3d.com/cn/learn/tutorials/topics/scripting/assetbundles-and-assetbundle-manager?playlist=17117">AssetBundles and the AssetBundle Manager</a> 的翻译， 分三部分，这是第二部分。翻译不到之处请不吝指出。非常谢谢！</p>
-<hr>
-
-<div style='display:none'><br>##WORKING WITH ASSETBUNDLES AND THE ASSETBUNDLE MANAGER<br>###INTRODUCTION<br></div>
-
-<h3 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h3><div style='display:none'><br>One of the key areas of effort in working with AssetBundles is the building and testing of bundles. Often, during development, the Assets themselves are changing regularly. Normally this would require regularly building AssetBundles, uploading them to a host and testing these remotely hosted AssetBundles through a network connection with the working project.<br></div>
-
-<p>使用 AssetBundle 中一个关键的地方是编译和测试 bundles。一般情况下，资源在开发过程中是会变的。正常地，可能需要要求有规律的编译 AssetBundle, 上传到服务器和然后通过网络连接在当前项目中测试远程的 AssetBundle.</p>
-<div style='display:none'><br>This section focuses on using the AssetBundle Manager when working with AssetBundles. The AssetBundle Manager provides a High-level API for a massively improved workflow compared to manipulating AssetBundles directly with the foundation Low-level API.<br></div>
-
-<p>这节主要关注 AssetBundle Manager 使用 AssetBundle。相对利用基础的低层 API 来操作 AssetBundle, AssetBundle Manager 为太幅改进的流程提供了高层的 API。</p>
-<div style='display:none'><br>###WORKING WITH ASSETBUNDLES<br><br>The steps of working with AssetBundles in the editor fall roughly into these steps: - Organizing &amp; Setting-up AssetBundles in the editor. - Building AssetBundles. - Uploading AssetBundles to external storage. - Downloading AssetBundles at run-time. - Loading objects from AssetBundles.<br></div>
-
-<h3 id="使用-AssetBundle"><a href="#使用-AssetBundle" class="headerlink" title="使用 AssetBundle"></a>使用 AssetBundle</h3><p>在编辑器中使用 AssetBundle 的大体步骤：- 在编辑器中组织 &amp; 设置 AssetBundle。 - 编译 AssetBundle。 - 上传 AssetBundle 到外部存储 - 运行期下载 AssetBundle - 从 AssetBundle 加载对象。  </p>
-<div style='display:none'><br>It is worth noting that some AssetBundles can be stored locally for immediate loading as a default setup. This is useful to protect against an install where the application cannot reach remote external storage to download desired AssetBundles. For example, the application would load default language and localization data from a local AssetBundle when the application has no access to downloadable content.<br></div>
-
-<p>值得注意的一点，有些 AssetBundle 可以存储在本地作为即时加载的默认设置。这样对不能访问远程存储下载期望的资源的安装特别有用。比如，当不能访问可下载内容的时候，程序可以从本地的 AssetBundle 中加载默认的语言和本地化数据。</p>
-<div style='display:none'><br>It is also worth noting that an AssetBundle contains platform ready Assets. The contents of an AssetBundle have been compiled and optimized for the current target platform according to the Import Settings and the Target Platform set in the Build Settings. Because of this, AssetBundles should be built for each target platform.<br></div>
-
-<p>值得注意的是一个 AssetBundle 包括平台准备资源。AssetBundle 的内容会根据 Import Settings 里设置的当前平台和 Build Settings 里面的目标平台做编译和优化。因为这样，需要为每个平台编译 AssetBundle。</p>
-<div style='display:none'><br>In the following simple scene, one legitimate way of organizing the scene into AssetBundles for the greatest versatility would be to have a base scene, which would include the ground, dunes, rock columns, tree and cactus. This scene could be allowed to include the dependent Materials, as these are fairly simple and would not likely need to be changed depending upon resolution or device. The tank model would be in an AssetBundle of it’s own, which would allow changes or updates to the player Asset. Two additional AssetBundles would be used to complete the tank GameObject. These would be the dependent Materials in one, and the dependent Texture in another. This would allow for changes and updates to the texture and material as needed with the least amount of trouble. This particular organization will also allow for alternative versions, or variants, of these Assets to be loaded from a choice of AssetBundle Variants on demand depending upon need, such as platform, location or resolution of the target device.<br></div>
-
-<p>在接下来的简单的场景中, 为了AssetBundle 最大的用途，有个合理的组织 AssetBundle 场景内容的方式就是把草地，沙丘，岩石柱，树和仙人掌都打包到一个基础场景里面。这个基础场景可能包含依赖的材质，因为他们很简单，以后不太可能会基于分辨率或者设备而改变。坦克模型将需要一个自己的 AssetBundle, 这样允许改变或者更新玩家资源。为了实现坦克游戏对象，还需要两个额外的 AssetBundle. 一个是独立的材质资源，另外是独立的纹理资源。这将会给需要给纹理和材质的更改和更新时带来最小的麻烦。这个特别的组织方式也允许有其他版本或者基于平台、位置或者目标设备分辨率选择 AssetBundle 的变体。<br>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2015/11/11/AssetBundleAndABManage_2/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1081,7 +1067,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">43</span>
+              <span class="site-state-item-count">44</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
