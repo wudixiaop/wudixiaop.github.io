@@ -125,3 +125,5 @@ On most platforms, it is a std::multimap from the C++ Standard Template Library.
 [1] 在大部分平台上是 C++ STL（Standard Template Library）中的 std:multimap
 
 </div>
+
+原文链接: <https://unity3d.com/learn/tutorials/topics/best-practices/asset-bundle-fundamentals>
