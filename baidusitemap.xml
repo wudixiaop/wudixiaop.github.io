@@ -4,6 +4,46 @@
 
     
   <url>
+    <loc>http://blog.shuiguzi.com/2017/01/08/AssetBundle_Fundamentals/</loc>
+    <lastmod>2017-01-08T12:42:21.000Z</lastmod>
+    <data>
+        <display>
+        <title>AssetBundle 基本知识</title>
+        <pubTime>2017-01-08T09:40:00.000Z</pubTime>
+        
+        <tag>AssetBundle</tag>
+         
+         
+           
+             
+              <breadCrumb title="UnityKB" url="http://blog.shuiguzi.com/categories/UnityKB/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://blog.shuiguzi.com/2016/12/15/GuideToABAndRes/</loc>
+    <lastmod>2017-01-08T11:00:11.000Z</lastmod>
+    <data>
+        <display>
+        <title>资源和 AssetBundle 指导</title>
+        <pubTime>2016-12-15T09:40:00.000Z</pubTime>
+        
+        <tag>AssetBundle</tag>
+         
+         
+           
+             
+              <breadCrumb title="UnityKB" url="http://blog.shuiguzi.com/categories/UnityKB/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://blog.shuiguzi.com/2016/12/31/Hello2017/</loc>
     <lastmod>2016-12-31T09:24:56.000Z</lastmod>
     <data>
@@ -30,26 +70,6 @@
         <display>
         <title>Resources 文件夹</title>
         <pubTime>2016-12-28T04:40:00.000Z</pubTime>
-        
-        <tag>AssetBundle</tag>
-         
-         
-           
-             
-              <breadCrumb title="UnityKB" url="http://blog.shuiguzi.com/categories/UnityKB/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://blog.shuiguzi.com/2016/12/15/GuideToABAndRes/</loc>
-    <lastmod>2016-12-28T03:06:33.000Z</lastmod>
-    <data>
-        <display>
-        <title>资源和 AssetBundle 指导</title>
-        <pubTime>2016-12-15T09:40:00.000Z</pubTime>
         
         <tag>AssetBundle</tag>
          
@@ -225,32 +245,12 @@
 
     
   <url>
-    <loc>http://blog.shuiguzi.com/2015/04/26/Shader_1/</loc>
+    <loc>http://blog.shuiguzi.com/2015/05/14/Shader_10/</loc>
     <lastmod>2016-06-29T11:44:32.000Z</lastmod>
     <data>
         <display>
-        <title>瞎聊 Unity Shader 系列之一：GPU 与 Shader Model</title>
-        <pubTime>2015-04-26T08:50:00.000Z</pubTime>
-        
-        <tag>Shader</tag>
-         
-         
-           
-             
-              <breadCrumb title="Shader" url="http://blog.shuiguzi.com/categories/Shader/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://blog.shuiguzi.com/2015/06/09/Shader_11/</loc>
-    <lastmod>2016-06-29T11:44:32.000Z</lastmod>
-    <data>
-        <display>
-        <title>瞎聊 Unity Shader 系列之十一：深度缓存</title>
-        <pubTime>2015-06-09T07:17:00.000Z</pubTime>
+        <title>瞎聊 Unity Shader 系列之十：数据的标签：语义绑定</title>
+        <pubTime>2015-05-14T07:53:00.000Z</pubTime>
         
         <tag>Shader</tag>
          
@@ -365,12 +365,12 @@
 
     
   <url>
-    <loc>http://blog.shuiguzi.com/2015/08/06/uNET_1/</loc>
+    <loc>http://blog.shuiguzi.com/2015/08/10/UNet_3/</loc>
     <lastmod>2016-06-29T11:44:32.000Z</lastmod>
     <data>
         <display>
-        <title>UNet 0x01：网络连接的建立</title>
-        <pubTime>2015-08-06T08:43:00.000Z</pubTime>
+        <title>UNet 0x03：NetworkManager 初见</title>
+        <pubTime>2015-08-10T06:04:00.000Z</pubTime>
         
         <tag>UNet</tag>
          
@@ -425,32 +425,12 @@
 
     
   <url>
-    <loc>http://blog.shuiguzi.com/2015/08/23/UNet_6/</loc>
+    <loc>http://blog.shuiguzi.com/2015/04/26/Shader_1/</loc>
     <lastmod>2016-06-29T11:44:32.000Z</lastmod>
     <data>
         <display>
-        <title>UNet 0x06：Command</title>
-        <pubTime>2015-08-23T04:01:00.000Z</pubTime>
-        
-        <tag>UNet</tag>
-         
-         
-           
-             
-              <breadCrumb title="UnityKB" url="http://blog.shuiguzi.com/categories/UnityKB/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://blog.shuiguzi.com/2015/05/14/Shader_10/</loc>
-    <lastmod>2016-06-29T11:44:32.000Z</lastmod>
-    <data>
-        <display>
-        <title>瞎聊 Unity Shader 系列之十：数据的标签：语义绑定</title>
-        <pubTime>2015-05-14T07:53:00.000Z</pubTime>
+        <title>瞎聊 Unity Shader 系列之一：GPU 与 Shader Model</title>
+        <pubTime>2015-04-26T08:50:00.000Z</pubTime>
         
         <tag>Shader</tag>
          
@@ -465,12 +445,12 @@
 
     
   <url>
-    <loc>http://blog.shuiguzi.com/2015/08/15/UNet_5/</loc>
+    <loc>http://blog.shuiguzi.com/2015/08/06/uNET_1/</loc>
     <lastmod>2016-06-29T11:44:32.000Z</lastmod>
     <data>
         <display>
-        <title>UNet 0x05：SyncVar</title>
-        <pubTime>2015-08-15T04:01:00.000Z</pubTime>
+        <title>UNet 0x01：网络连接的建立</title>
+        <pubTime>2015-08-06T08:43:00.000Z</pubTime>
         
         <tag>UNet</tag>
          
@@ -485,12 +465,32 @@
 
     
   <url>
-    <loc>http://blog.shuiguzi.com/2015/08/10/UNet_3/</loc>
+    <loc>http://blog.shuiguzi.com/2015/08/07/UNet_2/</loc>
     <lastmod>2016-06-29T11:44:32.000Z</lastmod>
     <data>
         <display>
-        <title>UNet 0x03：NetworkManager 初见</title>
-        <pubTime>2015-08-10T06:04:00.000Z</pubTime>
+        <title>UNet 0x02：发送消息</title>
+        <pubTime>2015-08-07T08:04:00.000Z</pubTime>
+        
+        <tag>UNet</tag>
+         
+         
+           
+             
+              <breadCrumb title="UnityKB" url="http://blog.shuiguzi.com/categories/UnityKB/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://blog.shuiguzi.com/2015/08/23/UNet_6/</loc>
+    <lastmod>2016-06-29T11:44:32.000Z</lastmod>
+    <data>
+        <display>
+        <title>UNet 0x06：Command</title>
+        <pubTime>2015-08-23T04:01:00.000Z</pubTime>
         
         <tag>UNet</tag>
          
@@ -525,12 +525,32 @@
 
     
   <url>
-    <loc>http://blog.shuiguzi.com/2015/08/07/UNet_2/</loc>
+    <loc>http://blog.shuiguzi.com/2015/06/09/Shader_11/</loc>
     <lastmod>2016-06-29T11:44:32.000Z</lastmod>
     <data>
         <display>
-        <title>UNet 0x02：发送消息</title>
-        <pubTime>2015-08-07T08:04:00.000Z</pubTime>
+        <title>瞎聊 Unity Shader 系列之十一：深度缓存</title>
+        <pubTime>2015-06-09T07:17:00.000Z</pubTime>
+        
+        <tag>Shader</tag>
+         
+         
+           
+             
+              <breadCrumb title="Shader" url="http://blog.shuiguzi.com/categories/Shader/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://blog.shuiguzi.com/2015/08/15/UNet_5/</loc>
+    <lastmod>2016-06-29T11:44:32.000Z</lastmod>
+    <data>
+        <display>
+        <title>UNet 0x05：SyncVar</title>
+        <pubTime>2015-08-15T04:01:00.000Z</pubTime>
         
         <tag>UNet</tag>
          
@@ -585,19 +605,19 @@
 
     
   <url>
-    <loc>http://blog.shuiguzi.com/2015/04/15/cirleImageInUnity3D/</loc>
+    <loc>http://blog.shuiguzi.com/2014/11/10/MonoBehavior%20event%20functions/</loc>
     <lastmod>2016-06-29T01:58:00.000Z</lastmod>
     <data>
         <display>
-        <title>在 Unity uGUI 中绘制圆形图片</title>
-        <pubTime>2015-04-15T15:30:00.000Z</pubTime>
+        <title>一起看看MonoBehavior内部事件执行顺序</title>
+        <pubTime>2014-11-10T13:38:00.000Z</pubTime>
         
-        <tag>Unity</tag>
+        <tag>UnityKB</tag>
          
          
            
              
-              <breadCrumb title="Unity" url="http://blog.shuiguzi.com/categories/Unity/"/>
+              <breadCrumb title="UnityKB" url="http://blog.shuiguzi.com/categories/UnityKB/"/>
           
         </display>
     </data>
@@ -665,19 +685,19 @@
 
     
   <url>
-    <loc>http://blog.shuiguzi.com/2014/11/10/MonoBehavior%20event%20functions/</loc>
+    <loc>http://blog.shuiguzi.com/2015/04/15/cirleImageInUnity3D/</loc>
     <lastmod>2016-06-29T01:58:00.000Z</lastmod>
     <data>
         <display>
-        <title>一起看看MonoBehavior内部事件执行顺序</title>
-        <pubTime>2014-11-10T13:38:00.000Z</pubTime>
+        <title>在 Unity uGUI 中绘制圆形图片</title>
+        <pubTime>2015-04-15T15:30:00.000Z</pubTime>
         
-        <tag>UnityKB</tag>
+        <tag>Unity</tag>
          
          
            
              
-              <breadCrumb title="UnityKB" url="http://blog.shuiguzi.com/categories/UnityKB/"/>
+              <breadCrumb title="Unity" url="http://blog.shuiguzi.com/categories/Unity/"/>
           
         </display>
     </data>
@@ -786,6 +806,26 @@
 
     
   <url>
+    <loc>http://blog.shuiguzi.com/2014/12/24/VSTips/</loc>
+    <lastmod>2016-02-17T01:32:42.000Z</lastmod>
+    <data>
+        <display>
+        <title>如何在Visual Studio中愉快的玩耍</title>
+        <pubTime>2014-12-24T06:50:00.000Z</pubTime>
+        
+        <tag>Visual Studio</tag>
+         
+         
+           
+             
+              <breadCrumb title="一点一滴" url="http://blog.shuiguzi.com/categories/%E4%B8%80%E7%82%B9%E4%B8%80%E6%BB%B4/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://blog.shuiguzi.com/2015/03/26/ClosureInSwift/</loc>
     <lastmod>2016-02-17T01:32:42.000Z</lastmod>
     <data>
@@ -826,14 +866,14 @@
 
     
   <url>
-    <loc>http://blog.shuiguzi.com/2014/12/24/VSTips/</loc>
+    <loc>http://blog.shuiguzi.com/2015/07/21/rockstar/</loc>
     <lastmod>2016-02-17T01:32:42.000Z</lastmod>
     <data>
         <display>
-        <title>如何在Visual Studio中愉快的玩耍</title>
-        <pubTime>2014-12-24T06:50:00.000Z</pubTime>
+        <title>好玩：如何把 Github Contributions 填充满</title>
+        <pubTime>2015-07-21T04:50:00.000Z</pubTime>
         
-        <tag>Visual Studio</tag>
+        <tag>Python</tag>
          
          
            
@@ -865,6 +905,8 @@
     </url>
 
     
+    
+    
   <url>
     <loc>http://blog.shuiguzi.com/2015/01/28/UserGithubClientForNonGithubRepos/</loc>
     <lastmod>2016-02-17T01:32:42.000Z</lastmod>
@@ -874,28 +916,6 @@
         <pubTime>2015-01-28T08:54:00.000Z</pubTime>
         
         <tag>Git</tag>
-         
-         
-           
-             
-              <breadCrumb title="一点一滴" url="http://blog.shuiguzi.com/categories/%E4%B8%80%E7%82%B9%E4%B8%80%E6%BB%B4/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-    
-    
-  <url>
-    <loc>http://blog.shuiguzi.com/2015/07/21/rockstar/</loc>
-    <lastmod>2016-02-17T01:32:42.000Z</lastmod>
-    <data>
-        <display>
-        <title>好玩：如何把 Github Contributions 填充满</title>
-        <pubTime>2015-07-21T04:50:00.000Z</pubTime>
-        
-        <tag>Python</tag>
          
          
            
