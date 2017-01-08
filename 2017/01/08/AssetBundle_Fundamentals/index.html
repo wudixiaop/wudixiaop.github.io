@@ -1,0 +1,946 @@
+<!doctype html>
+
+
+
+
+<html class="theme-next mist">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.lug.ustc.edu.cn/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="AssetBundle," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="This is the fourth chapter in a series of articles covering Assets, Resources and resource management in Unity 5.
+
+这是 Unity 5 [资产, 资源和资源管理系列文章] 的第四篇。
+This chapter discusses AssetBundles. It introduces">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AssetBundle 基本知识">
+<meta property="og:url" content="http://blog.shuiguzi.com/2017/01/08/AssetBundle_Fundamentals/index.html">
+<meta property="og:site_name" content="Rocky Lai 的技术博客">
+<meta property="og:description" content="This is the fourth chapter in a series of articles covering Assets, Resources and resource management in Unity 5.
+
+这是 Unity 5 [资产, 资源和资源管理系列文章] 的第四篇。
+This chapter discusses AssetBundles. It introduces">
+<meta property="og:image" content="https://unity3d.com/sites/default/files/learn/ab1.jpg">
+<meta property="og:updated_time" content="2017-01-08T12:42:21.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="AssetBundle 基本知识">
+<meta name="twitter:description" content="This is the fourth chapter in a series of articles covering Assets, Resources and resource management in Unity 5.
+
+这是 Unity 5 [资产, 资源和资源管理系列文章] 的第四篇。
+This chapter discusses AssetBundles. It introduces">
+<meta name="twitter:image" content="https://unity3d.com/sites/default/files/learn/ab1.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: false,
+    motion: false,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> AssetBundle 基本知识 | Rocky Lai 的技术博客 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?3a8e2930fa3e4db2aa0fe1cb32188641";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Rocky Lai 的技术博客</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">学习、思考、分享</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                AssetBundle 基本知识
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-01-08T17:40:00+08:00" content="2017-01-08">
+              2017-01-08
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/UnityKB/" itemprop="url" rel="index">
+                    <span itemprop="name">UnityKB</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/01/08/AssetBundle_Fundamentals/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/01/08/AssetBundle_Fundamentals/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <div style="display:none"><br>This is the fourth chapter in a <a href="https://unity3d.com/learn/tutorials/topics/best-practices/guide-asset-bundles-and-resources" target="_blank" rel="external">series of articles covering Assets, Resources and resource management</a> in Unity 5.<br></div>
+
+<p>这是 Unity 5 <a href="/2016/12/15/GuideToABAndRes/" title="[资产, 资源和资源管理系列文章]">[资产, 资源和资源管理系列文章]</a> 的第四篇。</p>
+<div style="display:none"><br>This chapter discusses AssetBundles. It introduces the fundamental systems upon which AssetBundles are built, as well as the core APIs used to interact with AssetBundles. In particular, it discusses both the loading and unloading of AssetBundles themselves, as well as the loading and unloading of specific Asset and Objects from AssetBundles.<br></div>
+
+<p>这篇将会探讨 AssetBundle，并介绍构建 AssetBundle 的基本系统和与它交互的核心 API。这篇文章也会特别地介绍 AssetBundle 和 AssetBundle 内的资产与对象的加载和卸载。</p>
+<div style="display:none"><br>For more patterns and best practices on the uses of AssetBundles, see the next chapter in this series.<br></div>
+
+<p>更多关于 AssetBundle 的使用模式和最佳实践，请看本系列文章中的下一篇。</p>
+<div style="display:none"><br>### 3.1. Overview<br></div>
+
+<h3 id="概况"><a href="#概况" class="headerlink" title="概况"></a>概况</h3><div style="display:none"><br>The AssetBundle system provides a method for storing one or more files in an archival format that Unity can index. The purpose of the system is to provide a data delivery method compatible with Unity’s serialization system. AssetBundles are Unity’s primary tool for the delivery and updating of non-code content after installation. This permits developers to reduce shipped asset size, minimize runtime memory pressure, and selectively load content that is optimized for the end-user’s device.<br></div>
+
+<p>AssetBundle 系统提供了一种可以把一个或者多个文件存储到一个能被 Unity 识别的存档的方法。这个系统的目的是提供一个可以和 Unity 的序列化系统兼容的数据推送方法。AssetBundle 是 Unity 用来在应用安装后推送或者更新非代码内容的主力工具。开发者能够用它来减少资产的体积，缩短运行时内存压力，以及在不同的用户终端有选择的加载内容。</p>
+<div style="display:none"><br>Understanding the way AssetBundles work is essential to building a successful Unity project for mobile devices.<br></div>
+
+<p>理解 AssetBundle 的工作原理是开发一个成功的移动设备项目比不可少的。</p>
+<div style="display:none"><br>### 3.2. What’s in an AssetBundle?<br></div>
+
+<h3 id="生么是-AssetBundle"><a href="#生么是-AssetBundle" class="headerlink" title="生么是 AssetBundle"></a>生么是 AssetBundle</h3><div style="display:none"><br>An AssetBundle consists of two parts: a header and a data segment.<br></div>
+
+<p>一个 AssetBundle 有两部分组成：一个 Header 和一个数据段。</p>
+<div style="display:none"><br>The header is generated by Unity when the AssetBundle is built. It contains information about the AssetBundle, such as the AssetBundle’s identifier, whether the AssetBundle is compressed or uncompressed, and a manifest.<br></div>
+
+<p>Header 是 Unity 构建 AssetBundle 时创建的。它包含了一些 AssetBundle 的信息，比如 AssetBundle 的识别符，AssetBundle 是否压缩和一个清单。</p>
+<div style="display:none"><br>The manifest is a lookup table keyed by an Object’s name. Each entry provides a byte index that indicates where a given Object can be found within the AssetBundle’s data segment. On most platforms, this lookup table is implemented as an STL std::multimap. While the specific algorithm used by any given platform’s implementation of the STL varies, most are a variety of balanced search tree. Windows and OSX-derived platforms (including iOS) employ a red-black tree. Therefore, the time needed to construct the manifest will increase more than linearly as the number of Assets within an AssetBundle grows.<br></div>
+
+<p>清单是一个由对象名称当做关键词的查找表格。每个条目都提供了用来标识对应对象在 AssetBundle 数据段中位置的字节索引。在大部分平台上，这个操作表是通过 C++ STL 中的 std:multimap 来实现的。虽然这个算法在不同的平台上有实现有差异，但是大部分都是平衡搜索树的变种。比如 Windows 和 OSX 衍生的平台（包括 iOS）使用的是红黑树。随着 AssetBundles 内资产数量的增长，构建清单的时间将大于会线性的增长。</p>
+<div style="display:none"><br>The data segment contains the raw data generated by serializing the Assets in the AssetBundle. If the data segment is compressed, then the LZMA algorithm has been applied to the collective sequence of serialized bytes - that is, all assets are serialized, and then the complete byte array is compressed.<br></div>
+
+<p>AssetBundle 数据段包含了 AssetBundle 中资产序列化后的源数据。如果数据被压缩，则 LZMA 算法已被应用于串行化字节的集合序列 - 也就是说，所有资产被串行化，然后完整的字节阵列被压缩。</p>
+<div style="display:none"><br>Prior to Unity 5.3, Objects could not be compressed individually inside an AssetBundle. As a consequence, if a version of Unity before 5.3 is instructed to read one or more Objects from a compressed AssetBundle, Unity had to decompress the entire AssetBundle. Generally, Unity cached a decompressed copy of the AssetBundle to improve loading performance for subsequent loading requests on the same AssetBundle.<br></div>
+
+<p>在 Unity 5.3 之前，对象不能被单独的压缩到 AssetBundle 内。所以在 5.3 之前的版本的 Unity 如果想从一个压缩过之后的 AssetBundle 内读取一个或者多个对象，Unity 必须解压整个 AssetBundle。平常，Unity 会缓存解压后的 AssetBundle 来提高之后有加载请求时性能。</p>
+<div style="display:none"><br>Unity 5.3 added a LZ4 compression option. AssetBundles built with the LZ4 compression option will compress individual Objects within the AssetBundle, allowing Unity to store compressed AssetBundles on disk. This also allows Unity to decompress individual Objects without needing to decompress the entire AssetBundle.<br></div>
+
+<p>Unity 5.3 加入了一个 LZ4 压缩选项。选择了 LZ4 压缩后，AssetBundle 内对象会被单独压缩，这样 Unity 就可以把压缩后的 AssetBundle 存储到硬盘上, 并且解压单个对象而不需要解压整个 AssetBundle。</p>
+<div style="display:none"><br>### 3.3. The AssetBundle Manager<br></div>
+
+<h3 id="AssetBundle-Manager"><a href="#AssetBundle-Manager" class="headerlink" title="AssetBundle Manager"></a>AssetBundle Manager</h3><div style="display:none"><br>Unity develops and maintains a reference implementation of an AssetBundle Manager on Bitbucket. This Manager employs many of the concepts and APIs detailed in this chapter, and provides a useful starting point for any project that must integrate AssetBundles into its resource-management workflow.<br></div>
+
+<p>Unity 开发并维护了一个 AssetBundle Manager 的参考实现，并把放到了 Bitbucket 网站上。这个 Manager 用到了这篇文章中的很多概念和 API 的细节，并且为任何一个必须集成 AssetBundle 作为它的资产管理流程的项目提供给了一个好的起点。</p>
+<div style="display:none"><br>Notable features include a “simulation mode”. When active in the Unity Editor, this mode will transparently redirect requests for Assets tagged into AssetBundles to the original Assets within the project’s /Assets/ folder. This allows developers to work on a project without needing to rebuild AssetBundles.<br></div>
+
+<p>这个 Manager 值得注意的功能是引入了 “模拟模式”。当这个模式开起的时候，这个模式会透明地把对 AssetBundle 内资产的请求重定向到对 Project Assets 文件夹下中的原资产。这可以让开发者开发过程中不需要重新打包 AssetBundle。</p>
+<div style="display:none"><br>The AssetBundle Manager is an open-source project and can be found <a href="https://bitbucket.org/Unity-Technologies/assetbundledemo" target="_blank" rel="external">here</a>.<br></div>
+
+<p>AssetBundle Manager 是开源项目，可以在 <a href="https://bitbucket.org/Unity-Technologies/assetbundledemo" target="_blank" rel="external">这里</a> 找到。</p>
+<div style="display:none"><br>### 3.4. Loading AssetBundles<br></div>
+
+<h3 id="加载-AssetBundle"><a href="#加载-AssetBundle" class="headerlink" title="加载 AssetBundle"></a>加载 AssetBundle</h3><div style="display:none"><br>In Unity 5, AssetBundles can be loaded via four distinct APIs. The behavior of these four APIs is different depending on two criteria:<br><br>1. Whether the AssetBundle is LZMA compressed, LZ4 compressed or uncompressed<br>2. The platform on which the AssetBundle is being loaded<br></div>
+
+<p>在 Unity 5 中，AssetBundle 可以被 4 中不同 API 加载。这 4 个的行为基于下面两个条件：</p>
+<ol>
+<li>AssetBundle 是否开启 LZMA 或者 LZ4 压缩</li>
+<li>加载 AssetBundle 的平台</li>
+</ol>
+<div style="display:none"><br>The four APIs in question are:<br><br><em> <a href="http://docs.unity3d.com/ScriptReference/AssetBundle.LoadFromMemoryAsync.html" target="_blank" rel="external">AssetBundle.LoadFromMemoryAsync</a>
+</em> <a href="http://docs.unity3d.com/ScriptReference/AssetBundle.LoadFromFile.html" target="_blank" rel="external">AssetBundle.LoadFromFile</a><br><em> <a href="http://docs.unity3d.com/ScriptReference/WWW.LoadFromCacheOrDownload.html" target="_blank" rel="external">WWW.LoadFromCacheOrDownload</a>
+</em> <a href="http://docs.unity3d.com/ScriptReference/Networking.UnityWebRequest.html" target="_blank" rel="external">UnityWebRequest</a>‘s <a href="http://docs.unity3d.com/ScriptReference/Networking.DownloadHandlerAssetBundle.html" target="_blank" rel="external">DownloadHandlerAssetBundle</a> (on Unity 5.3 or newer)<br></div>
+
+<p>这 4 个 API 分别是：</p>
+<ul>
+<li><a href="http://docs.unity3d.com/ScriptReference/AssetBundle.LoadFromMemoryAsync.html" target="_blank" rel="external">AssetBundle.LoadFromMemoryAsync</a></li>
+<li><a href="http://docs.unity3d.com/ScriptReference/AssetBundle.LoadFromFile.html" target="_blank" rel="external">AssetBundle.LoadFromFile</a></li>
+<li><a href="http://docs.unity3d.com/ScriptReference/WWW.LoadFromCacheOrDownload.html" target="_blank" rel="external">WWW.LoadFromCacheOrDownload</a></li>
+<li><a href="http://docs.unity3d.com/ScriptReference/Networking.UnityWebRequest.html" target="_blank" rel="external">UnityWebRequest</a> 的 <a href="http://docs.unity3d.com/ScriptReference/Networking.DownloadHandlerAssetBundle.html" target="_blank" rel="external">DownloadHandlerAssetBundle</a> (在大于 5.3 的 Unity 中)</li>
+</ul>
+<div style="display:none"><br>### 3.4.1. AssetBundle.LoadFromMemoryAsync<br></div>
+
+<h4 id="AssetBundle-LoadFromMemoryAsync"><a href="#AssetBundle-LoadFromMemoryAsync" class="headerlink" title="AssetBundle.LoadFromMemoryAsync"></a>AssetBundle.LoadFromMemoryAsync</h4><div style="display:none"><br><strong>Unity’s recommendation is not to use this API.</strong><br></div>
+
+<p><strong>Unity 不推荐使用这个 API。</strong></p>
+<div style="display:none"><br>Unity 5.3.3 Update: This API was renamed in Unity 5.3.3. In Unity 5.3.2 (or older), this API was known as <strong>AssetBundle.CreateFromMemory</strong>. Its functionality has not changed.<br></div>
+
+<p><strong>Unity 5.3.3 更新：</strong> 这个 API 在 5.3.3 被重命名，在之前的版本中叫 <strong>AssetBundle.CreateFromMemory</strong>, 但是功能并没有改变。</p>
+<div style="display:none"><br><a href="http://docs.unity3d.com/ScriptReference/AssetBundle.LoadFromMemoryAsync.html" target="_blank" rel="external">AssetBundle.LoadFromMemoryAsync</a> loads an AssetBundle from a managed-code byte array (byte[] in C#). It will always copy the source data from the managed-code byte array into a newly-allocated, contiguous block of native memory. If the AssetBundle is LZMA compressed, it will decompress the AssetBundle while copying. Uncompressed and LZ4-compressed AssetBundles will be copied verbatim.<br></div>
+
+<p><a href="http://docs.unity3d.com/ScriptReference/AssetBundle.LoadFromMemoryAsync.html" target="_blank" rel="external">AssetBundle.LoadFromMemoryAsync</a> 从托管代码字节数组（C# 中的 Btye[]）中加载 AssetBundle。它总是会从本地内存中开辟一段连续内存，然后从托管代码的字节数组中拷贝源数据到这段新分配的内存中。如果 AssetBundle 是 LZMA 压缩格式的，拷贝过程中 AssetBundle 会被解压。而 LZ4 压缩格式的 AssetBundle 会原原本本的拷贝过去。</p>
+<div style="display:none"><br>The peak amount of memory consumed by this API will be at least twice the size of the AssetBundle: one copy in native memory created by the API, and one copy in the managed byte array passed to the API. Assets loaded from an AssetBundle created via this API will therefore be duplicated three times in memory: once in the managed-code byte array, once in the native-memory copy of the AssetBundle and a third time in GPU or system memory for the asset itself.<br></div>
+
+<p>这个 API 消耗内存的峰值最少是 AssetBundle 大小的两倍：一个是 API 创建的本地内存，一个是传递给 API 的托管代码数组。 利用这个 API 加载资产之后，这个加载资产将会在内存中出现 3 份拷贝：一个是托管代码字节数组，一个是 AssetBundle 的本地内存，第三个是在 GPU 或者系统内存中的资产本身。</p>
+<div style="display:none"><br>### 3.4.2. AssetBundle.LoadFromFile<br></div>
+
+<h4 id="AssetBundle-LoadFromFile"><a href="#AssetBundle-LoadFromFile" class="headerlink" title="AssetBundle.LoadFromFile"></a>AssetBundle.LoadFromFile</h4><div style="display:none"><br>Unity 5.3 update: This API was renamed in Unity 5.3. In Unity 5.2 (or older), this API was known as <strong>AssetBundle.CreateFromFile</strong>. Its functionality has not been changed.<br></div>
+
+<p><strong>Unity 5.3 更新：</strong> 这个 API 在 Unity 5.3.3 被重命名。在之前的版本中叫做  <strong>AssetBundle.CreateFromFile</strong>。它的功能并没有改变。</p>
+<div style="display:none"><br><a href="http://docs.unity3d.com/ScriptReference/AssetBundle.LoadFromFile.html" target="_blank" rel="external">AssetBundle.LoadFromFile</a> is a highly-efficient API intended for loading uncompressed AssetBundle from local storage, such as a hard disk or an SD card. If the AssetBundles are uncompressed or LZ4 compressed, the API will behave as follows:<br></div>
+
+<p><a href="http://docs.unity3d.com/ScriptReference/AssetBundle.LoadFromFile.html" target="_blank" rel="external">AssetBundle.LoadFromFile</a> 能从本地存储中（如硬盘和 SDK 卡）高效的加载未压缩的 AssetBundle。如果 AssetBundle 未压缩或者使用 LZ4 压缩，这个 API 有如下表现。</p>
+<div style="display:none"><br>Mobile devices: The API will only load the AssetBundle’s header, and will leave the remaining data on disk. The AssetBundle’s Objects will be loaded on-demand as loading methods (e.g. AssetBundle.Load) are called or as their InstanceIDs are dereferenced. No excess memory will be consumed in this scenario.<br></div>
+
+<p><strong>移动设备：</strong> API 只会加载 AssetBundle 的 Header, 其他的数据保留在磁盘中。当调用加载的方法（也就是 AssetBundle.Load）或者他们的实例 Id 被间接引用时对象会被按需加载。在这种情况下没有额外的内存开销。</p>
+<div style="display:none"><br>Unity Editor: The API will load the entire AssetBundle into memory, as if the bytes were read off disk and AssetBundle.LoadFromMemoryAsync was used. This API can cause memory spikes to appear during AssetBundle loading if the project is profiled in the Unity Editor. This should not affect performance on-device and these spikes should be re-tested on-device before taking remedial action.<br></div>
+
+<p><strong>Unity 编辑器：</strong> 这个 API 会讲整个 AssetBundle 加载进内存，而不像从磁盘上读取所有字节，使用 AssetBundle.LoadFromMemoryAsync。如果在 Unity Editor 中监视内存，当 AssetBundle 加载时，监视器上内存会出现一个尖峰。这些尖峰并不影响设备上性能，而且在做调整措施之前必须要在设备上重新测试。</p>
+<div style="display:none"><br>Note: On Android devices with Unity 5.3 or older, this API will fail when trying to load AssetBundles from the Streaming Assets path. This is because the contents of that path will reside inside a compressed .jar file. For more details, see the section <a href="https://unity3d.com/learn/tutorials/topics/best-practices/asset-bundle-usage-patterns#Shipped_with_Project" target="_blank" rel="external">Distribution - shipped with project</a> section of the <a href="https://unity3d.com/learn/tutorials/topics/best-practices/asset-bundle-usage-patterns" target="_blank" rel="external">AssetBundle usage patterns</a> chapter. This issue is resolved in Unity 5.4. Games built with Unity 5.4 or newer can now use this API to load Asset Bundles from Streaming Assets.<br></div>
+
+<p><strong>注意：</strong> 在 Unity 5.3 或者之前的安卓设备上，从 StreamingAssets 目录下加载 AssetBundle 会失败。这是因为 StreamingAssets 下的内容会被打包到一个压缩的 .jar 文件中。更详细的内容，请参照 <a href="https://unity3d.com/learn/tutorials/topics/best-practices/asset-bundle-usage-patterns" target="_blank" rel="external">AssetBundle 使用模式</a> 的 <a href="https://unity3d.com/learn/tutorials/topics/best-practices/asset-bundle-usage-patterns#Shipped_with_Project" target="_blank" rel="external">项目部署</a> 小结。这个问题在 Unity 5.4 中已经修复。Unity 5.4 或者以后版本编译的游戏可以使用这个 API 来从 StreamingAssets 里面加载 AssetBundle。</p>
+<div style="display:none"><br>Note: Calls to AssetBundle.LoadFromFile will always fail for LZMA-compressed AssetBundles.<br></div>
+
+<p><strong>注意：</strong> 对 LZMA 压缩的 AssetBundle 调用 AssetBundle.LoadFromFile 会永远不成功。</p>
+<div style="display:none"><br>### 3.4.3. WWW.LoadFromCacheOrDownload<br></div>
+
+<h4 id="WWW-LoadFromCacheOrDownload"><a href="#WWW-LoadFromCacheOrDownload" class="headerlink" title="WWW.LoadFromCacheOrDownload"></a>WWW.LoadFromCacheOrDownload</h4><div style="display:none"><br><a href="http://docs.unity3d.com/ScriptReference/WWW.LoadFromCacheOrDownload.html" target="_blank" rel="external">WWW.LoadFromCacheOrDownload</a> is a useful API for loading Objects both from remote servers and from local storage. Files can be loaded from local storage via a file:// URL. If the AssetBundle is present in the Unity cache, this API will behave exactly like AssetBundle.LoadFromFile.<br></div>
+
+<p><a href="http://docs.unity3d.com/ScriptReference/WWW.LoadFromCacheOrDownload.html" target="_blank" rel="external">WWW.LoadFromCacheOrDownload</a> 对于从远端服务器和本地存储中加载对象很有用。可以使用 <code>file://</code> 链接地址从本地加载文件。如果 AssetBundle 已经在 Unity 的缓存中存在，则它会表现的跟 AssetBundle.LoadFromFile 一样。</p>
+<div style="display:none"><br>If an AssetBundle has not yet been cached, then WWW.LoadFromCacheOrDownload will read the AssetBundle from its source. If the AssetBundle is compressed, it will be decompressed using a worker thread and written into the cache. Otherwise, it will be written directly into the cache via the worker thread.<br></div>
+
+<p>如果 AssetBundle 没有被缓存，WWW.LoadFromCacheOrDownload 会从 AssetBundle 的源地址读取它。如果 AssetBundle 是压缩格式，它会使用一个 worker 线程来解压 AssetBundle 并且写入到缓存当中。如果不是压缩格式，worker 线程会直接将它写入缓存中。</p>
+<div style="display:none"><br>Once the AssetBundle is cached, WWW.LoadFromCacheOrDownload will load header information from the cached, decompressed AssetBundle. The API will then behave identically to an AssetBundle loaded with AssetBundle.LoadFromFile.<br></div>
+
+<p>一旦 AssetBundle 被缓存了，WWW.LoadFromCacheOrDownload 会从缓存中加载 Header 信息和未压缩的 AssetBundle。之后这个 API 表现就跟 AssetBundle.LoadFromFile 一样了。</p>
+<div style="display:none"><br>Note: While the data will be decompressed and written to the cache via a fixed-size buffer, the WWW object will keep a full copy of the AssetBundle’s bytes in native memory. This extra copy of the AssetBundle is kept to support the <a href="http://docs.unity3d.com/ScriptReference/WWW-bytes.html" target="_blank" rel="external">WWW.bytes</a> property.<br></div>
+
+<p><strong>注意：</strong> 当数据被解压并写到缓存的同时，WWW 对象会在本地内存中保留一份 AssetBundle 字节的完整拷贝。这个 AssetBundle 的额外的拷贝是用来支持 <a href="http://docs.unity3d.com/ScriptReference/WWW-bytes.html" target="_blank" rel="external">WWW.bytes</a> 属性的。</p>
+<div style="display:none"><br><strong>Due to the memory overhead of caching an AssetBundle’s bytes in the WWW object</strong>, it is recommended that all developers using WWW.LoadFromCacheOrDownload ensure that their AssetBundles remain small - a few megabytes, at most. It is also recommended that developers operating on limited-memory platforms, such as mobile devices, ensure that their code downloads only a single AssetBundle at a time, in order to avoid memory spikes. For more discussion of AssetBundle sizing, see the <a href="https://unity3d.com/learn/tutorials/topics/best-practices/asset-bundle-usage-patterns#Asset_Assignment_Strategies" target="_blank" rel="external">Asset assignment strategies</a> section in the <a href="https://unity3d.com/learn/tutorials/topics/best-practices/asset-bundle-usage-patterns" target="_blank" rel="external">AssetBundle usage patterns</a> chapter.<br></div>
+
+<p><strong>由于 WWW 对象会缓存 AssetBundle 的数据</strong>，这里推荐开发者使用 WWW.LoadFromCacheOrDownload 来确保 AssetBundle 保持最小（最多几 M 大小。也推荐开发在内存有限平台上，如移动设备，确保他们的代码在运行时只下载一个 AssetBundle 来避免内存尖峰现象。关于 AssetBundle 的大小，请参照 <a href="https://unity3d.com/learn/tutorials/topics/best-practices/asset-bundle-usage-patterns" target="_blank" rel="external">AssetBundle 使用模式</a> 章节中的 <a href="https://unity3d.com/learn/tutorials/topics/best-practices/asset-bundle-usage-patterns#Asset_Assignment_Strategies" target="_blank" rel="external">资产分配策略</a> 小结。</p>
+<div style="display:none"><br>Note: Each call to this API will spawn a new worker thread. Be careful of creating an excessive number of threads when calling this API multiple times. If more than 5-10 AssetBundles need to be downloaded, it is recommended that code be written to ensure that only a few AssetBundle downloads are running simultaneously.<br></div>
+
+<p><strong>注意：</strong> 每调用一次这个 API 都会产生出一个新的 worker 线程。要当心多次调用这个 API 的时候多产生多个线程。如果有 5 到 10 个 AssetBundle 需要下载，建议代码只让少数几个 AssetBundle 同时下载。</p>
+<div style="display:none"><br>### 3.4.4. AssetBundleDownloadHandler<br></div>
+
+<h4 id="AssetBundleDownloadHandler"><a href="#AssetBundleDownloadHandler" class="headerlink" title="AssetBundleDownloadHandler"></a>AssetBundleDownloadHandler</h4><div style="display:none"><br>Introduced on mobile platforms in Unity 5.3, the <a href="http://docs.unity3d.com/ScriptReference/Networking.UnityWebRequest.html" target="_blank" rel="external">UnityWebRequest</a> API provides a more flexible alternative to Unity’s <a href="http://docs.unity3d.com/ScriptReference/WWW.html" target="_blank" rel="external">WWW</a> API. UnityWebRequest allows developers to specify exactly how Unity should handle downloaded data and allows developers to eliminate unnecessary memory usage. The simplest way to download an AssetBundle via UnityWebRequest is the <a href="http://docs.unity3d.com/ScriptReference/Networking.UnityWebRequest.GetAssetBundle.html" target="_blank" rel="external">UnityWebRequest.GetAssetBundle</a> API.<br></div>
+
+<p>在 Unity 5.3 的移动平台上，Unity 引入了 <a href="http://docs.unity3d.com/ScriptReference/Networking.UnityWebRequest.html" target="_blank" rel="external">UnityWebRequest</a> API，它比 Unity 的 <a href="http://docs.unity3d.com/ScriptReference/WWW.html" target="_blank" rel="external">WWW</a> API 更灵活。UnityWebRequest 可以让开发者指定 Unity 怎么样处理数据和排除不需要的内存开销。使用 UnityWebRequest 去下载一个 AssetBundle 的最简单的方式就是调用 <a href="http://docs.unity3d.com/ScriptReference/Networking.UnityWebRequest.GetAssetBundle.html" target="_blank" rel="external">UnityWebRequest.GetAssetBundle</a> API。</p>
+<div style="display:none"><br>For the purposes of this guide, the class of interest is <a href="http://docs.unity3d.com/ScriptReference/Networking.DownloadHandlerAssetBundle.html" target="_blank" rel="external">DownloadHandlerAssetBundle</a>. When used, this Download Handler behaves similarly to WWW.LoadFromCacheOrDownload. Using a worker thread, it streams downloaded data into a fixed-size buffer and then spools the buffered data to either temporary storage or the AssetBundle cache, depending on how the Download Handler has been configured. LZMA-compressed AssetBundles will be decompressed during download and cached uncompressed.<br></div>
+
+<p>这篇文章中，我们感兴趣的类是 <a href="http://docs.unity3d.com/ScriptReference/Networking.DownloadHandlerAssetBundle.html" target="_blank" rel="external">DownloadHandlerAssetBundle</a>。使用时，这里的行为跟 WWW.LoadFromCacheOrDownload 类似。它使用 worker 线程去下载数据到固定大小 Buffer 中，然后把 Buffer 中的数据写到临时存储或者 AssetBundle 缓存中，存储在哪这依赖于 Doanload Hanlder 怎么设置。LZMA 格式压缩的 AssetBudnle 会在下载和缓存过程中被解压。</p>
+<div style="display:none"><br>All of these operations occur in native code, eliminating the risk of expanding the managed heap. Further, this Download Handler does not keep a native-code copy of all downloaded bytes, further reducing the memory overhead of downloading an AssetBundle.<br></div>
+
+<p>为了不增加托管堆大小，所有的操作都是发生在 Native code 中。这个 Download Handler 也没有下载数据的的本地拷贝，进一步的减少了下载 AssetBundle 过程中的内存开支。</p>
+<div style="display:none"><br>When the download is complete, the <a href="http://docs.unity3d.com/ScriptReference/Networking.DownloadHandlerAssetBundle-assetBundle.html" target="_blank" rel="external">assetBundle</a> property of the Download Handler provides access to the downloaded AssetBundle, as if AssetBundle.LoadFromFile had been called on the downloaded AssetBundle.<br></div>
+
+<p>当下载完成之后，Doanload Handler 的 <a href="http://docs.unity3d.com/ScriptReference/Networking.DownloadHandlerAssetBundle-assetBundle.html" target="_blank" rel="external">assetBundle</a> 属性提供给了对下载的 AssetBundle 的访问，就像对下载后的 AssetBundle 执行了 AssetBundle.LoadFromFile 一样。</p>
+<div style="display:none"><br>The UnityWebRequest API also supports caching in a manner identical to <strong>WWW.LoadFromCacheOrDownload</strong>. If caching information is provided to a UnityWebRequest object, and the requested AssetBundle already exists in Unity’s cache, then the AssetBundle will become available immediately and this API will operate identically to AssetBundle.LoadFromFile.<br></div>
+
+<p>UnityWebRequeset 也支持像 <strong>WWW.LoadFromCacheOrDownload</strong> 一样缓存机制。如果给 UnityWebRequest 对象提供给了缓存信息，并且请求的 AssetBundle 已经在 Unity 的缓存中，AssetBundle 会马上有效并这个 API 会像 AssetBundle.LoadFromFile 一样操作它。</p>
+<div style="display:none"><br>Note: The Unity AssetBundle cache is shared between <strong>WWW.LoadFromCacheOrDownload</strong> and <strong>UnityWebRequest</strong>. Any AssetBundle downloaded with one API will also be available via the other API.<br></div>
+
+<p><strong>注意：</strong> Unity AssetBundle 缓存在 <strong>WWW.LoadFromCacheOrDownload</strong> 和 <strong>UnityWebReuqest</strong> 见是共享的，任何下载过的 AssetBundle 都对这两个 API 管用。</p>
+<div style="display:none"><br>Note: Unlike <strong>WWW</strong>, the UnityWebRequest system has an internal pool of worker threads and an internal job system to ensure that developers cannot start an excessive number of simultaneous downloads. The size of the thread pool is not currently configurable.<br></div>
+
+<p><strong>注意:</strong> 不像 <strong>WWW</strong>, UnityWebRequest 系统拥有一个内部的 worker 线程池，和内部的人物系统去确保开发者不会开始多个线程去同步下载。当前这个池的大小是不可控制的。</p>
+<div style="display:none"><br>### 3.4.5. Recommendations<br></div>
+
+<h4 id="推荐"><a href="#推荐" class="headerlink" title="推荐"></a>推荐</h4><div style="display:none"><br>In general, <a href="https://unity3d.com/cn/learn/tutorials/topics/best-practices/assetbundle-fundamentals#AssetBundle.LoadFromFile" target="_blank" rel="external">AssetBundle.LoadFromFile</a> should be used whenever possible. This API is the most efficient in terms of speed, disk usage and runtime memory usage.<br></div>
+
+<p>一般的，应该尽可能的使用 <a href="https://unity3d.com/cn/learn/tutorials/topics/best-practices/assetbundle-fundamentals#AssetBundle.LoadFromFile" target="_blank" rel="external">AssetBundle.LoadFromFile</a>。这个 API 在速度，磁盘使用率和运行期内存方面都最高效。</p>
+<div style="display:none"><br>For projects that must download or patch AssetBundles, it is strongly recommended to use <a href="https://unity3d.com/cn/learn/tutorials/topics/best-practices/assetbundle-fundamentals#AssetBundleDownloadHandler" target="_blank" rel="external">UnityWebRequest</a> for projects using Unity 5.3 or newer, and <a href="http://note.youdao.com/https://unity3d.com/cn/learn/tutorials/topics/best-practices/assetbundle-fundamentals#WWW.LoadFromCacheOrDownload" target="_blank" rel="external">WWW.LoadFromCacheOrDownload</a> for projects using Unity 5.2 or older. As detailed in the <a href="https://unity3d.com/learn/tutorials/topics/best-practices/asset-bundle-usage-patterns#Distribution" target="_blank" rel="external">Distribution</a> section of the next chapter, it is possible to prime the AssetBundle Cache with Bundles included within a project’s installer.<br></div>
+
+<p>对于需要下载 AssetBundle 或者给 AssetBundle 打补丁的项目，强烈推荐在 Unity 5.3 或更新版本中使用 <a href="https://unity3d.com/cn/learn/tutorials/topics/best-practices/assetbundle-fundamentals#AssetBundleDownloadHandler" target="_blank" rel="external">UnityWebRequest</a> ，在 Unity 5.2 或者更老版本中使用 <a href="http://note.youdao.com/https://unity3d.com/cn/learn/tutorials/topics/best-practices/assetbundle-fundamentals#WWW.LoadFromCacheOrDownload" target="_blank" rel="external">WWW.LoadFromCacheOrDownload</a>。就像在下一章的 <a href="https://unity3d.com/learn/tutorials/topics/best-practices/asset-bundle-usage-patterns#Distribution" target="_blank" rel="external">部署</a> 小结中提到，可以在项目安装器将 AssetBundle 缓存先准备好。</p>
+<div style="display:none"><br>When using <strong>WWW.LoadFromCacheOrDownload</strong>, it is strongly recommended to ensure that the project’s AssetBundles remain smaller than 2-3% of the project’s maximum memory budget to prevent application termination due to memory-usage spikes. For most projects, AssetBundles should not exceed 5MB in file size, and no more than 1-2 AssetBundles should be downloaded simultaneously.<br></div>
+
+<p>当使用 <strong>WWW.LoadFromCacheOrDownload</strong> 时，强烈推荐确保 AssetBundle 保持在项目最大内存使用的 2-3%，为了避免内存尖峰引起的程序终止。对于大多数项目，AssetBundle 最好不要大于 5M 的文件大小，并且不大于 2 个 AssetBundle 同时下载。</p>
+<div style="display:none"><br>When using either <strong>WWW.LoadFromCacheOrDownload</strong> or <strong>UnityWebRequest</strong>, ensure that the downloader code properly calls Dispose after loading the AssetBundle. Alternately, C#’s <a href="https://msdn.microsoft.com/en-us//library/yh598w02.aspx" target="_blank" rel="external">using</a> statement is the most convenient way to ensure that a WWW or UnityWebRequest is safely disposed.<br></div>
+
+<p>当使用 <strong>WWW.LoadFromCacheOrDownload</strong> 或者 <strong>UnityWebRequest</strong> 是，确保下载的代码在加载完 AssetBundle 后正确的调用 Dispose。C# 的 <a href="https://msdn.microsoft.com/en-us//library/yh598w02.aspx" target="_blank" rel="external">using</a> 是确保 WWW 或者 UnityWebRequest 被安全 Dispose 的最方便的做法。</p>
+<div style="display:none"><br>For projects with substantial engineering teams and unique caching or downloading requirements, a custom downloader may be necessary. Writing a custom downloader is a non-trivial engineering task, and any custom downloader should be made compatible with AssetBundle.LoadFromFile. See the <a href="https://unity3d.com/learn/tutorials/topics/best-practices/asset-bundle-usage-patterns#Distribution" target="_blank" rel="external">Distribution</a> section of the next chapter for more details.<br></div>
+
+<p>对于一个有持续交互的工程师团队和有唯一缓存和下载需求的项目，自定义的下载器是有必要的。写一个自定义的下载器不是一个非凡的任务，而这个这个下载器不需要要和 AssetBundle.LoadFromFile 兼容。更多详情，查看下章节中的 <a href="https://unity3d.com/learn/tutorials/topics/best-practices/asset-bundle-usage-patterns#Distribution" target="_blank" rel="external">部署</a> 小结。</p>
+<div style="display:none"><br>### 3.5. Loading Assets From AssetBundles<br></div>
+
+<h3 id="在-AssetBundle-中加载资产"><a href="#在-AssetBundle-中加载资产" class="headerlink" title="在 AssetBundle 中加载资产"></a>在 AssetBundle 中加载资产</h3><div style="display:none"><br>UnityEngine.Objects can be loaded from AssetBundles using three distinct APIs that are all attached to the AssetBundle object: <strong>LoadAsset</strong>, <strong>LoadAllAssets</strong> and <strong>LoadAssetWithSubAssets</strong>. All of these APIs also have asynchronous variants with the suffix -Async appended: <strong>LoadAssetAsync</strong>, <strong>LoadAllAssetsAsync</strong>, and <strong>LoadAssetWithSubAssetsAsync</strong>.<br></div>
+
+<p>可以使用 3 种不同 AssetBundle 的 API 来从 AssetBundle 中加载 UnityEngine.Objects：<strong>LoadAsset</strong>，<strong>LoadAllAssets</strong> 和 <strong>LoadAssetWithSubAssets</strong>。这些 API 都有带有 -Async 后缀的异步方法：<strong>LoadAssetAsync</strong>，<strong>LoadAllAssetsAsync</strong> 和 <strong>LoadAssetWithSubAssetsAsync</strong>。</p>
+<div style="display:none"><br>The synchronous API will always be faster than the asynchronous API by at least one frame. This particularly true in Unity 5.1 or older. Before Unity 5.2, all asynchronous APIs would load at most one Object per frame. This means that LoadAllAssetsAsync and LoadAssetWithSubAssetAsync would be significantly slower than the corresponding synchronous API. This behavior was corrected in Unity 5.2. Asynchronous loads will now load multiple Objects per frame, up to their time-slice limits. See the <a href="https://unity3d.com/cn/learn/tutorials/topics/best-practices/assetbundle-fundamentals#Lowlevel_Loading_Details" target="_blank" rel="external">Low-level loading details</a> section for the underlying technical reasons for this behavior and for more details about time-slicing.<br></div>
+
+<p>同步类型的 API 总是比异步 API 快，至少在一帧中是这样。在 Unity 5.1 及其更老版本中尤其是这样。在 Unity 5.2 之前，所有的异步在每帧中最多加载一个对象，这就意味着 LoadAllAssetsAsync 和 LoadAssetWithSubAssetAsync 会明显比其同步的 API 慢。这个行为在 Unity 5.2 之后被纠正 了。现在异步 API 可以在每帧中加载多个对象，这依赖于时间片的限制。关于这种行为的底层技术原因和时间片的详细描述，请参照 <a href="https://unity3d.com/cn/learn/tutorials/topics/best-practices/assetbundle-fundamentals#Lowlevel_Loading_Details" target="_blank" rel="external">Low-level loading details</a>。</p>
+<div style="display:none"><br><strong>LoadAllAssets</strong> should be used when loading multiple independent UnityEngine.Objects. It should only be used when the majority (or all) of the Objects within an AssetBundle need to be loaded. Compared to the other two APIs, <strong>LoadAllAssets</strong> is slightly faster than multiple individual calls to LoadAssets. Therefore, if the number of assets to be loaded is large, and yet the number that needs to be loaded at a single time are less than 2/3rds of the total contents of the AssetBundle, consider splitting the AssetBundle into multiple smaller bundles and using <strong>LoadAllAssets</strong>.<br></div>
+
+<p>当加载多个独立的 UnityEngine.Objects 时，应该要使用 <strong>LoadAllAssets</strong>。它应该用在需要加载的主要对象（或者多个对象）是在同一个 AssetBundle 时。相比其他两个 API, LoadAllAssets 比多次调用 LoadAssets 更快一些。如果需要再加的对象数目比较多，并且在同一时间需要加载的数量小于 AssetBundle 内数量的 2/3，可以考虑将这个 AssetBundle 切分为跟小的 AssetBundle, 然后使用 <strong>LoadAllAssets</strong>。</p>
+<div style="display:none"><br>LoadAssetWithSubAssets should be used when loading a composite Asset which contains multiple embedded Objects, such as an FBX model with embedded animations or a sprite atlas with multiple sprites embedded inside it. If the Objects that need to be loaded all come from the same Asset, but are stored in an AssetBundle with many other unrelated Objects, then use this API.<br></div>
+
+<p><strong>LoadAssetWithSubAssets</strong> 应该用于需要加载一个包含多个嵌入对象资产，比如包含动画的 FBX 模型或者包含多个精灵的精灵图集。如果需要再加的对象都来自同一个资产，但是他们存储在一个拥有很多其他不相关的对象的 AssetBundle 中，可以使用这个 API。</p>
+<div style="display:none"><br>For any other case, use <strong>LoadAsset</strong> or <strong>LoadAssetAsync</strong>.<br></div>
+
+<p>其他情况，请使用 <strong>LoadAsset</strong> 或者 <strong>LoadAsstsAsync</strong>。</p>
+<div style="display:none"><br>### 3.5.1. Low-level loading details<br></div>
+
+<h3 id="底层加载细节"><a href="#底层加载细节" class="headerlink" title="底层加载细节"></a>底层加载细节</h3><div style="display:none"><br>UnityEngine.Object loading is performed off the main thread: an Object’s data is read from storage on a worker thread. Anything which does not touch thread-sensitive parts of the Unity system (scripting, graphics) will be converted on the worker thread. For example, VBOs will be created from meshes, textures will be decompressed, etc.<br></div>
+
+<p>UnityEngine.Object 的加载不是在主线程中执行：一个对象的数据是 worker 从存储中读取的。其他一切 Unity 系统中不涉及线程的部分（脚本，图形）将会在 worker 线程中被转换。比如，从网格中创建 VBO（Vertex Buffer Object），解压纹理等。</p>
+<div style="display:none"><br>In versions prior to Unity 5.3, Object loading occurs in serial and certain portions of Object loading can only occur on the main thread. This is called “integration”. After the worker thread finishes loading an Object’s data, it pauses to integrate the newly-loaded Object onto the main thread, and remains paused (not loading the next Object) until main thread integration is complete.<br></div>
+
+<p>在 Unity 5.3 之前的版本中，对象加载是串行的，并且对象的加载过程的某些部分只能在主线程中执行。这个部分这叫做 “integration”。当 workter 线程完成对象数据的加载，这部分就会暂停，并把新加载的对象集成进主线程，并且保持（而不是加载下一个对象）到主线程集成完成。</p>
+<div style="display:none"><br>From Unity 5.3 onward, Object loading has been parallelized. Multiple Objects can be deserialized, processed and integrated on worker threads. When an Object finishes loading, its Awake callback will be invoked and the Object will become available to the rest of the Unity Engine during the next frame.<br></div>
+
+<p>从 Unity 5.3 开始，对象加载可以是并行的。worker 线程中可以反序列化，处理和集成多个对象。当一个对象的加载完成后，它的 Awake 回调函数会被调用，并且从下帧开始，这个对象会在 Unity 引擎中变成可用。</p>
+<div style="display:none"><br>The synchronous AssetBundle.Load methods will pause the main thread until Object loading is complete. In versions prior to 5.3, the asynchronous AssetBundle.LoadAsync methods will not pause the main thread until they need to integrate Objects onto the main thread. They will also time-slice Object loading so that Object integration does not occupy more than a certain number of milliseconds of frame time. The number of milliseconds is set by the property<br></div>
+
+<p>同步类型的方法 AssetBundle.Load 方法会暂停主线程，直到对象加载结束为止。在 Unity 5.3 之前，异步方法 AssetBundle.LoadAsync 在它需要将对象集成到主线程之前，它不会暂停主线程。它们会将对象加载按时间分片，使对象集成不会超过一定毫秒数量的帧时间。这个毫秒的数量是靠下面这个属性来设置的。</p>
+<div style="display:none"><br><strong>Application.backgroundLoadingPriority:</strong><br><br><em> ThreadPriority.High: Maximum 50 milliseconds per frame
+</em> ThreadPriority.Normal: Maximum 10 milliseconds per frame<br><em> ThreadPriority.BelowNormal: Maximum 4 milliseconds per frame
+</em> ThreadPriority.Low: Maximum 2 milliseconds per frame.<br></div>
+
+<p><strong>Application.backgroundLoadingPriority</strong></p>
+<ul>
+<li><strong>ThreadPriority.High：</strong> 每帧最多 50 毫秒</li>
+<li><strong>ThreadPriority.Normal：</strong> 每帧最多 10 毫秒</li>
+<li><strong>ThreadPriority.BelowNormal：</strong> 每帧最多 4 毫秒</li>
+<li><strong>ThreadPriority.Low：</strong> 每帧组多 2 毫秒</li>
+</ul>
+<div style="display:none"><br>In Unity 5.1 and older, the asynchronous APIs will only integrate one Object per frame. This was considered a bug, and was fixed in Unity 5.2. From Unity 5.2 onwards, multiple Objects will be loaded until the frame-time limit for Object loading is reached. AssetBundle.LoadAsync will always take longer to complete than the comparable synchronous API (assuming all other factors are equal) because of the minimum one-frame delay between issuing the LoadAsync call and the object becoming available to the Engine.<br></div>
+
+<p>在 Unity 5.1 之前，异步 API 在每一帧中只集成一个对象。这个可以说是个 Bug, 其已经在 Unity 5.2 中被修复了。从 Unity 5.2 开始，可以加载多个对象直到超过了帧中加载时间的最大上限。假设其他条件都一样的情况下，AssetBundle.LoadAsync 总是比比的同步 API 需要更多的时间，因为从调用 LoadAsync 到对象在引擎中可用期间有最小帧延迟。</p>
+<div style="display:none"><br>Tests with real-world Objects and Assets demonstrate the difference. Prior to 5.2, loading a certain large texture on a low-end device would require 7ms synchronously or 70ms asynchronously. After 5.2, the observed difference was close to zero.<br></div>
+
+<p>可以现实中对资产和对象的测试来演示他们的不同。Unity 5.2 之前，在一个低端设备上加载一个大纹理，同步方式会消耗 7ms, 异步会消耗 70ms. 在 Unity 5.2 之后，两种方式之间差别几乎为零。</p>
+<div style="display:none"><br>### 3.5.2. AssetBundle dependencies<br></div>
+
+<h3 id="AssetBundle-依赖"><a href="#AssetBundle-依赖" class="headerlink" title="AssetBundle 依赖"></a>AssetBundle 依赖</h3><div style="display:none"><br>In Unity 5’s AssetBundle system, the dependencies between AssetBundles are automatically tracked via two different APIs, depending on the runtime environment. In the Unity Editor, AssetBundle dependencies can be queried via the <a href="http://docs.unity3d.com/ScriptReference/AssetDatabase.html" target="_blank" rel="external">AssetDatabase</a> API. AssetBundle assignments and dependencies can be accessed and changed via the <a href="http://docs.unity3d.com/ScriptReference/AssetImporter.html" target="_blank" rel="external">AssetImporter</a> API. At runtime, Unity provides an optional API to load the dependency information generated during an AssetBundle build via a ScriptableObject-based <a href="http://docs.unity3d.com/ScriptReference/AssetBundleManifest.html" target="_blank" rel="external">AssetBundleManifest</a> API.<br></div>
+
+<p>Unity 5 的 AssetBundle 系统中，AssetBunle 间的依赖是靠两种不同的 API 来自动跟踪的，这依赖于运行时环境。在 Unity 编辑器中，AssetBundle 依赖是通过 <a href="http://docs.unity3d.com/ScriptReference/AssetDatabase.html" target="_blank" rel="external">AssetDatabase</a> API 查询的。AssetBundle 的分配和依赖可以通过 AssetImporter 访问和改变。在运行时，Unity 提供了可以选择的 API 去 加载基于 ScriptableObject 的 <a href="http://docs.unity3d.com/ScriptReference/AssetBundleManifest.html" target="_blank" rel="external">AssetBundleManifest</a> API 构建 AssetBundle 过程中生成的 AssetBundle 依赖信息。</p>
+<div style="display:none"><br>An AssetBundle is “dependent” upon another AssetBundle when one or more of the parent AssetBundle’s UnityEngine.Objects refers to one or more of the other AssetBundle’s UnityEngine.Objects. For more information on inter-Object references, see the <a href="https://unity3d.com/assets-objects-and-serialization#InterObject_References" target="_blank" rel="external">Inter-Object references</a> section of the <a href="https://unity3d.com/assets-objects-and-serialization" target="_blank" rel="external">Assets, Objects and Serialization</a> article.<br></div>
+
+<p>一个 AssetBundle 是否是依赖的取决于另外一个 AssetBundle，当父 AssetBundle 的一个或者多个 UnityEngine.Objects 引用其他 AssetBundle 中的一个或者多个 UnityEngine.Objects。更多关于信息可以参考 <a href="https://unity3d.com/assets-objects-and-serialization" target="_blank" rel="external">资产，对象和序列化</a> 文章中的 <a href="https://unity3d.com/assets-objects-and-serialization#InterObject_References" target="_blank" rel="external">内部引用</a> 小结。</p>
+<div style="display:none"><br>As described in the <a href="https://unity3d.com/assets-objects-and-serialization#Serialization_and_Instances" target="_blank" rel="external">Serialization and instances</a> section of that article, AssetBundles serve as sources for the source data identified by the FileGUID &amp; LocalID of each Object contained within the AssetBundle.<br></div>
+
+<p>就像在那片文章中的 <a href="https://unity3d.com/assets-objects-and-serialization#Serialization_and_Instances" target="_blank" rel="external">序列化和实例</a> 小结中提到，AssetBundle 提供 AssetBundle 内每个靠文件 GUID 和 本地 ID 来鉴别的对象的源数据。</p>
+<div style="display:none"><br>Because an Object is loaded when its Instance ID is first dereferenced, and because an Object is assigned a valid Instance ID when its AssetBundle is loaded, the order in which AssetBundles are loaded is not important. Instead, it is important to load all AssetBundles that contain dependencies of an Object before loading the Object itself. Unity will not attempt to automatically load any child AssetBundles when a parent AssetBundle is loaded.<br></div>
+
+<p>因为当对象的实例 ID 第一次被间接引用时加载，并且对象在 AssetBundle 加载后被分配了一个有效的实例 ID，所以对象在 AssetBundle 中的顺序并不是很重要。反而重要的是加载对象之前，加载这个对象所有依赖的 AssetBundle。Unity 不会在加载完父 AssetBundle 只有去自动加载子 AssetBundle。</p>
+<div style="display:none"><br>#### Example:<br></div>
+
+<h4 id="例子："><a href="#例子：" class="headerlink" title="例子："></a>例子：</h4><div style="display:none"><br>Assume material A refers to texture B. Material A is packaged into AssetBundle 1, and texture B is packaged into AssetBundle 2.<br></div>
+
+<p>假设材质 A 引用了纹理 B。材质 A 被打包进 AssetBundle 1, 而纹理 B 被打包进 AssetBundle 2</p>
+<p><img src="https://unity3d.com/sites/default/files/learn/ab1.jpg" alt="description"></p>
+<div style="display:none"><br>In this use case, AssetBundle 2 must be loaded prior to loading Material A out of AssetBundle 1.<br></div>
+
+<p>在这种情况下，AssetBundle 2 必须在加载来自 AssetBundle 1 的材质 A 之前加载。</p>
+<div style="display:none"><br>This does not imply that AssetBundle 2 must be loaded before AssetBundle 1, or that Texture B must be loaded explicitly from AssetBundle 2. It is sufficient to have AssetBundle 2 loaded prior to loading Material A out of AssetBundle 1.<br></div>
+
+<p>这不是在暗示 AssetBundle 2 必须要在 AssetBundle 1 之前加载，或者或者纹理 B 必须在 AssetBundle 2 中显式的加载。在加载来自 AssetBundle 1 中的材质 A 之前加载 AssetBundle 2 就够了。</p>
+<div style="display:none"><br>Unity will not automatically load AssetBundle 2 when AssetBundle 1 is loaded. This must be done manually via a script. The specific AssetBundle APIs used to load AssetBundles 1 &amp; 2 are irrelevant. AssetBundles loaded via <strong>WWW.LoadFromCacheOrDownload</strong> can be freely mixed with AssetBundles loaded via <strong>AssetBundle.LoadFromFile</strong> or <strong>AssetBundle.LoadFromMemoryAsync</strong>.<br></div>
+
+<p>Unity 不会在加载完 AssetBundle 1 之后自动的加载 AssetBundle 2。它必须手动的通过脚本加载。加载 AssetBundle 1 和 AssetBundle 2 时使用的 API并不重要。 使用 <strong>WWW.LoadFromCacheOrDownload</strong> 加载的 AssetBundle 可以和被 <strong>AssetBundle.LoadFromFile</strong> 或者 <strong>AssetBundle.LoadFromMemoryAsync</strong> 加载的 AssetBundle 混合使用。</p>
+<div style="display:none"><br>### 3.5.3. AssetBundle manifests<br></div>
+
+<h3 id="AssetBundle-清单"><a href="#AssetBundle-清单" class="headerlink" title="AssetBundle 清单"></a>AssetBundle 清单</h3><div style="display:none"><br>When executing the AssetBundle build pipeline via the BuildPipeline.BuildAssetBundles API, Unity serializes an Object containing each AssetBundle’s dependency information. This data is stored in a separate AssetBundle, which contains a single Object of the <a href="http://docs.unity3d.com/ScriptReference/AssetBundleManifest.html" target="_blank" rel="external">AssetBundleManifest</a> type.<br></div>
+
+<p>当通过 BuildPipeline.BuildAssetBundles API 来构建 AssetBundle 时，Unity 会序列化一个包含 AssetBundle 依赖信息的对象。这个对象的数据被存储在一个单独的，包含一个 <a href="http://docs.unity3d.com/ScriptReference/AssetBundleManifest.html" target="_blank" rel="external">AssetBundleManifest</a> 类型的对象的 AssetBundle 中。</p>
+<div style="display:none"><br>This Asset will be stored in an AssetBundle with the same name as the parent directory where the AssetBundles are being built. If a project builds its AssetBundles to a folder at (projectroot)/build/Client/, then the AssetBundle containing the manifest will be saved as (projectroot)/build/Client/Client.manifest.<br></div>
+
+<p>这个资产会存储在一个 AssetBundle 中，这个 AssetBundle 的名字跟 AssetBundle 所在的目录的名字一样。如果一个项目编译它的 AssetBundle 到 (Projectroot)/build/Client/ 中，这个 AssetBundle 的清单文件会被保存为 (projectroot)/build/Client/Client.mainifest。</p>
+<div style="display:none"><br>The AssetBundle containing the manifest can be loaded, cached and unloaded just like any other AssetBundle.<br></div>
+
+<p>AssetBundle 包含的清单可以被加载，缓存和卸载，就像其他的 AssetBundle 一样。</p>
+<div style="display:none"><br>The AssetBundleManifest Object itself provides the <a href="http://docs.unity3d.com/ScriptReference/AssetBundleManifest.GetAllAssetBundles.html" target="_blank" rel="external">GetAllAssetBundles</a> API to list all AssetBundles built concurrently with the manifest and two methods to query the dependencies of a specific AssetBundle:<br></div>
+
+<p>AssetBundleManifest 对象提供了 <a href="http://docs.unity3d.com/ScriptReference/AssetBundleManifest.GetAllAssetBundles.html" target="_blank" rel="external">GetAllAssetBundles</a> API 来列出所有跟清单一起编译出来的 AssetBundle 和两个查询 AssetBundle 依赖的方法。</p>
+<div style="display:none"><br><a href="http://docs.unity3d.com/ScriptReference/AssetBundleManifest.GetAllDependencies.html" target="_blank" rel="external">AssetBundleManifest.GetAllDependencies</a> returns all of an AssetBundle’s dependencies, including the dependencies of the AssetBundle’s direct children, its children’s children, etc.<br></div>
+
+<p><a href="http://docs.unity3d.com/ScriptReference/AssetBundleManifest.GetAllDependencies.html" target="_blank" rel="external">AssetBundleManifest.GetAllDependencies</a> 返回一个 AssetBundle 的所有依赖，包括 AssetBundle 所有依赖以及依赖的依赖等等。</p>
+<div style="display:none"><br><a href="http://docs.unity3d.com/ScriptReference/AssetBundleManifest.GetDirectDependencies.htmlo.com/" target="_blank" rel="external">AssetBundleManifest.GetDirectDependencies</a> returns only an AssetBundle’s direct children.<br></div>
+
+<p><a href="http://docs.unity3d.com/ScriptReference/AssetBundleManifest.GetDirectDependencies.htmlo.com/" target="_blank" rel="external">AssetBundleManifest.GetDirectDependencies</a> 只返回一个 AssetBundle 的直接依赖。</p>
+<div style="display:none"><br>Note that both of these APIs allocate arrays of strings. Use them sparingly, and preferably not during performance-sensitive portions of an application’s lifetime.<br></div>
+
+<p>需要注意的一点，这两个 API 都会产生字符串数组。要尽量少使用它们，不要用在应用运行期中对性能敏感的部分。</p>
+<div style="display:none"><br>### 3.5.4. Recommendations<br></div>
+
+<h3 id="推荐-1"><a href="#推荐-1" class="headerlink" title="推荐"></a>推荐</h3><div style="display:none"><br>It is considered a best practice to load as many needed Objects as possible before users enter performance-critical portions of an application, such as the main game level or world. This is particularly critical on mobile platforms, where access to local storage is slow and the memory churn of loading and unloading Objects at play-time can trigger the garbage collector.<br></div>
+
+<p>在用户进入应用的性能要求高的部分前尽可能多的加载所需的对象被认为是一个好的方案，比如用户进入主要的游戏关卡或者场景。这对移动平台特别关键，移动平台对存储的访问慢并且在运行时加载和卸载对象对内存的消耗会触发垃圾回收器。</p>
+<div style="display:none"><br>For projects that must load and unload Objects while the application is interactive, see the <a href="https://unity3d.com/learn/tutorials/topics/best-practices/asset-bundle-usage-patterns#Managing_Loaded_Assets" target="_blank" rel="external">Managing loaded assets</a> section of the <a href="https://unity3d.com/learn/tutorials/topics/best-practices/asset-bundle-usage-patterns" target="_blank" rel="external">AssetBundle usage patterns</a> article for more information on unloading Objects and AssetBundles.<br></div>
+
+<p>对于在应用程序交互时必须加载和卸载对象的项目，请参照 <a href="https://unity3d.com/learn/tutorials/topics/best-practices/asset-bundle-usage-patterns" target="_blank" rel="external">AssetBundle usage patterns</a> 章节的 <a href="https://unity3d.com/learn/tutorials/topics/best-practices/asset-bundle-usage-patterns#Managing_Loaded_Assets" target="_blank" rel="external">Managing loaded assets</a> 小结关于卸载对象和 AssetBundle 的信息。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>打赏一下，给作者买糖吃！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/images/pay/wechat.png" alt="Rocky Lai WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/images/pay/alipay.png" alt="Rocky Lai Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/AssetBundle/" rel="tag">#AssetBundle</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/12/31/Hello2017/" rel="next" title="Hello 2017">
+                <i class="fa fa-chevron-left"></i> Hello 2017
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/01/08/AssetBundle_Fundamentals/"
+           data-title="AssetBundle 基本知识" data-url="http://blog.shuiguzi.com/2017/01/08/AssetBundle_Fundamentals/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="https://avatars1.githubusercontent.com/u/5707242?v=3&s=460"
+               alt="Rocky Lai" />
+          <p class="site-author-name" itemprop="name">Rocky Lai</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">46</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/wudixiaop" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:rockylai@shuiguzi.com" target="_blank" title="邮件">
+                  
+                    <i class="fa fa-fw fa-envelope-o"></i>
+                  
+                  邮件
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#概况"><span class="nav-number">1.</span> <span class="nav-text">概况</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#生么是-AssetBundle"><span class="nav-number">2.</span> <span class="nav-text">生么是 AssetBundle</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#AssetBundle-Manager"><span class="nav-number">3.</span> <span class="nav-text">AssetBundle Manager</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#加载-AssetBundle"><span class="nav-number">4.</span> <span class="nav-text">加载 AssetBundle</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#AssetBundle-LoadFromMemoryAsync"><span class="nav-number">4.1.</span> <span class="nav-text">AssetBundle.LoadFromMemoryAsync</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#AssetBundle-LoadFromFile"><span class="nav-number">4.2.</span> <span class="nav-text">AssetBundle.LoadFromFile</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#WWW-LoadFromCacheOrDownload"><span class="nav-number">4.3.</span> <span class="nav-text">WWW.LoadFromCacheOrDownload</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#AssetBundleDownloadHandler"><span class="nav-number">4.4.</span> <span class="nav-text">AssetBundleDownloadHandler</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#推荐"><span class="nav-number">4.5.</span> <span class="nav-text">推荐</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#在-AssetBundle-中加载资产"><span class="nav-number">5.</span> <span class="nav-text">在 AssetBundle 中加载资产</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#底层加载细节"><span class="nav-number">6.</span> <span class="nav-text">底层加载细节</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#AssetBundle-依赖"><span class="nav-number">7.</span> <span class="nav-text">AssetBundle 依赖</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#例子："><span class="nav-number">7.1.</span> <span class="nav-text">例子：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#AssetBundle-清单"><span class="nav-number">8.</span> <span class="nav-text">AssetBundle 清单</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#推荐-1"><span class="nav-number">9.</span> <span class="nav-text">推荐</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2014 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Rocky Lai</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"rockylaigithubio"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+<script type="text/javascript" async src="//push.zhanzhang.baidu.com/push.js">
+</script>
+
+
+</body>
+</html>

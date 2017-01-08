@@ -257,6 +257,130 @@
             
               
                 
+                <a class="post-title-link" href="/2015/04/15/cirleImageInUnity3D/" itemprop="url">
+                  在 Unity uGUI 中绘制圆形图片
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-04-15T23:30:00+08:00" content="2015-04-15">
+              2015-04-15
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Unity/" itemprop="url" rel="index">
+                    <span itemprop="name">Unity</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/04/15/cirleImageInUnity3D/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/04/15/cirleImageInUnity3D/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>最近项目需要在 Unity 的新 UI 系统中实现圆形头像的功能，之前想通过 Mask 控件的方式来实现，但是一番努力后毫无头绪，只能祭上shader了。</p>
+<p>大体的思路就是在一个空的 Object 上面挂上 RawImage 组件，组件的 Material 挂上本文中的 shader。截取的逻辑是选取图片正中心 (0.5, 0.5) 为圆的中心点，绘制图片在圆内的像素点为图片的像素，然后图片在圆外的像素点设置为 alpha 为 0 的点，<br>如 <code>(0, 0, 0, 0)</code>。逻辑是在 fragment shader 里面实现(shader 代码中的<code>frag</code>)。</p>
+<p>下面直接放出 shader:</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/04/15/cirleImageInUnity3D/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2015/03/26/ClosureInSwift/" itemprop="url">
                   一个例子学习Swift中的闭包用法
                 </a>
@@ -880,153 +1004,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2014/11/05/about Unity3D editor/" itemprop="url">
-                  关于 Unity 编辑器一些事儿
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2014-11-05T22:30:00+08:00" content="2014-11-05">
-              2014-11-05
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/UnityKB/" itemprop="url" rel="index">
-                    <span itemprop="name">UnityKB</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2014/11/05/about Unity3D editor/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2014/11/05/about Unity3D editor/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><strong> 本文只适合Unty 4.x</strong></p>
-<p>这里描述下Unity3D编辑器使用过程中遇到的坑及其解决方法</p>
-<h4 id="事件一：Unity3d编辑器启动时默认打开最近一次打开的项目"><a href="#事件一：Unity3d编辑器启动时默认打开最近一次打开的项目" class="headerlink" title="事件一：Unity3d编辑器启动时默认打开最近一次打开的项目"></a>事件一：Unity3d编辑器启动时默认打开最近一次打开的项目</h4><p>默认设置中，Unity3D启动时会自动打开默认最近一次打开的项目。每当只想打开小项目，而偏偏上次打开过一个大项目时，这点让人很抓狂。 </p>
-<p><strong>解决方法:</strong>  </p>
-<blockquote>
-<ol>
-<li>在编辑器中打开<strong>Unity Preferences</strong>窗口,通过 <strong>Edit-&gt;Preferences…</strong>打开</li>
-<li>在<strong>General</strong>选项卡中把<strong>Always Show Project Wizard</strong>勾选上</li>
-</ol>
-</blockquote>
-<h4 id="事件二：Project-Wizard中最近打开项目记录删除不了"><a href="#事件二：Project-Wizard中最近打开项目记录删除不了" class="headerlink" title="事件二：Project Wizard中最近打开项目记录删除不了"></a>事件二：Project Wizard中最近打开项目记录删除不了</h4><p>一直不明白为啥不让删除呢？  </p>
-<p><strong>解决方法：</strong>  </p>
-<blockquote>
-<ul>
-<li><strong>方法一：让项目地址失效</strong>  <blockquote>
-<ul>
-<li>重名名项目文件夹</li>
-<li>把项目移动到别的文件夹</li>
-</ul>
-</blockquote>
-</li>
-<li><strong>方法二：修改注册表</strong>  <blockquote>
-<p>删除 HKEY_CURRENT_USER\Software\Unity Technologies\Unity Editor 4.x 下面以 RecentlyUsedProjectPaths 开头的项</p>
-</blockquote>
-</li>
-</ul>
-</blockquote>
-<p>以后继续补充…</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1072,7 +1049,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">45</span>
+              <span class="site-state-item-count">46</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1146,7 +1123,7 @@
         <div class="copyright" >
   
   &copy;  2014 - 
-  <span itemprop="copyrightYear">2016</span>
+  <span itemprop="copyrightYear">2017</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

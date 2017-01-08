@@ -20,7 +20,7 @@ The guide is broken down into four chapteros:
 系列文章将会拆分为四个章节：
 1. {% post_link Assets_Objects_serialization [资产，对象和序列化] %} 章节探讨 Unity 如何序列化资产和处理它们之间的引用的底层细节。__强烈推荐从读者从这章开始阅读，因为它定义了贯穿这系列文章的术语__。
 2. {% post_link resources_folder [Resources 文件夹] %} 探讨内置的 Resources API.
-3. [AssetBundle 基本原理](https://unity3d.com/learn/tutorials/topics/best-practices/asset-bundle-fundamentals) 在第一章的基础上描述 AssetBundles 怎么运转和加载 AssetBundles 及从 AssetBundles 加载资产。
+3. {% post_link AssetBundle_Fundamentals [AssetBundle 基本知识] %} 在第一章的基础上描述 AssetBundles 怎么运转和加载 AssetBundles 及从 AssetBundles 加载资产。
 4. [AssetBundle 使用模式](https://unity3d.com/learn/tutorials/topics/best-practices/asset-bundle-usage-patterns) 是一篇探讨很多 AssetBundle 的实际用途。它包括了给 AssetBundles 添加资产 和管理加载后的资产并描述了开发者使用 AssetBundles 时经常碰到的陷阱。
 
 <div style='display:none'>
