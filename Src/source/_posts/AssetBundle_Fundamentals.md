@@ -33,6 +33,8 @@ The AssetBundle system provides a method for storing one or more files in an arc
 
 AssetBundle 系统提供了一种可以把一个或者多个文件存储到一个能被 Unity 识别的存档的方法。这个系统的目的是提供一个可以和 Unity 的序列化系统兼容的数据推送方法。AssetBundle 是 Unity 用来在应用安装后推送或者更新非代码内容的主力工具。开发者能够用它来减少资产的体积，缩短运行时内存压力，以及在不同的用户终端有选择的加载内容。
 
+<!--more-->
+
 <div style='display:none'>
 Understanding the way AssetBundles work is essential to building a successful Unity project for mobile devices.
 </div>
