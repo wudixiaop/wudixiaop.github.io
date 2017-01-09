@@ -560,3 +560,5 @@ For projects that must load and unload Objects while the application is interact
 </div>
 
 对于在应用程序交互时必须加载和卸载对象的项目，请参照 [AssetBundle usage patterns](https://unity3d.com/learn/tutorials/topics/best-practices/asset-bundle-usage-patterns) 章节的 [Managing loaded assets](https://unity3d.com/learn/tutorials/topics/best-practices/asset-bundle-usage-patterns#Managing_Loaded_Assets) 小结关于卸载对象和 AssetBundle 的信息。
+
+原文地址：<https://unity3d.com/learn/tutorials/topics/best-practices/asset-bundle-fundamentals>
