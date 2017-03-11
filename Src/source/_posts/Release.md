@@ -9,6 +9,15 @@ tags: Shader
 
 <!--more-->
 
+### Version - v0.8
+
+1. Add auto brace completion
+2. Add dark theme support
+3. Add .cg and .hlsl support
+4. Fix highlight bug after add new keywords
+
+> __VS2015:__ <https://pan.baidu.com/s/1creEL4>
+
 ### Version - v0.7 beta
 <hr>
 v0.7 beta: Fix plugin not work for some machine.
