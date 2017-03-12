@@ -10,7 +10,7 @@ tags: Shader
 <!--more-->
 
 ### Version - v0.8
-
+<hr>
 1. Add auto brace completion
 2. Add dark theme support
 3. Add .cg and .hlsl support
