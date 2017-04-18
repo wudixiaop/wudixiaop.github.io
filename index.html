@@ -299,13 +299,6 @@
 
           
             
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2017/04/18/AssetBundle_usage_pattern_1/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/04/18/AssetBundle_usage_pattern_1/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
           
 
           
@@ -441,13 +434,6 @@
 
           
             
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2017/01/08/AssetBundle_Fundamentals/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/01/08/AssetBundle_Fundamentals/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
           
 
           
@@ -576,13 +562,6 @@
 
           
             
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/12/31/Hello2017/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/12/31/Hello2017/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
           
 
           
@@ -696,13 +675,6 @@
 
           
             
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/12/28/resources_folder/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/12/28/resources_folder/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
           
 
           
@@ -738,147 +710,6 @@
 <p><strong>下面情况不要使用它</strong></p>
           <div class="post-more-link text-center">
             <a class="btn" href="/2016/12/28/resources_folder/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/12/15/Assets_Objects_serialization/" itemprop="url">
-                  资产, 对象和序列化
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-12-15T17:40:00+08:00" content="2016-12-15">
-              2016-12-15
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/UnityKB/" itemprop="url" rel="index">
-                    <span itemprop="name">UnityKB</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/12/15/Assets_Objects_serialization/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/12/15/Assets_Objects_serialization/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <div style='display:none'><br>This is the second chapter in a <a href="https://unity3d.com/learn/tutorials/topics/best-practices/guide-asset-bundles-and-resources/">series of articles covering Assets, Resources and resource management</a> in Unity 5.<br></div>
-
-<p>这是 Unity 5 <a href="/2016/12/15/GuideToABAndRes/" title="[资产, 资源和资源管理系列文章]">[资产, 资源和资源管理系列文章]</a>的第二篇。</p>
-<div style='display:none'><br>This chapter covers the deep internals of Unity’s serialization system and how Unity maintains robust references between different Objects, both in the Unity Editor and at runtime. It also discusses the technical distinctions between Objects and Assets. The topics covered here are fundamental to understanding how to efficiently load and unload Assets in Unity. Proper Asset management is crucial to keeping loading times short and memory usage low.<br></div>
-
-<p>这篇文章涵盖了 Unity 序列化系统的底层知识和 Unity  怎么在它的编辑器及运行时维持不同对象的稳定的引用，理解怎么样在 Unity 中高效的加载和卸载资产。正确的资产管理是保持低内存和快速加载的关键。</p>
-<div style='display:none'><br>### 1. Inside Assets and Objects<br></div>
-
-<h3 id="资产和对象的内部"><a href="#资产和对象的内部" class="headerlink" title="资产和对象的内部"></a>资产和对象的内部</h3><div style='display:none'><br>To understand how to properly manage data in Unity, it is important to understand how Unity identifies and serializes data. The first key point is the distinction between Assets and <strong>UnityEngine.Objects</strong>.<br></div>
-
-<p>要理解怎么样正确的管理数据，Unity 怎么鉴别和序列化数据很重要。其中首先的关键点是理解 <strong>资产</strong> 和 <strong>对象（UnityEngine.Objects）</strong> 的区别。</p>
-<div style='display:none'><br>An Asset is a file on disk, stored in the Assets folder of a Unity project. For example, texture files, material files and FBX files are all Assets. Some Assets contain data in formats native to Unity, such as materials. Other Assets need to be processed into native formats, such as FBX files.<br></div>
-
-<p>一个资产是存储在 Unity Project 中资产文件夹下的文件。比如纹理文件，材质文件和 FBX 文件都是资产。有些资产包含 Unity 原生数据格式，比如材质。而有些资产需要转换成 Unity 原生数据格式，比如 FBX 文件。</p>
-<div style='display:none'><br>A <strong>UnityEngine.Object</strong>, or <strong>Object</strong> with a capitalized ‘O’, is a set of serialized data collectively describing a specific instance of a resource. This can be any type of resource which the Unity Engine uses, such as a mesh, a sprite, an AudioClip or an AnimationClip. All Objects are subclasses of the <a href="http://docs.unity3d.com/ScriptReference/Object.html">UnityEngine.Object</a> base class.<br></div>
-
-<p>一个 <strong>UnityEngine.Object</strong> 或者大写字母 O 的 <strong>Object</strong>，是个序列化数据集合，用来表述某个资源的具体实例。它可以是任何 Unity 引擎使用的资源，比如一个网格，一个精灵，一个音频剪辑和一个动画片段。所有的对象都是 <a href="http://docs.unity3d.com/ScriptReference/Object.html">UnityEngine.Object</a> 的子类。</p>
-<div style='display:none'><br>While most Object types are built-in, there are two special types.<br></div>
-
-<p>在 Unity 中基本所有的对象类型都是内置的，除了两种特殊的类型。<br>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/12/15/Assets_Objects_serialization/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -971,13 +802,6 @@
 
           
             
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/12/15/GuideToABAndRes/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/12/15/GuideToABAndRes/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
           
 
           
@@ -1015,6 +839,140 @@
 <p>注意：这系列文章中的对象和资产有别与 Unity API 命名约定中的对象和资产。</p>
           <div class="post-more-link text-center">
             <a class="btn" href="/2016/12/15/GuideToABAndRes/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/12/15/Assets_Objects_serialization/" itemprop="url">
+                  资产, 对象和序列化
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-12-15T17:40:00+08:00" content="2016-12-15">
+              2016-12-15
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/UnityKB/" itemprop="url" rel="index">
+                    <span itemprop="name">UnityKB</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <div style='display:none'><br>This is the second chapter in a <a href="https://unity3d.com/learn/tutorials/topics/best-practices/guide-asset-bundles-and-resources/">series of articles covering Assets, Resources and resource management</a> in Unity 5.<br></div>
+
+<p>这是 Unity 5 <a href="/2016/12/15/GuideToABAndRes/" title="[资产, 资源和资源管理系列文章]">[资产, 资源和资源管理系列文章]</a>的第二篇。</p>
+<div style='display:none'><br>This chapter covers the deep internals of Unity’s serialization system and how Unity maintains robust references between different Objects, both in the Unity Editor and at runtime. It also discusses the technical distinctions between Objects and Assets. The topics covered here are fundamental to understanding how to efficiently load and unload Assets in Unity. Proper Asset management is crucial to keeping loading times short and memory usage low.<br></div>
+
+<p>这篇文章涵盖了 Unity 序列化系统的底层知识和 Unity  怎么在它的编辑器及运行时维持不同对象的稳定的引用，理解怎么样在 Unity 中高效的加载和卸载资产。正确的资产管理是保持低内存和快速加载的关键。</p>
+<div style='display:none'><br>### 1. Inside Assets and Objects<br></div>
+
+<h3 id="资产和对象的内部"><a href="#资产和对象的内部" class="headerlink" title="资产和对象的内部"></a>资产和对象的内部</h3><div style='display:none'><br>To understand how to properly manage data in Unity, it is important to understand how Unity identifies and serializes data. The first key point is the distinction between Assets and <strong>UnityEngine.Objects</strong>.<br></div>
+
+<p>要理解怎么样正确的管理数据，Unity 怎么鉴别和序列化数据很重要。其中首先的关键点是理解 <strong>资产</strong> 和 <strong>对象（UnityEngine.Objects）</strong> 的区别。</p>
+<div style='display:none'><br>An Asset is a file on disk, stored in the Assets folder of a Unity project. For example, texture files, material files and FBX files are all Assets. Some Assets contain data in formats native to Unity, such as materials. Other Assets need to be processed into native formats, such as FBX files.<br></div>
+
+<p>一个资产是存储在 Unity Project 中资产文件夹下的文件。比如纹理文件，材质文件和 FBX 文件都是资产。有些资产包含 Unity 原生数据格式，比如材质。而有些资产需要转换成 Unity 原生数据格式，比如 FBX 文件。</p>
+<div style='display:none'><br>A <strong>UnityEngine.Object</strong>, or <strong>Object</strong> with a capitalized ‘O’, is a set of serialized data collectively describing a specific instance of a resource. This can be any type of resource which the Unity Engine uses, such as a mesh, a sprite, an AudioClip or an AnimationClip. All Objects are subclasses of the <a href="http://docs.unity3d.com/ScriptReference/Object.html">UnityEngine.Object</a> base class.<br></div>
+
+<p>一个 <strong>UnityEngine.Object</strong> 或者大写字母 O 的 <strong>Object</strong>，是个序列化数据集合，用来表述某个资源的具体实例。它可以是任何 Unity 引擎使用的资源，比如一个网格，一个精灵，一个音频剪辑和一个动画片段。所有的对象都是 <a href="http://docs.unity3d.com/ScriptReference/Object.html">UnityEngine.Object</a> 的子类。</p>
+<div style='display:none'><br>While most Object types are built-in, there are two special types.<br></div>
+
+<p>在 Unity 中基本所有的对象类型都是内置的，除了两种特殊的类型。<br>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/12/15/Assets_Objects_serialization/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1249,28 +1207,26 @@
 
   
 
-  
-    
+
+
   
 
-  <script type="text/javascript">
-    var duoshuoQuery = {short_name:"rockylaigithubio"};
-    (function() {
-      var ds = document.createElement('script');
-      ds.type = 'text/javascript';ds.async = true;
-      ds.id = 'duoshuo-script';
-      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-      ds.charset = 'UTF-8';
-      (document.getElementsByTagName('head')[0]
-      || document.getElementsByTagName('body')[0]).appendChild(ds);
-    })();
-  </script>
+
+
 
   
     
+    <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+    <script>
+    var cloudTieConfig = {
+        url: document.location.href, 
+        sourceId: "",
+        productKey: "3f13d0f4a04a4345b12f0c8c63ebbb0d",
+        target: "cloud-tie-wrapper"
+    };
+    </script>
+    <script src="https://img1.cache.netease.com/f2e/tie/yun/sdk/loader.js"></script>
   
-
-
 
 
 
