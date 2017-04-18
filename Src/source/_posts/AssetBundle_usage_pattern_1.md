@@ -50,6 +50,8 @@ The most important thing to understand when managing assets and AssetBundles is 
 This API unloads the header information of the AssetBundle being called. The argument indicates whether to also unload all Objects instantiated from this AssetBundle. If it is true, then all Objects originating from the AssetBundle will also be immediately unloaded - even if they are currently being used in the active scene.
 </div>
 
+<!-- more -->
+
 这个 API 会卸载正在调用的 AssetBundle 头信息。参数意思是是否也卸载从这个 AssetBundle 加载的对象实例。如果是 true, 所有从这个 AssetBundle 实例化的对象会立即被卸载，即使它们被当前场景使用着。
 
 <div style='display:none'>

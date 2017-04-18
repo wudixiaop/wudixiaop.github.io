@@ -94,7 +94,7 @@ The previous chapter in">
 <meta property="og:image" content="https://unity3d.com/sites/default/files/ab2b.jpg">
 <meta property="og:image" content="https://unity3d.com/sites/default/files/ab2c.jpg">
 <meta property="og:image" content="https://unity3d.com/sites/default/files/ab2d.jpg">
-<meta property="og:updated_time" content="2017-04-18T05:27:57.000Z">
+<meta property="og:updated_time" content="2017-04-18T05:56:15.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="AssetBundle 使用模式 (1)">
 <meta name="twitter:description" content="This is the fifth chapter in a series of articles covering Assets, Resources and resource management in Unity 5.
@@ -357,6 +357,7 @@ The previous chapter in">
 <p>要理解何时去管理资产和 AssetBunle，最重要的是理解调用 <a href="http://docs.unity3d.com/ScriptReference/AssetBundle.Unload.html" target="_blank" rel="external">AssetBundle.Unload</a> 的不同行为，不管其参数是 true 还是 false.</p>
 <div style="display:none"><br>This API unloads the header information of the AssetBundle being called. The argument indicates whether to also unload all Objects instantiated from this AssetBundle. If it is true, then all Objects originating from the AssetBundle will also be immediately unloaded - even if they are currently being used in the active scene.<br></div>
 
+<a id="more"></a>
 <p>这个 API 会卸载正在调用的 AssetBundle 头信息。参数意思是是否也卸载从这个 AssetBundle 加载的对象实例。如果是 true, 所有从这个 AssetBundle 实例化的对象会立即被卸载，即使它们被当前场景使用着。</p>
 <div style="display:none"><br>For example, assume a material M was loaded from an AssetBundle AB, and assume M is currently in the active scene.<br></div>
 
