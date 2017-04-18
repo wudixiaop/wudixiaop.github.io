@@ -62,7 +62,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Rocky Lai, ShaderlabVS, Unity, UNet, Shaderlab" />
+  <meta name="keywords" content="AssetBundle," />
 
 
 
@@ -78,15 +78,30 @@
 
 
 
-<meta name="description">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Rocky Lai 的技术博客">
-<meta property="og:url" content="http://blog.shuiguzi.com/index.html">
+<meta name="description" content="This is the fifth chapter in a series of articles covering Assets, Resources and resource management in Unity 5.
+
+这是 Unity 5 [资产, 资源和资源管理系列文章] 的第五篇。（译者注：原文太长，我拆分成了两部分，这是第一部分。）
+The previous chapter in">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AssetBundle 使用模式 (1)">
+<meta property="og:url" content="http://blog.shuiguzi.com/2017/04/18/AssetBundle_usage_pattern_1/index.html">
 <meta property="og:site_name" content="Rocky Lai 的技术博客">
-<meta property="og:description">
+<meta property="og:description" content="This is the fifth chapter in a series of articles covering Assets, Resources and resource management in Unity 5.
+
+这是 Unity 5 [资产, 资源和资源管理系列文章] 的第五篇。（译者注：原文太长，我拆分成了两部分，这是第一部分。）
+The previous chapter in">
+<meta property="og:image" content="https://unity3d.com/sites/default/files/ab2a.jpg">
+<meta property="og:image" content="https://unity3d.com/sites/default/files/ab2b.jpg">
+<meta property="og:image" content="https://unity3d.com/sites/default/files/ab2c.jpg">
+<meta property="og:image" content="https://unity3d.com/sites/default/files/ab2d.jpg">
+<meta property="og:updated_time" content="2017-04-18T05:27:57.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Rocky Lai 的技术博客">
-<meta name="twitter:description">
+<meta name="twitter:title" content="AssetBundle 使用模式 (1)">
+<meta name="twitter:description" content="This is the fifth chapter in a series of articles covering Assets, Resources and resource management in Unity 5.
+
+这是 Unity 5 [资产, 资源和资源管理系列文章] 的第五篇。（译者注：原文太长，我拆分成了两部分，这是第一部分。）
+The previous chapter in">
+<meta name="twitter:image" content="https://unity3d.com/sites/default/files/ab2a.jpg">
 
 
 
@@ -104,7 +119,7 @@
   };
 </script>
 
-  <title> Rocky Lai 的技术博客 </title>
+  <title> AssetBundle 使用模式 (1) | Rocky Lai 的技术博客 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -135,9 +150,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left 
-   page-home 
- ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -234,9 +247,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
   
@@ -256,10 +269,7 @@
             
             
               
-                
-                <a class="post-title-link" href="/2017/04/18/AssetBundle_usage_pattern_1/" itemprop="url">
-                  AssetBundle 使用模式 (1)
-                </a>
+                AssetBundle 使用模式 (1)
               
             
           </h1>
@@ -325,9 +335,7 @@
       
 
       
-        
-          
-            <div style="display:none"><br>This is the fifth chapter in a <a href="https://unity3d.com/cn/learn/tutorials/topics/best-practices/guide-asset-bundles-and-resources" target="_blank" rel="external">series of articles covering Assets, Resources and resource management</a> in Unity 5.<br></div>
+        <div style="display:none"><br>This is the fifth chapter in a <a href="https://unity3d.com/cn/learn/tutorials/topics/best-practices/guide-asset-bundles-and-resources" target="_blank" rel="external">series of articles covering Assets, Resources and resource management</a> in Unity 5.<br></div>
 
 <p>这是 Unity 5 <a href="/2016/12/15/GuideToABAndRes/" title="[资产, 资源和资源管理系列文章]">[资产, 资源和资源管理系列文章]</a> 的第五篇。（译者注：原文太长，我拆分成了两部分，这是第一部分。）</p>
 <div style="display:none"><br>The previous chapter in this series covered the <a href="https://unity3d.com/cn/learn/tutorials/topics/best-practices/asset-bundle-fundamentals" target="_blank" rel="external">fundamentals of AssetBundles</a>, in particular the low-level behavior of various loading APIs. This chapter discusses problems and potential solutions to various aspects of using AssetBundles in practice.<br></div>
@@ -686,706 +694,79 @@
 
 <p>这个场景的一个例子就是，一个角色在世界中随机生成的开发世界游戏。这种情况中，很难预测交个角色会同时出现，所以他们一般需要使用不同的策略。</p>
 
-          
+      
+    </div>
+
+    <div>
+      
         
       
     </div>
 
     <div>
       
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>打赏一下，给作者买糖吃！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/images/pay/wechat.png" alt="Rocky Lai WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/images/pay/alipay.png" alt="Rocky Lai Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
     </div>
+  </div>
 
-    <div>
+
       
     </div>
 
     <footer class="post-footer">
       
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/01/08/AssetBundle_Fundamentals/" itemprop="url">
-                  AssetBundle 基本知识
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-01-08T17:40:00+08:00" content="2017-01-08">
-              2017-01-08
-            </time>
-          </span>
-
+        <div class="post-tags">
           
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/UnityKB/" itemprop="url" rel="index">
-                    <span itemprop="name">UnityKB</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2017/01/08/AssetBundle_Fundamentals/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/01/08/AssetBundle_Fundamentals/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
+            <a href="/tags/AssetBundle/" rel="tag">#AssetBundle</a>
           
         </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          <div style='display:none'><br>This is the fourth chapter in a <a href="https://unity3d.com/learn/tutorials/topics/best-practices/guide-asset-bundles-and-resources">series of articles covering Assets, Resources and resource management</a> in Unity 5.<br></div>
-
-<p>这是 Unity 5 <a href="/2016/12/15/GuideToABAndRes/" title="[资产, 资源和资源管理系列文章]">[资产, 资源和资源管理系列文章]</a> 的第四篇。</p>
-<div style='display:none'><br>This chapter discusses AssetBundles. It introduces the fundamental systems upon which AssetBundles are built, as well as the core APIs used to interact with AssetBundles. In particular, it discusses both the loading and unloading of AssetBundles themselves, as well as the loading and unloading of specific Asset and Objects from AssetBundles.<br></div>
-
-<p>这篇将会探讨 AssetBundle，并介绍构建 AssetBundle 的基本系统和与它交互的核心 API。这篇文章也会特别地介绍 AssetBundle 和 AssetBundle 内的资产与对象的加载和卸载。</p>
-<div style='display:none'><br>For more patterns and best practices on the uses of AssetBundles, see the next chapter in this series.<br></div>
-
-<p>更多关于 AssetBundle 的使用模式和最佳实践，请看本系列文章中的下一篇。</p>
-<div style='display:none'><br>### 3.1. Overview<br></div>
-
-<h3 id="概况"><a href="#概况" class="headerlink" title="概况"></a>概况</h3><div style='display:none'><br>The AssetBundle system provides a method for storing one or more files in an archival format that Unity can index. The purpose of the system is to provide a data delivery method compatible with Unity’s serialization system. AssetBundles are Unity’s primary tool for the delivery and updating of non-code content after installation. This permits developers to reduce shipped asset size, minimize runtime memory pressure, and selectively load content that is optimized for the end-user’s device.<br></div>
-
-<p>AssetBundle 系统提供了一种可以把一个或者多个文件存储到一个能被 Unity 识别的存档的方法。这个系统的目的是提供一个可以和 Unity 的序列化系统兼容的数据推送方法。AssetBundle 是 Unity 用来在应用安装后推送或者更新非代码内容的主力工具。开发者能够用它来减少资产的体积，缩短运行时内存压力，以及在不同的用户终端有选择的加载内容。</p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2017/01/08/AssetBundle_Fundamentals/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/01/08/AssetBundle_Fundamentals/" rel="next" title="AssetBundle 基本知识">
+                <i class="fa fa-chevron-left"></i> AssetBundle 基本知识
+              </a>
+            
           </div>
-        
-      
-    </div>
 
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
+          <div class="post-nav-prev post-nav-item">
             
-            
-              
-                
-                <a class="post-title-link" href="/2016/12/31/Hello2017/" itemprop="url">
-                  Hello 2017
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-12-31T23:59:59+08:00" content="2016-12-31">
-              2016-12-31
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/一点一滴/" itemprop="url" rel="index">
-                    <span itemprop="name">一点一滴</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/12/31/Hello2017/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/12/31/Hello2017/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>Goodbye 2016, Hello 2017 ~~ 愿新的一年打败各种 BUG~~</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/12/28/resources_folder/" itemprop="url">
-                  Resources 文件夹
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-12-28T12:40:00+08:00" content="2016-12-28">
-              2016-12-28
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/UnityKB/" itemprop="url" rel="index">
-                    <span itemprop="name">UnityKB</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/12/28/resources_folder/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/12/28/resources_folder/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <div style='display:none'><br>The Resources folder<br>—-<br></div>
-
-<div style='display:none'><br>This is the third chapter in a <a href="https://unity3d.com/de/learn/tutorials/topics/best-practices/guide-asset-bundles-and-resources">series of articles covering Assets, Resources and resource management</a> in Unity 5.<br></div>
-
-<p>这是 Unity 5 <a href="/2016/12/15/GuideToABAndRes/" title="[资产, 资源和资源管理系列文章]">[资产, 资源和资源管理系列文章]</a>的第三篇。</p>
-<div style='display:none'><br>This chapter discusses the Resources system. This is the system that allows developers to store Assets within one or more folders named Resources and to load or unload Objects<br>from those Assets at runtime using the Resources API.<br></div>
-
-<p>这个章节将讨论 Resources 系统。这个系统可以让开发者通过 Resources API 加载或卸载存储在在一个或多个以 Resources 命名的文件夹中的资产。</p>
-<div style='display:none'><br>### 2.1. Best Practices for the Resources System<br></div>
-
-<h3 id="Resources-系统的最佳实践"><a href="#Resources-系统的最佳实践" class="headerlink" title="Resources 系统的最佳实践"></a>Resources 系统的最佳实践</h3><div style='display:none'><br><strong>Don’t use it.</strong><br></div>
-
-<p><strong>下面情况不要使用它</strong></p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/12/28/resources_folder/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
           </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/12/15/Assets_Objects_serialization/" itemprop="url">
-                  资产, 对象和序列化
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-12-15T17:40:00+08:00" content="2016-12-15">
-              2016-12-15
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/UnityKB/" itemprop="url" rel="index">
-                    <span itemprop="name">UnityKB</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/12/15/Assets_Objects_serialization/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/12/15/Assets_Objects_serialization/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
         </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          <div style='display:none'><br>This is the second chapter in a <a href="https://unity3d.com/learn/tutorials/topics/best-practices/guide-asset-bundles-and-resources/">series of articles covering Assets, Resources and resource management</a> in Unity 5.<br></div>
-
-<p>这是 Unity 5 <a href="/2016/12/15/GuideToABAndRes/" title="[资产, 资源和资源管理系列文章]">[资产, 资源和资源管理系列文章]</a>的第二篇。</p>
-<div style='display:none'><br>This chapter covers the deep internals of Unity’s serialization system and how Unity maintains robust references between different Objects, both in the Unity Editor and at runtime. It also discusses the technical distinctions between Objects and Assets. The topics covered here are fundamental to understanding how to efficiently load and unload Assets in Unity. Proper Asset management is crucial to keeping loading times short and memory usage low.<br></div>
-
-<p>这篇文章涵盖了 Unity 序列化系统的底层知识和 Unity  怎么在它的编辑器及运行时维持不同对象的稳定的引用，理解怎么样在 Unity 中高效的加载和卸载资产。正确的资产管理是保持低内存和快速加载的关键。</p>
-<div style='display:none'><br>### 1. Inside Assets and Objects<br></div>
-
-<h3 id="资产和对象的内部"><a href="#资产和对象的内部" class="headerlink" title="资产和对象的内部"></a>资产和对象的内部</h3><div style='display:none'><br>To understand how to properly manage data in Unity, it is important to understand how Unity identifies and serializes data. The first key point is the distinction between Assets and <strong>UnityEngine.Objects</strong>.<br></div>
-
-<p>要理解怎么样正确的管理数据，Unity 怎么鉴别和序列化数据很重要。其中首先的关键点是理解 <strong>资产</strong> 和 <strong>对象（UnityEngine.Objects）</strong> 的区别。</p>
-<div style='display:none'><br>An Asset is a file on disk, stored in the Assets folder of a Unity project. For example, texture files, material files and FBX files are all Assets. Some Assets contain data in formats native to Unity, such as materials. Other Assets need to be processed into native formats, such as FBX files.<br></div>
-
-<p>一个资产是存储在 Unity Project 中资产文件夹下的文件。比如纹理文件，材质文件和 FBX 文件都是资产。有些资产包含 Unity 原生数据格式，比如材质。而有些资产需要转换成 Unity 原生数据格式，比如 FBX 文件。</p>
-<div style='display:none'><br>A <strong>UnityEngine.Object</strong>, or <strong>Object</strong> with a capitalized ‘O’, is a set of serialized data collectively describing a specific instance of a resource. This can be any type of resource which the Unity Engine uses, such as a mesh, a sprite, an AudioClip or an AnimationClip. All Objects are subclasses of the <a href="http://docs.unity3d.com/ScriptReference/Object.html">UnityEngine.Object</a> base class.<br></div>
-
-<p>一个 <strong>UnityEngine.Object</strong> 或者大写字母 O 的 <strong>Object</strong>，是个序列化数据集合，用来表述某个资源的具体实例。它可以是任何 Unity 引擎使用的资源，比如一个网格，一个精灵，一个音频剪辑和一个动画片段。所有的对象都是 <a href="http://docs.unity3d.com/ScriptReference/Object.html">UnityEngine.Object</a> 的子类。</p>
-<div style='display:none'><br>While most Object types are built-in, there are two special types.<br></div>
-
-<p>在 Unity 中基本所有的对象类型都是内置的，除了两种特殊的类型。<br>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/12/15/Assets_Objects_serialization/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </article>
 
 
-    
-      
 
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/12/15/GuideToABAndRes/" itemprop="url">
-                  资源和 AssetBundle 指导
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-12-15T17:40:00+08:00" content="2016-12-15">
-              2016-12-15
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/UnityKB/" itemprop="url" rel="index">
-                    <span itemprop="name">UnityKB</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/12/15/GuideToABAndRes/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/12/15/GuideToABAndRes/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <div style='display:none'> This is a series of articles that provides an in-depth discussion of Assets and resource management in the Unity engine. It seeks to provide expert developers with deep, source-level knowledge of Unity’s Asset and serialization systems. It examines both the technical underpinnings of Unity’s AssetBundle system and the current best practices for employing them.<br></div>
-
-<p>这是深度探讨 Unity 引擎中资源（Resource）和资产（Asset） 管理的系列文章。文章试图给高级开发者提供 Unity 资产和序列化系统的底层、代码级的知识，并且审视 Unity 的 AssetBundle 系统技术基础和当前使用它们的最佳实践。</p>
-<div style='display:none'><br>The guide is broken down into four chapteros:<br><br>1. <a href="https://unity3d.com/learn/tutorials/topics/best-practices/assets-objects-and-serialization">Assets, Objects and serialization</a> discusses the low-level details of how Unity serializes Assets and handles references between Assets. It is strongly recommended that readers begin with this chapter as it defines terminology used throughout the guide.<br>2. <a href="https://unity3d.com/learn/tutorials/topics/best-practices/resources-folder">The Resources folder</a> discusses the built-in Resources API.<br>3. <a href="https://unity3d.com/learn/tutorials/topics/best-practices/asset-bundle-fundamentals">AssetBundle fundamentals</a> builds on the information in chapter 1 to describe how AssetBundles operate, and discusses both the loading of AssetBundles and the loading of Assets from AssetBundles.<br>4. <a href="https://unity3d.com/learn/tutorials/topics/best-practices/asset-bundle-usage-patterns">AssetBundle usage patterns</a> is a long article discussing many of the topics surrounding the practical uses of AssetBundles. It includes sections on assigning Assets to AssetBundles and on managing loaded Assets, and describes many common pitfalls encountered by developers using AssetBundles.<br></div>
-
-<p>系列文章将会拆分为四个章节：</p>
-<ol>
-<li><a href="/2016/12/15/Assets_Objects_serialization/" title="[资产，对象和序列化]">[资产，对象和序列化]</a> 章节探讨 Unity 如何序列化资产和处理它们之间的引用的底层细节。<strong>强烈推荐从读者从这章开始阅读，因为它定义了贯穿这系列文章的术语</strong>。</li>
-<li><a href="/2016/12/28/resources_folder/" title="[Resources 文件夹]">[Resources 文件夹]</a> 探讨内置的 Resources API.</li>
-<li><a href="/2017/01/08/AssetBundle_Fundamentals/" title="[AssetBundle 基本知识]">[AssetBundle 基本知识]</a> 在第一章的基础上描述 AssetBundles 怎么运转和加载 AssetBundles 及从 AssetBundles 加载资产。</li>
-<li><a href="https://unity3d.com/learn/tutorials/topics/best-practices/asset-bundle-usage-patterns">AssetBundle 使用模式</a> 是一篇探讨很多 AssetBundle 的实际用途。它包括了给 AssetBundles 添加资产 和管理加载后的资产并描述了开发者使用 AssetBundles 时经常碰到的陷阱。</li>
-</ol>
-<div style='display:none'><br>Note: This guide’s terms for Objects and Assets differ from Unity’s public API naming conventions.<br></div>
-
-<p>注意：这系列文章中的对象和资产有别与 Unity API 命名约定中的对象和资产。</p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/12/15/GuideToABAndRes/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
+    <div class="post-spread">
       
     </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-  </section>
-
-  
-  <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
-  </nav>
-
+  </div>
 
 
           </div>
@@ -1393,6 +774,14 @@
 
 
           
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/04/18/AssetBundle_usage_pattern_1/"
+           data-title="AssetBundle 使用模式 (1)" data-url="http://blog.shuiguzi.com/2017/04/18/AssetBundle_usage_pattern_1/">
+      </div>
+    
+  </div>
+
 
         </div>
         
@@ -1412,8 +801,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="https://avatars1.githubusercontent.com/u/5707242?v=3&s=460"
@@ -1483,6 +881,17 @@
 
       </section>
 
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#管理加载后的资产"><span class="nav-number">1.</span> <span class="nav-text">管理加载后的资产</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#部署"><span class="nav-number">2.</span> <span class="nav-text">部署</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#随项目一起打包"><span class="nav-number">3.</span> <span class="nav-text">随项目一起打包</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Streaming-Assets"><span class="nav-number">3.1.</span> <span class="nav-text">Streaming Assets</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装之后下载"><span class="nav-number">4.</span> <span class="nav-text">安装之后下载</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#内置缓存"><span class="nav-number">5.</span> <span class="nav-text">内置缓存</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#填充缓存"><span class="nav-number">5.1.</span> <span class="nav-text">填充缓存</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#定制下载器"><span class="nav-number">6.</span> <span class="nav-text">定制下载器</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#下载"><span class="nav-number">6.1.</span> <span class="nav-text">下载</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#C-类"><span class="nav-number">6.1.1.</span> <span class="nav-text">C# 类</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Asset-Store-Packages"><span class="nav-number">6.1.2.</span> <span class="nav-text">Asset Store Packages</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#定制原生插件"><span class="nav-number">6.2.</span> <span class="nav-text">定制原生插件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#存储"><span class="nav-number">6.3.</span> <span class="nav-text">存储</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#资产分配策略"><span class="nav-number">7.</span> <span class="nav-text">资产分配策略</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#逻辑实体分组"><span class="nav-number">8.</span> <span class="nav-text">逻辑实体分组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#类型分组"><span class="nav-number">9.</span> <span class="nav-text">类型分组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#并行内容分组"><span class="nav-number">10.</span> <span class="nav-text">并行内容分组</span></a></li></ol></div>
+            
+          </div>
+        </section>
       
 
     </div>
@@ -1574,6 +983,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
 
   
 

@@ -257,6 +257,135 @@
             
               
                 
+                <a class="post-title-link" href="/2015/08/06/uNET_1/" itemprop="url">
+                  UNet 0x01：网络连接的建立
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-08-06T16:43:00+08:00" content="2015-08-06">
+              2015-08-06
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/UnityKB/" itemprop="url" rel="index">
+                    <span itemprop="name">UnityKB</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/08/06/uNET_1/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/08/06/uNET_1/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>看到标题后，没接触过的朋友脑中可能会闪现出这样一个问题： UNet 是什么 ? 其实它是 Unity 5.1 版本新引入的网络系统。官方论坛里面称这个系统为 UNet, 那我们按照官方的习惯来。</p>
+<p><a href="http://docs.unity3d.com/Manual/UNetOverview.html">官方手册文档</a> 介绍其主要有两类功能（按 API 抽象层次来分）：</p>
+<ul>
+<li>低层次 <a href="http://docs.unity3d.com/Manual/UNetUsingTransport.html">NetworkTransport API</a>， 适合于用来构建更复杂高级的多人游戏或者网络基础平台</li>
+<li>高层次的 High Level API，也叫做 HLAPI，建立在 NetworkTransport 之上。适合开发多人游戏</li>
+</ul>
+<p>这篇文章将只涉及 High Level API。我们的目的是建立（Client 于 Server 间的）网络连接。</p>
+<h3 id="UNet-的-Server-Client-Host"><a href="#UNet-的-Server-Client-Host" class="headerlink" title="UNet 的 Server / Client / Host"></a>UNet 的 Server / Client / Host</h3><p>在 UNet 先系统中会出现 1 个 Server 和 n 个 Client (n &gt;= 0)。当没有专门的 Server 的时候，其中一个 Client 会充当 Server 的作用，这个即是 Client 又是 Server 的端在 UNet 中被称为 Host。 Host 在同一个进程里面执行 Server 和 Client, 这个 Client　有个专门的名字叫做 Local Client。它跟 Local Server 之间是通过 <strong>消息队列</strong> 和 <strong>直接的函数调</strong> 用来通信的。 </p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/08/06/uNET_1/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2015/07/21/rockstar/" itemprop="url">
                   好玩：如何把 Github Contributions 填充满
                 </a>
@@ -904,137 +1033,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/05/06/Shader_7/" itemprop="url">
-                  瞎聊 Unity Shader 系列之七：究竟谁先被渲染？
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2015-05-06T16:05:00+08:00" content="2015-05-06">
-              2015-05-06
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Shader/" itemprop="url" rel="index">
-                    <span itemprop="name">Shader</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/05/06/Shader_7/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/05/06/Shader_7/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>这节的问题: 假设有很多对象需要渲染，而你想自己指定这些对象被渲染的顺序的话应该怎么做？</p>
-<p>先上答案：使用 Subshader 的 Queue 标签指定。</p>
-<p>那 Queue 标签又是是那么？？ 我们继续往下看，先介绍 Subshader 的标签</p>
-<h3 id="Subshader-的标签"><a href="#Subshader-的标签" class="headerlink" title="Subshader 的标签"></a>Subshader 的标签</h3><p>在上一节 <a href="/2015/05/05/Shader_6/" title="[初识 Shaderlab]">[初识 Shaderlab]</a> 中我们知道 Subshader 语句块内有个 <code>[Tags]</code> 可选项，它的作用是是配置渲染引擎应该 <strong>什么时候 和 怎么样</strong> 去渲染。这就是 Subshader 的标签。</p>
-<p>它的语法是：</p>
-<blockquote>
-<p>Tags { “TagName1” = “Value1” “TagName2” = “Value2” … }</p>
-</blockquote>
-<p>就是 Tags 语法块内带有若干键值对项（理论上可有很多很多个这种键值对）。可以填写的些键值对可以参考 <a href="http://docs.unity3d.com/Manual/SL-SubshaderTags.html">这个页面</a></p>
-<p>需要注意一点 <strong>它只能写在 Subshader 语句块里面，不能写在 Pass 语句块里面</strong>。</p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2015/05/06/Shader_7/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1080,7 +1078,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">46</span>
+              <span class="site-state-item-count">47</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
