@@ -2,6 +2,7 @@
 
   {% if theme.gentie_productKey %}
     {% set gentie_productKey = theme.gentie_productKey %}
+    <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
     <script>
       var cloudTieConfig = {
         url: document.location.href, 
@@ -10,7 +11,7 @@
         target: "cloud-tie-wrapper"
       };
     </script>
-    <script src="https://img1.ws.126.net/f2e/tie/yun/sdk/loader.js"></script>
+    <script src="https://img1.cache.netease.com/f2e/tie/yun/sdk/loader.js"></script>
   {% endif %}
 
 {% endif %}

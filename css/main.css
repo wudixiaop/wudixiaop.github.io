@@ -1662,7 +1662,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #08ffcc;
+  background: #ffc4ff;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2164,6 +2164,17 @@ a.search-result {
 .site-uv::after {
   content: "|";
   padding-left: 10px;
+}
+.cloud-tie-wrapper img {
+  display: inline-block;
+}
+.cloud-tie-wrapper .total-txt {
+  font-size: 1em !important;
+}
+.cloud-tie-join-count .join-count {
+  color: #555 !important;
+  font-size: inherit !important;
+  margin: 0 !important;
 }
 .use-motion .post {
   opacity: 0;
