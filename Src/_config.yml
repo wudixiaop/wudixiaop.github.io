@@ -82,7 +82,8 @@ avatar: https://avatars1.githubusercontent.com/u/5707242?v=3&s=460
   
 #plugins
 baidu_analytics: 3a8e2930fa3e4db2aa0fe1cb32188641
-duoshuo_shortname: rockylaigithubio
+# duoshuo_shortname: rockylaigithubio
+gentie_productKey: 3f13d0f4a04a4345b12f0c8c63ebbb0d
 
 baidusitemap:
 path: baidusitemap.xml
