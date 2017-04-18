@@ -257,6 +257,143 @@
             
               
                 
+                <a class="post-title-link" href="/2015/04/26/Shader_1/" itemprop="url">
+                  瞎聊 Unity Shader 系列之一：GPU 与 Shader Model
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-04-26T16:50:00+08:00" content="2015-04-26">
+              2015-04-26
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Shader/" itemprop="url" rel="index">
+                    <span itemprop="name">Shader</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/04/26/Shader_1/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/04/26/Shader_1/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>我想首先唠叨下我为什么打算写这一系列的文章及文章的定位。</p>
+<p>我写的动力主要来源于如下原因：</p>
+<ul>
+<li>对之前学习的一些总结、复习和提炼</li>
+<li>尽可能的填充一些概念上的空白。 有不少关于 Unity shader 的文章只讲 Shaderlab 语法，讲各种光照模型等, 这对于缺乏概念的新手来说是不太好理解的。</li>
+<li>之前信誓旦旦的跟朋友说以后学了 shader 会写点文章出来，算是允诺。。。</li>
+</ul>
+<p>文章定位：</p>
+<ul>
+<li>这是学习笔记，不是教程。如果内容会有出入，非常感谢和希望您能指正。</li>
+<li>主要基础概念为主，可能很零散。</li>
+</ul>
+<p>之前有前辈说过，学习一门知识前，了解其由来对入门很有好处。我比较赞同这个观点，所以开篇我们来说写历史。</p>
+<h3 id="CPU-之外的另外一个-PU-GPU"><a href="#CPU-之外的另外一个-PU-GPU" class="headerlink" title="CPU 之外的另外一个 PU - GPU"></a>CPU 之外的另外一个 PU - GPU</h3><p>随着计算机处理图形的计算量越来越来大，CPU难以满足计算速度上的需求, 为了将图形的计算单独拿出来执行，上世纪70年代开始出现了为加速图形绘制的硬件。这些硬件跟大部分刚出来的新事物一样，功能有限，而且不太完善，当然那个时候也不叫 GPU。</p>
+<p>1999 年，NVIDIA 公司发布了 GeForce256, 并且提出一个 Graphics Process Unit (GPU) 概念。很多文章都提到这款显卡有划时代的意义，因为它是第一款带有可编程顶点处理能力的显卡，这意味着显卡从<strong>之前的只可配置</strong>上升到了<strong>可编程</strong>的高度，开发者从此可以实现自己顶点处理算法。NVIDIA 也是提出 GPU 这个词来对 GeForece256 与之前显卡做区分。</p>
+<p>2000 年以后， GPU 技术一直在不断的发展，处理和运算能力不断打变强变大。为了利用 GPU 强大的并行计算能力，出现了 CUDA 并行计算平台。有兴趣的同学可以关注下<a href="https://developer.nvidia.com/cuda-zone">CUDA官网</a>.</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/04/26/Shader_1/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2015/04/15/cirleImageInUnity3D/" itemprop="url">
                   在 Unity uGUI 中绘制圆形图片
                 </a>
@@ -867,143 +1004,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2014/11/10/MonoBehavior event functions/" itemprop="url">
-                  一起看看MonoBehavior内部事件执行顺序
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2014-11-10T21:38:00+08:00" content="2014-11-10">
-              2014-11-10
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/UnityKB/" itemprop="url" rel="index">
-                    <span itemprop="name">UnityKB</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2014/11/10/MonoBehavior event functions/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2014/11/10/MonoBehavior event functions/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h3 id="写在最前面"><a href="#写在最前面" class="headerlink" title="写在最前面"></a>写在最前面</h3><p>或许对于大部分Unity3D程序员来说，第一次接触脚本编写的时候都是从MonoBehavior开始的。MonoBehavior是Uniy3d脚本编写核心的类之一， 它预先定义好了很多事件，并且这些事件按照预先定义好顺序执行。了解MonoBehavior提供的这些事件的执行顺序，是我们进一步提高脚步编程和了解Unity3D内部逻辑的必要一步。我们先从MonoBehavior提供的事件说起。</p>
-<h3 id="MonoBehavior都提供了什么事件"><a href="#MonoBehavior都提供了什么事件" class="headerlink" title="MonoBehavior都提供了什么事件"></a>MonoBehavior都提供了什么事件</h3><p>MonoBehavior提供的事件从编辑器到游戏结束都有涉及。下面列举一些常用的，更详列表可以参照 <a href="http://docs.unity3d.com/ScriptReference/MonoBehaviour.html">这个页面</a>。</p>
-<h4 id="与编辑相关"><a href="#与编辑相关" class="headerlink" title="与编辑相关"></a>与编辑相关</h4><table>
-<thead>
-<tr>
-<th style="text-align:left">名称</th>
-<th style="text-align:left">注释</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">Reset</td>
-<td style="text-align:left">Reset to default values.</td>
-</tr>
-</tbody>
-</table>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2014/11/10/MonoBehavior event functions/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1049,7 +1049,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">46</span>
+              <span class="site-state-item-count">47</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
