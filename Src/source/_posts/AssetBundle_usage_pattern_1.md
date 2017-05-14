@@ -497,7 +497,7 @@ Application.streamingAssetPath is not writable and is a poor choice for an Asset
 
 Application.streamingAssetPath 是只读的，是用来做 AssetBundle 缓存的一个糟糕的选择。streamingAssetPath 包括：
 
-* __OSX (mac OS)：__ 在 .app 保内，不可以写
+* __OSX (mac OS)：__ 在 .app 包内，不可以写
 * __Windows：__ 在安装目录内（一般是 Promgram Files），通常不可写
 * __iOS：__ 在 .ipa 包内，不可写
 * __Android：__ 在压缩的 .jar 文件内，不可写
