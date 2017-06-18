@@ -497,7 +497,7 @@ Application.streamingAssetPath is not writable and is a poor choice for an Asset
 
 Application.streamingAssetPath 是只读的，是用来做 AssetBundle 缓存的一个糟糕的选择。streamingAssetPath 包括：
 
-* __OSX (mac OS)：__ 在 .app 保内，不可以写
+* __OSX (mac OS)：__ 在 .app 包内，不可以写
 * __Windows：__ 在安装目录内（一般是 Promgram Files），通常不可写
 * __iOS：__ 在 .ipa 包内，不可写
 * __Android：__ 在压缩的 .jar 文件内，不可写
@@ -630,7 +630,7 @@ Examples:
 The advantage to grouping assets by logical entity is that it permits individual entities to be easily updated without re-downloading unchanged content. This is why this strategy is particularly suitable for DLC. This strategy also tends to be the most memory-efficient, as an application needs to load only the AssetBundles representing the entities currently in-use.
 </div>
 
-逻辑实体分组的优点是不需要从新下载不变内容的情况下轻松的更新实体。这就是它为什么特别适合 DLC （Downloadable Content）的原因。这个策略也是内存使用最高的，因为应用只需要加载当前使用的实体的 AssetBundle。
+逻辑实体分组的优点是不需要从新下载不变内容的情况下轻松的更新实体。这就是它为什么特别适合 DLC （Downloadable Content）的原因。这个策略也是内存效率最高的，因为应用只需要加载当前使用的实体的 AssetBundle。
 
 <div style='display:none'>
 However, this is the trickiest strategy to implement, as the developers assigning Objects to AssetBundles must be familiar with precisely how and when each individual Object will be used by the project.
