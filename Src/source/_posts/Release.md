@@ -16,8 +16,9 @@ tags: Shader
 3. Add .cg and .hlsl support
 4. Fix highlight bug after add new keywords
 
-> __VS2013:__ <https://pan.baidu.com/s/1c4BUNG>
+> __VS2017:__ <http://pan.baidu.com/s/1i50zBEl>
 > __VS2015:__ <https://pan.baidu.com/s/1creEL4>
+> __VS2013:__ <https://pan.baidu.com/s/1c4BUNG>
 
 ### Version - v0.7 beta
 <hr>
