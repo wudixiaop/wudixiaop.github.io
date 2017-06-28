@@ -4,6 +4,26 @@
 
     
   <url>
+    <loc>http://blog.shuiguzi.com/2014/10/28/Release/</loc>
+    <lastmod>2017-06-28T09:57:52.000Z</lastmod>
+    <data>
+        <display>
+        <title>ShaderlabVS Release Page</title>
+        <pubTime>2014-10-28T13:20:00.000Z</pubTime>
+        
+        <tag>Shader</tag>
+         
+         
+           
+             
+              <breadCrumb title="Shader" url="http://blog.shuiguzi.com/categories/Shader/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://blog.shuiguzi.com/2017/04/18/AssetBundle_usage_pattern_1/</loc>
     <lastmod>2017-06-18T12:16:54.000Z</lastmod>
     <data>
@@ -17,26 +37,6 @@
            
              
               <breadCrumb title="UnityKB" url="http://blog.shuiguzi.com/categories/UnityKB/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://blog.shuiguzi.com/2014/10/28/Release/</loc>
-    <lastmod>2017-03-12T07:31:46.000Z</lastmod>
-    <data>
-        <display>
-        <title>ShaderlabVS Release Page</title>
-        <pubTime>2014-10-28T13:20:00.000Z</pubTime>
-        
-        <tag>Shader</tag>
-         
-         
-           
-             
-              <breadCrumb title="Shader" url="http://blog.shuiguzi.com/categories/Shader/"/>
           
         </display>
     </data>
