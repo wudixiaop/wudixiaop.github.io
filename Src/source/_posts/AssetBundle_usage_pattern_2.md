@@ -24,7 +24,7 @@ The more difficult problem to solve in the patching system is detecting which As
 </div>
 
 更困难的问题是解决补丁系统探测哪个 AssetBundle 需要被替换。一个补丁系统需要两个信息列表：
-
+<!-- more -->
 * 当前已下载的 AssetBundle 和它们的版本信息列表
 * 远程服务器上的 AssetBundle 和它们的版本信息列表
 
