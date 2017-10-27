@@ -257,6 +257,140 @@
             
               
                 
+                <a class="post-title-link" href="/2016/12/15/Assets_Objects_serialization/" itemprop="url">
+                  资产, 对象和序列化
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-12-15T17:40:00+08:00" content="2016-12-15">
+              2016-12-15
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/UnityKB/" itemprop="url" rel="index">
+                    <span itemprop="name">UnityKB</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <div style='display:none'><br>This is the second chapter in a <a href="https://unity3d.com/learn/tutorials/topics/best-practices/guide-asset-bundles-and-resources/">series of articles covering Assets, Resources and resource management</a> in Unity 5.<br></div>
+
+<p>这是 Unity 5 <a href="/2016/12/15/GuideToABAndRes/" title="[资产, 资源和资源管理系列文章]">[资产, 资源和资源管理系列文章]</a>的第二篇。</p>
+<div style='display:none'><br>This chapter covers the deep internals of Unity’s serialization system and how Unity maintains robust references between different Objects, both in the Unity Editor and at runtime. It also discusses the technical distinctions between Objects and Assets. The topics covered here are fundamental to understanding how to efficiently load and unload Assets in Unity. Proper Asset management is crucial to keeping loading times short and memory usage low.<br></div>
+
+<p>这篇文章涵盖了 Unity 序列化系统的底层知识和 Unity  怎么在它的编辑器及运行时维持不同对象的稳定的引用，理解怎么样在 Unity 中高效的加载和卸载资产。正确的资产管理是保持低内存和快速加载的关键。</p>
+<div style='display:none'><br>### 1. Inside Assets and Objects<br></div>
+
+<h3 id="资产和对象的内部"><a href="#资产和对象的内部" class="headerlink" title="资产和对象的内部"></a>资产和对象的内部</h3><div style='display:none'><br>To understand how to properly manage data in Unity, it is important to understand how Unity identifies and serializes data. The first key point is the distinction between Assets and <strong>UnityEngine.Objects</strong>.<br></div>
+
+<p>要理解怎么样正确的管理数据，Unity 怎么鉴别和序列化数据很重要。其中首先的关键点是理解 <strong>资产</strong> 和 <strong>对象（UnityEngine.Objects）</strong> 的区别。</p>
+<div style='display:none'><br>An Asset is a file on disk, stored in the Assets folder of a Unity project. For example, texture files, material files and FBX files are all Assets. Some Assets contain data in formats native to Unity, such as materials. Other Assets need to be processed into native formats, such as FBX files.<br></div>
+
+<p>一个资产是存储在 Unity Project 中资产文件夹下的文件。比如纹理文件，材质文件和 FBX 文件都是资产。有些资产包含 Unity 原生数据格式，比如材质。而有些资产需要转换成 Unity 原生数据格式，比如 FBX 文件。</p>
+<div style='display:none'><br>A <strong>UnityEngine.Object</strong>, or <strong>Object</strong> with a capitalized ‘O’, is a set of serialized data collectively describing a specific instance of a resource. This can be any type of resource which the Unity Engine uses, such as a mesh, a sprite, an AudioClip or an AnimationClip. All Objects are subclasses of the <a href="http://docs.unity3d.com/ScriptReference/Object.html">UnityEngine.Object</a> base class.<br></div>
+
+<p>一个 <strong>UnityEngine.Object</strong> 或者大写字母 O 的 <strong>Object</strong>，是个序列化数据集合，用来表述某个资源的具体实例。它可以是任何 Unity 引擎使用的资源，比如一个网格，一个精灵，一个音频剪辑和一个动画片段。所有的对象都是 <a href="http://docs.unity3d.com/ScriptReference/Object.html">UnityEngine.Object</a> 的子类。</p>
+<div style='display:none'><br>While most Object types are built-in, there are two special types.<br></div>
+
+<p>在 Unity 中基本所有的对象类型都是内置的，除了两种特殊的类型。<br>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/12/15/Assets_Objects_serialization/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/09/01/Top10TipsEditor/" itemprop="url">
                   10 个鲜为人知的 Unity 技巧 - 编辑器篇
                 </a>
@@ -846,124 +980,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/02/16/UnityTips/" itemprop="url">
-                  关于 Untiy 一些需要知道的技巧
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-02-16T22:03:00+08:00" content="2016-02-16">
-              2016-02-16
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/UnityKB/" itemprop="url" rel="index">
-                    <span itemprop="name">UnityKB</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="Unity-Tips"><a href="#Unity-Tips" class="headerlink" title="Unity Tips"></a>Unity Tips</h2><ul>
-<li><code>List&lt;T&gt;</code> 或者数组序列化的时候默认生成的名字为 Element n，如果要改变这个，只需要把 T<br>的第一个序列化的字段的数据类型设置为 <code>string</code></li>
-<li>保存 Play 模式下调试出的数据：在组件的右上角点击右键，选择 <code>Copy Component</code>，然后关闭 Play<br>模式之在对应的组件右上角点击右键，选择 <code>Copy Component as Values</code>。 更多小技巧请看 <a href="https://mp.weixin.qq.com/s?__biz=MjM5NjM3NDA1Mg==&amp;mid=401777518&amp;idx=1&amp;sn=aa995d6c44866fb0f5bcc096e75969bb&amp;scene=0&amp;key=710a5d99946419d912a29c647796b42ba9c71553d849b38d45c2b41608a344d5befb72dd9cb578c745cd931a0e330ad7&amp;ascene=0&amp;uin=MTQ0NjU3MzQyNw">这个链接</a>。</li>
-</ul>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/02/16/UnityTips/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1008,7 +1024,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">47</span>
+              <span class="site-state-item-count">48</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
